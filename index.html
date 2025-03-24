@@ -436,7 +436,7 @@
             position: relative;
             overflow: hidden;
             background: rgba(0, 0, 0, 0);
-            margin-top: -40px;
+            margin: 0;
         }
 
         .organizers-grid {
@@ -1052,7 +1052,7 @@
             width: 100%;
             padding: 12px 15px;
             background-color: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255,255, 0.2);
             border-radius: 8px;
             color: #fff;
             transition: border-color 0.3s, box-shadow 0.3s;
@@ -1400,13 +1400,6 @@
             margin-top: 50px;
         }
 
-        .link-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
 
         .connect-button::before {
             content: '';
@@ -1720,6 +1713,46 @@
                 margin-bottom: 20px;
             }
 
+            .whatsapp-container {
+                padding: 40px 0;
+                min-height: auto;
+            }
+
+            .whatsapp-content {
+                flex-direction: column;
+                align-items: center;
+                gap: 40px;
+            }
+
+            .whatsapp-text,
+            .whatsapp-scene {
+                max-width: 100%;
+                width: 100%;
+            }
+
+            .whatsapp-scene {
+                transform: scale(0.8);
+                margin: 20px 0;
+            }
+
+            .title {
+                text-align: center;
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                text-align: center;
+                font-size: 1.2rem;
+            }
+
+            .organizers-section {
+                padding: 40px 0;
+            }
+
+            .organizer-card {
+                margin: 20px 0;
+            }
+
             .whatsapp-scene {
                 transform: scale(0.9);
             }
@@ -1791,18 +1824,14 @@
         .whatsapp-container {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            margin-top: -100px;
+            justify-content: center;
+            padding: 80px 0;
             opacity: 0;
             transform: translateY(20px);
             transition: opacity 0.6s ease-out, transform 0.6s ease-out;
             position: relative;
             z-index: 1;
-            margin-bottom: 40px;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            height: 100vh;
+            min-height: 100vh;
             text-align: center;
         }
 
@@ -1893,7 +1922,7 @@
         <!-- Header -->
         <header>
             <div class="logo-container">
-                <img src="gdglogo.png" alt="GDG Cloud Udaipur Logo" class="logo" width="200px" height="60px">
+                <img src="gdglogo.png" alt="GDG Cloud Udaipur Logo" class="logo" width="200px" height="50px">
             </div>
 
             <!-- Desktop Navigation -->
@@ -1955,7 +1984,7 @@
             <div class="events-grid">
                 <!-- Event card 1 -->
                 <div class="event-card">
-                    <div class="card-img" style="background-image: url('abhinav.jpeg')"></div>
+                    <div class="card-img" style="background-image: url('WhatsApp\ Image\ 2024-10-12\ at\ 4.30.13\ PM_h7WTSZx.webp')"></div>
                     <div class="card-content">
                         <span class="card-date">April 6, 2025</span>
                         <h3 class="card-title">Build With AI - Udaipur Hands-on Edition</h3>
@@ -1970,7 +1999,7 @@
 
                 <!-- Event card 2 -->
                 <div class="event-card">
-                    <div class="card-img" style="background-image: url('/api/placeholder/400/200')"></div>
+                    <div class="card-img" style="background-image: url('a-circular-badge-with-a-modern-tech-insp_1BDuHxdWRZCYCuqhVfXpbQ_Uw2rV4Z5Rp-fbF-jIax1WQ.jpeg')"></div>
                     <div class="card-content">
                         <span class="card-date">Coming Soon</span>
                         <h3 class="card-title">Cloud Community Days</h3>
@@ -2139,15 +2168,8 @@
                         <div class="whatsapp-content">
                             <div class="whatsapp-text">
                                 <h1 class="title">Connect with GDG Cloud Udaipur</h1>
-                                <h2 class="subtitle">Join our tech community on WhatsApp and LinkedIn </h2>
-                                <div class="link-container">
-                                <div><button class="connect-button" id="connect-btn"
-                                    onclick="window.open('https://chat.whatsapp.com/EesExCP4NMD4CjvT7TlQ2x', '_blank');">Join
-                                    Our WhatsApp Community</button></div>
-                                <div><button class="connect-button" id="connect-btn-link"
-                                    onclick="window.open('https://www.linkedin.com/company/gdg-cloud-udaipur', '_blank');">Join
-                                    Our LinkedIn Community</button></div>
-                                </div>
+                                <h2 class="subtitle">Join our tech community on WhatsApp</h2>
+                                <button class="connect-button" id="connect-btn" onclick="window.open('https://chat.whatsapp.com/EesExCP4NMD4CjvT7TlQ2x', '_blank');">Join Our Community</button>
                             </div>
                             <div class="whatsapp-scene" id="whatsapp-scene">
                                 <div class="phone" id="phone">
@@ -2161,11 +2183,7 @@
                                         </div>
                                         <div class="app-header">
                                             <div class="community-icon">
-                                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                    <path
-                                                        d="M12 12.75c1.63 0 3.07.39 4.24.9 1.08.48 1.76 1.56 1.76 2.73V18H6v-1.62c0-1.17.68-2.25 1.76-2.73 1.17-.51 2.61-.9 4.24-.9zm0-10c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3z"
-                                                        fill="#fff" />
-                                                </svg>
+                                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 12.75c1.63 0 3.07.39 4.24.9 1.08.48 1.76 1.56 1.76 2.73V18H6v-1.62c0-1.17.68-2.25 1.76-2.73 1.17-.51 2.61-.9 4.24-.9zm0-10c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3z" fill="#fff"/></svg>
                                             </div>
                                             <div class="app-title">GDG Cloud Udaipur</div>
                                         </div>
@@ -2182,13 +2200,9 @@
                                             <!-- Messages will be added here by JavaScript -->
                                         </div>
                                         <div class="chat-input">
-                                            <input type="text" class="input-box" placeholder="Type a message..."
-                                                id="message-input">
+                                            <input type="text" class="input-box" placeholder="Type a message..." id="message-input">
                                             <button class="send-btn" id="send-btn">
-                                                <svg viewBox="0 0 24 24" width="24" height="24"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" fill="#fff" />
-                                                </svg>
+                                                <svg viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" fill="#fff"/></svg>
                                             </button>
                                         </div>
                                     </div>
@@ -2517,8 +2531,8 @@
                         });
 
 
-                        
-                            
+
+
                                 function openModal(modalId, registerUrl) {
                                     if (modalId === 'membershipModal') {
                                         window.open('https://gdg.community.dev/gdg-cloud-udaipur/', '_blank');
@@ -2532,10 +2546,6 @@
                                 function closeModal(modalId) {
                                     document.getElementById(modalId).style.display = 'none';
                                 }
-                           
-
-                    
-
 
 
                     </script>
