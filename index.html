@@ -43,6 +43,10 @@
             font-family: 'Google Sans', Arial, sans-serif;
         }
 
+        html {
+            scroll-behavior: smooth; /* For smooth scrolling to sections */
+        }
+
         body {
             background-color: var(--dark-bg);
             color: #fff;
@@ -157,6 +161,8 @@
             border: none;
             cursor: pointer;
             z-index: 1001;
+            color: #fff; /* Ensure button is visible */
+            font-size: 24px; /* Make hamburger icon larger */
         }
 
         .mobile-menu-btn .bar {
@@ -172,7 +178,7 @@
             display: none;
             flex-direction: column;
             position: absolute;
-            top: 60px;
+            top: 70px; /* Adjusted to prevent overlap with header */
             right: 20px;
             background-color: var(--dark-bg);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -194,28 +200,15 @@
             color: var(--google-blue);
         }
 
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .mobile-menu-btn {
-                display: flex;
-            }
-
-            .mobile-menu.active {
-                display: flex;
-            }
-        }
 
         .hero {
-            height: 80vh;
+            min-height: 80vh; /* Use min-height to ensure content visibility */
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
             overflow: hidden;
+            padding: 40px 20px; /* Add padding for smaller screens */
         }
 
         .hero-content {
@@ -237,7 +230,7 @@
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 3rem; /* Adjusted for better readability */
             margin-bottom: 20px;
             background: linear-gradient(90deg, var(--google-blue), var(--google-red), var(--google-yellow), var(--google-green));
             -webkit-background-clip: text;
@@ -258,7 +251,7 @@
         }
 
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1.1rem; /* Adjusted */
             margin-bottom: 30px;
             max-width: 700px;
             margin-left: auto;
@@ -271,6 +264,7 @@
             gap: 20px;
             justify-content: center;
             margin-top: 40px;
+            flex-wrap: wrap; /* Allow buttons to wrap on small screens */
         }
 
         .btn {
@@ -286,6 +280,7 @@
             overflow: hidden;
             z-index: 1;
             box-shadow: var(--glow);
+            text-decoration: none; /* For anchor tags styled as buttons */
         }
 
         .btn::before {
@@ -313,8 +308,9 @@
             border: 2px solid var(--google-blue);
         }
 
-        .events-section {
-            padding: 80px 0;
+        .events-section,
+        .policy-section { /* Added policy-section for styling */
+            padding: 80px 20px; /* Added horizontal padding */
         }
 
         .section-title {
@@ -356,6 +352,8 @@
             cursor: pointer;
             border: 1px solid rgba(255, 255, 255, 0.1);
             position: relative;
+            display: flex; /* For flex layout */
+            flex-direction: column; /* Stack items vertically */
         }
 
         .event-card:hover {
@@ -394,6 +392,9 @@
 
         .card-content {
             padding: 25px;
+            flex-grow: 1; /* Allow content to grow */
+            display: flex;
+            flex-direction: column;
         }
 
         .card-title {
@@ -416,6 +417,7 @@
             color: rgba(255, 255, 255, 0.7);
             margin-bottom: 20px;
             line-height: 1.6;
+            flex-grow: 1; /* Allow description to take available space */
         }
 
         .card-price {
@@ -428,11 +430,12 @@
         .card-btn {
             width: 100%;
             text-align: center;
+            margin-top: auto; /* Push button to the bottom */
         }
 
         /* Organizers Section */
         .organizers-section {
-            padding: 80px 0;
+            padding: 80px 20px; /* Added horizontal padding */
             position: relative;
             overflow: hidden;
             background: rgba(0, 0, 0, 0);
@@ -441,7 +444,8 @@
 
         .organizers-grid {
             display: flex;
-            flex-direction: column;
+            flex-direction: column; /* Changed to column for single organizer */
+            align-items: center; /* Center the card */
             gap: 30px;
             margin-top: 50px;
         }
@@ -458,6 +462,8 @@
             flex-direction: column;
             align-items: center;
             height: 100%;
+            max-width: 400px; /* Max width for the card */
+            width: 100%;
         }
 
         .organizer-card:hover {
@@ -701,164 +707,13 @@
             color: rgba(255, 255, 255, 0.8);
         }
 
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .organizers-grid {
-                flex-direction: column;
-                gap: 20px;
-            }
 
-            .organizer-card {
-                padding: 20px;
-            }
+        /* Membership section (commented out as per original HTML) */
+        /* .membership-section { ... } */
 
-            .avatar-wrapper {
-                width: 100px;
-                height: 100px;
-            }
-        }
-
-        /* Membership section */
-        .membership-section {
-            padding: 80px 0;
-            position: relative;
-            overflow: hidden;
-            background: rgba(0, 0, 0, 0);
-            margin-top: -80px;
-        }
-
-        .membership-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-
-        .membership-card {
-            background: var(--card-bg);
-            border-radius: 15px;
-            overflow: hidden;
-            padding: 30px;
-            position: relative;
-            transition: transform 0.4s, box-shadow 0.4s;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            height: 100%;
-        }
-
-        .membership-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--glow);
-        }
-
-        .membership-avatar {
-            position: relative;
-            margin-bottom: 25px;
-        }
-
-        .avatar-wrapper {
-            width: 120px;
-            height: 120px;
-            position: relative;
-            margin: 0 auto;
-        }
-
-        .avatar-img {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid var(--google-blue);
-            transition: transform 0.5s;
-        }
-
-        .membership-card:hover .avatar-img {
-            transform: scale(1.05);
-        }
-
-        .avatar-glow {
-            position: absolute;
-            top: -5px;
-            left: -5px;
-            right: -5px;
-            bottom: -5px;
-            border-radius: 50%;
-            background: conic-gradient(var(--google-blue),
-                    var(--google-red),
-                    var(--google-yellow),
-                    var(--google-green),
-                    var(--google-blue));
-            opacity: 0.7;
-            z-index: -1;
-            animation: rotate 5s linear infinite;
-            filter: blur(10px);
-        }
-
-        .connection-lines {
-            position: absolute;
-            width: 160px;
-            height: 160px;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            border-radius: 50%;
-            border: 1px dashed rgba(255, 255, 255, 0.2);
-            z-index: -1;
-            animation: pulse 3s infinite alternate ease-in-out;
-        }
-
-        .connection-dot {
-            position: absolute;
-            width: 8px;
-            height: 8px;
-            background-color: var(--google-blue);
-            border-radius: 50%;
-            box-shadow: 0 0 10px var(--google-blue);
-        }
-
-        .connection-dot:nth-child(1) {
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: moveDot 5s infinite alternate;
-        }
-
-        .connection-dot:nth-child(2) {
-            bottom: 30%;
-            right: 0;
-            background-color: var(--google-red);
-            box-shadow: 0 0 10px var(--google-red);
-            animation: moveDot 7s infinite alternate-reverse;
-        }
-
-        .connection-dot:nth-child(3) {
-            bottom: 30%;
-            left: 0;
-            background-color: var(--google-green);
-            box-shadow: 0 0 10px var(--google-green);
-            animation: moveDot 6s infinite alternate;
-        }
-
-        @keyframes moveDot {
-            0% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-5px);
-            }
-
-            100% {
-                transform: translateY(5px);
-            }
-        }
-
-
-        /* Membership section */
+        /* About section */
         .about-section {
-            padding: 80px 0;
+            padding: 80px 20px; /* Added horizontal padding */
             position: relative;
         }
 
@@ -911,9 +766,36 @@
             margin-bottom: 20px;
         }
 
+        /* Policy Sections Styling */
+        .policy-section {
+            padding: 60px 20px;
+            background-color: rgba(20, 20, 20, 0.5); /* Slightly different background */
+            border-radius: 10px;
+            margin-bottom: 40px;
+        }
+        .policy-section h2 {
+            color: var(--google-blue);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .policy-section p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+         .policy-section ul {
+            list-style: disc;
+            margin-left: 20px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        .policy-section ul li {
+            margin-bottom: 10px;
+        }
+
+
         footer {
             background-color: #0a0a0a;
-            padding: 50px 0;
+            padding: 50px 20px; /* Added horizontal padding */
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
@@ -921,6 +803,8 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 30px;
+            max-width: 1200px; /* Max width for footer content */
+            margin: 0 auto; /* Center footer content */
         }
 
         .footer-column h3 {
@@ -954,12 +838,15 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: rgba(255, 255, 255, 0.5);
             font-size: 0.9rem;
+            max-width: 1200px; /* Max width for footer bottom */
+            margin: 30px auto 0 auto; /* Center footer bottom */
         }
 
         .social-links {
             display: flex;
             gap: 15px;
             margin-top: 15px;
+            justify-content: center; /* Center social links if in their own column */
         }
 
         .social-links a {
@@ -980,17 +867,18 @@
 
         /* Modal */
         .modal-container {
-            display: none;
+            display: none; /* Hidden by default */
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             background-color: rgba(0, 0, 0, 0.8);
-            z-index: 1000;
+            z-index: 10000; /* High z-index to be on top */
             align-items: center;
             justify-content: center;
             backdrop-filter: blur(5px);
+            padding: 20px; /* Padding for small screens */
         }
 
         .modal {
@@ -1002,6 +890,7 @@
             box-shadow: 0 0 30px rgba(66, 133, 244, 0.3);
             position: relative;
             animation: modalSlideIn 0.3s forwards;
+            color: #fff; /* Ensure text is visible */
         }
 
         @keyframes modalSlideIn {
@@ -1024,8 +913,9 @@
             border: none;
             color: rgba(255, 255, 255, 0.7);
             cursor: pointer;
-            font-size: 1.5rem;
+            font-size: 1.8rem; /* Larger close button */
             transition: color 0.3s;
+            line-height: 1; /* Ensure proper alignment */
         }
 
         .modal-close:hover {
@@ -1036,7 +926,18 @@
             font-size: 1.8rem;
             margin-bottom: 20px;
             color: #fff;
+            text-align: center;
         }
+
+        .modal-content p {
+            margin-bottom: 10px;
+            line-height: 1.6;
+            color: rgba(255,255,255,0.9);
+        }
+        .modal-content p strong {
+            color: var(--google-yellow);
+        }
+
 
         .form-group {
             margin-bottom: 20px;
@@ -1064,36 +965,7 @@
             box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.3);
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-                gap: 10px;
-            }
-
-            .about-content,
-            .membership-content {
-                flex-direction: column;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-            }
-        }
-
-        /* Sci-fi elements */
+        /* Sci-fi elements & animations (mostly unchanged from original) */
         .circle-decoration {
             position: absolute;
             border-radius: 50%;
@@ -1102,286 +974,94 @@
             z-index: -1;
         }
 
-        .circle-1 {
-            width: 300px;
-            height: 300px;
-            top: -150px;
-            right: -150px;
+        .circle-1 { width: 300px; height: 300px; top: -150px; right: -150px; }
+        .circle-2 { width: 200px; height: 200px; bottom: 50px; left: -100px; border-color: rgba(251, 188, 5, 0.2); background: rgba(251, 188, 5, 0.05); }
+
+        .glowing-line { position: absolute; background: linear-gradient(90deg, transparent, var(--google-blue), transparent); height: 1px; width: 100%; z-index: -1; }
+        .line-1 { top: 30%; animation: glowAnim 4s infinite; } /* Renamed glow to glowAnim to avoid conflict */
+        .line-2 { bottom: 20%; animation: glowAnim 5s infinite; animation-delay: 1s; }
+
+        @keyframes glowAnim {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.7; }
         }
 
-        .circle-2 {
-            width: 200px;
-            height: 200px;
-            bottom: 50px;
-            left: -100px;
-            border-color: rgba(251, 188, 5, 0.2);
-            background: rgba(251, 188, 5, 0.05);
-        }
-
-        .glowing-line {
-            position: absolute;
-            background: linear-gradient(90deg, transparent, var(--google-blue), transparent);
-            height: 1px;
-            width: 100%;
-            z-index: -1;
-        }
-
-        .line-1 {
-            top: 30%;
-            animation: glow 4s infinite;
-        }
-
-        .line-2 {
-            bottom: 20%;
-            animation: glow 5s infinite;
-            animation-delay: 1s;
-        }
-
-        @keyframes glow {
-
-            0%,
-            100% {
-                opacity: 0.3;
-            }
-
-            50% {
-                opacity: 0.7;
-            }
-        }
-
-        .tech-circle {
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            border-radius: 50%;
-            background-color: transparent;
-            border: 2px solid rgba(66, 133, 244, 0.1);
-            z-index: -1;
-        }
-
-        .tech-circle-1 {
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            animation: rotate 30s linear infinite;
-        }
-
-        .tech-circle-2 {
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0.8);
-            border-color: rgba(251, 188, 5, 0.1);
-            animation: rotate 40s linear infinite reverse;
-        }
-
-        .tech-circle-3 {
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0.6);
-            border-color: rgba(52, 168, 83, 0.1);
-            animation: rotate 50s linear infinite;
-        }
+        .tech-circle { position: absolute; width: 400px; height: 400px; border-radius: 50%; background-color: transparent; border: 2px solid rgba(66, 133, 244, 0.1); z-index: -1; }
+        .tech-circle-1 { top: 50%; left: 50%; transform: translate(-50%, -50%); animation: rotate 30s linear infinite; }
+        .tech-circle-2 { top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.8); border-color: rgba(251, 188, 5, 0.1); animation: rotate 40s linear infinite reverse; }
+        .tech-circle-3 { top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.6); border-color: rgba(52, 168, 83, 0.1); animation: rotate 50s linear infinite; }
 
         @keyframes rotate {
-            0% {
-                transform: translate(-50%, -50%) rotate(0deg);
-            }
-
-            100% {
-                transform: translate(-50%, -50%) rotate(360deg);
-            }
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
         }
 
-        .dot {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background-color: var(--google-blue);
-            box-shadow: 0 0 10px var(--google-blue);
-        }
+        .dot { position: absolute; width: 10px; height: 10px; border-radius: 50%; background-color: var(--google-blue); box-shadow: 0 0 10px var(--google-blue); }
+        .tech-circle-1 .dot { top: 0; left: 50%; transform: translateX(-50%); }
+        .tech-circle-2 .dot { top: 50%; right: 0; transform: translateY(-50%); background-color: var(--google-yellow); box-shadow: 0 0 10px var(--google-yellow); }
+        .tech-circle-3 .dot { bottom: 0; left: 50%; transform: translateX(-50%); background-color: var(--google-green); box-shadow: 0 0 10px var(--google-green); }
 
-        .tech-circle-1 .dot {
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-        }
 
-        .tech-circle-2 .dot {
-            top: 50%;
-            right: 0;
-            transform: translateY(-50%);
-            background-color: var(--google-yellow);
-            box-shadow: 0 0 10px var(--google-yellow);
-        }
-
-        .tech-circle-3 .dot {
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: var(--google-green);
-            box-shadow: 0 0 10px var(--google-green);
-        }
-
-        .container {
-            max-width: 1200px;
-            width: 100%;
-            padding: 20px;
+        /* WhatsApp section styles (from original, ensure they don't conflict) */
+        .whatsapp-container {
             display: flex;
-            justify-content: center;
             align-items: center;
-            flex-direction: column;
-        }
-
-        .title {
-            font-size: 2.5rem;
-            color: #4285F4;
-            /* Google Blue */
-            margin-bottom: 40px;
-            text-align: center;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            justify-content: center;
+            padding: 80px 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
             position: relative;
-            transform: translateZ(50px);
-            opacity: 0;
-            animation: fadeIn 1s forwards 0.5s;
+            z-index: 1;
+            min-height: 100vh; /* Can be adjusted if it causes too much space */
+            text-align: center;
         }
 
-        .subtitle {
-            font-size: 1.5rem;
-            color: #34A853;
-            /* Google Green */
-            margin-bottom: 30px;
-            text-align: center;
-            opacity: 0;
-            animation: fadeIn 1s forwards 0.8s;
+        .whatsapp-container.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .whatsapp-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-around; /* Adjusted for better spacing */
+            width: 100%;
+            max-width: 1200px; /* Max width for content */
+            margin: 0 auto; /* Center content */
+            gap: 30px; /* Gap between text and scene */
+        }
+
+        .whatsapp-text {
+            max-width: 45%; /* Adjusted width */
+            text-align: left; /* Align text to left */
         }
 
         .whatsapp-scene {
+            max-width: 45%; /* Adjusted width */
             position: relative;
-            width: 350px;
-            height: 600px;
+            width: 350px; /* Fixed width for phone */
+            height: 600px; /* Fixed height for phone */
             transform-style: preserve-3d;
-            animation: float 6s ease-in-out infinite;
+            animation: whatsappFloat 6s ease-in-out infinite; /* Renamed float to whatsappFloat */
+        }
+         @keyframes whatsappFloat { /* Renamed from float */
+            0%, 100% { transform: translateY(0) rotateY(5deg); }
+            50% { transform: translateY(-20px) rotateY(-5deg); }
         }
 
-        .phone {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: #111;
-            border-radius: 30px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            padding: 10px;
-            transform-style: preserve-3d;
-            transform: rotateY(0deg) rotateX(0deg);
-            transition: transform 0.5s ease;
-            margin-top: 60px;
+
+        .whatsapp-text .title { /* Specific title styling for this section */
+            font-size: 2.2rem;
+            color: #FFF;
+            margin-bottom: 20px; /* Reduced margin */
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
-        .phone-screen {
-            width: 100%;
-            height: 100%;
-            background: #fff;
-            border-radius: 20px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .app-header {
-            background: #075e54;
-            padding: 15px;
-            display: flex;
-            align-items: center;
-            position: relative;
-            z-index: 10;
-        }
-
-        .app-title {
-            color: white;
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin-left: 10px;
-        }
-
-        .chat-container {
-            height: calc(100% - 130px);
-            overflow-y: auto;
-            padding: 15px;
-            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZGlhZ29uYWxIYXRjaCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgd2lkdGg9IjQiIGhlaWdodD0iNCIgcGF0dGVyblRyYW5zZm9ybT0icm90YXRlKDQ1KSI+PHBhdGggZD0iTSAtMSwxIGwgMiwtMiBNIDAsMCBsIDQsLTQgTSAzLC0xIGwgMiwyIiBzdHJva2U9IiNlNWRkZDUiIHN0cm9rZS13aWR0aD0iMC41Ii8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZTVkZGQ1Ii8+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNkaWFnb25hbEhhdGNoKSIvPjwvc3ZnPg==');
-        }
-
-        .message {
-            max-width: 80%;
-            padding: 10px 15px;
-            border-radius: 10px;
-            margin-bottom: 15px;
-            position: relative;
-            word-break: break-word;
-            animation: messageIn 0.5s forwards;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-
-        .message-time {
-            font-size: 0.7rem;
-            opacity: 0.7;
-            text-align: right;
-            margin-top: 5px;
-        }
-
-        .message-left {
-            background: white;
-            align-self: flex-start;
-            border-top-left-radius: 0;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            margin-right: auto;
-            color: #000;
-        }
-
-        .message-right {
-            background: #dcf8c6;
-            align-self: flex-end;
-            border-top-right-radius: 0;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            margin-left: auto;
-            color: #000;
-        }
-
-        .chat-input {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            display: flex;
-            padding: 10px;
-            background: #f0f0f0;
-            align-items: center;
-            border-bottom-left-radius: 20px;
-            border-bottom-right-radius: 20px;
-        }
-
-        .input-box {
-            flex: 1;
-            border: none;
-            background: white;
-            border-radius: 20px;
-            padding: 10px 15px;
-            margin-right: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .send-btn {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: #075e54;
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            border: none;
-            outline: none;
+        .whatsapp-text .subtitle { /* Specific subtitle styling */
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 30px;
         }
 
         .connect-button {
@@ -1397,7 +1077,8 @@
             overflow: hidden;
             z-index: 1;
             box-shadow: var(--glow);
-            margin-top: 50px;
+            margin-top: 20px; /* Adjusted margin */
+            text-decoration: none;
         }
 
 
@@ -1417,306 +1098,89 @@
             width: 100%;
         }
 
-        .connect-button-primary {
-            background-color: var(--google-blue);
-        }
+        /* Phone styles from original */
+        .phone { position: absolute; width: 100%; height: 100%; background: #111; border-radius: 30px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); padding: 10px; transform-style: preserve-3d; transform: rotateY(0deg) rotateX(0deg); transition: transform 0.5s ease; margin-top: 0; } /* Removed margin-top: 60px */
+        .phone-screen { width: 100%; height: 100%; background: #fff; border-radius: 20px; overflow: hidden; position: relative; }
+        .app-header { background: #075e54; padding: 15px; display: flex; align-items: center; position: relative; z-index: 10; }
+        .app-title { color: white; font-size: 1.2rem; font-weight: bold; margin-left: 10px; }
+        .chat-container { height: calc(100% - 130px); overflow-y: auto; padding: 15px; background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZGlhZ29uYWxIYXRjaCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgd2lkdGg9IjQiIGhlaWdodD0iNCIgcGF0dGVyblRyYW5zZm9ybT0icm90YXRlKDQ1KSI+PHBhdGggZD0iTSAtMSwxIGwgMiwtMiBNIDAsMCBsIDQsLTQgTSAzLC0xIGwgMiwyIiBzdHJva2U9IiNlNWRkZDUiIHN0cm9rZS13aWR0aD0iMC41Ii8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZTVkZGQ1Ii8+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNkaWFnb25hbEhhdGNoKSIvPjwvc3ZnPg=='); }
+        .message { max-width: 80%; padding: 10px 15px; border-radius: 10px; margin-bottom: 15px; position: relative; word-break: break-word; animation: messageIn 0.5s forwards; opacity: 0; transform: translateY(20px); }
+        .message-time { font-size: 0.7rem; opacity: 0.7; text-align: right; margin-top: 5px; }
+        .message-left { background: white; align-self: flex-start; border-top-left-radius: 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-right: auto; color: #000; }
+        .message-right { background: #dcf8c6; align-self: flex-end; border-top-right-radius: 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-left: auto; color: #000; }
+        .chat-input { position: absolute; bottom: 0; left: 0; right: 0; display: flex; padding: 10px; background: #f0f0f0; align-items: center; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px; }
+        .input-box { flex: 1; border: none; background: white; border-radius: 20px; padding: 10px 15px; margin-right: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .send-btn { width: 40px; height: 40px; border-radius: 50%; background: #075e54; color: white; display: flex; justify-content: center; align-items: center; cursor: pointer; border: none; outline: none; }
+        .community-icon { width: 30px; height: 30px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; justify-content: center; align-items: center; }
+        .community-icon svg { width: 20px; height: 20px; fill: white; }
+        .avatar { width: 30px; height: 30px; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; font-weight: bold; margin-right: 10px; }
+        .group-details { display: flex; padding: 15px; background: #f9f9f9; border-bottom: 1px solid #eee; align-items: center; }
+        .group-info { flex: 1; }
+        .group-name { font-weight: bold; color: #000; } /* Ensure text color */
+        .group-members { font-size: 0.8rem; color: #777; }
+        .status-bar { height: 24px; background: #000; color: white; display: flex; justify-content: space-between; align-items: center; padding: 0 10px; font-size: 12px; border-top-left-radius: 20px; border-top-right-radius: 20px; }
+        .status-bar-time { font-weight: bold; }
+        .status-bar-icons { display: flex; align-items: center; }
+        .status-bar-icon { margin-left: 5px; }
+        .reaction { position: absolute; right: -10px; bottom: -10px; background: white; border-radius: 50%; width: 24px; height: 24px; display: flex; justify-content: center; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transform: scale(0); animation: reaction 0.5s forwards; }
+        .typing-indicator { display: flex; padding: 15px; background: white; border-radius: 15px; width: fit-content; margin-bottom: 15px; opacity: 0; }
+        .typing-dot { width: 8px; height: 8px; border-radius: 50%; background: #888; margin: 0 3px; animation: typingBounce 1.3s infinite; }
+        .typing-dot:nth-child(2) { animation-delay: 0.15s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.3s; }
 
-        .connect-button-secondary {
-            background-color: transparent;
-            border: 2px solid var(--google-blue);
-        }
-
-
-        .particles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .particle {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            animation: particle 10s infinite linear;
-        }
-
-        .particle:nth-child(4n) {
-            background: rgba(66, 133, 244, 0.2);
-            /* Google Blue */
-        }
-
-        .particle:nth-child(4n+1) {
-            background: rgba(219, 68, 55, 0.2);
-            /* Google Red */
-        }
-
-        .particle:nth-child(4n+2) {
-            background: rgba(244, 180, 0, 0.2);
-            /* Google Yellow */
-        }
-
-        .particle:nth-child(4n+3) {
-            background: rgba(15, 157, 88, 0.2);
-            /* Google Green */
-        }
-
-        .reaction {
-            position: absolute;
-            right: -10px;
-            bottom: -10px;
-            background: white;
-            border-radius: 50%;
-            width: 24px;
-            height: 24px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            transform: scale(0);
-            animation: reaction 0.5s forwards;
-        }
-
-        .typing-indicator {
-            display: flex;
-            padding: 15px;
-            background: white;
-            border-radius: 15px;
-            width: fit-content;
-            margin-bottom: 15px;
-            opacity: 0;
-        }
-
-        .typing-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #888;
-            margin: 0 3px;
-            animation: typingBounce 1.3s infinite;
-        }
-
-        .typing-dot:nth-child(2) {
-            animation-delay: 0.15s;
-        }
-
-        .typing-dot:nth-child(3) {
-            animation-delay: 0.3s;
-        }
-
-        .community-icon {
-            width: 30px;
-            height: 30px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .community-icon svg {
-            width: 20px;
-            height: 20px;
-            fill: white;
-        }
-
-        .avatar {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            font-weight: bold;
-            margin-right: 10px;
-        }
-
-        .group-details {
-            display: flex;
-            padding: 15px;
-            background: #f9f9f9;
-            border-bottom: 1px solid #eee;
-            align-items: center;
-        }
-
-        .group-info {
-            flex: 1;
-        }
-
-        .group-name {
-            font-weight: bold;
-        }
-
-        .group-members {
-            font-size: 0.8rem;
-            color: #777;
-        }
-
-        .status-bar {
-            height: 24px;
-            background: #000;
-            color: white;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 10px;
-            font-size: 12px;
-            border-top-left-radius: 20px;
-            border-top-right-radius: 20px;
-        }
-
-        .status-bar-time {
-            font-weight: bold;
-        }
-
-        .status-bar-icons {
-            display: flex;
-            align-items: center;
-        }
-
-        .status-bar-icon {
-            margin-left: 5px;
-        }
+        @keyframes messageIn { to { opacity: 1; transform: translateY(0); } }
+        @keyframes reaction { to { transform: scale(1); } }
+        @keyframes typingBounce { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-6px); } }
 
 
-        .bubbles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            /* Ensures full viewport height */
-            pointer-events: none;
-            z-index: -1;
-            /* Ensures it stays behind everything */
-        }
-
-        .bubble {
-            position: absolute;
-            border-radius: 50%;
-            animation: bubbleFloat 8s infinite ease-in-out;
-        }
-
-        .bubble:nth-child(4n) {
-            background: rgba(66, 133, 244, 0.2);
-            /* Google Blue */
-        }
-
-        .bubble:nth-child(4n+1) {
-            background: rgba(219, 68, 55, 0.2);
-            /* Google Red */
-        }
-
-        .bubble:nth-child(4n+2) {
-            background: rgba(244, 180, 0, 0.2);
-            /* Google Yellow */
-        }
-
-        .bubble:nth-child(4n+3) {
-            background: rgba(15, 157, 88, 0.2);
-            /* Google Green */
-        }
-
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0) translateZ(50px);
-            }
-        }
-
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0) rotateY(5deg);
-            }
-
-            50% {
-                transform: translateY(-20px) rotateY(-5deg);
-            }
-        }
-
-        @keyframes messageIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes reaction {
-            to {
-                transform: scale(1);
-            }
-        }
-
-        @keyframes particle {
-            0% {
-                transform: translate(0, 0);
-                opacity: 0;
-            }
-
-            50% {
-                opacity: 1;
-            }
-
-            100% {
-                transform: translate(var(--endX), var(--endY));
-                opacity: 0;
-            }
-        }
-
-        @keyframes typingBounce {
-
-            0%,
-            60%,
-            100% {
-                transform: translateY(0);
-            }
-
-            30% {
-                transform: translateY(-6px);
-            }
-        }
+        /* Bubbles and particles for background effects */
+        .bubbles { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; pointer-events: none; z-index: -2; } /* Ensure z-index is lower than particles */
+        .bubble { position: absolute; border-radius: 50%; animation: bubbleFloat 8s infinite ease-in-out; }
+        .bubble:nth-child(4n) { background: rgba(66, 133, 244, 0.1); } /* Reduced opacity */
+        .bubble:nth-child(4n+1) { background: rgba(219, 68, 55, 0.1); }
+        .bubble:nth-child(4n+2) { background: rgba(244, 180, 0, 0.1); }
+        .bubble:nth-child(4n+3) { background: rgba(15, 157, 88, 0.1); }
 
         @keyframes bubbleFloat {
-            0% {
-                transform: translate(0, 0) scale(1);
-            }
-
-            50% {
-                transform: translate(var(--moveX), var(--moveY)) scale(1.2);
-            }
-
-            100% {
-                transform: translate(0, 0) scale(1);
-            }
+            0% { transform: translate(0, 0) scale(1); opacity: 0; }
+            25% { opacity: 0.2; } /* Fade in */
+            50% { transform: translate(var(--moveX), var(--moveY)) scale(1.2); }
+            75% { opacity: 0.2; } /* Fade out */
+            100% { transform: translate(0, 0) scale(1); opacity: 0; }
         }
 
         /* Responsive adjustments */
         @media (max-width: 768px) {
-            .container {
-                padding: 10px;
+            .nav-links {
+                display: none;
             }
 
-            .title {
-                font-size: 2rem;
-                margin-bottom: 20px;
+            .mobile-menu-btn {
+                display: flex; /* Changed to flex for better alignment if using bars */
             }
 
-            .subtitle {
-                font-size: 1.2rem;
-                margin-bottom: 20px;
+            .mobile-menu.active { /* This rule shows the mobile menu */
+                display: flex;
+                animation: slideDown 0.3s ease-in-out;
+            }
+            @keyframes slideDown {
+                from { opacity: 0; transform: translateY(-20px); }
+                to { opacity: 1; transform: translateY(0); }
             }
 
-            .whatsapp-container {
-                padding: 40px 0;
-                min-height: auto;
+
+            .hero h1 { font-size: 2.2rem; }
+            .hero p { font-size: 1rem; }
+            .hero-buttons { flex-direction: column; gap: 15px; }
+
+            .about-content { flex-direction: column; }
+            .organizers-grid { /* Already column, adjust card width if needed */
+                 align-items: stretch; /* Allow cards to take full width if desired */
             }
+             .organizer-card {
+                max-width: none; /* Allow card to be wider on mobile */
+            }
+
 
             .whatsapp-content {
                 flex-direction: column;
@@ -1726,255 +1190,92 @@
 
             .whatsapp-text,
             .whatsapp-scene {
-                max-width: 100%;
+                max-width: 90%; /* Use more width on mobile */
                 width: 100%;
             }
+            .whatsapp-text {
+                text-align: center; /* Center text on mobile */
+            }
+            .whatsapp-text .title, .whatsapp-text .subtitle {
+                text-align: center;
+            }
+
 
             .whatsapp-scene {
-                transform: scale(0.8);
+                transform: scale(0.85); /* Slightly larger for better visibility */
                 margin: 20px 0;
             }
 
-            .title {
-                text-align: center;
-                font-size: 2rem;
-            }
-
-            .subtitle {
-                text-align: center;
-                font-size: 1.2rem;
-            }
-
-            .organizers-section {
-                padding: 40px 0;
-            }
-
-            .organizer-card {
-                margin: 20px 0;
-            }
-
-            .whatsapp-scene {
-                transform: scale(0.9);
-            }
-        }
-
-        /*navbar*/
-        /* Hide the desktop nav links on small screens */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-                font-size: 24px;
-                background: none;
-                border: none;
-                color: white;
-                cursor: pointer;
-            }
-
-            /* Mobile menu styles */
-            .mobile-menu {
-                display: none;
-                /* Initially hidden */
-                position: absolute;
-                top: 60px;
-                left: 0;
-                width: 100%;
-                background: rgba(18, 18, 18, 0.95);
-                text-align: center;
-                padding: 15px 0;
-                border-top: 1px solid rgba(255, 255, 255, 0.1);
-            }
-
-            .mobile-menu a {
-                display: block;
-                padding: 10px;
-                color: white;
-                text-decoration: none;
-                font-size: 18px;
-                transition: 0.3s;
-            }
-
-            .mobile-menu a:hover {
-                background: var(--google-blue);
-            }
-
-            /* Show mobile menu when active */
-            .mobile-menu.active {
-                display: block;
-                animation: slideDown 0.3s ease-in-out;
-            }
-
-            @keyframes slideDown {
-                from {
-                    opacity: 0;
-                    transform: translateY(-20px);
-                }
-
-                to {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
-            }
-        }
-
-        /* WhatsApp section */
-        .whatsapp-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 80px 0;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-            position: relative;
-            z-index: 1;
-            min-height: 100vh;
-            text-align: center;
-        }
-
-
-
-        .whatsapp-container.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .whatsapp-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-        }
-
-        .whatsapp-text {
-            max-width: 50%;
-        }
-
-        .whatsapp-scene {
-            max-width: 50%;
-            position: relative;
-            width: 350px;
-            height: 600px;
-            transform-style: preserve-3d;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .title {
-            font-size: 2.5rem;
-            color: #FFF;
-            margin-bottom: 40px;
-            text-align: left;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: relative;
-            transform: translateZ(50px);
-            opacity: 0;
-            animation: fadeIn 1s forwards 0.5s;
-        }
-
-        .subtitle {
-            font-size: 1.5rem;
-            color: #FFF;
-            margin-bottom: 30px;
-            text-align: left;
-            opacity: 0;
-            animation: fadeIn 1s forwards 0.8s;
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .whatsapp-container {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .whatsapp-content {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .whatsapp-text,
-            .whatsapp-scene {
-                max-width: 100%;
-            }
-
-            .title {
+            .footer-content {
+                grid-template-columns: 1fr; /* Stack footer columns */
                 text-align: center;
             }
-
-            .subtitle {
-                text-align: center;
+            .footer-column ul {
+                padding-left: 0; /* Remove padding for centered text */
             }
-
-
+            .social-links {
+                justify-content: center;
+            }
         }
+
+         @media (max-width: 480px) {
+            .hero h1 { font-size: 1.8rem; }
+            .hero p { font-size: 0.9rem; }
+            .section-title h2 { font-size: 2rem; }
+            .event-card, .organizer-card { padding: 20px; }
+            .card-title { font-size: 1.2rem; }
+            .modal { padding: 20px; }
+            .modal-title { font-size: 1.5rem; }
+            .whatsapp-scene { transform: scale(0.75); }
+        }
+
+
     </style>
 </head>
 
 <body>
-    <!-- Particles background -->
-    <div class="particles" id="particles"></div>
-
-    <!-- Main container -->
-    <div class="container">
-        <!-- Header -->
+    <div class="particles" id="particles-js"></div> <div class="container">
         <header>
             <div class="logo-container">
-                <img src="gdglogo.png" alt="GDG Cloud Udaipur Logo" class="logo" width="200px" height="50px">
+                <a href="#home"><img src="gdglogo.png" alt="GDG Cloud Udaipur Logo" class="logo" width="180px" height="auto"></a>
             </div>
 
-            <!-- Desktop Navigation -->
             <nav class="nav-links">
                 <a href="#home">Home</a>
                 <a href="#events">Events</a>
                 <a href="#organizers">Organizers</a>
-                <a href="#membership">Membership</a>
                 <a href="#about">About</a>
-                <a href="#contact">Contact</a>
-            </nav>
+                <a href="#whatsapp-connect">Community</a> <a href="#" onclick="openModal('contactModal'); return false;">Contact</a> </nav>
 
-            <!-- Mobile Menu Button -->
-            <button class="mobile-menu-btn" id="mobile-menu-btn">
+            <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Open menu" aria-expanded="false">
                 ☰
             </button>
 
-            <!-- Mobile Menu -->
             <div class="mobile-menu" id="mobile-menu">
-                <a href="#home">Home</a>
-                <a href="#events">Events</a>
-                <a href="#organizers">Organizers</a>
-                <a href="#membership">Membership</a>
-                <a href="#about">About</a>
-                <a href="#contact">Contact</a>
-            </div>
+                <a href="#home" onclick="closeMobileMenu()">Home</a>
+                <a href="#events" onclick="closeMobileMenu()">Events</a>
+                <a href="#organizers" onclick="closeMobileMenu()">Organizers</a>
+                <a href="#about" onclick="closeMobileMenu()">About</a>
+                <a href="#whatsapp-connect" onclick="closeMobileMenu()">Community</a>
+                <a href="#" onclick="openModal('contactModal'); closeMobileMenu(); return false;">Contact</a> </div>
         </header>
 
-        <!-- Hero section -->
         <section class="hero" id="home">
-            <div class="tech-circle tech-circle-1">
-                <div class="dot"></div>
-            </div>
-            <div class="tech-circle tech-circle-2">
-                <div class="dot"></div>
-            </div>
-            <div class="tech-circle tech-circle-3">
-                <div class="dot"></div>
-            </div>
+            <div class="tech-circle tech-circle-1"><div class="dot"></div></div>
+            <div class="tech-circle tech-circle-2"><div class="dot"></div></div>
+            <div class="tech-circle tech-circle-3"><div class="dot"></div></div>
 
             <div class="hero-content">
                 <h1>Google Developer Group Cloud Udaipur</h1>
                 <p>Join our vibrant tech community to learn, share, and grow with cloud technology enthusiasts. Discover
                     the future of cloud computing with hands-on workshops, tech talks, and networking opportunities.</p>
                 <div class="hero-buttons">
-                    <button class="btn btn-primary" onclick="openModal('eventModal')">Join Next Event</button>
-                    <button class="btn btn-secondary" onclick="openModal('membershipModal')">Become a Member</button>
+                    <button class="btn btn-primary" onclick="navigateToEvent('Build With AI')">Join Next Event</button>
+                    <a href="https://gdg.community.dev/gdg-cloud-udaipur/" target="_blank" class="btn btn-secondary">Become a Member</a>
                 </div>
             </div>
         </section>
 
-        <!-- Events section -->
         <section class="events-section" id="events">
             <div class="section-title">
                 <h2>Upcoming Events</h2>
@@ -1982,574 +1283,508 @@
             </div>
 
             <div class="events-grid">
-                <!-- Event card 1 -->
                 <div class="event-card">
-                    <div class="card-img" style="background-image: url('buildwithai.webp')"></div>
+                    <div class="card-img" style="background-image: url('buildwithai.webp'); background-color: #333;">
+                         <img src="buildwithai.webp" alt="Build with AI Event" style="display:none;" onerror="this.parentElement.style.backgroundImage='url(https://placehold.co/600x400/333/FFF?text=Build+With+AI)'; this.style.display='none';">
+                    </div>
                     <div class="card-content">
                         <span class="card-date">April 6, 2025</span>
                         <h3 class="card-title">Build With AI - Udaipur Hands-on Edition</h3>
                         <p class="card-description">Get hands-on experience with AI and Machine Learning. Learn how to
                             build and deploy AI-powered applications, explore cutting-edge AI models, and leverage
                             Google Cloud's AI services.</p>
-                        <!-- <div class="card-price">₹100</div> -->
-                        <button class="btn card-btn" onclick="openModal('eventModal', 'Build With AI', '100')">Register
-                            Now</button>
+                        <button class="btn card-btn" onclick="navigateToEvent('Build With AI')">View Details</button>
                     </div>
                 </div>
 
-                <!-- Event card 2 -->
                 <div class="event-card">
-                    <div class="card-img" style="background-image: url('cloudcommunity.jpeg')"></div>
+                     <div class="card-img" style="background-image: url('cloudcommunity.jpeg'); background-color: #444;">
+                        <img src="cloudcommunity.jpeg" alt="Cloud Community Days" style="display:none;" onerror="this.parentElement.style.backgroundImage='url(https://placehold.co/600x400/444/FFF?text=Cloud+Community+Days)'; this.style.display='none';">
+                    </div>
                     <div class="card-content">
                         <span class="card-date">Coming Soon</span>
                         <h3 class="card-title">Cloud Community Days</h3>
                         <p class="card-description">Our flagship annual event with keynotes from industry experts,
-                            workshops, networking opportunities, and much more.</p>
-                        <!-- <div class="card-price">₹500</div> -->
-                        <button class="btn card-btn"
-                            onclick="openModal('eventModal', 'Cloud Community Days', '500')">Register Now</button>
+                            workshops, networking opportunities, and much more. Stay tuned for early bird tickets!</p>
+                        <div class="card-price">Early Bird: ₹200</div> <button class="btn card-btn" onclick="openModal('eventRegistrationModal', 'Cloud Community Days', '200')">Register Now</button>
                     </div>
                 </div>
             </div>
         </section>
 
 
-        <!-- Organizers Section -->
         <section class="organizers-section" id="organizers">
-            <div class="container">
-                <div class="section-title">
+            <div class="container"> <div class="section-title">
                     <h2>Our Organizers</h2>
                     <p>Meet the team behind GDG Cloud Udaipur</p>
                 </div>
 
                 <div class="organizers-grid">
-                    <!-- Organizer card template - can be duplicated for more organizers -->
                     <div class="organizer-card">
                         <div class="organizer-avatar">
                             <div class="avatar-wrapper">
-                                <img src="abhinav.jpeg" alt="Organizer Name" class="avatar-img">
+                                <img src="abhinav.jpeg" alt="Abhinav Jain - Lead Organizer" class="avatar-img" onerror="this.src='https://placehold.co/120x120/4285F4/FFF?text=AJ'">
                                 <div class="avatar-glow"></div>
                             </div>
                             <div class="connection-lines">
-                                <div class="connection-dot"></div>
-                                <div class="connection-dot"></div>
-                                <div class="connection-dot"></div>
+                                <div class="connection-dot"></div> <div class="connection-dot"></div> <div class="connection-dot"></div>
                             </div>
                         </div>
                         <div class="organizer-info">
                             <h3 class="organizer-name">Abhinav Jain</h3>
                             <p class="organizer-role">Lead Organizer</p>
-                            <p class="organizer-bio">Tech Innovator and community Leader with 5 years of experience
+                            <p class="organizer-bio">Tech Innovator and community Leader with 5+ years of experience
                                 in AI and Cloud technologies.</p>
                             <div class="organizer-skills">
-                                <span class="skill-tag">AI/ML</span>
-                                <span class="skill-tag">Innovations</span>
-                                <span class="skill-tag">Tech Geek</span>
+                                <span class="skill-tag">AI/ML</span> <span class="skill-tag">Cloud</span> <span class="skill-tag">Community Building</span>
                             </div>
                             <div class="organizer-social">
-                                <a href="https://www.linkedin.com/in/abhinav-jain-8b4bab62/" class="social-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <path
-                                            d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
-                                        </path>
-                                        <rect x="2" y="9" width="4" height="12"></rect>
-                                        <circle cx="4" cy="4" r="2"></circle>
-                                    </svg>
+                                <a href="https://www.linkedin.com/in/abhinav-jain-8b4bab62/" target="_blank" class="social-icon" aria-label="LinkedIn Profile">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                                 </a>
-                                <a href="#" class="social-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <path
-                                            d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
-                                        </path>
-                                    </svg>
+                                <a href="mailto:abhinav.jain1411@gmail.com" class="social-icon" aria-label="Email">
+                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M0 3v18h24v-18h-24zm21.518 2l-9.518 7.713-9.518-7.713h19.036zm-19.518 14v-11.817l10 8.104 10-8.104v11.817h-20z"/></svg>
                                 </a>
-                                <a href="#" class="social-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                                        <line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line>
-                                    </svg>
-                                </a>
-                                <a href="mailto:abhinav.jain1411@gmail.com" class="social-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <rect x="2" y="4" width="20" height="16" rx="2" ry="2"></rect>
-                                        <polyline points="2,4 12,12 22,4"></polyline>
-                                    </svg>
-                                </a>
-                            </div>
+                                </div>
                         </div>
                         <div class="ai-assistant">
                             <div class="ai-blob"></div>
-                            <svg class="ai-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path
-                                    d="M12 2a5 5 0 0 0-5 5v2a5 5 0 0 0 10 0V7a5 5 0 0 0-5-5zM6 9a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3">
-                                </path>
+                            <svg class="ai-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2a5 5 0 0 0-5 5v2a5 5 0 0 0 10 0V7a5 5 0 0 0-5-5zM6 9a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3"></path>
                                 <path d="M18 9v1a6 6 0 0 1-6 6h0a6 6 0 0 1-6-6V9"></path>
                                 <rect x="8" y="18" width="8" height="4" rx="1" ry="1"></rect>
                             </svg>
                         </div>
                     </div>
-
-
-                    <!-- Membership section -->
-                    <!-- <section class="membership-section" id="membership">
-    <div class="container"> -->
-
-
-                    <!-- <div class="membership-grid"> -->
-                    <!-- Membership card template - can be duplicated for more members -->
-                    <!-- <div class="membership-card">
-                <div class="membership-avatar">
-                    <div class="avatar-wrapper">
-                        <img src="/api/placeholder/200/200" alt="Membership" class="avatar-img">
-                        <div class="avatar-glow"></div>
-                    </div>
-                    <div class="connection-lines">
-                        <div class="connection-dot"></div>
-                        <div class="connection-dot"></div>
-                        <div class="connection-dot"></div>
-                    </div>
                 </div>
-                <div class="section-title">
-                    <h2>Yearly Membership</h2>
-                    <p>Become a member of our thriving community and get exclusive benefits throughout the year. Connect with like-minded developers, get priority access to events, and enhance your cloud skills.</p>
-                    <p>Our membership program is designed to help you grow professionally while building meaningful connections in the tech industry.</p>
+            </div>
+        </section>
+
+        <section class="about-section" id="about">
+            <div class="section-title">
+                <h2>About GDG Cloud Udaipur</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Google Developer Group (GDG) Cloud Udaipur is a community of developers, students, and tech enthusiasts interested in Google's developer technologies and cloud platforms. We aim to learn, share, and connect through various events like tech talks, study jams, hands-on workshops, and more.</p>
+                    <p>Our focus is on exploring the vast potential of Google Cloud Platform (GCP), AI/ML technologies like Gemini, Firebase, Android, Web technologies, and other cutting-edge innovations from Google. We believe in fostering an inclusive environment where everyone is welcome to contribute and grow their skills.</p>
+                    <p>Join us to be a part of a dynamic local tech community, network with peers and industry experts, and stay updated with the latest in the world of technology.</p>
                 </div>
-                <div class="membership-info">
-                    <h3 class="membership-name">Annual Membership</h3>
-                    <p class="membership-role">₹1,000</p>
-                    <div class="membership-features">
-                        <div class="feature-item">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="#34A853"/>
-                            </svg>
-                            Priority access to all events
-                        </div>
-                        <div class="feature-item">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="#34A853"/>
-                            </svg>
-                            Discounted event tickets
-                        </div>
-                        <div class="feature-item">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="#34A853"/>
-                            </svg>
-                            Exclusive workshops and content
-                        </div>
-                        <div class="feature-item">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="#34A853"/>
-                            </svg>
-                            Networking with industry experts
-                        </div>
-                    </div>
+                <div class="about-image">
+                    <div class="about-image-wrapper">
+                        <img src="https://placehold.co/600x400/1A1A1A/4285F4?text=GDG+Cloud+Udaipur+Community" alt="GDG Cloud Udaipur Community" style="position:absolute; width:100%; height:100%; object-fit:cover; border-radius:15px;">
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</section> -->
+        </section>
 
-                    <!-- WhatsApp section -->
-                    <div class="bubbles" id="bubbles"></div>
-                    <div class="particles" id="particles"></div>
-                    <div class="container whatsapp-container hidden">
-                        <div class="whatsapp-content">
-                            <div class="whatsapp-text">
-                                <h1 class="title">Connect with GDG Cloud Udaipur</h1>
-                                <h2 class="subtitle">Join our tech community on WhatsApp</h2>
-                                <button class="connect-button" id="connect-btn" onclick="window.open('https://chat.whatsapp.com/EesExCP4NMD4CjvT7TlQ2x', '_blank');">Join Our Community</button>
-                            </div>
-                            <div class="whatsapp-scene" id="whatsapp-scene">
-                                <div class="phone" id="phone">
-                                    <div class="phone-screen">
-                                        <div class="status-bar">
-                                            <div class="status-bar-time">10:32 AM</div>
-                                            <div class="status-bar-icons">
-                                                <div class="status-bar-icon">📶</div>
-                                                <div class="status-bar-icon">🔋</div>
-                                            </div>
-                                        </div>
-                                        <div class="app-header">
-                                            <div class="community-icon">
-                                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 12.75c1.63 0 3.07.39 4.24.9 1.08.48 1.76 1.56 1.76 2.73V18H6v-1.62c0-1.17.68-2.25 1.76-2.73 1.17-.51 2.61-.9 4.24-.9zm0-10c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3z" fill="#fff"/></svg>
-                                            </div>
-                                            <div class="app-title">GDG Cloud Udaipur</div>
-                                        </div>
-                                        <div class="group-details">
-                                            <div class="avatar" style="background:#4285F4;">
-                                                G
-                                            </div>
-                                            <div class="group-info">
-                                                <div class="group-name" style="color: #000;">GDG Cloud Udaipur</div>
-                                                <div class="group-members">You, Abhinav, Priya, Raj, +28 more</div>
-                                            </div>
-                                        </div>
-                                        <div class="chat-container" id="chat-container">
-                                            <!-- Messages will be added here by JavaScript -->
-                                        </div>
-                                        <div class="chat-input">
-                                            <input type="text" class="input-box" placeholder="Type a message..." id="message-input">
-                                            <button class="send-btn" id="send-btn">
-                                                <svg viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" fill="#fff"/></svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+        <section class="whatsapp-container" id="whatsapp-connect">
+            <div class="bubbles" id="bubbles"></div>
+            <div class="whatsapp-content">
+                <div class="whatsapp-text">
+                    <h2 class="title">Connect with GDG Cloud Udaipur</h2> <p class="subtitle">Join our tech community on WhatsApp for the latest updates, discussions, and networking with fellow cloud enthusiasts in Udaipur!</p>
+                    <a href="https://chat.whatsapp.com/EesExCP4NMD4CjvT7TlQ2x" target="_blank" class="connect-button" id="connect-btn">Join Our Community</a>
+                </div>
+                <div class="whatsapp-scene" id="whatsapp-scene">
+                    <div class="phone" id="phone">
+                        <div class="phone-screen">
+                            <div class="status-bar"><div class="status-bar-time">10:32 AM</div><div class="status-bar-icons"><div class="status-bar-icon">📶</div><div class="status-bar-icon">🔋</div></div></div>
+                            <div class="app-header"><div class="community-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 12.75c1.63 0 3.07.39 4.24.9 1.08.48 1.76 1.56 1.76 2.73V18H6v-1.62c0-1.17.68-2.25 1.76-2.73 1.17-.51 2.61-.9 4.24-.9zm0-10c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3z" fill="#fff"/></svg></div><div class="app-title">GDG Cloud Udaipur</div></div>
+                            <div class="group-details"><div class="avatar" style="background:#4285F4;">G</div><div class="group-info"><div class="group-name">GDG Cloud Udaipur</div><div class="group-members">You, Abhinav, +28 more</div></div></div>
+                            <div class="chat-container" id="chat-container-display"></div>
+                            <div class="chat-input"><input type="text" class="input-box" placeholder="Type a message..." id="message-input-display" readonly><button class="send-btn" id="send-btn-display" aria-label="Send message"><svg viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" fill="#fff"/></svg></button></div>
                         </div>
                     </div>
-                    <script>
-                        // Messages to be displayed in chat sequence
-                        const chatMessages = [
-                            {
-                                sender: 'Abhinav',
-                                text: 'Hello everyone! Welcome to GDG Cloud Udaipur community! We\'re excited to have you join our growing tech family in Udaipur! 🎉',
-                                time: '10:32 AM',
-                                avatarColor: '#4285F4', // Google Blue
-                                delay: 1000
-                            },
-                            {
-                                sender: 'Priya',
-                                text: 'Hey all! I\'m looking forward to our next Cloud Study Jam. The last session on Google Cloud AI tools was amazing!',
-                                time: '10:33 AM',
-                                avatarColor: '#DB4437', // Google Red
-                                delay: 3000
-                            },
-                            {
-                                sender: 'You',
-                                text: 'Hi everyone! New member here. Excited to learn about Cloud and AI technologies with this community.',
-                                time: '10:35 AM',
-                                right: true,
-                                delay: 5000
-                            },
-                            {
-                                sender: 'Abhinav',
-                                text: 'Welcome to the group! We\'re organizing a hands-on workshop next Saturday on Gemini API and its applications. Hope you can join us!',
-                                time: '10:36 AM',
-                                avatarColor: '#4285F4', // Google Blue
-                                delay: 7000,
-                                hasReaction: true
-                            },
-                            {
-                                sender: 'Raj',
-                                text: 'Hey @Abhinav, will we be covering Google Cloud Run in the upcoming meetup? I\'ve been experimenting with serverless lately.',
-                                time: '10:37 AM',
-                                avatarColor: '#F4B400', // Google Yellow
-                                delay: 9000
-                            },
-                            {
-                                sender: 'Abhinav',
-                                text: 'Absolutely! We\'ll have a special segment on Cloud Run and how it integrates with AI services. Also planning a demo on deploying Vertex AI models.',
-                                time: '10:38 AM',
-                                avatarColor: '#4285F4', // Google Blue
-                                delay: 11000
-                            },
-                            {
-                                sender: 'Meera',
-                                text: 'For anyone interested, I\'ve shared resources from our last BigQuery ML workshop in the Drive folder. The SQL-based ML models were surprisingly powerful!',
-                                time: '10:39 AM',
-                                avatarColor: '#0F9D58', // Google Green
-                                delay: 13000
-                            },
-                            {
-                                sender: 'Abhinav',
-                                text: 'Quick announcement: We\'re looking for speakers for our DevFest Udaipur event in October. If you\'ve worked on interesting projects using Google Cloud or AI, please DM me!',
-                                time: '10:40 AM',
-                                avatarColor: '#4285F4', // Google Blue
-                                delay: 15000
-                            }
-                        ];
+                </div>
+            </div>
+        </section>
 
-                        // Function to create message elements
-                        function createMessage(message) {
-                            const messageEl = document.createElement('div');
-                            messageEl.className = message.right ? 'message message-right' : 'message message-left';
-                            messageEl.style.animationDelay = '0.1s';
+        <section class="policy-section" id="privacy-policy">
+            <div class="container">
+                <h2>Privacy Policy</h2>
+                <p>Last updated: May 7, 2025</p>
+                <p>GDG Cloud Udaipur ("us", "we", or "our") operates the [Your Website URL if applicable] website and provides community events and activities (the "Service").</p>
+                <p>This page informs you of our policies regarding the collection, use, and disclosure of personal data when you use our Service and the choices you have associated with that data. This Privacy Policy for GDG Cloud Udaipur is managed with the help of the Google Developer Groups program.</p>
+                <p>We use your data to provide and improve the Service. By using the Service, you agree to the collection and use of information in accordance with this policy. Unless otherwise defined in this Privacy Policy, terms used in this Privacy Policy have the same meanings as in our Terms and Conditions.</p>
 
-                            if (!message.right) {
-                                const avatarDiv = document.createElement('div');
-                                avatarDiv.className = 'avatar';
-                                avatarDiv.style.background = message.avatarColor;
-                                avatarDiv.textContent = message.sender.charAt(0);
+                <h3>Information Collection and Use</h3>
+                <p>We collect several different types of information for various purposes to provide and improve our Service to you.</p>
+                <h4>Types of Data Collected</h4>
+                <ul>
+                    <li><strong>Personal Data:</strong> While using our Service, especially for event registration, we may ask you to provide us with certain personally identifiable information that can be used to contact or identify you ("Personal Data"). Personally identifiable information may include, but is not limited to: Email address, First name and last name, Phone number (optional), Professional interests.</li>
+                    <li><strong>Usage Data:</strong> We may also collect information how the Service is accessed and used ("Usage Data"). This Usage Data may include information such as your computer's Internet Protocol address (e.g. IP address), browser type, browser version, the pages of our Service that you visit, the time and date of your visit, the time spent on those pages, unique device identifiers and other diagnostic data.</li>
+                </ul>
+                <h3>Use of Data</h3>
+                <p>GDG Cloud Udaipur uses the collected data for various purposes:</p>
+                <ul>
+                    <li>To provide and maintain our Service (e.g., event notifications, check-ins)</li>
+                    <li>To notify you about changes to our Service or events</li>
+                    <li>To allow you to participate in interactive features of our Service when you choose to do so</li>
+                    <li>To provide member support</li>
+                    <li>To gather analysis or valuable information so that we can improve our Service</li>
+                    <li>To monitor the usage of our Service</li>
+                    <li>To detect, prevent and address technical issues</li>
+                </ul>
+                <p>Your information, including Personal Data, may be processed and stored in line with Google's Privacy Policy as GDG activities are supported by Google.</p>
+                <h3>Contact Us</h3>
+                <p>If you have any questions about this Privacy Policy, please contact us using the details provided in the Contact section.</p>
+            </div>
+        </section>
 
-                                const senderName = document.createElement('div');
-                                senderName.style.fontWeight = 'bold';
-                                senderName.style.marginBottom = '5px';
-                                senderName.textContent = message.sender;
+        <section class="policy-section" id="terms-conditions">
+            <div class="container">
+                <h2>Terms and Conditions</h2>
+                <p>Last updated: May 7, 2025</p>
+                <p>Please read these terms and conditions carefully before participating in GDG Cloud Udaipur events or using our online resources.</p>
+                <p>Your access to and use of the Service is conditioned on your acceptance of and compliance with these Terms. These Terms apply to all visitors, users, and others who access or use the Service.</p>
+                <p>By accessing or using the Service you agree to be bound by these Terms. If you disagree with any part of the terms then you may not access the Service.</p>
+                <h3>Code of Conduct</h3>
+                <p>All attendees, speakers, sponsors, and volunteers at our events are required to agree with the following code of conduct. Organizers will enforce this code throughout the event. We expect cooperation from all participants to help ensure a safe environment for everybody.</p>
+                <p>Our community is dedicated to providing a harassment-free experience for everyone, regardless of gender, gender identity and expression, age, sexual orientation, disability, physical appearance, body size, race, ethnicity, religion (or lack thereof), or technology choices. We do not tolerate harassment of community members in any form. Sexual language and imagery is not appropriate for any community venues, including talks, workshops, parties, Twitter and other online media. Community members violating these rules may be sanctioned or expelled from the event without a refund at the discretion of the event organizers.</p>
+                <h3>Event Participation</h3>
+                <p>Registration for events may be required. We reserve the right to refuse admission or eject any person behaving in a disruptive manner or not complying with these terms and conditions.</p>
+                <p>Photography and videography may take place at events. By attending, you consent to your image being used in promotional materials.</p>
+                <h3>Intellectual Property</h3>
+                <p>The Service and its original content (excluding content provided by users), features and functionality are and will remain the exclusive property of GDG Cloud Udaipur and its licensors, where applicable. Content shared by speakers remains their intellectual property.</p>
+                <h3>Changes</h3>
+                <p>We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is material we will try to provide at least 30 days' notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion.</p>
+                <h3>Contact Us</h3>
+                <p>If you have any questions about these Terms, please contact us.</p>
+            </div>
+        </section>
 
-                                messageEl.appendChild(avatarDiv);
-                                messageEl.appendChild(senderName);
-                            }
-
-                            const messageText = document.createElement('div');
-                            messageText.textContent = message.text;
-
-                            const messageTime = document.createElement('div');
-                            messageTime.className = 'message-time';
-                            messageTime.textContent = message.time;
-
-                            if (!message.right && message.hasReaction) {
-                                const reaction = document.createElement('div');
-                                reaction.className = 'reaction';
-                                reaction.innerHTML = '👍';
-                                messageEl.appendChild(reaction);
-                            }
-
-                            messageEl.appendChild(messageText);
-                            messageEl.appendChild(messageTime);
-
-                            return messageEl;
-                        }
-
-                        // Function to show typing indicator
-                        function showTyping(duration = 2000) {
-                            const typingEl = document.createElement('div');
-                            typingEl.className = 'typing-indicator';
-                            typingEl.innerHTML = `
-                <div class="typing-dot"></div>
-                <div class="typing-dot"></div>
-                <div class="typing-dot"></div>
-              `;
-
-                            document.getElementById('chat-container').appendChild(typingEl);
-                            setTimeout(() => {
-                                typingEl.style.opacity = 1;
-                            }, 10);
-
-                            return new Promise(resolve => {
-                                setTimeout(() => {
-                                    typingEl.style.opacity = 0;
-                                    setTimeout(() => {
-                                        typingEl.remove();
-                                        resolve();
-                                    }, 300);
-                                }, duration);
-                            });
-                        }
-
-                        // Function to add a new user message
-                        async function addUserMessage(text) {
-                            const message = {
-                                sender: 'You',
-                                text: text,
-                                time: new Date().toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'}),
-                                right: true
-                            };
-
-                            const messageEl = createMessage(message);
-                            document.getElementById('chat-container').appendChild(messageEl);
-                            document.getElementById('chat-container').scrollTop = document.getElementById('chat-container').scrollHeight;
-
-                            // Show typing indicator after user sends message
-                            await showTyping(2000);
-
-                            // Add reply message
-                            const replyMessage = {
-                                sender: 'Abhinav',
-                                text: 'Thanks for your message! Looking forward to seeing you at our next meetup. Don\'t forget to check our GitHub repo for sample projects on Google Cloud and AI.',
-                                time: new Date().toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'}),
-                                avatarColor: '#4285F4'
-                            };
-
-                            const replyEl = createMessage(replyMessage);
-                            document.getElementById('chat-container').appendChild(replyEl);
-                            document.getElementById('chat-container').scrollTop = document.getElementById('chat-container').scrollHeight;
-                        }
-
-                        // Create particles
-                        function createParticles() {
-                            const container = document.getElementById('particles');
-                            for (let i = 0; i < 20; i++) {
-                                const particle = document.createElement('div');
-                                particle.className = 'particle';
-
-                                // Random starting position
-                                const startX = Math.random() * window.innerWidth;
-                                const startY = Math.random() * window.innerHeight;
-
-                                // Random ending position
-                                const endX = Math.random() * window.innerWidth - startX;
-                                const endY = Math.random() * window.innerHeight - startY;
-
-                                particle.style.setProperty('--endX', `${endX}px`);
-                                particle.style.setProperty('--endY', `${endY}px`);
-
-                                particle.style.left = `${startX}px`;
-                                particle.style.top = `${startY}px`;
-                                particle.style.width = `${5 + Math.random() * 10}px`;
-                                particle.style.height = particle.style.width;
-                                particle.style.animationDuration = `${5 + Math.random() * 20}s`;
-                                particle.style.animationDelay = `${Math.random() * 5}s`;
-
-                                container.appendChild(particle);
-                            }
-                        }
-
-                        // Create floating bubbles
-                        function createBubbles() {
-                            const container = document.getElementById('bubbles');
-                            for (let i = 0; i < 15; i++) {
-                                const bubble = document.createElement('div');
-                                bubble.className = 'bubble';
-
-                                // Random position
-                                const posX = Math.random() * window.innerWidth;
-                                const posY = Math.random() * window.innerHeight;
-
-                                // Random movement
-                                const moveX = (Math.random() - 0.5) * 100;
-                                const moveY = (Math.random() - 0.5) * 100;
-
-                                bubble.style.setProperty('--moveX', `${moveX}px`);
-                                bubble.style.setProperty('--moveY', `${moveY}px`);
-
-                                bubble.style.left = `${posX}px`;
-                                bubble.style.top = `${posY}px`;
-                                bubble.style.width = `${20 + Math.random() * 60}px`;
-                                bubble.style.height = bubble.style.width;
-                                bubble.style.animationDuration = `${8 + Math.random() * 7}s`;
-                                bubble.style.animationDelay = `${Math.random() * 5}s`;
-
-                                container.appendChild(bubble);
-                            }
-                        }
-                        function adjustBubbleHeight() {
-                            document.getElementById('bubbles').style.height = `${document.body.scrollHeight}px`;
-                        }
-
-                        // Call function when the page loads and on resize
-                        window.addEventListener('load', adjustBubbleHeight);
-                        window.addEventListener('resize', adjustBubbleHeight);
-
-                        async function initChat() {
-                            createParticles();
-                            createBubbles();
-
-                            // Add 3D tilt effect
-                            const phone = document.getElementById('phone');
-                            const scene = document.getElementById('whatsapp-scene');
-
-                            scene.addEventListener('mousemove', (e) => {
-                                const xAxis = (window.innerWidth / 2 - e.pageX) / 270;
-                                const yAxis = (window.innerHeight / 2 - e.pageY) / 270;
-                                phone.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
-                            });
-
-                            scene.addEventListener('mouseleave', () => {
-                                phone.style.transform = 'rotateY(0) rotateX(0)';
-                            });
-
-                            // Display messages with delays
-                            for (const message of chatMessages) {
-                                await new Promise(resolve => setTimeout(resolve, message.delay));
-
-                                if (Math.random() > 0.7 && !message.right) {
-                                    await showTyping(1500);
-                                }
-
-                                const messageEl = createMessage(message);
-                                document.getElementById('chat-container').appendChild(messageEl);
-                                document.getElementById('chat-container').scrollTop = document.getElementById('chat-container').scrollHeight;
-                            }
-
-                            // Setup send button
-                            document.getElementById('send-btn').addEventListener('click', () => {
-                                const input = document.getElementById('message-input');
-                                if (input.value.trim()) {
-                                    addUserMessage(input.value.trim());
-                                    input.value = '';
-                                }
-                            });
-
-                            // Allow pressing Enter to send message
-                            document.getElementById('message-input').addEventListener('keypress', (e) => {
-                                if (e.key === 'Enter') {
-                                    const input = document.getElementById('message-input');
-                                    if (input.value.trim()) {
-                                        addUserMessage(input.value.trim());
-                                        input.value = '';
-                                    }
-                                }
-                            });
-
-                            // Connect button effect
-                            document.getElementById('connect-btn').addEventListener('click', () => {
-                                alert('Thanks for joining GDG Cloud Udaipur! You would be redirected to WhatsApp in a real implementation.');
-                            });
-                        }
-
-                        function updateClock() {
-                            const now = new Date();
-                            const timeString = now.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
-                            document.querySelector('.status-bar-time').textContent = timeString;
-                            setTimeout(updateClock, 60000); // Update every minute
-                        }
-
-                        window.addEventListener('load', () => {
-                            initChat();
-                            updateClock();
-                        });
-                        //for whatsapp scroll down animation
-                        document.addEventListener('DOMContentLoaded', function () {
-                            const whatsappSection = document.querySelector('.whatsapp-container');
-                            const membershipSection = document.querySelector('.membership-section');
-                            const observer = new IntersectionObserver((entries) => {
-                                entries.forEach(entry => {
-                                    if (entry.isIntersecting) {
-                                        whatsappSection.classList.add('visible');
-                                        observer.unobserve(whatsappSection);
-                                    }
-                                });
-                            }, {
-                                threshold: 0.1
-                            });
-
-                            observer.observe(whatsappSection);
-                            observer.observe(membershipSection);
-                        });
-                        //for navbar
-
-                        document.addEventListener('DOMContentLoaded', function () {
-                            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-                            const mobileMenu = document.getElementById('mobile-menu');
-
-                            mobileMenuBtn.addEventListener('click', function () {
-                                mobileMenu.classList.toggle('active');
-                            });
-                        });
+        <section class="policy-section" id="refund-policy">
+            <div class="container">
+                <h2>Refund Policy</h2>
+                <p>Last updated: May 7, 2025</p>
+                <p>This Refund Policy applies to any paid events or services offered by GDG Cloud Udaipur.</p>
+                <h3>Event Tickets</h3>
+                <p>For paid events, such as "Cloud Community Days - Early Bird: ₹200":</p>
+                <ul>
+                    <li><strong>Full Refund:</strong> A full refund will be issued if a cancellation request is received via email at least 7 days before the scheduled event date.</li>
+                    <li><strong>Partial Refund/Credit:</strong> If a cancellation request is received less than 7 days but more than 48 hours before the event, a 50% refund may be offered, or a credit towards a future event, at the discretion of the organizers.</li>
+                    <li><strong>No Refund:</strong> No refunds will be issued for cancellations made less than 48 hours before the event, or for no-shows.</li>
+                    <li><strong>Event Cancellation by Organizers:</strong> If GDG Cloud Udaipur cancels an event, registered attendees will receive a full refund of the ticket price.</li>
+                </ul>
+                <h3>Process for Requesting a Refund</h3>
+                <p>To request a refund, please email us at abhinav.jain1411@gmail.com with your booking details and reason for cancellation. Refunds will be processed to the original method of payment within 7-10 business days after approval.</p>
+                <h3>Membership Fees</h3>
+                <p>Membership fees, if any, are generally non-refundable once processed, as they grant immediate access to member benefits. Specific refund conditions for memberships will be outlined at the time of purchase.</p>
+                <h3>Contact Us</h3>
+                <p>If you have any questions about our Refund Policy, please contact us using the details provided in the Contact section.</p>
+            </div>
+        </section>
 
 
+        <footer>
+            <div class="container"> <div class="footer-content">
+                    <div class="footer-column">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#events">Events</a></li>
+                            <li><a href="#organizers">Organizers</a></li>
+                            <li><a href="#about">About Us</a></li>
+                            <li><a href="#whatsapp-connect">Community</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Legal</h3>
+                        <ul>
+                            <li><a href="#privacy-policy">Privacy Policy</a></li>
+                            <li><a href="#terms-conditions">Terms & Conditions</a></li>
+                            <li><a href="#refund-policy">Refund Policy</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Connect</h3>
+                        <div class="social-links">
+                             <a href="https://gdg.community.dev/gdg-cloud-udaipur/" target="_blank" aria-label="GDG Community Platform">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"/><path d="M12 6c-3.309 0-6 2.691-6 6s2.691 6 6 6 6-2.691 6-6-2.691-6-6-6zm0 10c-2.206 0-4-1.794-4-4s1.794-4 4-4 4 1.794 4 4-1.794 4-4 4z"/><circle cx="12" cy="12" r="2" fill="currentColor"/></svg>
+                            </a>
+                            <a href="https://chat.whatsapp.com/EesExCP4NMD4CjvT7TlQ2x" target="_blank" aria-label="WhatsApp Community">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.712-1.001zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.47.074-.742.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.206 5.076 4.487.709.306 1.262.489 1.694.626.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                            </a>
+                            </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    &copy; <span id="currentYear"></span> Google Developer Group Cloud Udaipur. All Rights Reserved.
+                    <p>GDG Cloud Udaipur is an independent group; our activities and the opinions expressed here should in no way be linked to Google, the corporation.</p>
+                </div>
+            </div>
+        </footer>
+
+    </div> <div class="modal-container" id="eventRegistrationModal">
+        <div class="modal">
+            <button class="modal-close" onclick="closeModal('eventRegistrationModal')" aria-label="Close modal">&times;</button>
+            <h3 class="modal-title" id="eventModalTitle">Register for Event</h3>
+            <div class="modal-content">
+                <p>You are registering for: <strong id="eventModalName">Event Name</strong></p>
+                <p>Price: <strong id="eventModalPrice">Price</strong></p>
+                <p>To complete your registration, please proceed to the event platform or follow the instructions sent to your email after submission (details would be here).</p>
+                <a href="#" id="eventRegistrationLink" class="btn btn-primary" target="_blank" style="display: block; text-align:center; margin-top:20px;">Proceed to Registration</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-container" id="contactModal">
+        <div class="modal">
+            <button class="modal-close" onclick="closeModal('contactModal')" aria-label="Close modal">&times;</button>
+            <h3 class="modal-title">Contact Us</h3>
+            <div class="modal-content">
+                <p><strong>Number:</strong> <a href="tel:+919529912550" style="color: var(--google-blue);">+91 9529912550</a></p>
+                <p><strong>Email:</strong> <a href="mailto:abhinav.jain1411@gmail.com" style="color: var(--google-blue);">abhinav.jain1411@gmail.com</a></p>
+                <p><strong>Address:</strong> Ashiwini bazar, Udaipur, Rajasthan 313001, India</p>
+                <p style="margin-top: 20px;">Feel free to reach out for any queries, collaborations, or feedback!</p>
+            </div>
+        </div>
+    </div>
 
 
-                                function openModal(modalId, registerUrl) {
-                                    if (modalId === 'membershipModal') {
-                                        window.open('https://gdg.community.dev/gdg-cloud-udaipur/', '_blank');
-                                    } else if (modalId === 'eventModal' && 'Build With Ai') {
-                                        window.open('https://gdg.community.dev/events/details/google-gdg-cloud-udaipur-presents-build-with-ai-udaipur-hands-on-edition/', '_blank');
-                                    } else {
-                                        document.getElementById(modalId).style.display = 'block';
-                                    }
-                                }
+    <script>
+        // Function to handle opening and closing of the mobile menu
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
 
-                                function closeModal(modalId) {
-                                    document.getElementById(modalId).style.display = 'none';
-                                }
+        mobileMenuBtn.addEventListener('click', function () {
+            const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true' || false;
+            mobileMenuBtn.setAttribute('aria-expanded', !isExpanded);
+            mobileMenu.classList.toggle('active');
+            if (mobileMenu.classList.contains('active')) {
+                mobileMenuBtn.innerHTML = '&times;'; // Change to close icon
+            } else {
+                mobileMenuBtn.innerHTML = '☰'; // Change back to hamburger
+            }
+        });
+
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('active');
+            mobileMenuBtn.setAttribute('aria-expanded', 'false');
+            mobileMenuBtn.innerHTML = '☰'; // Ensure it's hamburger when closed by link click
+        }
 
 
-                    </script>
+        // Modal handling functions
+        function openModal(modalId, eventName, eventPrice) {
+            const modal = document.getElementById(modalId);
+            if (!modal) {
+                console.error("Modal with ID: " + modalId + " not found.");
+                return;
+            }
 
+            if (modalId === 'eventRegistrationModal' && eventName) {
+                document.getElementById('eventModalTitle').innerText = 'Register for ' + eventName;
+                document.getElementById('eventModalName').innerText = eventName;
+                document.getElementById('eventModalPrice').innerText = '₹' + eventPrice;
+                // Potentially set a dynamic registration link
+                const regLink = document.getElementById('eventRegistrationLink');
+                if (eventName === 'Cloud Community Days') {
+                     // Replace with actual registration link when available
+                    regLink.href = 'https://gdg.community.dev/gdg-cloud-udaipur/'; // Placeholder
+                } else {
+                    regLink.href = '#'; // Default or hide
+                }
+            }
+            
+            modal.style.display = 'flex'; // Use flex to center content
+            document.body.style.overflow = 'hidden'; // Prevent background scroll
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (!modal) {
+                console.error("Modal with ID: " + modalId + " not found.");
+                return;
+            }
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restore background scroll
+        }
+
+        // Close modal if clicked outside of it
+        window.onclick = function(event) {
+            const modals = document.querySelectorAll('.modal-container');
+            modals.forEach(modal => {
+                if (event.target == modal) {
+                    closeModal(modal.id);
+                }
+            });
+        }
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") {
+                const modals = document.querySelectorAll('.modal-container');
+                modals.forEach(modal => {
+                    if (modal.style.display === 'flex') { // Check if modal is open
+                        closeModal(modal.id);
+                    }
+                });
+            }
+        });
+
+
+        // Function to navigate to specific event pages (example)
+        function navigateToEvent(eventName) {
+            if (eventName === 'Build With AI') {
+                window.open('https://gdg.community.dev/events/details/google-gdg-cloud-udaipur-presents-build-with-ai-udaipur-hands-on-edition/', '_blank');
+            } else {
+                // Fallback or open a generic registration modal
+                openModal('eventRegistrationModal', eventName, 'TBD');
+            }
+        }
+
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Particle generation (simple version, consider a library for complex effects)
+        function createParticles(containerId, count = 20) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            for (let i = 0; i < count; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle'; // Ensure this class is styled in CSS
+
+                const size = Math.random() * 5 + 2; // particle size
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+
+                // Randomize animation duration and delay for variety
+                particle.style.animationDuration = `${Math.random() * 10 + 10}s`; // 10-20s
+                particle.style.animationDelay = `${Math.random() * 5}s`; // 0-5s delay
+
+                // Randomize colors based on Google theme
+                const colors = ['var(--google-blue)', 'var(--google-red)', 'var(--google-yellow)', 'var(--google-green)'];
+                particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.opacity = `${Math.random() * 0.5 + 0.2}`; // 0.2 to 0.7 opacity
+
+
+                container.appendChild(particle);
+            }
+        }
+        createParticles('particles-js', 30); // Create particles in the div with id "particles-js"
+
+        // Floating bubbles for WhatsApp section (and potentially others)
+        function createBubbles(containerId, count = 15) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+
+            // Clear existing bubbles if any, to prevent duplication on resize/reload
+            // container.innerHTML = ''; // Uncomment if bubbles are re-created dynamically
+
+            for (let i = 0; i < count; i++) {
+                const bubble = document.createElement('div');
+                bubble.className = 'bubble';
+
+                const size = Math.random() * 60 + 20; // 20px to 80px
+                bubble.style.width = `${size}px`;
+                bubble.style.height = `${size}px`;
+
+                // Random position within the container (assuming container is positioned)
+                bubble.style.left = `${Math.random() * 100}%`;
+                bubble.style.top = `${Math.random() * 100}%`; // Start bubbles from random vertical positions
+
+                // Random movement for animation
+                const moveX = (Math.random() - 0.5) * 200; // Horizontal movement range
+                const moveY = (Math.random() - 0.5) * 200; // Vertical movement range
+                bubble.style.setProperty('--moveX', `${moveX}px`);
+                bubble.style.setProperty('--moveY', `${moveY}px`);
+
+                bubble.style.animationDuration = `${Math.random() * 10 + 8}s`; // 8-18s
+                bubble.style.animationDelay = `${Math.random() * 5}s`;
+
+                container.appendChild(bubble);
+            }
+        }
+        createBubbles('bubbles', 20); // Create bubbles in the div with id "bubbles"
+
+        // Adjust bubble container height to cover the whole page dynamically
+        function adjustBubbleContainerHeight() {
+            const bubblesContainer = document.getElementById('bubbles');
+            if (bubblesContainer) {
+                bubblesContainer.style.height = `${document.documentElement.scrollHeight}px`;
+            }
+        }
+        window.addEventListener('load', adjustBubbleContainerHeight);
+        window.addEventListener('resize', adjustBubbleContainerHeight);
+
+
+        // WhatsApp Chat Simulation (Display only, no actual sending)
+        const chatMessagesDisplay = [
+            { sender: 'Abhinav', text: 'Welcome to GDG Cloud Udaipur! 🎉', time: '10:32 AM', avatarColor: 'var(--google-blue)' },
+            { sender: 'Priya', text: 'Looking forward to the next Study Jam!', time: '10:33 AM', avatarColor: 'var(--google-red)' },
+            { sender: 'You', text: 'Hi! Happy to be here.', time: '10:35 AM', right: true },
+            { sender: 'Abhinav', text: 'Our next workshop is on Gemini API!', time: '10:36 AM', avatarColor: 'var(--google-blue)' }
+        ];
+
+        function createChatMessageElement(message) {
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `message ${message.right ? 'message-right' : 'message-left'}`;
+            
+            let avatarHtml = '';
+            if (!message.right) {
+                avatarHtml = `<div class="avatar" style="background-color:${message.avatarColor || '#ccc'};">${message.sender.charAt(0)}</div>`;
+            }
+            
+            msgDiv.innerHTML = `
+                ${avatarHtml}
+                <div class="message-content-wrapper">
+                    ${!message.right ? `<div class="message-sender" style="font-weight:bold; font-size:0.8em; margin-bottom:3px; color:${message.avatarColor || '#ccc'};">${message.sender}</div>` : ''}
+                    <div class="message-text">${message.text}</div>
+                    <div class="message-time">${message.time}</div>
+                </div>
+            `;
+            // Simple animation for new messages
+            msgDiv.style.opacity = 0;
+            msgDiv.style.transform = 'translateY(10px)';
+            setTimeout(() => {
+                msgDiv.style.opacity = 1;
+                msgDiv.style.transform = 'translateY(0)';
+                msgDiv.style.transition = 'opacity 0.3s, transform 0.3s';
+            }, 100);
+
+            return msgDiv;
+        }
+
+        const chatContainerDisplay = document.getElementById('chat-container-display');
+        if (chatContainerDisplay) {
+            chatMessagesDisplay.forEach(msg => {
+                chatContainerDisplay.appendChild(createChatMessageElement(msg));
+            });
+            chatContainerDisplay.scrollTop = chatContainerDisplay.scrollHeight;
+        }
+
+        // 3D tilt effect for WhatsApp phone
+        const phoneScene = document.getElementById('whatsapp-scene');
+        const phoneElement = document.getElementById('phone');
+
+        if (phoneScene && phoneElement) {
+            phoneScene.addEventListener('mousemove', (e) => {
+                const rect = phoneScene.getBoundingClientRect();
+                const xAxis = (rect.width / 2 - (e.clientX - rect.left)) / 25; // Adjust divisor for sensitivity
+                const yAxis = ((e.clientY - rect.top) - rect.height / 2) / 25;
+                phoneElement.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+            });
+
+            phoneScene.addEventListener('mouseleave', () => {
+                phoneElement.style.transform = 'rotateY(0deg) rotateX(0deg)';
+            });
+        }
+
+        // Intersection observer for WhatsApp section animation
+        const whatsappSection = document.querySelector('.whatsapp-container');
+        if (whatsappSection) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        whatsappSection.classList.add('visible');
+                        observer.unobserve(whatsappSection); // Optional: stop observing after visible
+                    }
+                });
+            }, { threshold: 0.1 }); // Trigger when 10% is visible
+            observer.observe(whatsappSection);
+        }
+    </script>
 </body>
-
 </html>
