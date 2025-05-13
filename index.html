@@ -6,1291 +6,2550 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Google Developer Group Cloud Udaipur</title>
     <style>
-        /* Consistent scroll-bar styling */
+        /*scroll-bar*/
         ::-webkit-scrollbar {
             width: 10px;
         }
+
         ::-webkit-scrollbar-track-piece {
-            background-color: #f1f1f1; /* Lighter track for better contrast with dark thumb */
-        }
-        ::-webkit-scrollbar-thumb {
-            background-color: #555; /* Darker thumb */
-            border-radius: 5px; /* Rounded thumb */
-            border: 2px solid #f1f1f1; /* Creates a small border around thumb */
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background-color: #333; /* Even darker on hover */
+            background-color: #FFF;
         }
 
-        /* Root variables for theming */
+        ::-webkit-scrollbar-thumb {
+            background-color: #CBCBCB;
+            outline: 2px solid #FFF;
+            outline-offset: -2px;
+            border: .1px solid #B7B7B7;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: #909090;
+        }
+
         :root {
             --google-blue: #4285F4;
             --google-red: #EA4335;
             --google-yellow: #FBBC05;
             --google-green: #34A853;
-            --dark-bg: #121212; /* Main dark background */
-            --card-bg: rgba(30, 30, 30, 0.95); /* Slightly more opaque card background */
-            --glow: 0 0 15px rgba(66, 133, 244, 0.6); /* Adjusted glow for subtlety */
-            --text-color: rgba(255, 255, 255, 0.9); /* Brighter default text */
-            --text-muted-color: rgba(255, 255, 255, 0.7); /* For less prominent text */
+            --dark-bg: #121212;
+            --card-bg: rgba(30, 30, 30, 0.9);
+            --glow: 0 0 15px rgba(66, 133, 244, 0.7);
         }
 
-        /* Global reset and base font */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Google Sans', Arial, sans-serif; /* Consistent font */
+            font-family: 'Google Sans', Arial, sans-serif;
         }
 
-        /* Smooth scrolling behavior */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Body styling */
         body {
             background-color: var(--dark-bg);
-            color: var(--text-color);
-            overflow-x: hidden; /* Prevent horizontal scroll */
+            color: #fff;
+            overflow-x: hidden;
             background-image:
-                radial-gradient(circle at 15% 25%, rgba(66, 133, 244, 0.08) 0%, transparent 35%),
-                radial-gradient(circle at 85% 75%, rgba(251, 188, 5, 0.08) 0%, transparent 35%),
-                radial-gradient(circle at 50% 50%, rgba(52, 168, 83, 0.04) 0%, transparent 60%);
+                radial-gradient(circle at 20% 30%, rgba(66, 133, 244, 0.1) 0%, transparent 30%),
+                radial-gradient(circle at 80% 70%, rgba(251, 188, 5, 0.1) 0%, transparent 30%),
+                radial-gradient(circle at 50% 50%, rgba(52, 168, 83, 0.05) 0%, transparent 70%);
             width: 100%;
+            height: 100%;
         }
 
-        /* Particle background styling */
         .particles {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1; /* Behind all content */
-            pointer-events: none; /* Allow clicks through */
+            z-index: -1;
             overflow: hidden;
         }
 
         .particle {
             position: absolute;
             border-radius: 50%;
-            animation: floatParticleAnim 15s infinite linear;
+            opacity: 0.5;
+            animation: float 15s infinite linear;
         }
 
-        @keyframes floatParticleAnim {
-            0% { transform: translateY(0vh) translateX(0vw) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.6; }
-            90% { opacity: 0.6; }
-            100% { transform: translateY(-100vh) translateX(5vw) rotate(360deg); opacity: 0; }
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.5;
+            }
+
+            90% {
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: translateY(-100vh) translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
         }
 
-        /* General container for consistent padding (not used for full-width header/footer backgrounds) */
-        .container-content {
-            max-width: 1200px;
+        .container {
+            max-width: 100%;
             margin: 0 auto;
-            padding: 0 20px; /* Horizontal padding for content within sections */
+            padding: 20px;
         }
-        
-        /* Header styling */
+
+        /* Navigation bar */
         header {
-            padding: 20px 0; /* Vertical padding */
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            position: sticky; /* Sticky header */
-            top: 0;
-            background-color: rgba(18, 18, 18, 0.85); /* Semi-transparent sticky header */
-            backdrop-filter: blur(10px); /* Frosted glass effect */
-            z-index: 1000; /* Ensure header is above other content */
-            width: 100%;
-        }
-        .header-inner { /* Inner container for header content alignment */
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px; 
-        }
-        .logo-container img {
-            display: block; /* Remove extra space below image */
-            height: 40px; /* Fixed height for logo */
-            width: auto;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
         }
 
-        /* Desktop navigation links */
         .nav-links {
             display: flex;
-            gap: 25px; /* Slightly reduced gap */
+            gap: 30px;
+            flex: 1;
+            justify-content: flex-end;
         }
+
         .nav-links a {
-            color: var(--text-color);
+            color: #fff;
             text-decoration: none;
             font-weight: 500;
             position: relative;
             padding: 5px 0;
-            transition: color 0.3s ease;
+            transition: color 0.3s;
         }
+
         .nav-links a:hover {
             color: var(--google-blue);
         }
-        .nav-links a::after { /* Underline animation */
+
+        .nav-links a::after {
             content: '';
             position: absolute;
-            bottom: -2px; /* Position underline slightly below text */
+            bottom: 0;
             left: 0;
             width: 0;
             height: 2px;
             background: var(--google-blue);
-            transition: width 0.3s ease;
+            transition: width 0.3s;
         }
+
         .nav-links a:hover::after {
             width: 100%;
         }
 
         /* Mobile menu button */
         .mobile-menu-btn {
-            display: none; /* Hidden by default */
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
             background: none;
             border: none;
-            color: var(--text-color);
-            font-size: 28px; /* Larger icon */
             cursor: pointer;
-            z-index: 1001; /* Above mobile menu when closed */
-            padding: 5px; /* Easier to tap */
+            z-index: 1001;
         }
 
-        /* Mobile menu container */
+        .mobile-menu-btn .bar {
+            height: 3px;
+            width: 100%;
+            background-color: #fff;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+
+        /* Mobile menu */
         .mobile-menu {
-            display: none; /* Hidden by default */
+            display: none;
             flex-direction: column;
             position: absolute;
-            top: calc(100% + 1px); /* Position below header */
+            top: 60px;
             right: 20px;
-            background-color: var(--card-bg); /* Use card background for consistency */
+            background-color: var(--dark-bg);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 10px;
-            padding: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            z-index: 1000; /* Ensure it's above content but below modals */
-            min-width: 200px; /* Minimum width */
-        }
-        .mobile-menu a {
-            color: var(--text-color);
-            text-decoration: none;
-            font-weight: 500;
-            padding: 12px 10px; /* More padding for touch targets */
-            transition: color 0.3s ease, background-color 0.3s ease;
-            border-radius: 5px;
-        }
-        .mobile-menu a:hover {
-            color: var(--google-blue);
-            background-color: rgba(var(--google-blue-rgb), 0.1); /* Subtle hover background */
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
         }
 
-        /* Hero section styling */
+        .mobile-menu a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 10px 0;
+            transition: color 0.3s;
+        }
+
+        .mobile-menu a:hover {
+            color: var(--google-blue);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
+            }
+
+            .mobile-menu.active {
+                display: flex;
+            }
+        }
+
         .hero {
-            min-height: 80vh; 
+            height: 80vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative; /* For tech circles */
-            overflow: hidden; /* Contain tech circles */
-            padding: 60px 0; /* More vertical padding */
-            text-align: center; /* Center hero content */
+            position: relative;
+            overflow: hidden;
         }
+
         .hero-content {
-            z-index: 2; /* Above tech circles */
-            animation: fadeInHero 1s ease-out 0.2s backwards; /* Delay animation slightly */
-            max-width: 750px; /* Wider hero text */
-            margin: 0 auto;
+            text-align: center;
+            z-index: 2;
+            animation: fadeIn 1s ease-out;
         }
-        @keyframes fadeInHero {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
+
         .hero h1 {
-            font-size: 3.2rem; /* Slightly larger */
-            margin-bottom: 25px;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
             background: linear-gradient(90deg, var(--google-blue), var(--google-red), var(--google-yellow), var(--google-green));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            animation: gradientFlow 8s linear infinite; /* Slower gradient flow */
-            background-size: 300% 100%; /* Adjusted size for smoother flow */
+            animation: gradientFlow 10s linear infinite;
+            background-size: 400% 100%;
         }
+
         @keyframes gradientFlow {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 300% 50%; }
+            0% {
+                background-position: 0% 50%;
+            }
+
+            100% {
+                background-position: 400% 50%;
+            }
         }
+
         .hero p {
-            font-size: 1.15rem; /* Slightly larger */
-            margin-bottom: 35px;
-            color: var(--text-muted-color);
-            line-height: 1.8; /* Improved readability */
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            color: rgba(255, 255, 255, 0.8);
         }
+
         .hero-buttons {
             display: flex;
             gap: 20px;
             justify-content: center;
             margin-top: 40px;
-            flex-wrap: wrap; 
         }
 
-        /* General button styling */
         .btn {
-            padding: 14px 35px; /* Larger buttons */
+            padding: 12px 30px;
             background-color: var(--google-blue);
             color: white;
             border: none;
-            border-radius: 50px; /* More rounded */
+            border-radius: 30px;
             font-weight: 500;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s;
             position: relative;
             overflow: hidden;
             z-index: 1;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2); /* Softer shadow */
-            text-decoration: none; 
+            box-shadow: var(--glow);
         }
-        .btn:hover {
-            transform: translateY(-2px); /* Subtle hover lift */
-            box-shadow: 0 6px 15px rgba(var(--google-blue-rgb), 0.4); /* Glow effect on hover */
-        }
-        .btn::before { /* Ripple effect placeholder */
+
+        .btn::before {
             content: '';
             position: absolute;
-            top: 50%;
-            left: 50%;
+            top: 0;
+            left: 0;
             width: 0;
-            height: 0;
+            height: 100%;
             background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            opacity: 0;
-            transition: width 0.4s ease, height 0.4s ease, opacity 0.4s ease;
+            transition: width 0.3s;
+            z-index: -1;
         }
-        .btn:active::before { /* Simulate ripple */
-            width: 200%;
-            padding-bottom: 200%; /* Maintain aspect ratio for circle */
-            opacity: 1;
-            transition: none; /* Instant effect on active */
+
+        .btn:hover::before {
+            width: 100%;
         }
-        .btn-primary { background-color: var(--google-blue); }
+
+        .btn-primary {
+            background-color: var(--google-blue);
+        }
+
         .btn-secondary {
             background-color: transparent;
             border: 2px solid var(--google-blue);
-            color: var(--google-blue);
-        }
-        .btn-secondary:hover {
-            background-color: var(--google-blue);
-            color: white;
         }
 
-        /* Section styling */
-        .events-section, .organizers-section, .about-section, .whatsapp-container {
-            padding: 80px 0; /* Vertical padding */
-            position: relative; /* For potential pseudo-elements or absolute positioned children */
+        .events-section {
+            padding: 80px 0;
         }
 
-        /* Section title styling */
         .section-title {
             text-align: center;
-            margin-bottom: 60px; /* Increased margin */
+            margin-bottom: 50px;
         }
+
         .section-title h2 {
-            font-size: 2.8rem; /* Larger section titles */
-            color: var(--heading-color);
-            margin-bottom: 20px;
+            font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 15px;
             position: relative;
             display: inline-block;
         }
-        .section-title h2::after { /* Decorative underline */
+
+        .section-title h2::after {
             content: '';
             position: absolute;
             bottom: -10px;
             left: 50%;
             transform: translateX(-50%);
-            width: 70px; /* Shorter, thicker underline */
-            height: 4px;
+            width: 80px;
+            height: 3px;
             background: var(--google-blue);
-            border-radius: 2px;
-        }
-        .section-title p { /* Subtitle for sections */
-            font-size: 1.1rem;
-            color: var(--text-muted-color);
-            max-width: 600px;
-            margin: 0 auto; /* Center subtitle */
         }
 
-        /* Event grid and card styling */
         .events-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Slightly larger min card width */
-            gap: 35px; /* Increased gap */
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
             margin-top: 50px;
         }
+
         .event-card {
             background: var(--card-bg);
             border-radius: 15px;
             overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.08); /* Softer border */
-            display: flex; 
-            flex-direction: column; 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
         }
+
         .event-card:hover {
-            transform: translateY(-8px); /* More pronounced hover lift */
-            box-shadow: 0 10px 25px rgba(var(--google-blue-rgb),0.2); /* Card specific glow */
+            transform: translateY(-10px);
+            box-shadow: var(--glow);
         }
-        .event-card::before { /* Top border accent */
+
+        .event-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 4px; /* Thinner accent */
+            height: 5px;
             background: linear-gradient(90deg, var(--google-blue), var(--google-red), var(--google-yellow), var(--google-green));
-            opacity: 0.8;
         }
+
         .card-img {
-            height: 220px; /* Taller image area */
-            background-color: #282828; /* Darker placeholder background */
+            height: 200px;
+            background-color: #2a2a2a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             background-size: cover;
             background-position: center;
             position: relative;
+            overflow: hidden;
         }
-        .card-img::after { /* Gradient overlay for text contrast */
+
+        .card-img::after {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(to bottom, transparent 60%, rgba(0, 0, 0, 0.8) 100%);
+            background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.7) 100%);
         }
+
         .card-content {
             padding: 25px;
-            flex-grow: 1; 
-            display: flex;
-            flex-direction: column;
         }
+
         .card-title {
-            font-size: 1.5rem; /* Larger card titles */
-            margin-bottom: 12px;
-            color: var(--heading-color);
-            line-height: 1.3;
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: #fff;
         }
+
         .card-date {
             display: inline-block;
-            padding: 6px 14px;
-            background-color: rgba(var(--google-blue-rgb), 0.15); /* More subtle date background */
+            padding: 5px 12px;
+            background-color: rgba(66, 133, 244, 0.2);
             border-radius: 20px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--google-blue);
             margin-bottom: 15px;
-            font-weight: 500;
         }
+
         .card-description {
-            color: var(--text-muted-color);
+            color: rgba(255, 255, 255, 0.7);
             margin-bottom: 20px;
-            line-height: 1.7;
-            flex-grow: 1; 
+            line-height: 1.6;
         }
+
         .card-price {
-            font-size: 1.6rem; /* Larger price */
+            font-size: 1.5rem;
             font-weight: bold;
             color: var(--google-yellow);
-            margin-bottom: 20px; /* More space before button */
+            margin-bottom: 15px;
         }
+
         .card-btn {
             width: 100%;
             text-align: center;
-            margin-top: auto; 
-            padding: 12px 20px; /* Adjusted padding for card buttons */
         }
 
-        /* Organizer section styling */
+        /* Organizers Section */
+        .organizers-section {
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0);
+            margin: 0;
+        }
+
         .organizers-grid {
             display: flex;
-            flex-direction: column; 
-            align-items: center; 
+            flex-direction: column;
             gap: 30px;
             margin-top: 50px;
         }
+
         .organizer-card {
             background: var(--card-bg);
             border-radius: 15px;
+            overflow: hidden;
             padding: 30px;
             position: relative;
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: transform 0.4s, box-shadow 0.4s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
             display: flex;
             flex-direction: column;
             align-items: center;
-            max-width: 420px; /* Slightly wider */
-            width: 100%;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            height: 100%;
         }
+
         .organizer-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 10px 25px rgba(var(--google-blue-rgb),0.2);
+            transform: translateY(-10px);
+            box-shadow: var(--glow);
         }
+
         .organizer-avatar {
             position: relative;
             margin-bottom: 25px;
         }
+
         .avatar-wrapper {
-            width: 130px; /* Larger avatar */
-            height: 130px;
+            width: 120px;
+            height: 120px;
             position: relative;
             margin: 0 auto;
         }
+
         .avatar-img {
             width: 100%;
             height: 100%;
             border-radius: 50%;
             object-fit: cover;
-            border: 4px solid var(--google-blue); /* Thicker border */
-            transition: transform 0.5s ease;
+            border: 3px solid var(--google-blue);
+            transition: transform 0.5s;
         }
+
         .organizer-card:hover .avatar-img {
-            transform: scale(1.08); /* More pronounced scale */
+            transform: scale(1.05);
         }
+
         .avatar-glow {
             position: absolute;
-            top: -6px; left: -6px; right: -6px; bottom: -6px; /* Adjust for thicker border */
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
             border-radius: 50%;
-            background: conic-gradient(var(--google-blue), var(--google-red), var(--google-yellow), var(--google-green), var(--google-blue));
-            opacity: 0.6; /* Softer glow */
+            background: conic-gradient(var(--google-blue),
+                    var(--google-red),
+                    var(--google-yellow),
+                    var(--google-green),
+                    var(--google-blue));
+            opacity: 0.7;
             z-index: -1;
-            animation: rotateAvatarGlow 6s linear infinite; /* Slower rotation */
-            filter: blur(12px); /* More blur */
+            animation: rotate 5s linear infinite;
+            filter: blur(10px);
         }
-        @keyframes rotateAvatarGlow {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        .connection-lines { /* Decorative element */
+
+        .connection-lines {
             position: absolute;
-            width: 170px; height: 170px; /* Larger lines */
-            top: 50%; left: 50%;
+            width: 160px;
+            height: 160px;
+            top: 50%;
+            left: 50%;
             transform: translate(-50%, -50%);
             border-radius: 50%;
-            border: 1px dashed rgba(255, 255, 255, 0.15); /* More subtle */
+            border: 1px dashed rgba(255, 255, 255, 0.2);
             z-index: -1;
-            animation: pulseConnectionLines 4s infinite alternate ease-in-out; /* Slower pulse */
+            animation: pulse 3s infinite alternate ease-in-out;
         }
-        @keyframes pulseConnectionLines {
-            0% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.6; }
-            100% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.9; }
-        }
-        .connection-dot { /* Small decorative dots */
+
+        .connection-dot {
             position: absolute;
-            width: 7px; height: 7px; /* Slightly smaller */
+            width: 8px;
+            height: 8px;
+            background-color: var(--google-blue);
             border-radius: 50%;
-            box-shadow: 0 0 8px var(--google-blue); /* Softer shadow */
-        }
-        /* Dot positioning and color variations */
-        .connection-dot:nth-child(1) { top: 0; left: 50%; transform: translateX(-50%); background-color: var(--google-blue); animation: moveDotYAnim 5s infinite alternate; }
-        .connection-dot:nth-child(2) { bottom: 25%; right: 0; background-color: var(--google-red); box-shadow: 0 0 8px var(--google-red); animation: moveDotXAnim 7s infinite alternate-reverse; }
-        .connection-dot:nth-child(3) { bottom: 25%; left: 0; background-color: var(--google-green); box-shadow: 0 0 8px var(--google-green); animation: moveDotXAnim 6s infinite alternate; }
-        @keyframes moveDotYAnim { /* Vertical movement */
-            0% { transform: translateY(-5px) translateX(-50%); }
-            100% { transform: translateY(5px) translateX(-50%); }
-        }
-        @keyframes moveDotXAnim { /* Horizontal movement */
-            0% { transform: translateX(-5px) translateY(-50%); }
-            100% { transform: translateX(5px) translateY(-50%); }
+            box-shadow: 0 0 10px var(--google-blue);
         }
 
-        .organizer-info { text-align: center; flex-grow: 1; display: flex; flex-direction: column; }
-        .organizer-name {
-            font-size: 1.6rem; /* Larger name */
-            font-weight: 600;
-            margin-bottom: 8px;
-            background: linear-gradient(90deg, var(--google-blue), var(--google-red));
-            -webkit-background-clip: text; background-clip: text; color: transparent;
+        .connection-dot:nth-child(1) {
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: moveDot 5s infinite alternate;
         }
-        .organizer-role { color: var(--google-yellow); font-size: 1rem; margin-bottom: 18px; font-weight: 500; }
-        .organizer-bio { color: var(--text-muted-color); font-size: 0.95rem; margin-bottom: 22px; line-height: 1.7; }
-        .organizer-skills { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 22px; }
-        .skill-tag {
-            padding: 6px 15px; /* More padding */
-            background-color: rgba(var(--google-blue-rgb), 0.15);
-            border-radius: 20px;
-            font-size: 0.85rem;
-            color: var(--google-blue);
-            transition: background-color 0.3s ease, transform 0.3s ease;
-        }
-        .skill-tag:hover { background-color: rgba(var(--google-blue-rgb), 0.3); transform: scale(1.05); }
-        .organizer-social { display: flex; gap: 18px; justify-content: center; margin-top: auto; }
-        .social-icon {
-            width: 40px; height: 40px; /* Larger icons */
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.08); /* More subtle */
-            display: flex; align-items: center; justify-content: center;
-            color: var(--text-color);
-            transition: all 0.3s ease;
-        }
-        .social-icon svg { width: 20px; height: 20px; } /* Ensure SVG size is controlled */
-        .social-icon:hover { background-color: var(--google-blue); transform: translateY(-3px); color: white; }
-        .ai-assistant { /* Small decorative element */
-            position: absolute; bottom: 15px; right: 15px; width: 35px; height: 35px;
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            opacity: 0; transition: opacity 0.3s ease, transform 0.3s ease;
-        }
-        .organizer-card:hover .ai-assistant { opacity: 1; transform: translateY(-5px) scale(1.1); }
-        .ai-blob {
-            position: absolute; width: 100%; height: 100%; border-radius: 50%;
-            background: radial-gradient(circle, var(--google-blue) 0%, rgba(var(--google-blue-rgb), 0) 70%);
-            animation: pulseAIBlob 2.5s infinite alternate; opacity: 0.6;
-        }
-        @keyframes pulseAIBlob {
-            0% { transform: scale(0.7); opacity: 0.4; }
-            100% { transform: scale(1.3); opacity: 0.8; }
-        }
-        .ai-icon { position: relative; z-index: 2; color: white; width: 20px; height: 20px; }
 
-        /* About section styling */
-        .about-content {
+        .connection-dot:nth-child(2) {
+            bottom: 30%;
+            right: 0;
+            background-color: var(--google-red);
+            box-shadow: 0 0 10px var(--google-red);
+            animation: moveDot 7s infinite alternate-reverse;
+        }
+
+        .connection-dot:nth-child(3) {
+            bottom: 30%;
+            left: 0;
+            background-color: var(--google-green);
+            box-shadow: 0 0 10px var(--google-green);
+            animation: moveDot 6s infinite alternate;
+        }
+
+        @keyframes moveDot {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-5px);
+            }
+
+            100% {
+                transform: translateY(5px);
+            }
+        }
+
+        .organizer-info {
+            text-align: center;
+            flex-grow: 1;
             display: flex;
-            align-items: center; /* Vertically align items */
-            gap: 60px; /* Increased gap */
+            flex-direction: column;
         }
-        .about-image { flex: 1; position: relative; }
-        .about-image-wrapper {
-            position: relative;
-            width: 100%;
-            padding-bottom: 75%; /* 4:3 aspect ratio */
-            overflow: hidden;
-            border-radius: 15px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.3); /* Enhanced shadow */
+
+        .organizer-name {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            background: linear-gradient(90deg, var(--google-blue), var(--google-red));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
-        .about-image-wrapper img {
+
+        .organizer-role {
+            color: var(--google-yellow);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .organizer-bio {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .organizer-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .skill-tag {
+            padding: 5px 12px;
+            background-color: rgba(66, 133, 244, 0.2);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--google-blue);
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .skill-tag:hover {
+            background-color: rgba(66, 133, 244, 0.4);
+            transform: scale(1.05);
+        }
+
+        .organizer-social {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: auto;
+        }
+
+        .social-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            transition: all 0.3s;
+        }
+
+        .social-icon:hover {
+            background-color: var(--google-blue);
+            transform: translateY(-3px);
+        }
+
+        .ai-assistant {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+        .organizer-card:hover .ai-assistant {
+            opacity: 1;
+            transform: translateY(-10px);
+        }
+
+        .ai-blob {
             position: absolute;
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Ensure image covers the area */
-            border-radius: 15px; /* Match wrapper */
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--google-blue) 0%, rgba(66, 133, 244, 0) 70%);
+            animation: pulse 2s infinite alternate;
+            opacity: 0.7;
         }
-        .about-text { flex: 1.2; } /* Give slightly more space to text */
-        .about-text p { color: var(--text-muted-color); line-height: 1.8; margin-bottom: 20px; font-size: 1.05rem; }
 
-        /* WhatsApp section styling */
-        .whatsapp-container {
-            opacity: 0; /* Initially hidden for IntersectionObserver animation */
-            transform: translateY(30px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        .ai-icon {
+            position: relative;
+            z-index: 2;
+            color: white;
         }
-        .whatsapp-container.visible { opacity: 1; transform: translateY(0); }
-        .whatsapp-content {
+
+        @keyframes pulse {
+            0% {
+                transform: scale(0.8);
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: scale(1.2);
+                opacity: 0.8;
+            }
+        }
+
+        .organizer-cta {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .organizer-cta p {
+            margin-bottom: 15px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .organizers-grid {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .organizer-card {
+                padding: 20px;
+            }
+
+            .avatar-wrapper {
+                width: 100px;
+                height: 100px;
+            }
+        }
+
+        /* Membership section */
+        .membership-section {
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0);
+            margin-top: -80px;
+        }
+
+        .membership-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .membership-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            padding: 30px;
+            position: relative;
+            transition: transform 0.4s, box-shadow 0.4s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
+        }
+
+        .membership-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--glow);
+        }
+
+        .membership-avatar {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .avatar-wrapper {
+            width: 120px;
+            height: 120px;
+            position: relative;
+            margin: 0 auto;
+        }
+
+        .avatar-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--google-blue);
+            transition: transform 0.5s;
+        }
+
+        .membership-card:hover .avatar-img {
+            transform: scale(1.05);
+        }
+
+        .avatar-glow {
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border-radius: 50%;
+            background: conic-gradient(var(--google-blue),
+                    var(--google-red),
+                    var(--google-yellow),
+                    var(--google-green),
+                    var(--google-blue));
+            opacity: 0.7;
+            z-index: -1;
+            animation: rotate 5s linear infinite;
+            filter: blur(10px);
+        }
+
+        .connection-lines {
+            position: absolute;
+            width: 160px;
+            height: 160px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+            z-index: -1;
+            animation: pulse 3s infinite alternate ease-in-out;
+        }
+
+        .connection-dot {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background-color: var(--google-blue);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--google-blue);
+        }
+
+        .connection-dot:nth-child(1) {
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: moveDot 5s infinite alternate;
+        }
+
+        .connection-dot:nth-child(2) {
+            bottom: 30%;
+            right: 0;
+            background-color: var(--google-red);
+            box-shadow: 0 0 10px var(--google-red);
+            animation: moveDot 7s infinite alternate-reverse;
+        }
+
+        .connection-dot:nth-child(3) {
+            bottom: 30%;
+            left: 0;
+            background-color: var(--google-green);
+            box-shadow: 0 0 10px var(--google-green);
+            animation: moveDot 6s infinite alternate;
+        }
+
+        @keyframes moveDot {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-5px);
+            }
+
+            100% {
+                transform: translateY(5px);
+            }
+        }
+
+
+        /* Membership section */
+        .about-section {
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .about-content {
             display: flex;
             align-items: center;
-            justify-content: space-around; 
-            width: 100%;
-            gap: 40px; 
+            gap: 50px;
         }
-        .whatsapp-text { max-width: 48%; text-align: left; }
-        .whatsapp-text .title { /* Specific styling for title in this section */
-            font-size: 2.5rem; /* Consistent with other section titles if desired */
-            color: var(--heading-color);
-            margin-bottom: 20px; 
-            text-shadow: 0 2px 8px rgba(0,0,0,0.2);
-        }
-        .whatsapp-text .subtitle { 
-            font-size: 1.2rem;
-            color: var(--text-muted-color);
-            margin-bottom: 30px;
-            line-height: 1.7;
-        }
-        .connect-button { /* Re-styling for this specific button */
-            padding: 14px 35px;
-            background-color: var(--google-green); /* WhatsApp green */
-            color: white;
-            border-radius: 50px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            margin-top: 25px; 
-            text-decoration: none;
-        }
-        .connect-button:hover {
-            background-color: #25A342; /* Darker green */
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(var(--google-green-rgb), 0.4);
-        }
-        .whatsapp-scene {
-            max-width: 400px; /* Max width for the phone scene */
-            width: 100%; /* Responsive width */
-            aspect-ratio: 350 / 600; /* Maintain aspect ratio */
-            position: relative;
-            transform-style: preserve-3d;
-            animation: whatsappFloatAnim 7s ease-in-out infinite; /* Slower animation */
-        }
-        @keyframes whatsappFloatAnim {
-            0%, 100% { transform: translateY(0) rotateY(4deg) scale(0.95); }
-            50% { transform: translateY(-15px) rotateY(-4deg) scale(1); }
-        }
-        .phone { /* Phone mock styling */
-            position: absolute; width: 100%; height: 100%;
-            background: #0D0D0D; /* Darker phone body */
-            border-radius: 35px; /* More rounded phone */
-            box-shadow: 0 25px 50px rgba(0,0,0,0.4), inset 0 0 15px rgba(255,255,255,0.05); /* Enhanced shadow and inner bevel */
-            padding: 12px; /* Thicker bezel */
-            transform-style: preserve-3d;
-            transform: rotateY(0deg) rotateX(0deg);
-            transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1); /* Smooth transition */
-        }
-        .phone-screen { width: 100%; height: 100%; background: #E5DDD5; border-radius: 25px; overflow: hidden; position: relative; } /* WhatsApp background color */
-        .app-header { background: #075E54; padding: 12px 15px; display: flex; align-items: center; position: relative; z-index: 10; color:white; }
-        .app-title { font-size: 1.1rem; font-weight: 500; margin-left: 12px; }
-        .chat-container { height: calc(100% - 120px); overflow-y: auto; padding: 15px; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARMAAAC3CAMAAAAGjUrGAAAAA1BMVEXM2NkDbS1XAAAAR0lEQVR4nO3BMQEAAADCoPVPbQwfoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD+BsYAAAF7hDjpAAAAAElFTkSuQmCC'); /* Subtle pattern */ background-repeat: repeat; background-size: 380px auto; } /* Default WhatsApp chat background pattern */
-        .message { max-width: 75%; padding: 8px 12px; border-radius: 8px; margin-bottom: 12px; position: relative; word-break: break-word; animation: messageInAnim 0.4s ease-out forwards; opacity: 0; transform: translateY(15px); font-size: 0.95rem; line-height: 1.5; }
-        .message-time { font-size: 0.7rem; color: rgba(0,0,0,0.45); text-align: right; margin-top: 4px; }
-        .message-left { background: #fff; align-self: flex-start; border-top-left-radius: 0; box-shadow: 0 1px 2px rgba(0,0,0,0.1); margin-right: auto; color: #333; }
-        .message-right { background: #DCF8C6; align-self: flex-end; border-top-right-radius: 0; box-shadow: 0 1px 2px rgba(0,0,0,0.1); margin-left: auto; color: #333; }
-        .message-content-wrapper { display: flex; flex-direction: column; }
-        .message-sender { font-weight: 500; font-size:0.85em; margin-bottom:3px; }
-        .chat-input { position: absolute; bottom: 0; left: 0; right: 0; display: flex; padding: 8px; background: #F0F0F0; align-items: center; border-bottom-left-radius: 25px; border-bottom-right-radius: 25px; }
-        .input-box { flex: 1; border: none; background: white; border-radius: 20px; padding: 10px 15px; margin: 0 8px; box-shadow: 0 1px 2px rgba(0,0,0,0.1); font-size: 0.95rem; }
-        .send-btn { width: 40px; height: 40px; border-radius: 50%; background: #128C7E; /* WhatsApp send button green */ color: white; display: flex; justify-content: center; align-items: center; cursor: pointer; border: none; outline: none; margin-right: 5px; }
-        .send-btn svg { width: 20px; height: 20px; }
-        .community-icon { width: 30px; height: 30px; background: rgba(255,255,255,0.15); border-radius: 50%; display: flex; justify-content: center; align-items: center; }
-        .community-icon svg { width: 18px; height: 18px; fill: white; }
-        .avatar { width: 30px; height: 30px; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; font-weight: 500; margin-right: 10px; flex-shrink: 0; font-size: 0.9rem; }
-        .group-details { display: flex; padding: 10px 15px; background: #F9F9F9; border-bottom: 1px solid #E0E0E0; align-items: center; }
-        .group-info { flex: 1; }
-        .group-name { font-weight: 500; color: #111; font-size: 1rem; } 
-        .group-members { font-size: 0.8rem; color: #666; }
-        .status-bar { height: 20px; background: #000000b0; color: white; display: flex; justify-content: space-between; align-items: center; padding: 0 12px; font-size: 11px; border-top-left-radius: 25px; border-top-right-radius: 25px; }
-        .status-bar-time { font-weight: 500; }
-        .status-bar-icons { display: flex; align-items: center; gap: 4px; }
-        @keyframes messageInAnim { to { opacity: 1; transform: translateY(0); } }
 
-        /* Footer styling */
+        .about-image {
+            flex: 1;
+            position: relative;
+        }
+
+        .about-image-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 66.67%;
+            /* 3:2 aspect ratio */
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: var(--glow);
+        }
+
+        .about-image-placeholder {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #2a2a2a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 1.2rem;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .about-text p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
         footer {
-            background-color: #0a0a0a; /* Slightly darker footer */
-            padding: 60px 0; 
-            border-top: 1px solid rgba(255, 255, 255, 0.05); /* More subtle border */
+            background-color: #0a0a0a;
+            padding: 50px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .footer-inner-container { 
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px; 
-        }
+
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Adjusted minmax */
-            gap: 40px; 
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
         }
+
         .footer-column h3 {
-            color: var(--heading-color);
-            margin-bottom: 25px; /* More space below heading */
-            font-size: 1.3rem; /* Larger footer headings */
-            position: relative;
-            padding-bottom: 8px;
+            color: #fff;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
         }
-        .footer-column h3::after { /* Underline for footer headings */
-            content: '';
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--google-blue);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            transition: background-color 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--google-blue);
+        }
+
+        /* Modal */
+        .modal-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal {
+            background-color: var(--card-bg);
+            width: 90%;
+            max-width: 500px;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 0 30px rgba(66, 133, 244, 0.3);
+            position: relative;
+            animation: modalSlideIn 0.3s forwards;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .modal-close:hover {
+            color: var(--google-red);
+        }
+
+        .modal-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255,255, 0.2);
+            border-radius: 8px;
+            color: #fff;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--google-blue);
+            box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.3);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .about-content,
+            .membership-content {
+                flex-direction: column;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+
+        /* Sci-fi elements */
+        .circle-decoration {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(66, 133, 244, 0.05);
+            border: 1px solid rgba(66, 133, 244, 0.2);
+            z-index: -1;
+        }
+
+        .circle-1 {
+            width: 300px;
+            height: 300px;
+            top: -150px;
+            right: -150px;
+        }
+
+        .circle-2 {
+            width: 200px;
+            height: 200px;
+            bottom: 50px;
+            left: -100px;
+            border-color: rgba(251, 188, 5, 0.2);
+            background: rgba(251, 188, 5, 0.05);
+        }
+
+        .glowing-line {
+            position: absolute;
+            background: linear-gradient(90deg, transparent, var(--google-blue), transparent);
+            height: 1px;
+            width: 100%;
+            z-index: -1;
+        }
+
+        .line-1 {
+            top: 30%;
+            animation: glow 4s infinite;
+        }
+
+        .line-2 {
+            bottom: 20%;
+            animation: glow 5s infinite;
+            animation-delay: 1s;
+        }
+
+        @keyframes glow {
+
+            0%,
+            100% {
+                opacity: 0.3;
+            }
+
+            50% {
+                opacity: 0.7;
+            }
+        }
+
+        .tech-circle {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background-color: transparent;
+            border: 2px solid rgba(66, 133, 244, 0.1);
+            z-index: -1;
+        }
+
+        .tech-circle-1 {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: rotate 30s linear infinite;
+        }
+
+        .tech-circle-2 {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            border-color: rgba(251, 188, 5, 0.1);
+            animation: rotate 40s linear infinite reverse;
+        }
+
+        .tech-circle-3 {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.6);
+            border-color: rgba(52, 168, 83, 0.1);
+            animation: rotate 50s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        .dot {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--google-blue);
+            box-shadow: 0 0 10px var(--google-blue);
+        }
+
+        .tech-circle-1 .dot {
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .tech-circle-2 .dot {
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            background-color: var(--google-yellow);
+            box-shadow: 0 0 10px var(--google-yellow);
+        }
+
+        .tech-circle-3 .dot {
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--google-green);
+            box-shadow: 0 0 10px var(--google-green);
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .title {
+            font-size: 2.5rem;
+            color: #4285F4;
+            /* Google Blue */
+            margin-bottom: 40px;
+            text-align: center;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            transform: translateZ(50px);
+            opacity: 0;
+            animation: fadeIn 1s forwards 0.5s;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: #34A853;
+            /* Google Green */
+            margin-bottom: 30px;
+            text-align: center;
+            opacity: 0;
+            animation: fadeIn 1s forwards 0.8s;
+        }
+
+        .whatsapp-scene {
+            position: relative;
+            width: 350px;
+            height: 600px;
+            transform-style: preserve-3d;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .phone {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #111;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 10px;
+            transform-style: preserve-3d;
+            transform: rotateY(0deg) rotateX(0deg);
+            transition: transform 0.5s ease;
+            margin-top: 60px;
+        }
+
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .app-header {
+            background: #075e54;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .app-title {
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        .chat-container {
+            height: calc(100% - 130px);
+            overflow-y: auto;
+            padding: 15px;
+            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZGlhZ29uYWxIYXRjaCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgd2lkdGg9IjQiIGhlaWdodD0iNCIgcGF0dGVyblRyYW5zZm9ybT0icm90YXRlKDQ1KSI+PHBhdGggZD0iTSAtMSwxIGwgMiwtMiBNIDAsMCBsIDQsLTQgTSAzLC0xIGwgMiwyIiBzdHJva2U9IiNlNWRkZDUiIHN0cm9rZS13aWR0aD0iMC41Ii8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZTVkZGQ1Ii8+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNkaWFnb25hbEhhdGNoKSIvPjwvc3ZnPg==');
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            position: relative;
+            word-break: break-word;
+            animation: messageIn 0.5s forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .message-time {
+            font-size: 0.7rem;
+            opacity: 0.7;
+            text-align: right;
+            margin-top: 5px;
+        }
+
+        .message-left {
+            background: white;
+            align-self: flex-start;
+            border-top-left-radius: 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-right: auto;
+            color: #000;
+        }
+
+        .message-right {
+            background: #dcf8c6;
+            align-self: flex-end;
+            border-top-right-radius: 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-left: auto;
+            color: #000;
+        }
+
+        .chat-input {
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 30px;
-            height: 2px;
+            right: 0;
+            display: flex;
+            padding: 10px;
+            background: #f0f0f0;
+            align-items: center;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+
+        .input-box {
+            flex: 1;
+            border: none;
+            background: white;
+            border-radius: 20px;
+            padding: 10px 15px;
+            margin-right: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .send-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #075e54;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            border: none;
+            outline: none;
+        }
+
+        .connect-button {
+            padding: 12px 30px;
+            background-color: var(--google-blue);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            box-shadow: var(--glow);
+            margin-top: 50px;
+        }
+
+
+        .connect-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: width 0.3s;
+            z-index: -1;
+        }
+
+        .connect-button:hover::before {
+            width: 100%;
+        }
+
+        .connect-button-primary {
             background-color: var(--google-blue);
         }
-        .footer-column ul { list-style: none; padding-left: 0; }
-        .footer-column ul li { margin-bottom: 12px; /* More space between links */ }
-        .footer-column ul li a {
-            color: var(--text-muted-color);
-            text-decoration: none;
-            transition: color 0.3s ease, padding-left 0.3s ease;
+
+        .connect-button-secondary {
+            background-color: transparent;
+            border: 2px solid var(--google-blue);
         }
-        .footer-column ul li a:hover { color: var(--google-blue); padding-left: 5px; /* Indent on hover */ }
-        .footer-bottom {
-            text-align: center;
-            padding-top: 40px;
-            margin-top: 40px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            color: rgba(255, 255, 255, 0.5); /* Lighter copyright text */
-            font-size: 0.9rem;
+
+
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
         }
-        .footer-bottom p { font-size: 0.85rem; line-height: 1.6; margin-top: 8px;}
-        .social-links { display: flex; gap: 18px; margin-top: 15px; }
-        .social-links a {
-            width: 42px; height: 42px; /* Larger social icons */
+
+        .particle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.08);
-            display: flex; align-items: center; justify-content: center;
-            color: var(--text-color);
-            transition: background-color 0.3s ease, transform 0.3s ease;
+            animation: particle 10s infinite linear;
         }
-        .social-links a svg { width: 20px; height: 20px; }
-        .social-links a:hover { background-color: var(--google-blue); transform: scale(1.1); }
 
-        /* Modal styling */
-        .modal-container {
-            display: none; 
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.85); /* Darker backdrop */
-            z-index: 10000; 
-            align-items: center; justify-content: center;
-            backdrop-filter: blur(8px); /* Stronger blur */
-            padding: 20px; 
+        .particle:nth-child(4n) {
+            background: rgba(66, 133, 244, 0.2);
+            /* Google Blue */
         }
-        .modal {
-            background-color: var(--card-bg);
-            width: 90%; max-width: 550px; /* Slightly wider modal */
+
+        .particle:nth-child(4n+1) {
+            background: rgba(219, 68, 55, 0.2);
+            /* Google Red */
+        }
+
+        .particle:nth-child(4n+2) {
+            background: rgba(244, 180, 0, 0.2);
+            /* Google Yellow */
+        }
+
+        .particle:nth-child(4n+3) {
+            background: rgba(15, 157, 88, 0.2);
+            /* Google Green */
+        }
+
+        .reaction {
+            position: absolute;
+            right: -10px;
+            bottom: -10px;
+            background: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transform: scale(0);
+            animation: reaction 0.5s forwards;
+        }
+
+        .typing-indicator {
+            display: flex;
+            padding: 15px;
+            background: white;
             border-radius: 15px;
-            padding: 35px; /* More padding */
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5); /* Stronger shadow */
-            position: relative;
-            animation: modalSlideIn 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; /* Smoother animation */
-            color: var(--text-color); 
-        }
-        @keyframes modalSlideIn {
-            from { opacity: 0; transform: translateY(-60px) scale(0.95); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
-        }
-        .modal-close {
-            position: absolute; top: 18px; right: 18px;
-            background: none; border: none;
-            color: rgba(255, 255, 255, 0.6);
-            cursor: pointer; font-size: 2rem; /* Larger close icon */
-            transition: color 0.3s ease, transform 0.3s ease;
-            line-height: 1; 
-        }
-        .modal-close:hover { color: var(--google-red); transform: rotate(90deg); }
-        .modal-title {
-            font-size: 2rem; /* Larger modal title */
-            margin-bottom: 25px;
-            color: var(--heading-color);
-            text-align: center;
-        }
-        .modal-content p { margin-bottom: 12px; line-height: 1.7; color: var(--text-muted-color); }
-        .modal-content p strong { color: var(--google-yellow); font-weight: 500; }
-        .modal-content a { color: var(--google-blue); text-decoration: none; font-weight: 500; }
-        .modal-content a:hover { text-decoration: underline; }
-
-        /* Tech circle background elements */
-        .tech-circle { position: absolute; border-radius: 50%; background-color: transparent; border: 1px solid rgba(var(--google-blue-rgb), 0.05); z-index: -2; pointer-events: none; }
-        .tech-circle-1 { width: 500px; height: 500px; top: 50%; left: 50%; animation: rotateTechCircle 40s linear infinite; }
-        .tech-circle-2 { width: 700px; height: 700px; top: 50%; left: 50%; border-color: rgba(var(--google-yellow-rgb), 0.05); animation: rotateTechCircle 55s linear infinite reverse; }
-        .tech-circle-3 { width: 900px; height: 900px; top: 50%; left: 50%; border-color: rgba(var(--google-green-rgb), 0.05); animation: rotateTechCircle 70s linear infinite; }
-        @keyframes rotateTechCircle {
-            0% { transform: translate(-50%, -50%) rotate(0deg); }
-            100% { transform: translate(-50%, -50%) rotate(360deg); }
-        }
-        .dot { /* Dots on tech circles */
-            position: absolute; width: 8px; height: 8px; border-radius: 50%;
-            box-shadow: 0 0 12px var(--google-blue);
-        }
-        .tech-circle-1 .dot { top: 0; left: 50%; transform: translateX(-50%); background-color: var(--google-blue); }
-        .tech-circle-2 .dot { top: 50%; right: 0; transform: translateY(-50%); background-color: var(--google-yellow); box-shadow: 0 0 12px var(--google-yellow); }
-        .tech-circle-3 .dot { bottom: 0; left: 50%; transform: translateX(-50%); background-color: var(--google-green); box-shadow: 0 0 12px var(--google-green); }
-
-        /* Bubbles background effect */
-        .bubbles { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; pointer-events: none; z-index: -3; }
-        .bubble { position: absolute; border-radius: 50%; animation: bubbleFloatAnim 12s infinite ease-in-out; } /* Slower animation */
-        .bubble:nth-child(4n) { background: rgba(var(--google-blue-rgb), 0.04); } /* Even more subtle */
-        .bubble:nth-child(4n+1) { background: rgba(var(--google-red-rgb), 0.04); }
-        .bubble:nth-child(4n+2) { background: rgba(var(--google-yellow-rgb), 0.04); }
-        .bubble:nth-child(4n+3) { background: rgba(var(--google-green-rgb), 0.04); }
-        @keyframes bubbleFloatAnim {
-            0% { transform: translate(0, 0) scale(0.8); opacity: 0; }
-            20% { opacity: 0.1; } 
-            50% { transform: translate(var(--moveX), var(--moveY)) scale(1.1); }
-            80% { opacity: 0.1; } 
-            100% { transform: translate(0,0) scale(0.8); opacity: 0; }
-        }
-        
-        /* Helper for RGB values of Google colors (used for rgba backgrounds) */
-        :root {
-            --google-blue-rgb: 66, 133, 244;
-            --google-red-rgb: 234, 67, 53;
-            --google-yellow-rgb: 251, 188, 5;
-            --google-green-rgb: 52, 168, 83;
+            width: fit-content;
+            margin-bottom: 15px;
+            opacity: 0;
         }
 
-
-        /* Responsive adjustments */
-        @media (max-width: 992px) { /* Tablet and below */
-            .about-content { flex-direction: column; text-align: center; }
-            .about-image-wrapper { padding-bottom: 60%; max-width: 500px; margin: 0 auto 30px auto; }
-            .whatsapp-content { flex-direction: column; align-items: center; gap: 30px; }
-            .whatsapp-text, .whatsapp-scene { max-width: 90%; width: 100%; }
-            .whatsapp-text { text-align: center; }
-            .whatsapp-text .title, .whatsapp-text .subtitle { text-align: center; }
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #888;
+            margin: 0 3px;
+            animation: typingBounce 1.3s infinite;
         }
 
-        @media (max-width: 768px) { /* Mobile */
-            .header-inner { padding: 0 15px; }
-            .nav-links { display: none; }
-            .mobile-menu-btn { display: block; /* Show hamburger */ }
-            .mobile-menu.active { display: flex; animation: slideDownMenu 0.3s ease-out forwards; }
-            @keyframes slideDownMenu {
-                from { opacity: 0; transform: translateY(-15px); }
-                to { opacity: 1; transform: translateY(0); }
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.15s;
+        }
+
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .community-icon {
+            width: 30px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .community-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
+        }
+
+        .avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .group-details {
+            display: flex;
+            padding: 15px;
+            background: #f9f9f9;
+            border-bottom: 1px solid #eee;
+            align-items: center;
+        }
+
+        .group-info {
+            flex: 1;
+        }
+
+        .group-name {
+            font-weight: bold;
+        }
+
+        .group-members {
+            font-size: 0.8rem;
+            color: #777;
+        }
+
+        .status-bar {
+            height: 24px;
+            background: #000;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10px;
+            font-size: 12px;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+        }
+
+        .status-bar-time {
+            font-weight: bold;
+        }
+
+        .status-bar-icons {
+            display: flex;
+            align-items: center;
+        }
+
+        .status-bar-icon {
+            margin-left: 5px;
+        }
+
+
+        .bubbles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            /* Ensures full viewport height */
+            pointer-events: none;
+            z-index: -1;
+            /* Ensures it stays behind everything */
+        }
+
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            animation: bubbleFloat 8s infinite ease-in-out;
+        }
+
+        .bubble:nth-child(4n) {
+            background: rgba(66, 133, 244, 0.2);
+            /* Google Blue */
+        }
+
+        .bubble:nth-child(4n+1) {
+            background: rgba(219, 68, 55, 0.2);
+            /* Google Red */
+        }
+
+        .bubble:nth-child(4n+2) {
+            background: rgba(244, 180, 0, 0.2);
+            /* Google Yellow */
+        }
+
+        .bubble:nth-child(4n+3) {
+            background: rgba(15, 157, 88, 0.2);
+            /* Google Green */
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0) translateZ(50px);
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) rotateY(5deg);
             }
 
-            .hero h1 { font-size: 2.5rem; }
-            .hero p { font-size: 1.05rem; }
-            .hero-buttons { flex-direction: column; gap: 18px; }
-            .btn { padding: 12px 30px; }
-
-            .section-title h2 { font-size: 2.2rem; }
-            .section-title p { font-size: 1rem; }
-            .events-grid { grid-template-columns: 1fr; gap: 25px; } /* Single column for events */
-            .event-card, .organizer-card { padding: 20px; }
-            .card-title { font-size: 1.3rem; }
-            .organizer-card { max-width: none; } /* Full width for organizer card */
-
-            .whatsapp-scene { transform: scale(0.9); margin: 15px 0; }
-            .whatsapp-text .title { font-size: 2rem; }
-            .whatsapp-text .subtitle { font-size: 1.1rem; }
-
-            .footer-content { grid-template-columns: 1fr; text-align: center; }
-            .footer-column h3::after { left: 50%; transform: translateX(-50%); } /* Center underline */
-            .social-links { justify-content: center; }
+            50% {
+                transform: translateY(-20px) rotateY(-5deg);
+            }
         }
 
-         @media (max-width: 480px) { /* Small mobile */
-            .hero h1 { font-size: 2rem; }
-            .hero p { font-size: 1rem; }
-            .section-title h2 { font-size: 1.8rem; }
-            .modal { padding: 25px 20px; } /* Adjust modal padding */
-            .modal-title { font-size: 1.6rem; }
-            .whatsapp-scene { transform: scale(0.8); }
-            .card-img { height: 180px; }
-         }
+        @keyframes messageIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
+        @keyframes reaction {
+            to {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes particle {
+            0% {
+                transform: translate(0, 0);
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translate(var(--endX), var(--endY));
+                opacity: 0;
+            }
+        }
+
+        @keyframes typingBounce {
+
+            0%,
+            60%,
+            100% {
+                transform: translateY(0);
+            }
+
+            30% {
+                transform: translateY(-6px);
+            }
+        }
+
+        @keyframes bubbleFloat {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate(var(--moveX), var(--moveY)) scale(1.2);
+            }
+
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .title {
+                font-size: 2rem;
+                margin-bottom: 20px;
+            }
+
+            .subtitle {
+                font-size: 1.2rem;
+                margin-bottom: 20px;
+            }
+
+            .whatsapp-container {
+                padding: 40px 0;
+                min-height: auto;
+            }
+
+            .whatsapp-content {
+                flex-direction: column;
+                align-items: center;
+                gap: 40px;
+            }
+
+            .whatsapp-text,
+            .whatsapp-scene {
+                max-width: 100%;
+                width: 100%;
+            }
+
+            .whatsapp-scene {
+                transform: scale(0.8);
+                margin: 20px 0;
+            }
+
+            .title {
+                text-align: center;
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                text-align: center;
+                font-size: 1.2rem;
+            }
+
+            .organizers-section {
+                padding: 40px 0;
+            }
+
+            .organizer-card {
+                margin: 20px 0;
+            }
+
+            .whatsapp-scene {
+                transform: scale(0.9);
+            }
+        }
+
+        /*navbar*/
+        /* Hide the desktop nav links on small screens */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+                font-size: 24px;
+                background: none;
+                border: none;
+                color: white;
+                cursor: pointer;
+            }
+
+            /* Mobile menu styles */
+            .mobile-menu {
+                display: none;
+                /* Initially hidden */
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background: rgba(18, 18, 18, 0.95);
+                text-align: center;
+                padding: 15px 0;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .mobile-menu a {
+                display: block;
+                padding: 10px;
+                color: white;
+                text-decoration: none;
+                font-size: 18px;
+                transition: 0.3s;
+            }
+
+            .mobile-menu a:hover {
+                background: var(--google-blue);
+            }
+
+            /* Show mobile menu when active */
+            .mobile-menu.active {
+                display: block;
+                animation: slideDown 0.3s ease-in-out;
+            }
+
+            @keyframes slideDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-20px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        }
+
+        /* WhatsApp section */
+        .whatsapp-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 0;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+
+
+        .whatsapp-container.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .whatsapp-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .whatsapp-text {
+            max-width: 50%;
+        }
+
+        .whatsapp-scene {
+            max-width: 50%;
+            position: relative;
+            width: 350px;
+            height: 600px;
+            transform-style: preserve-3d;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .title {
+            font-size: 2.5rem;
+            color: #FFF;
+            margin-bottom: 40px;
+            text-align: left;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            transform: translateZ(50px);
+            opacity: 0;
+            animation: fadeIn 1s forwards 0.5s;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: #FFF;
+            margin-bottom: 30px;
+            text-align: left;
+            opacity: 0;
+            animation: fadeIn 1s forwards 0.8s;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .whatsapp-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .whatsapp-content {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .whatsapp-text,
+            .whatsapp-scene {
+                max-width: 100%;
+            }
+
+            .title {
+                text-align: center;
+            }
+
+            .subtitle {
+                text-align: center;
+            }
+
+
+        }
     </style>
 </head>
 
 <body>
-    <div class="particles" id="particles-js"></div>
-    <div class="bubbles" id="bubbles"></div>
+    <!-- Particles background -->
+    <div class="particles" id="particles"></div>
 
-    <header>
-        <div class="header-inner">
+    <!-- Main container -->
+    <div class="container">
+        <!-- Header -->
+        <header>
             <div class="logo-container">
-                <a href="index.html"> 
-                    <img src="gdglogo.png" alt="GDG Cloud Udaipur Logo" 
-                         onerror="this.alt='GDG Cloud Udaipur'; this.style.display='none'; const p=document.createElement('p'); p.textContent='GDG Cloud Udaipur'; p.style.color='white'; p.style.fontWeight='bold'; this.parentNode.replaceChild(p,this);">
-                </a>
+                <img src="gdglogo.png" alt="GDG Cloud Udaipur Logo" class="logo" width="200px" height="50px">
             </div>
 
+            <!-- Desktop Navigation -->
             <nav class="nav-links">
-                <a href="index.html#home">Home</a>
-                <a href="index.html#events">Events</a>
-                <a href="index.html#organizers">Organizers</a>
-                <a href="index.html#about">About</a>
-                <a href="index.html#whatsapp-connect">Community</a>
-                <a href="#" onclick="openModal('contactModal'); return false;">Contact</a>
+                <a href="#home">Home</a>
+                <a href="#events">Events</a>
+                <a href="#organizers">Organizers</a>
+                <a href="#membership">Membership</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
             </nav>
 
-            <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Open menu" aria-expanded="false">☰</button>
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-btn" id="mobile-menu-btn">
+                ☰
+            </button>
 
+            <!-- Mobile Menu -->
             <div class="mobile-menu" id="mobile-menu">
-                <a href="index.html#home" onclick="closeMobileMenu()">Home</a>
-                <a href="index.html#events" onclick="closeMobileMenu()">Events</a>
-                <a href="index.html#organizers" onclick="closeMobileMenu()">Organizers</a>
-                <a href="index.html#about" onclick="closeMobileMenu()">About</a>
-                <a href="index.html#whatsapp-connect" onclick="closeMobileMenu()">Community</a>
-                <a href="#" onclick="openModal('contactModal'); closeMobileMenu(); return false;">Contact</a>
+                <a href="#home">Home</a>
+                <a href="#events">Events</a>
+                <a href="#organizers">Organizers</a>
+                <a href="#membership">Membership</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
             </div>
-        </div>
-    </header>
+        </header>
 
-    <div class="container-content">
+        <!-- Hero section -->
         <section class="hero" id="home">
-            <div class="tech-circle tech-circle-1"><div class="dot"></div></div>
-            <div class="tech-circle tech-circle-2"><div class="dot"></div></div>
-            <div class="tech-circle tech-circle-3"><div class="dot"></div></div>
+            <div class="tech-circle tech-circle-1">
+                <div class="dot"></div>
+            </div>
+            <div class="tech-circle tech-circle-2">
+                <div class="dot"></div>
+            </div>
+            <div class="tech-circle tech-circle-3">
+                <div class="dot"></div>
+            </div>
+
             <div class="hero-content">
                 <h1>Google Developer Group Cloud Udaipur</h1>
-                <p>Join our vibrant tech community to learn, share, and grow with cloud technology enthusiasts. Discover the future of cloud computing with hands-on workshops, tech talks, and networking opportunities.</p>
+                <p>Join our vibrant tech community to learn, share, and grow with cloud technology enthusiasts. Discover
+                    the future of cloud computing with hands-on workshops, tech talks, and networking opportunities.</p>
                 <div class="hero-buttons">
-                    <button class="btn btn-primary" onclick="navigateToEvent('Build With AI')">Join Next Event</button>
-                    <a href="https://gdg.community.dev/gdg-cloud-udaipur/" target="_blank" class="btn btn-secondary">Become a Member</a>
+                    <button class="btn btn-primary" onclick="openModal('eventModal')">Join Next Event</button>
+                    <button class="btn btn-secondary" onclick="openModal('membershipModal')">Become a Member</button>
                 </div>
             </div>
         </section>
 
+        <!-- Events section -->
         <section class="events-section" id="events">
             <div class="section-title">
-                <h2>Upcoming and Past Events</h2>
+                <h2>Upcoming Events</h2>
                 <p>Enhance your skills with our exciting events and workshops</p>
             </div>
+
             <div class="events-grid">
+                <!-- Event card 1 -->
                 <div class="event-card">
-                    <div class="card-img" style="background-image: url('buildwithai.webp');">
-                         <img src="buildwithai.webp" alt="Build with AI Event Visual" style="display:none;" onerror="this.parentElement.style.backgroundImage='url(https://placehold.co/600x440/3A3A3A/FFFFFF?text=Build+With+AI)'; this.style.display='none';">
-                    </div>
+                    <div class="card-img" style="background-image: url('buildwithai.webp')"></div>
                     <div class="card-content">
-                        <span class="card-date">May 26, 2025</span>
+                        <span class="card-date">April 6, 2025</span>
                         <h3 class="card-title">Build With AI - Udaipur Hands-on Edition</h3>
-                        <p class="card-description">Get hands-on experience with AI and Machine Learning. Learn how to build and deploy AI-powered applications, explore cutting-edge AI models, and leverage Google Cloud's AI services.</p>
-                        <div class="card-price">₹100</div>
-                        <button class="btn card-btn" onclick="navigateToEvent('Build With AI')">View Details</button>
+                        <p class="card-description">Get hands-on experience with AI and Machine Learning. Learn how to
+                            build and deploy AI-powered applications, explore cutting-edge AI models, and leverage
+                            Google Cloud's AI services.</p>
+                        <!-- <div class="card-price">₹100</div> -->
+                        <button class="btn card-btn" onclick="openModal('eventModal', 'Build With AI', '100')">Register
+                            Now</button>
                     </div>
                 </div>
+
+                <!-- Event card 2 -->
                 <div class="event-card">
-                     <div class="card-img" style="background-image: url('cloudcommunity.jpeg');">
-                        <img src="cloudcommunity.jpeg" alt="Cloud Community Days Visual" style="display:none;" onerror="this.parentElement.style.backgroundImage='url(https://placehold.co/600x440/4A4A4A/FFFFFF?text=Cloud+Community+Days)'; this.style.display='none';">
-                    </div>
+                    <div class="card-img" style="background-image: url('cloudcommunity.jpeg')"></div>
                     <div class="card-content">
                         <span class="card-date">Coming Soon</span>
                         <h3 class="card-title">Cloud Community Days</h3>
-                        <p class="card-description">Our flagship annual event with keynotes from industry experts, workshops, networking opportunities, and much more. Stay tuned for early bird tickets!</p>
-                        <div class="card-price">Early Bird: ₹200</div>
-                        <button class="btn card-btn" onclick="openModal('eventRegistrationModal', 'Cloud Community Days', '200')">Register Now</button>
+                        <p class="card-description">Our flagship annual event with keynotes from industry experts,
+                            workshops, networking opportunities, and much more.</p>
+                        <!-- <div class="card-price">₹500</div> -->
+                        <button class="btn card-btn"
+                            onclick="openModal('eventModal', 'Cloud Community Days', '500')">Register Now</button>
                     </div>
                 </div>
             </div>
         </section>
 
+
+        <!-- Organizers Section -->
         <section class="organizers-section" id="organizers">
-            <div class="section-title">
-                <h2>Our Organizers</h2>
-                <p>Meet the team behind GDG Cloud Udaipur</p>
-            </div>
-            <div class="organizers-grid">
-                <div class="organizer-card">
-                    <div class="organizer-avatar">
-                        <div class="avatar-wrapper">
-                            <img src="abhinav.jpeg" alt="Abhinav Jain - Lead Organizer" class="avatar-img" onerror="this.src='https://placehold.co/130x130/4285F4/FFFFFF?text=AJ'; this.alt='Abhinav Jain';">
-                            <div class="avatar-glow"></div>
-                        </div>
-                        <div class="connection-lines">
-                            <div class="connection-dot"></div> <div class="connection-dot"></div> <div class="connection-dot"></div>
-                        </div>
-                    </div>
-                    <div class="organizer-info">
-                        <h3 class="organizer-name">Abhinav Jain</h3>
-                        <p class="organizer-role">Lead Organizer</p>
-                        <p class="organizer-bio">Tech Innovator and community Leader with 5+ years of experience in AI and Cloud technologies, dedicated to fostering growth and collaboration.</p>
-                        <div class="organizer-skills">
-                            <span class="skill-tag">AI/ML</span> <span class="skill-tag">Google Cloud</span> <span class="skill-tag">Community Building</span> <span class="skill-tag">DevOps</span>
-                        </div>
-                        <div class="organizer-social">
-                            <a href="https://www.linkedin.com/in/abhinav-jain-8b4bab62/" target="_blank" class="social-icon" aria-label="Abhinav Jain LinkedIn Profile">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-                            </a>
-                            <a href="mailto:abhinav.jain1411@gmail.com" class="social-icon" aria-label="Email Abhinav Jain">
-                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M0 3v18h24v-18h-24zm21.518 2l-9.518 7.713-9.518-7.713h19.036zm-19.518 14v-11.817l10 8.104 10-8.104v11.817h-20z"/></svg>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="ai-assistant">
-                        <div class="ai-blob"></div>
-                        <svg class="ai-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 2a5 5 0 0 0-5 5v2a5 5 0 0 0 10 0V7a5 5 0 0 0-5-5zM6 9a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3"></path>
-                            <path d="M18 9v1a6 6 0 0 1-6 6h0a6 6 0 0 1-6-6V9"></path>
-                            <rect x="8" y="18" width="8" height="4" rx="1" ry="1"></rect>
-                        </svg>
-                    </div>
+            <div class="container">
+                <div class="section-title">
+                    <h2>Our Organizers</h2>
+                    <p>Meet the team behind GDG Cloud Udaipur</p>
                 </div>
-            </div>
-        </section>
 
-        <section class="about-section" id="about">
-            <div class="section-title">
-                <h2>About GDG Cloud Udaipur</h2>
-            </div>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>Google Developer Group (GDG) Cloud Udaipur is a dynamic and inclusive community for developers, students, and tech enthusiasts passionate about Google's developer technologies and cloud platforms. Our mission is to foster a local ecosystem where individuals can learn, share knowledge, and connect with like-minded peers.</p>
-                    <p>We focus on exploring the vast potential of Google Cloud Platform (GCP), innovative AI/ML technologies like Gemini, serverless solutions with Firebase, Android development, modern Web technologies, and other cutting-edge tools from Google. Through engaging tech talks, hands-on study jams, practical workshops, and networking events, we aim to empower our members with the skills and insights needed to excel in the ever-evolving tech landscape.</p>
-                    <p>Join us to be part of a vibrant local tech community, network with peers and industry experts, contribute your expertise, and stay at the forefront of technological advancements. Everyone is welcome to learn and grow with us!</p>
-                </div>
-                <div class="about-image">
-                    <div class="about-image-wrapper">
-                        <img src="https://placehold.co/800x600/1E1E1E/4285F4?text=GDG+Cloud+Udaipur+Community+Event" alt="GDG Cloud Udaipur Community Event Illustration or Photo">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="whatsapp-container" id="whatsapp-connect">
-            <div class="whatsapp-content">
-                <div class="whatsapp-text">
-                    <h2 class="title">Connect with GDG Cloud Udaipur</h2>
-                    <p class="subtitle">Join our official WhatsApp community to get the latest updates on events, participate in tech discussions, and network with fellow cloud enthusiasts and developers in Udaipur!</p>
-                    <a href="https://chat.whatsapp.com/EesExCP4NMD4CjvT7TlQ2x" target="_blank" class="connect-button">Join Our WhatsApp Community</a>
-                </div>
-                <div class="whatsapp-scene" id="whatsapp-scene">
-                    <div class="phone" id="phone">
-                        <div class="phone-screen">
-                            <div class="status-bar"><div class="status-bar-time">10:32 AM</div><div class="status-bar-icons">📶 🔋</div></div>
-                            <div class="app-header"><div class="community-icon"><svg viewBox="0 0 24 24"><path d="M12 12.75c1.63 0 3.07.39 4.24.9 1.08.48 1.76 1.56 1.76 2.73V18H6v-1.62c0-1.17.68-2.25 1.76-2.73 1.17-.51 2.61-.9 4.24-.9zm0-10c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3z"/></svg></div><div class="app-title">GDG Cloud Udaipur</div></div>
-                            <div class="group-details"><div class="avatar" style="background:var(--google-blue);">G</div><div class="group-info"><div class="group-name">GDG Cloud Udaipur</div><div class="group-members">You, Abhinav, +28 more</div></div></div>
-                            <div class="chat-container" id="chat-container-display"></div>
-                            <div class="chat-input"><input type="text" class="input-box" placeholder="Message GDG Cloud Udaipur..." id="message-input-display" readonly><button class="send-btn" id="send-btn-display" aria-label="Send message"><svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button></div>
+                <div class="organizers-grid">
+                    <!-- Organizer card template - can be duplicated for more organizers -->
+                    <div class="organizer-card">
+                        <div class="organizer-avatar">
+                            <div class="avatar-wrapper">
+                                <img src="abhinav.jpeg" alt="Organizer Name" class="avatar-img">
+                                <div class="avatar-glow"></div>
+                            </div>
+                            <div class="connection-lines">
+                                <div class="connection-dot"></div>
+                                <div class="connection-dot"></div>
+                                <div class="connection-dot"></div>
+                            </div>
+                        </div>
+                        <div class="organizer-info">
+                            <h3 class="organizer-name">Abhinav Jain</h3>
+                            <p class="organizer-role">Lead Organizer</p>
+                            <p class="organizer-bio">Tech Innovator and community Leader with 5 years of experience
+                                in AI and Cloud technologies.</p>
+                            <div class="organizer-skills">
+                                <span class="skill-tag">AI/ML</span>
+                                <span class="skill-tag">Innovations</span>
+                                <span class="skill-tag">Tech Geek</span>
+                            </div>
+                            <div class="organizer-social">
+                                <a href="https://www.linkedin.com/in/abhinav-jain-8b4bab62/" class="social-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path
+                                            d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+                                        </path>
+                                        <rect x="2" y="9" width="4" height="12"></rect>
+                                        <circle cx="4" cy="4" r="2"></circle>
+                                    </svg>
+                                </a>
+                                <a href="#" class="social-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path
+                                            d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
+                                        </path>
+                                    </svg>
+                                </a>
+                                <a href="#" class="social-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                        <line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line>
+                                    </svg>
+                                </a>
+                                <a href="mailto:abhinav.jain1411@gmail.com" class="social-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <rect x="2" y="4" width="20" height="16" rx="2" ry="2"></rect>
+                                        <polyline points="2,4 12,12 22,4"></polyline>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="ai-assistant">
+                            <div class="ai-blob"></div>
+                            <svg class="ai-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M12 2a5 5 0 0 0-5 5v2a5 5 0 0 0 10 0V7a5 5 0 0 0-5-5zM6 9a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3">
+                                </path>
+                                <path d="M18 9v1a6 6 0 0 1-6 6h0a6 6 0 0 1-6-6V9"></path>
+                                <rect x="8" y="18" width="8" height="4" rx="1" ry="1"></rect>
+                            </svg>
                         </div>
                     </div>
+
+
+                    <!-- Membership section -->
+                    <!-- <section class="membership-section" id="membership">
+    <div class="container"> -->
+
+
+                    <!-- <div class="membership-grid"> -->
+                    <!-- Membership card template - can be duplicated for more members -->
+                    <!-- <div class="membership-card">
+                <div class="membership-avatar">
+                    <div class="avatar-wrapper">
+                        <img src="/api/placeholder/200/200" alt="Membership" class="avatar-img">
+                        <div class="avatar-glow"></div>
+                    </div>
+                    <div class="connection-lines">
+                        <div class="connection-dot"></div>
+                        <div class="connection-dot"></div>
+                        <div class="connection-dot"></div>
+                    </div>
                 </div>
-            </div>
-        </section>
-    </div> <footer>
-        <div class="footer-inner-container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="index.html#home">Home</a></li>
-                        <li><a href="index.html#events">Events</a></li>
-                        <li><a href="index.html#organizers">Organizers</a></li>
-                        <li><a href="index.html#about">About Us</a></li>
-                        <li><a href="index.html#whatsapp-connect">Community</a></li>
-                    </ul>
+                <div class="section-title">
+                    <h2>Yearly Membership</h2>
+                    <p>Become a member of our thriving community and get exclusive benefits throughout the year. Connect with like-minded developers, get priority access to events, and enhance your cloud skills.</p>
+                    <p>Our membership program is designed to help you grow professionally while building meaningful connections in the tech industry.</p>
                 </div>
-                <div class="footer-column">
-                    <h3>Legal</h3>
-                    <ul>
-                        <li><a href="privacy-policy.html" target="_blank">Privacy Policy</a></li>
-                        <li><a href="terms-conditions.html" target="_blank">Terms & Conditions</a></li>
-                        <li><a href="refund-policy.html" target="_blank">Refund Policy</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Connect With Us</h3>
-                    <div class="social-links">
-                         <a href="https://gdg.community.dev/gdg-cloud-udaipur/" target="_blank" aria-label="GDG Community Platform Page">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"/><path d="M12 6c-3.309 0-6 2.691-6 6s2.691 6 6 6 6-2.691 6-6-2.691-6-6-6zm0 10c-2.206 0-4-1.794-4-4s1.794-4 4-4 4 1.794 4 4-1.794 4-4 4z"/><circle cx="12" cy="12" r="2"/></svg>
-                        </a>
-                        <a href="https://chat.whatsapp.com/EesExCP4NMD4CjvT7TlQ2x" target="_blank" aria-label="WhatsApp Community Group">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.712-1.001zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.47.074-.742.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.206 5.076 4.487.709.306 1.262.489 1.694.626.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-                        </a>
+                <div class="membership-info">
+                    <h3 class="membership-name">Annual Membership</h3>
+                    <p class="membership-role">₹1,000</p>
+                    <div class="membership-features">
+                        <div class="feature-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="#34A853"/>
+                            </svg>
+                            Priority access to all events
                         </div>
+                        <div class="feature-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="#34A853"/>
+                            </svg>
+                            Discounted event tickets
+                        </div>
+                        <div class="feature-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="#34A853"/>
+                            </svg>
+                            Exclusive workshops and content
+                        </div>
+                        <div class="feature-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="#34A853"/>
+                            </svg>
+                            Networking with industry experts
+                        </div>
+                    </div>
+                    </div>
                 </div>
-            </div>
-            <div class="footer-bottom">
-                &copy; <span id="currentYear"></span> Google Developer Group Cloud Udaipur. All Rights Reserved.
-                <p>GDG Cloud Udaipur is an independent group; our activities and the opinions expressed here should in no way be linked to Google, the corporation.</p>
-            </div>
-        </div>
-    </footer>
-
-    <div class="modal-container" id="eventRegistrationModal">
-        <div class="modal">
-            <button class="modal-close" onclick="closeModal('eventRegistrationModal')" aria-label="Close registration modal">&times;</button>
-            <h3 class="modal-title" id="eventModalTitle">Register for Event</h3>
-            <div class="modal-content">
-                <p>You are registering for: <strong id="eventModalName">Event Name</strong></p>
-                <p>Price: <strong id="eventModalPrice">Price</strong></p>
-                <p>To complete your registration, please proceed to the event platform or follow the instructions that will be provided upon confirmation.</p>
-                <a href="#" id="eventRegistrationLink" class="btn btn-primary" target="_blank" style="display: block; text-align:center; margin-top:25px;">Proceed to Registration</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal-container" id="contactModal">
-        <div class="modal">
-            <button class="modal-close" onclick="closeModal('contactModal')" aria-label="Close contact modal">&times;</button>
-            <h3 class="modal-title">Contact Us</h3>
-            <div class="modal-content">
-                <p><strong>Phone:</strong> <a href="tel:+919529912550">+91 95299 12550</a></p>
-                <p><strong>Email:</strong> <a href="mailto:abhinav.jain1411@gmail.com">abhinav.jain1411@gmail.com</a></p>
-                <p><strong>Address:</strong> Ashwini Bazar, Udaipur, Rajasthan 313001, India</p>
-                <p><strong>Managed by Frazor Enterprise Solutions LLP</strong></p>
-                <p style="margin-top: 25px;">We'd love to hear from you! Feel free to reach out for any queries, collaborations, or feedback.</p>
             </div>
         </div>
     </div>
+</section> -->
 
-    <script>
-        // --- Mobile Menu Functionality ---
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        mobileMenuBtn.addEventListener('click', function () {
-            const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true' || false;
-            mobileMenuBtn.setAttribute('aria-expanded', !isExpanded);
-            mobileMenu.classList.toggle('active');
-            mobileMenuBtn.innerHTML = mobileMenu.classList.contains('active') ? '&times;' : '☰'; // Toggle icon
-        });
-        function closeMobileMenu() {
-            mobileMenu.classList.remove('active');
-            mobileMenuBtn.setAttribute('aria-expanded', 'false');
-            mobileMenuBtn.innerHTML = '☰'; // Reset to hamburger
-        }
+                    <!-- WhatsApp section -->
+                    <div class="bubbles" id="bubbles"></div>
+                    <div class="particles" id="particles"></div>
+                    <div class="container whatsapp-container hidden">
+                        <div class="whatsapp-content">
+                            <div class="whatsapp-text">
+                                <h1 class="title">Connect with GDG Cloud Udaipur</h1>
+                                <h2 class="subtitle">Join our tech community on WhatsApp</h2>
+                                <button class="connect-button" id="connect-btn" onclick="window.open('https://chat.whatsapp.com/EesExCP4NMD4CjvT7TlQ2x', '_blank');">Join Our Community</button>
+                            </div>
+                            <div class="whatsapp-scene" id="whatsapp-scene">
+                                <div class="phone" id="phone">
+                                    <div class="phone-screen">
+                                        <div class="status-bar">
+                                            <div class="status-bar-time">10:32 AM</div>
+                                            <div class="status-bar-icons">
+                                                <div class="status-bar-icon">📶</div>
+                                                <div class="status-bar-icon">🔋</div>
+                                            </div>
+                                        </div>
+                                        <div class="app-header">
+                                            <div class="community-icon">
+                                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 12.75c1.63 0 3.07.39 4.24.9 1.08.48 1.76 1.56 1.76 2.73V18H6v-1.62c0-1.17.68-2.25 1.76-2.73 1.17-.51 2.61-.9 4.24-.9zm0-10c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3z" fill="#fff"/></svg>
+                                            </div>
+                                            <div class="app-title">GDG Cloud Udaipur</div>
+                                        </div>
+                                        <div class="group-details">
+                                            <div class="avatar" style="background:#4285F4;">
+                                                G
+                                            </div>
+                                            <div class="group-info">
+                                                <div class="group-name" style="color: #000;">GDG Cloud Udaipur</div>
+                                                <div class="group-members">You, Abhinav, Priya, Raj, +28 more</div>
+                                            </div>
+                                        </div>
+                                        <div class="chat-container" id="chat-container">
+                                            <!-- Messages will be added here by JavaScript -->
+                                        </div>
+                                        <div class="chat-input">
+                                            <input type="text" class="input-box" placeholder="Type a message..." id="message-input">
+                                            <button class="send-btn" id="send-btn">
+                                                <svg viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" fill="#fff"/></svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                        // Messages to be displayed in chat sequence
+                        const chatMessages = [
+                            {
+                                sender: 'Abhinav',
+                                text: 'Hello everyone! Welcome to GDG Cloud Udaipur community! We\'re excited to have you join our growing tech family in Udaipur! 🎉',
+                                time: '10:32 AM',
+                                avatarColor: '#4285F4', // Google Blue
+                                delay: 1000
+                            },
+                            {
+                                sender: 'Priya',
+                                text: 'Hey all! I\'m looking forward to our next Cloud Study Jam. The last session on Google Cloud AI tools was amazing!',
+                                time: '10:33 AM',
+                                avatarColor: '#DB4437', // Google Red
+                                delay: 3000
+                            },
+                            {
+                                sender: 'You',
+                                text: 'Hi everyone! New member here. Excited to learn about Cloud and AI technologies with this community.',
+                                time: '10:35 AM',
+                                right: true,
+                                delay: 5000
+                            },
+                            {
+                                sender: 'Abhinav',
+                                text: 'Welcome to the group! We\'re organizing a hands-on workshop next Saturday on Gemini API and its applications. Hope you can join us!',
+                                time: '10:36 AM',
+                                avatarColor: '#4285F4', // Google Blue
+                                delay: 7000,
+                                hasReaction: true
+                            },
+                            {
+                                sender: 'Raj',
+                                text: 'Hey @Abhinav, will we be covering Google Cloud Run in the upcoming meetup? I\'ve been experimenting with serverless lately.',
+                                time: '10:37 AM',
+                                avatarColor: '#F4B400', // Google Yellow
+                                delay: 9000
+                            },
+                            {
+                                sender: 'Abhinav',
+                                text: 'Absolutely! We\'ll have a special segment on Cloud Run and how it integrates with AI services. Also planning a demo on deploying Vertex AI models.',
+                                time: '10:38 AM',
+                                avatarColor: '#4285F4', // Google Blue
+                                delay: 11000
+                            },
+                            {
+                                sender: 'Meera',
+                                text: 'For anyone interested, I\'ve shared resources from our last BigQuery ML workshop in the Drive folder. The SQL-based ML models were surprisingly powerful!',
+                                time: '10:39 AM',
+                                avatarColor: '#0F9D58', // Google Green
+                                delay: 13000
+                            },
+                            {
+                                sender: 'Abhinav',
+                                text: 'Quick announcement: We\'re looking for speakers for our DevFest Udaipur event in October. If you\'ve worked on interesting projects using Google Cloud or AI, please DM me!',
+                                time: '10:40 AM',
+                                avatarColor: '#4285F4', // Google Blue
+                                delay: 15000
+                            }
+                        ];
 
-        // --- Modal Handling ---
-        function openModal(modalId, eventName, eventPrice) {
-            const modal = document.getElementById(modalId);
-            if (!modal) { console.error(`Modal with ID ${modalId} not found.`); return; }
+                        // Function to create message elements
+                        function createMessage(message) {
+                            const messageEl = document.createElement('div');
+                            messageEl.className = message.right ? 'message message-right' : 'message message-left';
+                            messageEl.style.animationDelay = '0.1s';
 
-            if (modalId === 'eventRegistrationModal' && eventName) {
-                document.getElementById('eventModalTitle').innerText = 'Register for ' + eventName;
-                document.getElementById('eventModalName').innerText = eventName;
-                document.getElementById('eventModalPrice').innerText = '₹' + eventPrice;
-                const regLink = document.getElementById('eventRegistrationLink');
-                // Example: Set specific registration links based on event name
-                if (eventName === 'Cloud Community Days') {
-                    regLink.href = 'https://gdg.community.dev/gdg-cloud-udaipur/'; // Replace with actual link
-                } else {
-                    regLink.href = '#'; // Default or placeholder link
-                }
-            }
-            modal.style.display = 'flex';
-            document.body.style.overflow = 'hidden'; // Prevent background scroll when modal is open
-        }
-        function closeModal(modalId) {
-            const modal = document.getElementById(modalId);
-            if (!modal) { console.error(`Modal with ID ${modalId} not found.`); return; }
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto'; // Restore background scroll
-        }
-        // Close modal by clicking outside or pressing Escape key
-        window.addEventListener('click', function(event) {
-            document.querySelectorAll('.modal-container').forEach(modal => {
-                if (event.target == modal) closeModal(modal.id);
-            });
-        });
-        document.addEventListener('keydown', function(event) {
-            if (event.key === "Escape") {
-                document.querySelectorAll('.modal-container').forEach(modal => {
-                    if (modal.style.display === 'flex') closeModal(modal.id);
-                });
-            }
-        });
+                            if (!message.right) {
+                                const avatarDiv = document.createElement('div');
+                                avatarDiv.className = 'avatar';
+                                avatarDiv.style.background = message.avatarColor;
+                                avatarDiv.textContent = message.sender.charAt(0);
 
-        // --- Event Navigation ---
-        function navigateToEvent(eventName) {
-            if (eventName === 'Build With AI') {
-                window.open('https://gdg.community.dev/events/details/google-gdg-cloud-udaipur-presents-build-with-ai-udaipur-hands-on-edition/', '_blank');
-            } else {
-                // Fallback to open a generic registration modal if specific link isn't defined
-                openModal('eventRegistrationModal', eventName, 'TBD');
-            }
-        }
+                                const senderName = document.createElement('div');
+                                senderName.style.fontWeight = 'bold';
+                                senderName.style.marginBottom = '5px';
+                                senderName.textContent = message.sender;
 
-        // --- Footer Current Year ---
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
+                                messageEl.appendChild(avatarDiv);
+                                messageEl.appendChild(senderName);
+                            }
 
-        // --- Background Particle Generation ---
-        function createParticles(containerId, count = 35) { 
-            const container = document.getElementById(containerId);
-            if (!container) return;
-            container.innerHTML = ''; // Clear existing particles before creating new ones
-            for (let i = 0; i < count; i++) {
-                const p = document.createElement('div');
-                p.className = 'particle';
-                const size = Math.random() * 3.5 + 1; // Particle size: 1px to 4.5px
-                p.style.width = `${size}px`; p.style.height = `${size}px`;
-                p.style.left = `${Math.random() * 100}%`; p.style.top = `${Math.random() * 100}%`;
-                p.style.animationDuration = `${Math.random() * 12 + 8}s`; // Duration: 8s to 20s
-                p.style.animationDelay = `${Math.random() * 6}s`;    // Delay: 0s to 6s
-                const colors = ['var(--google-blue)', 'var(--google-red)', 'var(--google-yellow)', 'var(--google-green)'];
-                p.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                p.style.opacity = `${Math.random() * 0.5 + 0.1}`; // Opacity: 0.1 to 0.6
-                container.appendChild(p);
-            }
-        }
+                            const messageText = document.createElement('div');
+                            messageText.textContent = message.text;
 
-        // --- Background Bubble Generation ---
-        function createBubbles(containerId, count = 20) { 
-            const container = document.getElementById(containerId);
-            if (!container) return;
-            container.innerHTML = ''; // Clear existing bubbles
-            for (let i = 0; i < count; i++) {
-                const b = document.createElement('div');
-                b.className = 'bubble';
-                const size = Math.random() * 55 + 15; // Size: 15px to 70px
-                b.style.width = `${size}px`; b.style.height = `${size}px`;
-                b.style.left = `${Math.random() * 100}%`; b.style.top = `${Math.random() * 100}%`;
-                const moveX = (Math.random() - 0.5) * 180; 
-                const moveY = (Math.random() - 0.5) * 180;
-                b.style.setProperty('--moveX', `${moveX}px`); b.style.setProperty('--moveY', `${moveY}px`);
-                b.style.animationDuration = `${Math.random() * 10 + 10}s`; // Duration: 10s to 20s
-                b.style.animationDelay = `${Math.random() * 8}s`;     // Delay: 0s to 8s
-                container.appendChild(b);
-            }
-        }
-        
-        // Adjust bubble container height to match document scroll height
-        function adjustBubbleContainerHeight() {
-            const bubblesContainer = document.getElementById('bubbles');
-            if (bubblesContainer) {
-                bubblesContainer.style.height = `${document.body.scrollHeight}px`;
-            }
-        }
+                            const messageTime = document.createElement('div');
+                            messageTime.className = 'message-time';
+                            messageTime.textContent = message.time;
 
-        // --- WhatsApp Chat Simulation (Display Only) ---
-        const chatMessagesDisplay = [
-            { sender: 'Abhinav', text: 'Welcome to the GDG Cloud Udaipur community! 🎉 So glad to have you.', time: '10:32 AM', avatarColor: 'var(--google-blue)' },
-            { sender: 'Priya', text: 'Hey everyone! That last Cloud Functions workshop was awesome. Ready for the next one!', time: '10:33 AM', avatarColor: 'var(--google-red)' },
-            { sender: 'You', text: 'Hi all! Just joined. Excited to learn more about GCP and AI with you.', time: '10:35 AM', right: true },
-            { sender: 'Abhinav', text: 'Fantastic to hear! Our upcoming session is on advanced Gemini API integrations. Don\'t miss it!', time: '10:36 AM', avatarColor: 'var(--google-blue)' }
-        ];
-        function createChatMessageElement(message) {
-            const msgDiv = document.createElement('div');
-            msgDiv.className = `message ${message.right ? 'message-right' : 'message-left'}`;
-            let avatarHtml = !message.right ? `<div class="avatar" style="background-color:${message.avatarColor || '#A0A0A0'};">${message.sender.charAt(0)}</div>` : '';
-            let senderHtml = !message.right ? `<div class="message-sender" style="color:${message.avatarColor || '#A0A0A0'};">${message.sender}</div>` : '';
-            
-            msgDiv.innerHTML = `
-                ${avatarHtml}
-                <div class="message-content-wrapper">
-                    ${senderHtml}
-                    <div class="message-text">${message.text.replace(/\n/g, "<br>")}</div>
-                    <div class="message-time">${message.time}</div>
-                </div>`;
-            // Animation for new messages
-            msgDiv.style.opacity = 0; msgDiv.style.transform = 'translateY(10px)';
-            setTimeout(() => {
-                msgDiv.style.opacity = 1; msgDiv.style.transform = 'translateY(0)';
-                msgDiv.style.transition = 'opacity 0.3s ease-out, transform 0.3s ease-out';
-            }, 100);
-            return msgDiv;
-        }
-        const chatContainerDisplay = document.getElementById('chat-container-display');
-        if (chatContainerDisplay) {
-            chatMessagesDisplay.forEach(msg => chatContainerDisplay.appendChild(createChatMessageElement(msg)));
-            chatContainerDisplay.scrollTop = chatContainerDisplay.scrollHeight; // Scroll to bottom
-        }
+                            if (!message.right && message.hasReaction) {
+                                const reaction = document.createElement('div');
+                                reaction.className = 'reaction';
+                                reaction.innerHTML = '👍';
+                                messageEl.appendChild(reaction);
+                            }
 
-        // --- Phone Tilt Effect for WhatsApp Scene ---
-        const phoneScene = document.getElementById('whatsapp-scene');
-        const phoneElement = document.getElementById('phone');
-        if (phoneScene && phoneElement) {
-            phoneScene.addEventListener('mousemove', (e) => {
-                const rect = phoneScene.getBoundingClientRect();
-                // Calculate rotation based on mouse position within the scene
-                const xAxis = (rect.width / 2 - (e.clientX - rect.left)) / 22; // Adjust divisor for sensitivity
-                const yAxis = ((e.clientY - rect.top) - rect.height / 2) / 22;
-                phoneElement.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg) translateZ(15px)`; // Add slight Z translation
-            });
-            phoneScene.addEventListener('mouseleave', () => {
-                phoneElement.style.transform = 'rotateY(0deg) rotateX(0deg) translateZ(0px)'; // Reset on mouse leave
-            });
-        }
+                            messageEl.appendChild(messageText);
+                            messageEl.appendChild(messageTime);
 
-        // --- Intersection Observer for Section Animations ---
-        const animatedSections = document.querySelectorAll('.whatsapp-container'); // Can add more selectors like '.events-section', etc.
-        if (animatedSections.length > 0) {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        observer.unobserve(entry.target); // Stop observing once visible
-                    }
-                });
-            }, { threshold: 0.15 }); // Trigger when 15% of the element is visible
-            animatedSections.forEach(section => observer.observe(section));
-        }
-        
-        // --- Initialize Effects on Window Load and Handle Resize ---
-        window.addEventListener('load', () => {
-            createParticles('particles-js');
-            createBubbles('bubbles');
-            adjustBubbleContainerHeight();
-        });
-        // Re-adjust bubble container height on window resize
-        let resizeTimeout;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(adjustBubbleContainerHeight, 100); // Debounce resize event
-        });
+                            return messageEl;
+                        }
 
-    </script>
+                        // Function to show typing indicator
+                        function showTyping(duration = 2000) {
+                            const typingEl = document.createElement('div');
+                            typingEl.className = 'typing-indicator';
+                            typingEl.innerHTML = `
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+              `;
+
+                            document.getElementById('chat-container').appendChild(typingEl);
+                            setTimeout(() => {
+                                typingEl.style.opacity = 1;
+                            }, 10);
+
+                            return new Promise(resolve => {
+                                setTimeout(() => {
+                                    typingEl.style.opacity = 0;
+                                    setTimeout(() => {
+                                        typingEl.remove();
+                                        resolve();
+                                    }, 300);
+                                }, duration);
+                            });
+                        }
+
+                        // Function to add a new user message
+                        async function addUserMessage(text) {
+                            const message = {
+                                sender: 'You',
+                                text: text,
+                                time: new Date().toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'}),
+                                right: true
+                            };
+
+                            const messageEl = createMessage(message);
+                            document.getElementById('chat-container').appendChild(messageEl);
+                            document.getElementById('chat-container').scrollTop = document.getElementById('chat-container').scrollHeight;
+
+                            // Show typing indicator after user sends message
+                            await showTyping(2000);
+
+                            // Add reply message
+                            const replyMessage = {
+                                sender: 'Abhinav',
+                                text: 'Thanks for your message! Looking forward to seeing you at our next meetup. Don\'t forget to check our GitHub repo for sample projects on Google Cloud and AI.',
+                                time: new Date().toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'}),
+                                avatarColor: '#4285F4'
+                            };
+
+                            const replyEl = createMessage(replyMessage);
+                            document.getElementById('chat-container').appendChild(replyEl);
+                            document.getElementById('chat-container').scrollTop = document.getElementById('chat-container').scrollHeight;
+                        }
+
+                        // Create particles
+                        function createParticles() {
+                            const container = document.getElementById('particles');
+                            for (let i = 0; i < 20; i++) {
+                                const particle = document.createElement('div');
+                                particle.className = 'particle';
+
+                                // Random starting position
+                                const startX = Math.random() * window.innerWidth;
+                                const startY = Math.random() * window.innerHeight;
+
+                                // Random ending position
+                                const endX = Math.random() * window.innerWidth - startX;
+                                const endY = Math.random() * window.innerHeight - startY;
+
+                                particle.style.setProperty('--endX', `${endX}px`);
+                                particle.style.setProperty('--endY', `${endY}px`);
+
+                                particle.style.left = `${startX}px`;
+                                particle.style.top = `${startY}px`;
+                                particle.style.width = `${5 + Math.random() * 10}px`;
+                                particle.style.height = particle.style.width;
+                                particle.style.animationDuration = `${5 + Math.random() * 20}s`;
+                                particle.style.animationDelay = `${Math.random() * 5}s`;
+
+                                container.appendChild(particle);
+                            }
+                        }
+
+                        // Create floating bubbles
+                        function createBubbles() {
+                            const container = document.getElementById('bubbles');
+                            for (let i = 0; i < 15; i++) {
+                                const bubble = document.createElement('div');
+                                bubble.className = 'bubble';
+
+                                // Random position
+                                const posX = Math.random() * window.innerWidth;
+                                const posY = Math.random() * window.innerHeight;
+
+                                // Random movement
+                                const moveX = (Math.random() - 0.5) * 100;
+                                const moveY = (Math.random() - 0.5) * 100;
+
+                                bubble.style.setProperty('--moveX', `${moveX}px`);
+                                bubble.style.setProperty('--moveY', `${moveY}px`);
+
+                                bubble.style.left = `${posX}px`;
+                                bubble.style.top = `${posY}px`;
+                                bubble.style.width = `${20 + Math.random() * 60}px`;
+                                bubble.style.height = bubble.style.width;
+                                bubble.style.animationDuration = `${8 + Math.random() * 7}s`;
+                                bubble.style.animationDelay = `${Math.random() * 5}s`;
+
+                                container.appendChild(bubble);
+                            }
+                        }
+                        function adjustBubbleHeight() {
+                            document.getElementById('bubbles').style.height = `${document.body.scrollHeight}px`;
+                        }
+
+                        // Call function when the page loads and on resize
+                        window.addEventListener('load', adjustBubbleHeight);
+                        window.addEventListener('resize', adjustBubbleHeight);
+
+                        async function initChat() {
+                            createParticles();
+                            createBubbles();
+
+                            // Add 3D tilt effect
+                            const phone = document.getElementById('phone');
+                            const scene = document.getElementById('whatsapp-scene');
+
+                            scene.addEventListener('mousemove', (e) => {
+                                const xAxis = (window.innerWidth / 2 - e.pageX) / 270;
+                                const yAxis = (window.innerHeight / 2 - e.pageY) / 270;
+                                phone.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+                            });
+
+                            scene.addEventListener('mouseleave', () => {
+                                phone.style.transform = 'rotateY(0) rotateX(0)';
+                            });
+
+                            // Display messages with delays
+                            for (const message of chatMessages) {
+                                await new Promise(resolve => setTimeout(resolve, message.delay));
+
+                                if (Math.random() > 0.7 && !message.right) {
+                                    await showTyping(1500);
+                                }
+
+                                const messageEl = createMessage(message);
+                                document.getElementById('chat-container').appendChild(messageEl);
+                                document.getElementById('chat-container').scrollTop = document.getElementById('chat-container').scrollHeight;
+                            }
+
+                            // Setup send button
+                            document.getElementById('send-btn').addEventListener('click', () => {
+                                const input = document.getElementById('message-input');
+                                if (input.value.trim()) {
+                                    addUserMessage(input.value.trim());
+                                    input.value = '';
+                                }
+                            });
+
+                            // Allow pressing Enter to send message
+                            document.getElementById('message-input').addEventListener('keypress', (e) => {
+                                if (e.key === 'Enter') {
+                                    const input = document.getElementById('message-input');
+                                    if (input.value.trim()) {
+                                        addUserMessage(input.value.trim());
+                                        input.value = '';
+                                    }
+                                }
+                            });
+
+                            // Connect button effect
+                            document.getElementById('connect-btn').addEventListener('click', () => {
+                                alert('Thanks for joining GDG Cloud Udaipur! You would be redirected to WhatsApp in a real implementation.');
+                            });
+                        }
+
+                        function updateClock() {
+                            const now = new Date();
+                            const timeString = now.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
+                            document.querySelector('.status-bar-time').textContent = timeString;
+                            setTimeout(updateClock, 60000); // Update every minute
+                        }
+
+                        window.addEventListener('load', () => {
+                            initChat();
+                            updateClock();
+                        });
+                        //for whatsapp scroll down animation
+                        document.addEventListener('DOMContentLoaded', function () {
+                            const whatsappSection = document.querySelector('.whatsapp-container');
+                            const membershipSection = document.querySelector('.membership-section');
+                            const observer = new IntersectionObserver((entries) => {
+                                entries.forEach(entry => {
+                                    if (entry.isIntersecting) {
+                                        whatsappSection.classList.add('visible');
+                                        observer.unobserve(whatsappSection);
+                                    }
+                                });
+                            }, {
+                                threshold: 0.1
+                            });
+
+                            observer.observe(whatsappSection);
+                            observer.observe(membershipSection);
+                        });
+                        //for navbar
+
+                        document.addEventListener('DOMContentLoaded', function () {
+                            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+                            const mobileMenu = document.getElementById('mobile-menu');
+
+                            mobileMenuBtn.addEventListener('click', function () {
+                                mobileMenu.classList.toggle('active');
+                            });
+                        });
+
+
+
+
+                                function openModal(modalId, registerUrl) {
+                                    if (modalId === 'membershipModal') {
+                                        window.open('https://gdg.community.dev/gdg-cloud-udaipur/', '_blank');
+                                    } else if (modalId === 'eventModal' && 'Build With Ai') {
+                                        window.open('https://gdg.community.dev/events/details/google-gdg-cloud-udaipur-presents-build-with-ai-udaipur-hands-on-edition/', '_blank');
+                                    } else {
+                                        document.getElementById(modalId).style.display = 'block';
+                                    }
+                                }
+
+                                function closeModal(modalId) {
+                                    document.getElementById(modalId).style.display = 'none';
+                                }
+
+
+                    </script>
+
 </body>
+
 </html>
