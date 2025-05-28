@@ -1974,44 +1974,29 @@
             </div>
         </section>
 
-        <!-- Events section -->
-        <section class="events-section" id="events">
-            <div class="section-title">
-                <h2>Upcoming Events</h2>
-                <p>Enhance your skills with our exciting events and workshops</p>
-            </div>
+        <!-- Events Section -->
+<section class="events-section" id="events">
+    <div class="section-title">
+        <h2>Upcoming Events</h2>
+        <p>Enhance your skills with our exciting events and workshops</p>
+    </div>
 
-            <div class="events-grid">
-                <!-- Event card 1 -->
-                <div class="event-card">
-                    <div class="card-img" style="background-image: url('buildwithai.webp')"></div>
-                    <div class="card-content">
-                        <span class="card-date">April 6, 2025</span>
-                        <h3 class="card-title">Build With AI - Udaipur Hands-on Edition</h3>
-                        <p class="card-description">Get hands-on experience with AI and Machine Learning. Learn how to
-                            build and deploy AI-powered applications, explore cutting-edge AI models, and leverage
-                            Google Cloud's AI services.</p>
-                        <!-- <div class="card-price">₹100</div> -->
-                        <button class="btn card-btn" onclick="openModal('eventModal', 'Build With AI', '100')">Register
-                            Now</button>
-                    </div>
-                </div>
+    <div class="events-grid" id="upcoming-events">
+        <!-- Upcoming events will be dynamically added here -->
+    </div>
+</section>
 
-                <!-- Event card 2 -->
-                <div class="event-card">
-                    <div class="card-img" style="background-image: url('cloudcommunity.jpeg')"></div>
-                    <div class="card-content">
-                        <span class="card-date">29 June 2025</span>
-                        <h3 class="card-title">Cloud Community Days</h3>
-                        <p class="card-description">Our flagship annual event with keynotes from industry experts,
-                            workshops, networking opportunities, and much more.</p>
-                        <!-- <div class="card-price">₹500</div> -->
-                        <button class="btn card-btn"
-                            onclick="openModal('eventModal', 'Cloud Community Days', '500')">Register Now</button>
-                    </div>
-                </div>
-            </div>
-        </section>
+<!-- Past Events Section -->
+<section class="events-section" id="past-events">
+    <div class="section-title">
+        <h2>Past Events</h2>
+        <p>Take a look at some of our past events and workshops</p>
+    </div>
+
+    <div class="events-grid" id="past-events-grid">
+        <!-- Past events will be dynamically added here -->
+    </div>
+</section>
 
 
         <!-- Organizers Section -->
@@ -2533,22 +2518,72 @@
 
 
 
-                                function openModal(modalId, registerUrl) {
-                                    if (modalId === 'membershipModal') {
-                                        window.open('https://gdg.community.dev/gdg-cloud-udaipur/', '_blank');
+                        function openModal(modalId, registerUrl) {
+                            if (modalId === 'membershipModal') {
+                            window.open('https://gdg.community.dev/gdg-cloud-udaipur/', '_blank');
                                     } else if (modalId === 'eventModal' && 'Build With Ai') {
                                         window.open('https://konfhub.com/google-cloud-community-days-2025', '_blank');
                                     } else {
                                         document.getElementById(modalId).style.display = 'block';
                                     }
                                 }
-
-                                function closeModal(modalId) {
+                         function closeModal(modalId) {
                                     document.getElementById(modalId).style.display = 'none';
                                 }
+                                document.addEventListener('DOMContentLoaded', function () {
+    const events = [
+        {
+            title: "Build With AI - Udaipur Hands-on Edition",
+            date: "2025-04-06",
+            description: "Get hands-on experience with AI and Machine Learning. Learn how to build and deploy AI-powered applications, explore cutting-edge AI models, and leverage Google Cloud's AI services.",
+            image: "buildwithai.webp",
+            link: "https://konfhub.com/google-cloud-community-days-2025"
+        },
+        {
+            title: "Cloud Community Days",
+            date: "2025-06-29",
+            description: "Our flagship annual event with keynotes from industry experts, workshops, networking opportunities, and much more.",
+            image: "cloudcommunity.jpeg",
+            link: "https://gdg.community.dev/gdg-cloud-udaipur/"
+        },
+        {
+            title: "Hackathon",
+            date: "2025-06-29",
+            description: "Join our annual hackathon to showcase your skills, collaborate with fellow developers, and build innovative solutions using Google Cloud technologies.",
+            image: "hackathon.webp",
+            link: "https://gdg.community.dev/gdg-cloud-udaipur/"
+        }
+    ];
 
+    const upcomingEventsContainer = document.getElementById('upcoming-events');
+    const pastEventsContainer = document.getElementById('past-events-grid');
+    const today = new Date();
 
-                    </script>
+    events.forEach(event => {
+        const eventDate = new Date(event.date);
+        const isPastEvent = eventDate < today;
+
+        const eventCard = document.createElement('div');
+        eventCard.className = 'event-card';
+        eventCard.innerHTML = `
+            <div class="card-img" style="background-image: url('${event.image}')"></div>
+            <div class="card-content">
+                <span class="card-date">${eventDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+                <h3 class="card-title">${event.title}</h3>
+                <p class="card-description">${event.description}</p>
+                ${!isPastEvent ? `<a href="${event.link}" target="_blank" class="btn card-btn">Register Now</a>` : ''}
+            </div>
+        `;
+
+        if (isPastEvent) {
+            pastEventsContainer.appendChild(eventCard);
+        } else {
+            upcomingEventsContainer.appendChild(eventCard);
+        }
+    });
+});                                
+
+</script>
 
 </body>
 
