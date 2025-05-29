@@ -346,8 +346,9 @@
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             margin-top: 50px;
+            align-items: start;
         }
-
+        
         .event-card {
             background: var(--card-bg);
             border-radius: 15px;
@@ -1992,9 +1993,10 @@
         <h2>Past Events</h2>
         <p>Take a look at some of our past events and workshops</p>
     </div>
-
     <div class="events-grid" id="past-events-grid">
+    <div class="event-box">
         <!-- Past events will be dynamically added here -->
+    </div>
     </div>
 </section>
 
@@ -2544,7 +2546,7 @@
             date: "2025-06-29",
             description: "Our flagship annual event with keynotes from industry experts, workshops, networking opportunities, and much more.",
             image: "cloudcommunity.jpeg",
-            link: "https://gdg.community.dev/gdg-cloud-udaipur/"
+            link: "https://konfhub.com/google-cloud-community-days-2025"
         },
         {
             title: "Hackathon",
