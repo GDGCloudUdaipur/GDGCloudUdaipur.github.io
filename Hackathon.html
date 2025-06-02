@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CloudCraft 2025 | GCCD Udaipur Hackathon</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a23; /* Dark blue/purple background */
+            color: #f0f0f0;
+            overflow-x: hidden;
+        }
+        #hero-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.3;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        .section-title {
+            font-weight: 900; /* Extra bold for titles */
+            font-size: 2.5rem; /* Larger font size */
+            margin-bottom: 1rem;
+            text-align: center;
+            background: -webkit-linear-gradient(45deg, #4285F4, #34A853, #FBBC05, #EA4335);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .track-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column; /* Ensure content flows vertically */
+            height: 100%; /* Make cards in a row equal height */
+        }
+        .track-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+        }
+        .track-card-content {
+            flex-grow: 1; /* Allow content to fill space */
+        }
+        .gradient-text {
+            background: -webkit-linear-gradient(45deg, #4285F4, #34A853, #FBBC05, #EA4335);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .btn-register {
+            background: linear-gradient(45deg, #4285F4, #EA4335);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .btn-register:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a23;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4285F4;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #34A853;
+        }
+
+        /* Animation for sections */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .theme-icon-svg { /* Class for styling SVGs */
+            width: 60px;
+            height: 60px;
+            margin-bottom: 1rem;
+            fill: currentColor; /* Use text color for SVG fill */
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <section id="hero" class="relative min-h-screen flex items-center justify-center text-center overflow-hidden">
+        <canvas id="hero-canvas"></canvas>
+        <div class="hero-content p-6">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_Cloud_logo.svg" alt="Google Cloud Logo" class="mx-auto mb-8 h-24" onerror="this.style.display='none'">
+            <h1 class="text-5xl md:text-7xl font-black mb-4 leading-tight">
+                <span class="gradient-text">CloudCraft 2025</span>
+            </h1>
+            <h2 class="text-3xl md:text-5xl font-bold mb-6">GCCD Udaipur Hackathon</h2>
+            <p class="text-xl md:text-2xl mb-10 text-gray-300">🚀 Where Cloud Meets Ingenuity to Solve Real-World Challenges 🚀</p>
+            <a href="#tracks" class="btn-register text-white font-bold py-4 px-10 rounded-lg text-lg shadow-lg">
+                Explore Tracks & Register (Soon!)
+            </a>
+        </div>
+    </section>
+
+    <section id="vision" class="py-20 px-4 md:px-10 animate-on-scroll">
+        <div class="container mx-auto max-w-4xl text-center">
+            <h2 class="section-title">🎯 Hackathon Vision</h2>
+            <p class="text-lg md:text-xl text-gray-300 leading-relaxed">
+                Google Cloud Community Day Udaipur 2025 invites developers, designers, entrepreneurs, students, and civic thinkers to co-create innovative, cloud-first solutions using Google Cloud, AI, and Data to tackle modern-day problems. Whether you’re cloning a unicorn, building civic tools, or decoding messy data — this is your canvas.
+            </p>
+        </div>
+    </section>
+
+    <section id="tracks" class="py-20 px-4 md:px-10 bg-opacity-20 bg-gray-700">
+        <div class="container mx-auto">
+            <h2 class="section-title mb-16">🧩 Tracks & Problem Statements</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="track-card p-6 rounded-xl shadow-2xl animate-on-scroll">
+                    <div class="flex justify-center">
+                        <svg class="theme-icon-svg text-blue-400" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"></path></svg>
+                    </div>
+                    <div class="track-card-content text-center">
+                        <h3 class="text-2xl font-bold mb-3 gradient-text">1. Clone & Innovate</h3>
+                        <p class="text-sm text-gray-400 mb-2">Reinvent a Business Model</p>
+                        <p class="text-gray-300 mb-2 text-left"><strong class="text-blue-400">Objective:</strong> Choose any existing digital business (e.g., Zomato, Paytm, Airbnb, Urban Company) and clone its core functionality using Google Cloud — but with a unique, innovative twist.</p>
+                        <p class="text-gray-300 mb-1 text-left"><strong class="text-blue-400">Examples of Innovation:</strong> Voice-first interface, Smart pricing by AI, Integration with local government schemes, Personalization via user behavior analysis.</p>
+                        <p class="text-xs text-gray-500 mt-3"><strong class="text-blue-500">GCP Tech Ideas:</strong> Firebase, Cloud Run, Vertex AI, BigQuery</p>
+                    </div>
+                </div>
+
+                <div class="track-card p-6 rounded-xl shadow-2xl animate-on-scroll">
+                    <div class="flex justify-center">
+                        <svg class="theme-icon-svg text-green-400" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M19 7h-2V5h-2v2H9V5H7v2H5c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2zm0 12H5V9h14v10zM8 11h2v2H8zm4 0h2v2h-2zm4 0h2v2h-2zm-4 4h2v2h-2z"></path><path d="M12 1c-4.97 0-9 4.03-9 9v7h2v-7c0-3.86 3.14-7 7-7s7 3.14 7 7v7h2v-7c0-4.97-4.03-9-9-9zM7.5 14c-.83 0-1.5.67-1.5 1.5S6.67 17 7.5 17s1.5-.67 1.5-1.5S8.33 14 7.5 14zm9 0c-.83 0-1.5.67-1.5 1.5S15.67 17 16.5 17s1.5-.67 1.5-1.5S17.33 14 16.5 14z"></path></svg>
+                    </div>
+                     <div class="track-card-content text-center">
+                        <h3 class="text-2xl font-bold mb-3 gradient-text">2. Build One-of-a-Kind AI Tools</h3>
+                        <p class="text-sm text-gray-400 mb-2">Unleash AI Creativity</p>
+                        <p class="text-gray-300 mb-2 text-left"><strong class="text-green-400">Objective:</strong> Create an AI-powered application that tackles a unique or overlooked problem. The more creative, the better.</p>
+                        <p class="text-gray-300 mb-1 text-left"><strong class="text-green-400">Examples:</strong> AI for farmer crop health advice, AI for journaling mental health insights, A “reverse search engine” – input an outcome, get pathways, Resume parser & job-fit predictor.</p>
+                        <p class="text-xs text-gray-500 mt-3"><strong class="text-green-500">Use Cases:</strong> Vertex AI, PaLM APIs, Natural Language, Cloud Vision</p>
+                    </div>
+                </div>
+
+                <div class="track-card p-6 rounded-xl shadow-2xl animate-on-scroll">
+                    <div class="flex justify-center">
+                        <svg class="theme-icon-svg text-yellow-400" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 3L2 12h3v8h14v-8h3L12 3zm0 2.83L15.17 9H8.83L12 5.83zM17 18H7v-6h10v6zm-2-4h-2v2h2v-2zm-4 0H9v2h2v-2z"></path></svg>
+                    </div>
+                     <div class="track-card-content text-center">
+                        <h3 class="text-2xl font-bold mb-3 gradient-text">3. Civic Tech: Build for Better Governance</h3>
+                        <p class="text-sm text-gray-400 mb-2">Tech for Public Good</p>
+                        <p class="text-gray-300 mb-2 text-left"><strong class="text-yellow-400">Objective:</strong> Develop tools that improve government transparency, public access, or citizen participation.</p>
+                        <p class="text-gray-300 mb-1 text-left"><strong class="text-yellow-400">Problem Angles:</strong> Local budget visualization tools, Civic issue reporting via mobile + geotagging, Chatbot for government services using Dialogflow, Community voting on local projects.</p>
+                        <p class="text-xs text-gray-500 mt-3"><strong class="text-yellow-500">Tools to Explore:</strong> Google Maps API, Firebase, Dialogflow, Cloud Functions</p>
+                    </div>
+                </div>
+
+                <div class="track-card p-6 rounded-xl shadow-2xl animate-on-scroll">
+                    <div class="flex justify-center">
+                        <svg class="theme-icon-svg text-red-400" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4.67l-8 5.33-8-5.33V6l8 5.33 8-5.33v2.67zM12 12.5l4-2.67v-2L12 10.5l-4-2.67v2l4 2.67z"></path><path d="M4 8l8 5 8-5v10H4z" opacity=".3"></path></svg>
+                    </div>
+                    <div class="track-card-content text-center">
+                        <h3 class="text-2xl font-bold mb-3 gradient-text">4. Smart Business Data Analyzer</h3>
+                        <p class="text-sm text-gray-400 mb-2">Now with Direct Email Data Fetching!</p>
+                        <p class="text-gray-300 mb-2 text-left"><strong class="text-red-400">Objective:</strong> Design a secure web portal that processes multi-format business data fetched directly from emails and converts it into editable, structured tables, with final output submitted to an API.</p>
+                        <p class="text-gray-300 mb-1 text-left"><strong class="text-red-400">Data to be fetched from Email:</strong> PDF, Excel, CSV, Text, Images (receipts/invoices) from email attachments or body using the Gmail API.</p>
+                        <p class="text-gray-300 mb-1 text-left"><strong class="text-red-400">Workflow:</strong> Use OCR + NLP to extract info from fetched data, Display it in editable table format, Secure login portal, On submit, send data to external API.</p>
+                        <p class="text-xs text-gray-500 mt-3"><strong class="text-red-500">Google Tools to Consider:</strong> Document AI, Vision API, Gmail API, Firebase Auth, Firestore</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="judging" class="py-20 px-4 md:px-10 animate-on-scroll">
+        <div class="container mx-auto max-w-4xl">
+            <h2 class="section-title mb-12">🏆 Judging Criteria</h2>
+            <div class="bg-opacity-20 bg-gray-700 p-8 rounded-lg shadow-xl">
+                <ul class="space-y-4">
+                    <li class="flex justify-between items-center text-lg border-b border-gray-600 pb-2">
+                        <span class="text-gray-200">Innovation & Creativity</span>
+                        <span class="font-bold text-xl gradient-text">30%</span>
+                    </li>
+                    <li class="flex justify-between items-center text-lg border-b border-gray-600 pb-2">
+                        <span class="text-gray-200">Real-World Impact</span>
+                        <span class="font-bold text-xl gradient-text">20%</span>
+                    </li>
+                    <li class="flex justify-between items-center text-lg border-b border-gray-600 pb-2">
+                        <span class="text-gray-200">Functionality & Execution</span>
+                        <span class="font-bold text-xl gradient-text">20%</span>
+                    </li>
+                     <li class="flex justify-between items-center text-lg border-b border-gray-600 pb-2">
+                        <span class="text-gray-200">UI/UX & Presentation</span>
+                        <span class="font-bold text-xl gradient-text">20%</span>
+                    </li>
+                    <li class="flex justify-between items-center text-lg">
+                        <span class="text-gray-200">Use of Google Cloud Tech</span>
+                        <span class="font-bold text-xl gradient-text">10%</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="prizes-submission" class="py-20 px-4 md:px-10 bg-opacity-20 bg-gray-700 animate-on-scroll">
+        <div class="container mx-auto max-w-4xl text-center">
+            <h2 class="section-title mb-12">🏅 Prizes & Submission</h2>
+            <div class="bg-gray-800 p-8 rounded-lg shadow-xl space-y-6">
+                <p class="text-xl text-gray-200 leading-relaxed">
+                    Submit your innovative solutions by <strong class="text-yellow-400">June 28, 2025</strong>.
+                </p>
+                <p class="text-xl text-gray-200 leading-relaxed">
+                    The <strong class="text-green-400">Top 4 ideas</strong> will advance to the final round for a chance to showcase their projects.
+                </p>
+                <p class="text-2xl font-bold gradient-text leading-relaxed">
+                    🏆 Two ultimate winners will receive exciting gifts and goodies from us! 🏆
+                </p>
+                 <p class="text-lg text-gray-300 mt-4">
+                    More details on the submission process will be shared soon. Stay tuned!
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="py-10 text-center border-t border-gray-700 mt-10"> 
+        <p class="text-gray-400">&copy; 2025 Google Developer Group Cloud Udaipur. Innovate. Integrate. Impact.</p>
+        <p class="text-sm text-gray-500 mt-2">Follow us on [Social Media Links Placeholder]</p>
+    </footer>
+
+    <script>
+        // Basic Three.js setup for hero background
+        let scene, camera, renderer, particles;
+
+        function initThreeJS() {
+            const canvas = document.getElementById('hero-canvas');
+            if (!canvas) {
+                console.warn("Hero canvas not found for Three.js initialization.");
+                return;
+            }
+
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            try {
+                renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true }); // alpha: true for transparent background
+            } catch (e) {
+                console.error("Three.js WebGLRenderer initialization failed:", e);
+                // Fallback or message to user if WebGL is not supported
+                const heroContent = document.querySelector('.hero-content');
+                if (heroContent) {
+                    const warning = document.createElement('p');
+                    warning.textContent = "WebGL is not supported by your browser. The 3D background animation cannot be displayed.";
+                    warning.style.color = "orange";
+                    warning.style.marginTop = "10px";
+                    heroContent.appendChild(warning);
+                }
+                return;
+            }
+            
+            // Set initial size
+            const heroSection = document.getElementById('hero');
+            if (!heroSection) {
+                console.warn("Hero section not found for Three.js sizing.");
+                return;
+            }
+            renderer.setSize(heroSection.clientWidth, heroSection.clientHeight);
+            camera.aspect = heroSection.clientWidth / heroSection.clientHeight;
+            camera.updateProjectionMatrix();
+
+            // Particle system
+            const particleCount = 500;
+            const particlesGeometry = new THREE.BufferGeometry();
+            const positions = [];
+
+            for (let i = 0; i < particleCount; i++) {
+                const x = (Math.random() - 0.5) * 20; // Spread particles wider
+                const y = (Math.random() - 0.5) * 20;
+                const z = (Math.random() - 0.5) * 20;
+                positions.push(x, y, z);
+            }
+            particlesGeometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+            
+            const particleMaterial = new THREE.PointsMaterial({
+                color: 0x4285F4, // Google Blue
+                size: 0.05,
+                transparent: true,
+                opacity: 0.7
+            });
+            particles = new THREE.Points(particlesGeometry, particleMaterial);
+            scene.add(particles);
+
+            camera.position.z = 5;
+
+            animate();
+        }
+
+        function animate() {
+            if (!renderer || !scene || !camera) return; // Ensure Three.js objects are initialized
+            requestAnimationFrame(animate);
+            if (particles) {
+                particles.rotation.x += 0.0005;
+                particles.rotation.y += 0.001;
+            }
+            renderer.render(scene, camera);
+        }
+
+        function onWindowResize() {
+            const heroSection = document.getElementById('hero');
+            if (heroSection && camera && renderer) {
+                camera.aspect = heroSection.clientWidth / heroSection.clientHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(heroSection.clientWidth, heroSection.clientHeight);
+            }
+        }
+        window.addEventListener('resize', onWindowResize, false);
+        
+        // Call init after DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            initThreeJS();
+
+            // Intersection Observer for scroll animations
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1 // Trigger when 10% of the element is visible
+            };
+
+            const observerCallback = (entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animated');
+                        observer.unobserve(entry.target); // Stop observing after animation to save resources
+                    }
+                });
+            };
+
+            const observer = new IntersectionObserver(observerCallback, observerOptions);
+            document.querySelectorAll('.animate-on-scroll').forEach(el => {
+                observer.observe(el);
+            });
+        });
+
+    </script>
+</body>
+</html>
