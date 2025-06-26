@@ -127,24 +127,25 @@
             padding: 0 1rem 1rem 1rem;
             color: #ccc;
         }
-
     </style>
 </head>
 <body class="antialiased">
 
+    <!-- Hero Section -->
     <section id="hero" class="relative min-h-screen flex items-center justify-center text-center overflow-hidden">
         <canvas id="hero-canvas"></canvas>
         <div class="hero-content p-6">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_Cloud_logo.svg" alt="Google Cloud Logo" class="mx-auto mb-8 h-24" onerror="this.style.display='none'">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_Cloud_logo.svg" alt="Google Cloud Logo" class="mx-auto mb-8 h-24" onerror="this.onerror=null;this.src='https://placehold.co/200x100/0a0a23/f0f0f0?text=Google+Cloud';">
             <h1 class="text-5xl md:text-7xl font-black mb-4 leading-tight">
                 <span class="gradient-text">CloudCraft 2025</span>
             </h1>
             <h2 class="text-3xl md:text-5xl font-bold mb-6">GCCD Udaipur Hackathon</h2>
             <p class="text-xl md:text-2xl mb-10 text-gray-300">🚀 Where Cloud Meets Ingenuity to Solve Real-World Challenges 🚀</p>
-           <a href="#tracks" class="btn-register text-white font-bold py-4 px-10 rounded-lg text-lg shadow-lg"> Explore Tracks & Register (Soon!) </a>
+           <a href="#winners" class="btn-register text-white font-bold py-4 px-10 rounded-lg text-lg shadow-lg"> See The Winners! </a>
         </div>
     </section>
 
+    <!-- Vision Section -->
     <section id="vision" class="py-20 px-4 md:px-10 animate-on-scroll">
         <div class="container mx-auto max-w-4xl text-center">
             <h2 class="section-title">🎯 Hackathon Vision</h2>
@@ -166,7 +167,7 @@
                 <div class="bg-gray-800 p-6 rounded-lg shadow-xl text-center">
                     <p class="text-lg text-gray-400">Submission Deadline</p>
                     <p class="text-2xl font-bold text-yellow-400">June 21, 2025</p>
-                    <p class="text-sm text-gray-500">11:59 PM IST</p>
+                    <p class="text-sm text-gray-500">Submissions Closed</p>
                 </div>
                 <div class="bg-gray-800 p-6 rounded-lg shadow-xl text-center">
                     <p class="text-lg text-gray-400">Final Showcase</p>
@@ -176,6 +177,36 @@
         </div>
     </section>
 
+    <!-- NEW: Winners Section -->
+    <section id="winners" class="py-20 px-4 md:px-10 animate-on-scroll">
+        <div class="container mx-auto max-w-4xl text-center">
+            <h2 class="section-title">🏆 Hackathon Winners Announced! 🏆</h2>
+            <p class="text-lg md:text-xl text-gray-300 leading-relaxed mb-12">
+                After an incredible display of innovation and hard work, we are thrilled to announce our winners. A huge congratulations to them!
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto">
+                <!-- Winner 1 -->
+                <div class="track-card p-8 rounded-xl shadow-2xl border-2 border-yellow-400 flex flex-col items-center justify-center">
+                     <div class="text-6xl mb-4">🥇</div>
+                     <h3 class="text-3xl font-bold text-white">Civic Pulse</h3>
+                     <p class="text-lg text-gray-400 mt-2">by Suryansh Atri</p>
+                </div>
+                <!-- Winner 2 -->
+                <div class="track-card p-8 rounded-xl shadow-2xl border-2 border-gray-300 flex flex-col items-center justify-center">
+                     <div class="text-6xl mb-4">🥈</div>
+                     <h3 class="text-3xl font-bold text-white">MentorBot</h3>
+                     <p class="text-lg text-gray-400 mt-2">by Abhi Shah</p>
+                </div>
+            </div>
+            <div class="mt-12 bg-gray-800 p-6 rounded-lg shadow-xl">
+                <p class="text-xl text-gray-200">Both winners will be rewarded for their outstanding projects directly at the main event.</p>
+                <p class="text-3xl font-bold text-green-400 mt-3">June 29th</p>
+                <p class="text-md text-gray-400 mt-2">(Venue to be confirmed. Please stay tuned!)</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tracks Section -->
     <section id="tracks" class="py-20 px-4 md:px-10">
         <div class="container mx-auto">
             <h2 class="section-title mb-16">🧩 Tracks & Problem Statements</h2>
@@ -237,6 +268,7 @@
         </div>
     </section>
 
+    <!-- Judging Criteria Section -->
     <section id="judging" class="py-20 px-4 md:px-10 bg-opacity-20 bg-gray-700 animate-on-scroll">
         <div class="container mx-auto max-w-4xl">
             <h2 class="section-title mb-12">🏆 Judging Criteria</h2>
@@ -252,18 +284,18 @@
         </div>
     </section>
 
+    <!-- Prizes & Submission Section -->
     <section id="prizes-submission" class="py-20 px-4 md:px-10 animate-on-scroll">
         <div class="container mx-auto max-w-5xl text-left">
-            <h2 class="section-title mb-12 text-center">🏅 Prizes, Submission & Guidelines</h2>
+            <h2 class="section-title mb-12 text-center">🏅 Submission & Guidelines</h2>
             <div class="bg-gray-800 p-8 rounded-lg shadow-xl space-y-8">
                 <div class="text-center">
-                    <p class="text-2xl font-bold gradient-text leading-relaxed">🏆 Two ultimate winners will receive exciting gifts and goodies from us! 🏆</p>
-                     <p class="text-xl text-gray-200 leading-relaxed mt-2">The <strong class="text-green-400">Top 4 ideas</strong> will advance to the final round for a chance to showcase their projects.</p>
+                    <p class="text-2xl font-bold gradient-text leading-relaxed">🏆 Our two winners have been selected! 🏆</p>
                 </div>
 
                 <div>
                     <h3 class="text-2xl font-bold text-white mb-4">📦 Submission Guidelines</h3>
-                    <p class="text-gray-300 mb-4">You will need to submit all of the following via our official submission Google form.</p>
+                    <p class="text-gray-300 mb-4">Submissions required the following via our official Google form.</p>
                     <ul class="list-disc list-inside space-y-3 text-gray-300">
                         <li><strong class="text-blue-400">Demo Video:</strong> A 2-3 minute video uploaded to YouTube (set to public or unlisted). It should explain the problem, your solution, and walk through the demo.</li>
                         <li><strong class="text-green-400">Code Repository:</strong> A Google Drive folder containing all your source code. The sharing setting must be "Anyone with the link can edit."</li>
@@ -281,9 +313,9 @@
                 </div>
                 
                 <div class="pt-6 text-center">
-                    <a href="https://forms.gle/ivk4uLbbaC2tYib5A" target="_blank" rel="noopener noreferrer" class="btn-register text-white font-bold py-4 px-10 rounded-lg text-lg shadow-lg">
-                        Submit Your Project Here
-                    </a>
+                    <button disabled class="bg-gray-600 text-white font-bold py-4 px-10 rounded-lg text-lg cursor-not-allowed">
+                        Submissions Are Closed
+                    </button>
                 </div>
             </div>
         </div>
@@ -329,6 +361,7 @@
     </section>
 
 
+    <!-- Footer Section -->
     <footer class="py-10 text-center border-t border-gray-700 mt-10"> 
         <p class="text-gray-400 text-lg mb-4">📣 Stay Connected!</p>
         <div class="flex justify-center space-x-6 mb-4">
@@ -421,6 +454,7 @@
         }
         window.addEventListener('resize', onWindowResize, false);
         
+        // --- Scroll Animation ---
         document.addEventListener('DOMContentLoaded', () => {
             initThreeJS();
             const observerOptions = {
