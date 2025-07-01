@@ -93,7 +93,7 @@
         }
 
         .container {
-            max-width: 100%;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
@@ -107,8 +107,11 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             position: relative;
             width: 100%;
-            padding: 20px;
             box-sizing: border-box;
+        }
+        
+        .logo-container {
+            flex-shrink: 0;
         }
 
         .nav-links {
@@ -157,6 +160,8 @@
             border: none;
             cursor: pointer;
             z-index: 1001;
+            color: white;
+            font-size: 24px;
         }
 
         .mobile-menu-btn .bar {
@@ -172,7 +177,7 @@
             display: none;
             flex-direction: column;
             position: absolute;
-            top: 60px;
+            top: 80px;
             right: 20px;
             background-color: var(--dark-bg);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -194,32 +199,17 @@
             color: var(--google-blue);
         }
 
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .mobile-menu-btn {
-                display: flex;
-            }
-
-            .mobile-menu.active {
-                display: flex;
-            }
-        }
-
         .hero {
-            height: 80vh;
+            min-height: 80vh;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
             overflow: hidden;
+            text-align: center;
         }
 
         .hero-content {
-            text-align: center;
             z-index: 2;
             animation: fadeIn 1s ease-out;
         }
@@ -286,6 +276,7 @@
             overflow: hidden;
             z-index: 1;
             box-shadow: var(--glow);
+            text-decoration: none;
         }
 
         .btn::before {
@@ -346,17 +337,18 @@
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             margin-top: 50px;
-            align-items: start;
+            align-items: stretch; /* Changed from start to stretch for equal height */
         }
-        
+
         .event-card {
             background: var(--card-bg);
             border-radius: 15px;
             overflow: hidden;
             transition: transform 0.3s, box-shadow 0.3s;
-            cursor: pointer;
             border: 1px solid rgba(255, 255, 255, 0.1);
             position: relative;
+            display: flex; /* Added for flex layout */
+            flex-direction: column; /* Added for vertical layout */
         }
 
         .event-card:hover {
@@ -395,6 +387,9 @@
 
         .card-content {
             padding: 25px;
+            flex-grow: 1; /* Allows content to fill space */
+            display: flex; /* Flex layout for content */
+            flex-direction: column; /* Vertical layout */
         }
 
         .card-title {
@@ -411,12 +406,14 @@
             font-size: 0.8rem;
             color: var(--google-blue);
             margin-bottom: 15px;
+            align-self: flex-start;
         }
 
         .card-description {
             color: rgba(255, 255, 255, 0.7);
             margin-bottom: 20px;
             line-height: 1.6;
+            flex-grow: 1; /* Pushes button to the bottom */
         }
 
         .card-price {
@@ -429,6 +426,7 @@
         .card-btn {
             width: 100%;
             text-align: center;
+            margin-top: auto; /* Pushes button to the bottom */
         }
 
         /* Organizers Section */
@@ -436,13 +434,11 @@
             padding: 80px 0;
             position: relative;
             overflow: hidden;
-            background: rgba(0, 0, 0, 0);
-            margin: 0;
         }
 
         .organizers-grid {
-            display: flex;
-            flex-direction: column;
+            display: grid; /* Using grid for organizers */
+            grid-template-columns: 1fr; /* Single column */
             gap: 30px;
             margin-top: 50px;
         }
@@ -691,173 +687,8 @@
                 opacity: 0.8;
             }
         }
-
-        .organizer-cta {
-            text-align: center;
-            margin-top: 50px;
-        }
-
-        .organizer-cta p {
-            margin-bottom: 15px;
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .organizers-grid {
-                flex-direction: column;
-                gap: 20px;
-            }
-
-            .organizer-card {
-                padding: 20px;
-            }
-
-            .avatar-wrapper {
-                width: 100px;
-                height: 100px;
-            }
-        }
-
-        /* Membership section */
-        .membership-section {
-            padding: 80px 0;
-            position: relative;
-            overflow: hidden;
-            background: rgba(0, 0, 0, 0);
-            margin-top: -80px;
-        }
-
-        .membership-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-
-        .membership-card {
-            background: var(--card-bg);
-            border-radius: 15px;
-            overflow: hidden;
-            padding: 30px;
-            position: relative;
-            transition: transform 0.4s, box-shadow 0.4s;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            height: 100%;
-        }
-
-        .membership-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--glow);
-        }
-
-        .membership-avatar {
-            position: relative;
-            margin-bottom: 25px;
-        }
-
-        .avatar-wrapper {
-            width: 120px;
-            height: 120px;
-            position: relative;
-            margin: 0 auto;
-        }
-
-        .avatar-img {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid var(--google-blue);
-            transition: transform 0.5s;
-        }
-
-        .membership-card:hover .avatar-img {
-            transform: scale(1.05);
-        }
-
-        .avatar-glow {
-            position: absolute;
-            top: -5px;
-            left: -5px;
-            right: -5px;
-            bottom: -5px;
-            border-radius: 50%;
-            background: conic-gradient(var(--google-blue),
-                    var(--google-red),
-                    var(--google-yellow),
-                    var(--google-green),
-                    var(--google-blue));
-            opacity: 0.7;
-            z-index: -1;
-            animation: rotate 5s linear infinite;
-            filter: blur(10px);
-        }
-
-        .connection-lines {
-            position: absolute;
-            width: 160px;
-            height: 160px;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            border-radius: 50%;
-            border: 1px dashed rgba(255, 255, 255, 0.2);
-            z-index: -1;
-            animation: pulse 3s infinite alternate ease-in-out;
-        }
-
-        .connection-dot {
-            position: absolute;
-            width: 8px;
-            height: 8px;
-            background-color: var(--google-blue);
-            border-radius: 50%;
-            box-shadow: 0 0 10px var(--google-blue);
-        }
-
-        .connection-dot:nth-child(1) {
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: moveDot 5s infinite alternate;
-        }
-
-        .connection-dot:nth-child(2) {
-            bottom: 30%;
-            right: 0;
-            background-color: var(--google-red);
-            box-shadow: 0 0 10px var(--google-red);
-            animation: moveDot 7s infinite alternate-reverse;
-        }
-
-        .connection-dot:nth-child(3) {
-            bottom: 30%;
-            left: 0;
-            background-color: var(--google-green);
-            box-shadow: 0 0 10px var(--google-green);
-            animation: moveDot 6s infinite alternate;
-        }
-
-        @keyframes moveDot {
-            0% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-5px);
-            }
-
-            100% {
-                transform: translateY(5px);
-            }
-        }
-
-
-        /* Membership section */
+        
+        /* About Section */
         .about-section {
             padding: 80px 0;
             position: relative;
@@ -912,6 +743,7 @@
             margin-bottom: 20px;
         }
 
+        /* Footer */
         footer {
             background-color: #0a0a0a;
             padding: 50px 0;
@@ -961,6 +793,7 @@
             display: flex;
             gap: 15px;
             margin-top: 15px;
+            justify-content: center;
         }
 
         .social-links a {
@@ -979,290 +812,54 @@
             background-color: var(--google-blue);
         }
 
-        /* Modal */
-        .modal-container {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(5px);
-        }
-
-        .modal {
-            background-color: var(--card-bg);
-            width: 90%;
-            max-width: 500px;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 0 30px rgba(66, 133, 244, 0.3);
-            position: relative;
-            animation: modalSlideIn 0.3s forwards;
-        }
-
-        @keyframes modalSlideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-50px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: none;
-            border: none;
-            color: rgba(255, 255, 255, 0.7);
-            cursor: pointer;
-            font-size: 1.5rem;
-            transition: color 0.3s;
-        }
-
-        .modal-close:hover {
-            color: var(--google-red);
-        }
-
-        .modal-title {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            color: #fff;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 12px 15px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255,255, 0.2);
-            border-radius: 8px;
-            color: #fff;
-            transition: border-color 0.3s, box-shadow 0.3s;
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--google-blue);
-            box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.3);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-                gap: 10px;
-            }
-
-            .about-content,
-            .membership-content {
-                flex-direction: column;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-            }
-        }
-
-        /* Sci-fi elements */
-        .circle-decoration {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(66, 133, 244, 0.05);
-            border: 1px solid rgba(66, 133, 244, 0.2);
-            z-index: -1;
-        }
-
-        .circle-1 {
-            width: 300px;
-            height: 300px;
-            top: -150px;
-            right: -150px;
-        }
-
-        .circle-2 {
-            width: 200px;
-            height: 200px;
-            bottom: 50px;
-            left: -100px;
-            border-color: rgba(251, 188, 5, 0.2);
-            background: rgba(251, 188, 5, 0.05);
-        }
-
-        .glowing-line {
-            position: absolute;
-            background: linear-gradient(90deg, transparent, var(--google-blue), transparent);
-            height: 1px;
-            width: 100%;
-            z-index: -1;
-        }
-
-        .line-1 {
-            top: 30%;
-            animation: glow 4s infinite;
-        }
-
-        .line-2 {
-            bottom: 20%;
-            animation: glow 5s infinite;
-            animation-delay: 1s;
-        }
-
-        @keyframes glow {
-
-            0%,
-            100% {
-                opacity: 0.3;
-            }
-
-            50% {
-                opacity: 0.7;
-            }
-        }
-
-        .tech-circle {
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            border-radius: 50%;
-            background-color: transparent;
-            border: 2px solid rgba(66, 133, 244, 0.1);
-            z-index: -1;
-        }
-
-        .tech-circle-1 {
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            animation: rotate 30s linear infinite;
-        }
-
-        .tech-circle-2 {
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0.8);
-            border-color: rgba(251, 188, 5, 0.1);
-            animation: rotate 40s linear infinite reverse;
-        }
-
-        .tech-circle-3 {
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0.6);
-            border-color: rgba(52, 168, 83, 0.1);
-            animation: rotate 50s linear infinite;
-        }
-
-        @keyframes rotate {
-            0% {
-                transform: translate(-50%, -50%) rotate(0deg);
-            }
-
-            100% {
-                transform: translate(-50%, -50%) rotate(360deg);
-            }
-        }
-
-        .dot {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background-color: var(--google-blue);
-            box-shadow: 0 0 10px var(--google-blue);
-        }
-
-        .tech-circle-1 .dot {
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .tech-circle-2 .dot {
-            top: 50%;
-            right: 0;
-            transform: translateY(-50%);
-            background-color: var(--google-yellow);
-            box-shadow: 0 0 10px var(--google-yellow);
-        }
-
-        .tech-circle-3 .dot {
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: var(--google-green);
-            box-shadow: 0 0 10px var(--google-green);
-        }
-
-        .container {
-            max-width: 1200px;
-            width: 100%;
-            padding: 20px;
+        /* WhatsApp Section */
+        .whatsapp-container {
             display: flex;
-            justify-content: center;
             align-items: center;
-            flex-direction: column;
-        }
-
-        .title {
-            font-size: 2.5rem;
-            color: #4285F4;
-            /* Google Blue */
-            margin-bottom: 40px;
-            text-align: center;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            justify-content: center;
+            padding: 80px 0;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
             position: relative;
-            transform: translateZ(50px);
-            opacity: 0;
-            animation: fadeIn 1s forwards 0.5s;
+            z-index: 1;
+            min-height: 100vh;
         }
 
-        .subtitle {
-            font-size: 1.5rem;
-            color: #34A853;
-            /* Google Green */
-            margin-bottom: 30px;
-            text-align: center;
-            opacity: 0;
-            animation: fadeIn 1s forwards 0.8s;
+        .whatsapp-container.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
+        .whatsapp-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            width: 100%;
+            gap: 40px;
+        }
+
+        .whatsapp-text {
+            max-width: 50%;
+            text-align: left;
+        }
+        
         .whatsapp-scene {
             position: relative;
             width: 350px;
             height: 600px;
             transform-style: preserve-3d;
-            animation: float 6s ease-in-out infinite;
+            animation: floatWhatsApp 6s ease-in-out infinite;
+            flex-shrink: 0;
+        }
+        
+        @keyframes floatWhatsApp {
+            0%, 100% {
+                transform: translateY(0) rotateY(5deg);
+            }
+            50% {
+                transform: translateY(-20px) rotateY(-5deg);
+            }
         }
 
         .phone {
@@ -1276,7 +873,6 @@
             transform-style: preserve-3d;
             transform: rotateY(0deg) rotateX(0deg);
             transition: transform 0.5s ease;
-            margin-top: 60px;
         }
 
         .phone-screen {
@@ -1286,8 +882,22 @@
             border-radius: 20px;
             overflow: hidden;
             position: relative;
+            display: flex;
+            flex-direction: column;
         }
 
+        .status-bar {
+            height: 24px;
+            background: #000;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10px;
+            font-size: 12px;
+            flex-shrink: 0;
+        }
+        
         .app-header {
             background: #075e54;
             padding: 15px;
@@ -1295,20 +905,46 @@
             align-items: center;
             position: relative;
             z-index: 10;
+            color: white;
+            flex-shrink: 0;
         }
 
         .app-title {
-            color: white;
             font-size: 1.2rem;
             font-weight: bold;
             margin-left: 10px;
         }
+        
+        .group-details {
+            display: flex;
+            padding: 15px;
+            background: #f9f9f9;
+            border-bottom: 1px solid #eee;
+            align-items: center;
+            flex-shrink: 0;
+        }
+        
+        .group-info {
+            flex: 1;
+        }
+
+        .group-name {
+            font-weight: bold;
+            color: #000;
+        }
+
+        .group-members {
+            font-size: 0.8rem;
+            color: #777;
+        }
 
         .chat-container {
-            height: calc(100% - 130px);
+            flex-grow: 1;
             overflow-y: auto;
             padding: 15px;
-            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZGlhZ29uYWxIYXRjaCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgd2lkdGg9IjQiIGhlaWdodD0iNCIgcGF0dGVyblRyYW5zZm9ybT0icm90YXRlKDQ1KSI+PHBhdGggZD0iTSAtMSwxIGwgMiwtMiBNIDAsMCBsIDQsLTQgTSAzLC0xIGwgMiwyIiBzdHJva2U9IiNlNWRkZDUiIHN0cm9rZS13aWR0aD0iMC41Ii8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZTVkZGQ1Ii8+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNkaWFnb25hbEhhdGNoKSIvPjwvc3ZnPg==');
+            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZGlhZ29uYWxIYXRjaCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgd2lkdGg9IjQiIGhlaWdodD0iNCIgcGF0dGVyblRyYW5zZm9ybT0icm90YXRlKDQ1KSI+PHBhdGggZD0iTSAtMSwxIGwgMiwtMiBNIDAsMCBsIDQsLTQgTSAzLC0xIGwgMiwyIiBzdHJva2U9IiNlNWREZDUiIHN0cm9rZS13aWR0aD0iMC41Ii8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZTVkZGQ1Ii8+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNkaWFnb25hbEhhdGNoKSIvPjwvc3ZnPg==');
+            display: flex;
+            flex-direction: column;
         }
 
         .message {
@@ -1321,6 +957,7 @@
             animation: messageIn 0.5s forwards;
             opacity: 0;
             transform: translateY(20px);
+            color: #000;
         }
 
         .message-time {
@@ -1335,8 +972,6 @@
             align-self: flex-start;
             border-top-left-radius: 0;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            margin-right: auto;
-            color: #000;
         }
 
         .message-right {
@@ -1344,21 +979,14 @@
             align-self: flex-end;
             border-top-right-radius: 0;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            margin-left: auto;
-            color: #000;
         }
-
+        
         .chat-input {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
             display: flex;
             padding: 10px;
             background: #f0f0f0;
             align-items: center;
-            border-bottom-left-radius: 20px;
-            border-bottom-right-radius: 20px;
+            flex-shrink: 0;
         }
 
         .input-box {
@@ -1386,129 +1014,9 @@
         }
 
         .connect-button {
-            padding: 12px 30px;
-            background-color: var(--google-blue);
-            color: white;
-            border: none;
-            border-radius: 30px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-            box-shadow: var(--glow);
-            margin-top: 50px;
+            margin-top: 30px;
         }
-
-
-        .connect-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.2);
-            transition: width 0.3s;
-            z-index: -1;
-        }
-
-        .connect-button:hover::before {
-            width: 100%;
-        }
-
-        .connect-button-primary {
-            background-color: var(--google-blue);
-        }
-
-        .connect-button-secondary {
-            background-color: transparent;
-            border: 2px solid var(--google-blue);
-        }
-
-
-        .particles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .particle {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            animation: particle 10s infinite linear;
-        }
-
-        .particle:nth-child(4n) {
-            background: rgba(66, 133, 244, 0.2);
-            /* Google Blue */
-        }
-
-        .particle:nth-child(4n+1) {
-            background: rgba(219, 68, 55, 0.2);
-            /* Google Red */
-        }
-
-        .particle:nth-child(4n+2) {
-            background: rgba(244, 180, 0, 0.2);
-            /* Google Yellow */
-        }
-
-        .particle:nth-child(4n+3) {
-            background: rgba(15, 157, 88, 0.2);
-            /* Google Green */
-        }
-
-        .reaction {
-            position: absolute;
-            right: -10px;
-            bottom: -10px;
-            background: white;
-            border-radius: 50%;
-            width: 24px;
-            height: 24px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            transform: scale(0);
-            animation: reaction 0.5s forwards;
-        }
-
-        .typing-indicator {
-            display: flex;
-            padding: 15px;
-            background: white;
-            border-radius: 15px;
-            width: fit-content;
-            margin-bottom: 15px;
-            opacity: 0;
-        }
-
-        .typing-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #888;
-            margin: 0 3px;
-            animation: typingBounce 1.3s infinite;
-        }
-
-        .typing-dot:nth-child(2) {
-            animation-delay: 0.15s;
-        }
-
-        .typing-dot:nth-child(3) {
-            animation-delay: 0.3s;
-        }
-
+        
         .community-icon {
             width: 30px;
             height: 30px;
@@ -1526,8 +1034,8 @@
         }
 
         .avatar {
-            width: 30px;
-            height: 30px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             display: flex;
             justify-content: center;
@@ -1535,395 +1043,86 @@
             color: white;
             font-weight: bold;
             margin-right: 10px;
+            flex-shrink: 0;
         }
-
-        .group-details {
-            display: flex;
-            padding: 15px;
-            background: #f9f9f9;
-            border-bottom: 1px solid #eee;
-            align-items: center;
-        }
-
-        .group-info {
-            flex: 1;
-        }
-
-        .group-name {
+        
+        .message-sender {
             font-weight: bold;
+            margin-bottom: 5px;
+            color: var(--google-blue);
         }
 
-        .group-members {
-            font-size: 0.8rem;
-            color: #777;
-        }
-
-        .status-bar {
-            height: 24px;
-            background: #000;
-            color: white;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 10px;
-            font-size: 12px;
-            border-top-left-radius: 20px;
-            border-top-right-radius: 20px;
-        }
-
-        .status-bar-time {
-            font-weight: bold;
-        }
-
-        .status-bar-icons {
-            display: flex;
-            align-items: center;
-        }
-
-        .status-bar-icon {
-            margin-left: 5px;
-        }
-
-
-        .bubbles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            /* Ensures full viewport height */
-            pointer-events: none;
-            z-index: -1;
-            /* Ensures it stays behind everything */
-        }
-
-        .bubble {
-            position: absolute;
-            border-radius: 50%;
-            animation: bubbleFloat 8s infinite ease-in-out;
-        }
-
-        .bubble:nth-child(4n) {
-            background: rgba(66, 133, 244, 0.2);
-            /* Google Blue */
-        }
-
-        .bubble:nth-child(4n+1) {
-            background: rgba(219, 68, 55, 0.2);
-            /* Google Red */
-        }
-
-        .bubble:nth-child(4n+2) {
-            background: rgba(244, 180, 0, 0.2);
-            /* Google Yellow */
-        }
-
-        .bubble:nth-child(4n+3) {
-            background: rgba(15, 157, 88, 0.2);
-            /* Google Green */
-        }
-
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0) translateZ(50px);
-            }
-        }
-
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0) rotateY(5deg);
-            }
-
-            50% {
-                transform: translateY(-20px) rotateY(-5deg);
-            }
-        }
-
-        @keyframes messageIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes reaction {
-            to {
-                transform: scale(1);
-            }
-        }
-
-        @keyframes particle {
-            0% {
-                transform: translate(0, 0);
-                opacity: 0;
-            }
-
-            50% {
-                opacity: 1;
-            }
-
-            100% {
-                transform: translate(var(--endX), var(--endY));
-                opacity: 0;
-            }
-        }
-
-        @keyframes typingBounce {
-
-            0%,
-            60%,
-            100% {
-                transform: translateY(0);
-            }
-
-            30% {
-                transform: translateY(-6px);
-            }
-        }
-
-        @keyframes bubbleFloat {
-            0% {
-                transform: translate(0, 0) scale(1);
-            }
-
-            50% {
-                transform: translate(var(--moveX), var(--moveY)) scale(1.2);
-            }
-
-            100% {
-                transform: translate(0, 0) scale(1);
-            }
-        }
-
-        /* Responsive adjustments */
+        /* Responsive */
         @media (max-width: 768px) {
             .container {
                 padding: 10px;
             }
-
-            .title {
-                font-size: 2rem;
-                margin-bottom: 20px;
-            }
-
-            .subtitle {
-                font-size: 1.2rem;
-                margin-bottom: 20px;
-            }
-
-            .whatsapp-container {
-                padding: 40px 0;
-                min-height: auto;
-            }
-
-            .whatsapp-content {
-                flex-direction: column;
-                align-items: center;
-                gap: 40px;
-            }
-
-            .whatsapp-text,
-            .whatsapp-scene {
-                max-width: 100%;
-                width: 100%;
-            }
-
-            .whatsapp-scene {
-                transform: scale(0.8);
-                margin: 20px 0;
-            }
-
-            .title {
-                text-align: center;
-                font-size: 2rem;
-            }
-
-            .subtitle {
-                text-align: center;
-                font-size: 1.2rem;
-            }
-
-            .organizers-section {
-                padding: 40px 0;
-            }
-
-            .organizer-card {
-                margin: 20px 0;
-            }
-
-            .whatsapp-scene {
-                transform: scale(0.9);
-            }
-        }
-
-        /*navbar*/
-        /* Hide the desktop nav links on small screens */
-        @media (max-width: 768px) {
+            
             .nav-links {
                 display: none;
             }
 
             .mobile-menu-btn {
-                display: block;
-                font-size: 24px;
-                background: none;
-                border: none;
-                color: white;
-                cursor: pointer;
+                display: flex;
             }
 
-            /* Mobile menu styles */
-            .mobile-menu {
-                display: none;
-                /* Initially hidden */
-                position: absolute;
-                top: 60px;
-                left: 0;
-                width: 100%;
-                background: rgba(18, 18, 18, 0.95);
-                text-align: center;
-                padding: 15px 0;
-                border-top: 1px solid rgba(255, 255, 255, 0.1);
-            }
-
-            .mobile-menu a {
-                display: block;
-                padding: 10px;
-                color: white;
-                text-decoration: none;
-                font-size: 18px;
-                transition: 0.3s;
-            }
-
-            .mobile-menu a:hover {
-                background: var(--google-blue);
-            }
-
-            /* Show mobile menu when active */
             .mobile-menu.active {
-                display: block;
-                animation: slideDown 0.3s ease-in-out;
+                display: flex;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
             }
 
-            @keyframes slideDown {
-                from {
-                    opacity: 0;
-                    transform: translateY(-20px);
-                }
-
-                to {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
+            .hero p {
+                font-size: 1rem;
             }
-        }
 
-        /* WhatsApp section */
-        .whatsapp-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 80px 0;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-            position: relative;
-            z-index: 1;
-            min-height: 100vh;
-            text-align: center;
-        }
-
-
-
-        .whatsapp-container.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .whatsapp-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-        }
-
-        .whatsapp-text {
-            max-width: 50%;
-        }
-
-        .whatsapp-scene {
-            max-width: 50%;
-            position: relative;
-            width: 350px;
-            height: 600px;
-            transform-style: preserve-3d;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .title {
-            font-size: 2.5rem;
-            color: #FFF;
-            margin-bottom: 40px;
-            text-align: left;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: relative;
-            transform: translateZ(50px);
-            opacity: 0;
-            animation: fadeIn 1s forwards 0.5s;
-        }
-
-        .subtitle {
-            font-size: 1.5rem;
-            color: #FFF;
-            margin-bottom: 30px;
-            text-align: left;
-            opacity: 0;
-            animation: fadeIn 1s forwards 0.8s;
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .whatsapp-container {
+            .hero-buttons {
                 flex-direction: column;
+                gap: 10px;
                 align-items: center;
             }
-
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
             .whatsapp-content {
                 flex-direction: column;
                 align-items: center;
+                gap: 40px;
             }
-
-            .whatsapp-text,
-            .whatsapp-scene {
+            
+            .whatsapp-text, .whatsapp-scene {
                 max-width: 100%;
+                width: 100%;
+                text-align: center;
             }
-
-            .title {
+            
+            .whatsapp-text {
                 text-align: center;
             }
 
-            .subtitle {
-                text-align: center;
+            .whatsapp-scene {
+                transform: scale(0.9);
+                margin: 20px 0;
             }
-
-
         }
+
     </style>
 </head>
 
 <body>
     <!-- Particles background -->
-    <div class="particles" id="particles"></div>
+    <div class="particles" id="particles-bg"></div>
 
     <!-- Main container -->
     <div class="container">
         <!-- Header -->
         <header>
             <div class="logo-container">
-                <img src="gdglogo.png" alt="GDG Cloud Udaipur Logo" class="logo" width="200px" height="50px">
+                <img src="https://raw.githubusercontent.com/GDGCloudUdaipur/gdgcloududaipur.github.io/main/gdglogo.png" alt="GDG Cloud Udaipur Logo" class="logo" width="200px" height="50px">
             </div>
 
             <!-- Desktop Navigation -->
@@ -1931,7 +1130,6 @@
                 <a href="#home">Home</a>
                 <a href="#events">Events</a>
                 <a href="#organizers">Organizers</a>
-                <a href="#membership">Membership</a>
                 <a href="#about">About</a>
                 <a href="#contact">Contact</a>
             </nav>
@@ -1946,7 +1144,6 @@
                 <a href="#home">Home</a>
                 <a href="#events">Events</a>
                 <a href="#organizers">Organizers</a>
-                <a href="#membership">Membership</a>
                 <a href="#about">About</a>
                 <a href="#contact">Contact</a>
             </div>
@@ -1954,638 +1151,357 @@
 
         <!-- Hero section -->
         <section class="hero" id="home">
-            <div class="tech-circle tech-circle-1">
-                <div class="dot"></div>
-            </div>
-            <div class="tech-circle tech-circle-2">
-                <div class="dot"></div>
-            </div>
-            <div class="tech-circle tech-circle-3">
-                <div class="dot"></div>
-            </div>
-
             <div class="hero-content">
                 <h1>Google Developer Group Cloud Udaipur</h1>
-                <p>Join our vibrant tech community to learn, share, and grow with cloud technology enthusiasts. Discover
-                    the future of cloud computing with hands-on workshops, tech talks, and networking opportunities.</p>
+                <p>Join our vibrant tech community to learn, share, and grow with cloud technology enthusiasts. Discover the future of cloud computing with hands-on workshops, tech talks, and networking opportunities.</p>
                 <div class="hero-buttons">
-                    <button class="btn btn-primary" onclick="openModal('eventModal')">Join Next Event</button>
-                    <button class="btn btn-secondary" onclick="openModal('membershipModal')">Become a Member</button>
+                    <a href="#events" class="btn btn-primary">See Events</a>
+                    <a href="https://gdg.community.dev/gdg-cloud-udaipur/" target="_blank" class="btn btn-secondary">Become a Member</a>
                 </div>
             </div>
         </section>
 
         <!-- Events Section -->
-<section class="events-section" id="events">
-    <div class="section-title">
-        <h2>Upcoming Events</h2>
-        <p>Enhance your skills with our exciting events and workshops</p>
-    </div>
+        <section class="events-section" id="events">
+            <div class="section-title">
+                <h2>Upcoming Events</h2>
+                <p>Enhance your skills with our exciting events and workshops</p>
+            </div>
+            <div class="events-grid" id="upcoming-events">
+                <!-- Upcoming events will be dynamically added here -->
+            </div>
+        </section>
 
-    <div class="events-grid" id="upcoming-events">
-        <!-- Upcoming events will be dynamically added here -->
-    </div>
-</section>
-
-<!-- Past Events Section -->
-<section class="events-section" id="past-events">
-    <div class="section-title">
-        <h2>Past Events</h2>
-        <p>Take a look at some of our past events and workshops</p>
-    </div>
-    <div class="events-grid" id="past-events-grid">
-    <div class="event-box">
-        <!-- Past events will be dynamically added here -->
-    </div>
-    </div>
-</section>
+        <!-- Past Events Section -->
+        <section class="events-section" id="past-events">
+            <div class="section-title">
+                <h2>Past Events</h2>
+                <p>Take a look at some of our past events and workshops</p>
+            </div>
+            <div class="events-grid" id="past-events-grid">
+                <!-- Past events will be dynamically added here -->
+            </div>
+        </section>
 
 
         <!-- Organizers Section -->
         <section class="organizers-section" id="organizers">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Our Organizers</h2>
-                    <p>Meet the team behind GDG Cloud Udaipur</p>
-                </div>
-
-                <div class="organizers-grid">
-                    <!-- Organizer card template - can be duplicated for more organizers -->
-                    <div class="organizer-card">
-                        <div class="organizer-avatar">
-                            <div class="avatar-wrapper">
-                                <img src="abhinav.jpeg" alt="Organizer Name" class="avatar-img">
-                                <div class="avatar-glow"></div>
-                            </div>
-                            <div class="connection-lines">
-                                <div class="connection-dot"></div>
-                                <div class="connection-dot"></div>
-                                <div class="connection-dot"></div>
-                            </div>
-                        </div>
-                        <div class="organizer-info">
-                            <h3 class="organizer-name">Abhinav Jain</h3>
-                            <p class="organizer-role">Lead Organizer</p>
-                            <p class="organizer-bio">Tech Innovator and community Leader with 5 years of experience
-                                in AI and Cloud technologies.</p>
-                            <div class="organizer-skills">
-                                <span class="skill-tag">AI/ML</span>
-                                <span class="skill-tag">Innovations</span>
-                                <span class="skill-tag">Tech Geek</span>
-                            </div>
-                            <div class="organizer-social">
-                                <a href="https://www.linkedin.com/in/abhinav-jain-8b4bab62/" class="social-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <path
-                                            d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
-                                        </path>
-                                        <rect x="2" y="9" width="4" height="12"></rect>
-                                        <circle cx="4" cy="4" r="2"></circle>
-                                    </svg>
-                                </a>
-                                <a href="#" class="social-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <path
-                                            d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
-                                        </path>
-                                    </svg>
-                                </a>
-                                <a href="#" class="social-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                                        <line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line>
-                                    </svg>
-                                </a>
-                                <a href="mailto:abhinav.jain1411@gmail.com" class="social-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <rect x="2" y="4" width="20" height="16" rx="2" ry="2"></rect>
-                                        <polyline points="2,4 12,12 22,4"></polyline>
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="ai-assistant">
-                            <div class="ai-blob"></div>
-                            <svg class="ai-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path
-                                    d="M12 2a5 5 0 0 0-5 5v2a5 5 0 0 0 10 0V7a5 5 0 0 0-5-5zM6 9a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3">
-                                </path>
-                                <path d="M18 9v1a6 6 0 0 1-6 6h0a6 6 0 0 1-6-6V9"></path>
-                                <rect x="8" y="18" width="8" height="4" rx="1" ry="1"></rect>
-                            </svg>
+            <div class="section-title">
+                <h2>Our Organizers</h2>
+                <p>Meet the team behind GDG Cloud Udaipur</p>
+            </div>
+            <div class="organizers-grid">
+                <div class="organizer-card">
+                    <div class="organizer-avatar">
+                        <div class="avatar-wrapper">
+                            <img src="https://raw.githubusercontent.com/GDGCloudUdaipur/gdgcloududaipur.github.io/main/abhinav.jpeg" alt="Abhinav Jain" class="avatar-img">
+                            <div class="avatar-glow"></div>
                         </div>
                     </div>
-
-
-                    <!-- Membership section -->
-                    <!-- <section class="membership-section" id="membership">
-    <div class="container"> -->
-
-
-                    <!-- <div class="membership-grid"> -->
-                    <!-- Membership card template - can be duplicated for more members -->
-                    <!-- <div class="membership-card">
-                <div class="membership-avatar">
-                    <div class="avatar-wrapper">
-                        <img src="/api/placeholder/200/200" alt="Membership" class="avatar-img">
-                        <div class="avatar-glow"></div>
-                    </div>
-                    <div class="connection-lines">
-                        <div class="connection-dot"></div>
-                        <div class="connection-dot"></div>
-                        <div class="connection-dot"></div>
-                    </div>
-                </div>
-                <div class="section-title">
-                    <h2>Yearly Membership</h2>
-                    <p>Become a member of our thriving community and get exclusive benefits throughout the year. Connect with like-minded developers, get priority access to events, and enhance your cloud skills.</p>
-                    <p>Our membership program is designed to help you grow professionally while building meaningful connections in the tech industry.</p>
-                </div>
-                <div class="membership-info">
-                    <h3 class="membership-name">Annual Membership</h3>
-                    <p class="membership-role">₹1,000</p>
-                    <div class="membership-features">
-                        <div class="feature-item">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="#34A853"/>
-                            </svg>
-                            Priority access to all events
+                    <div class="organizer-info">
+                        <h3 class="organizer-name">Abhinav Jain</h3>
+                        <p class="organizer-role">Lead Organizer</p>
+                        <p class="organizer-bio">Tech Innovator and community Leader with 5 years of experience in AI and Cloud technologies.</p>
+                        <div class="organizer-skills">
+                            <span class="skill-tag">AI/ML</span>
+                            <span class="skill-tag">Innovations</span>
+                            <span class="skill-tag">Tech Geek</span>
                         </div>
-                        <div class="feature-item">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="#34A853"/>
-                            </svg>
-                            Discounted event tickets
+                        <div class="organizer-social">
+                            <a href="https://www.linkedin.com/in/abhinav-jain-8b4bab62/" target="_blank" class="social-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                                    <rect x="2" y="9" width="4" height="12"></rect>
+                                    <circle cx="4" cy="4" r="2"></circle>
+                                </svg>
+                            </a>
+                            <a href="mailto:abhinav.jain1411@gmail.com" class="social-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="4" width="20" height="16" rx="2" ry="2"></rect>
+                                    <polyline points="2,4 12,12 22,4"></polyline>
+                                </svg>
+                            </a>
                         </div>
-                        <div class="feature-item">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="#34A853"/>
-                            </svg>
-                            Exclusive workshops and content
-                        </div>
-                        <div class="feature-item">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="#34A853"/>
-                            </svg>
-                            Networking with industry experts
-                        </div>
-                    </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</section> -->
+        </section>
+        
+        <!-- About Section -->
+        <section class="about-section" id="about">
+             <div class="section-title">
+                <h2>About Us</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-image">
+                    <div class="about-image-wrapper">
+                         <img src="https://raw.githubusercontent.com/GDGCloudUdaipur/gdgcloududaipur.github.io/main/cloudcommunity.jpeg" style="width:100%; height:100%; object-fit:cover;" alt="GDG Cloud Udaipur Event">
+                    </div>
+                </div>
+                <div class="about-text">
+                    <p>GDG Cloud Udaipur is a community of developers, students, and tech enthusiasts passionate about Google Cloud Platform and open-source technologies.</p>
+                    <p>Our mission is to create a vibrant, inclusive learning environment where members can share knowledge, collaborate on projects, and grow their skills. We host regular meetups, workshops, and study jams covering a wide range of topics from cloud infrastructure and serverless computing to AI, machine learning, and big data.</p>
+                    <p>Join us to connect with fellow tech lovers, learn from industry experts, and be a part of the future of technology in Udaipur.</p>
+                </div>
+            </div>
+        </section>
 
-                    <!-- WhatsApp section -->
-                    <div class="bubbles" id="bubbles"></div>
-                    <div class="particles" id="particles"></div>
-                    <div class="container whatsapp-container hidden">
-                        <div class="whatsapp-content">
-                            <div class="whatsapp-text">
-                                <h1 class="title">Connect with GDG Cloud Udaipur</h1>
-                                <h2 class="subtitle">Join our tech community on WhatsApp</h2>
-                                <button class="connect-button" id="connect-btn" onclick="window.open('https://chat.whatsapp.com/EesExCP4NMD4CjvT7TlQ2x', '_blank');">Join Our Community</button>
-                            </div>
-                            <div class="whatsapp-scene" id="whatsapp-scene">
-                                <div class="phone" id="phone">
-                                    <div class="phone-screen">
-                                        <div class="status-bar">
-                                            <div class="status-bar-time">10:32 AM</div>
-                                            <div class="status-bar-icons">
-                                                <div class="status-bar-icon">📶</div>
-                                                <div class="status-bar-icon">🔋</div>
-                                            </div>
-                                        </div>
-                                        <div class="app-header">
-                                            <div class="community-icon">
-                                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 12.75c1.63 0 3.07.39 4.24.9 1.08.48 1.76 1.56 1.76 2.73V18H6v-1.62c0-1.17.68-2.25 1.76-2.73 1.17-.51 2.61-.9 4.24-.9zm0-10c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3z" fill="#fff"/></svg>
-                                            </div>
-                                            <div class="app-title">GDG Cloud Udaipur</div>
-                                        </div>
-                                        <div class="group-details">
-                                            <div class="avatar" style="background:#4285F4;">
-                                                G
-                                            </div>
-                                            <div class="group-info">
-                                                <div class="group-name" style="color: #000;">GDG Cloud Udaipur</div>
-                                                <div class="group-members">You, Abhinav, Priya, Raj, +28 more</div>
-                                            </div>
-                                        </div>
-                                        <div class="chat-container" id="chat-container">
-                                            <!-- Messages will be added here by JavaScript -->
-                                        </div>
-                                        <div class="chat-input">
-                                            <input type="text" class="input-box" placeholder="Type a message..." id="message-input">
-                                            <button class="send-btn" id="send-btn">
-                                                <svg viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" fill="#fff"/></svg>
-                                            </button>
-                                        </div>
-                                    </div>
+        <!-- WhatsApp Contact Section -->
+        <section class="whatsapp-container" id="contact">
+            <div class="whatsapp-content">
+                <div class="whatsapp-text">
+                    <h2 class="section-title" style="text-align:left; margin-bottom: 20px;">Connect with Us</h2>
+                    <p>Have questions or want to get more involved? Join our official WhatsApp group to stay updated on all our activities and connect with the community.</p>
+                    <a href="https://chat.whatsapp.com/EesExCP4NMD4CjvT7TlQ2x" target="_blank" class="btn connect-button">Join Our Community</a>
+                </div>
+                <div class="whatsapp-scene" id="whatsapp-scene">
+                    <div class="phone" id="phone">
+                        <div class="phone-screen">
+                            <div class="status-bar">
+                                <div class="status-bar-time">10:32 AM</div>
+                                <div class="status-bar-icons">
+                                    <span>📶</span>
+                                    <span>🔋</span>
                                 </div>
                             </div>
+                            <div class="app-header">
+                                 <div class="community-icon">
+                                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 12.75c1.63 0 3.07.39 4.24.9 1.08.48 1.76 1.56 1.76 2.73V18H6v-1.62c0-1.17.68-2.25 1.76-2.73 1.17-.51 2.61-.9 4.24-.9zm0-10c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3z" fill="#fff"/></svg>
+                                </div>
+                                <div class="app-title">GDG Cloud Udaipur</div>
+                            </div>
+                             <div class="group-details">
+                                <div class="avatar" style="background:#4285F4;">G</div>
+                                <div class="group-info">
+                                    <div class="group-name">GDG Cloud Udaipur</div>
+                                    <div class="group-members">You, Abhinav, Priya, +28 more</div>
+                                </div>
+                            </div>
+                            <div class="chat-container" id="chat-container">
+                                <!-- Messages will be added here by JavaScript -->
+                            </div>
+                            <div class="chat-input">
+                                <input type="text" class="input-box" placeholder="Type a message..." id="message-input">
+                                <button class="send-btn" id="send-btn">
+                                    <svg viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" fill="#fff"/></svg>
+                                </button>
+                            </div>
                         </div>
                     </div>
-                    <script>
-                        // Messages to be displayed in chat sequence
-                        const chatMessages = [
-                            {
-                                sender: 'Abhinav',
-                                text: 'Hello everyone! Welcome to GDG Cloud Udaipur community! We\'re excited to have you join our growing tech family in Udaipur! 🎉',
-                                time: '10:32 AM',
-                                avatarColor: '#4285F4', // Google Blue
-                                delay: 1000
-                            },
-                            {
-                                sender: 'Priya',
-                                text: 'Hey all! I\'m looking forward to our next Cloud Study Jam. The last session on Google Cloud AI tools was amazing!',
-                                time: '10:33 AM',
-                                avatarColor: '#DB4437', // Google Red
-                                delay: 3000
-                            },
-                            {
-                                sender: 'You',
-                                text: 'Hi everyone! New member here. Excited to learn about Cloud and AI technologies with this community.',
-                                time: '10:35 AM',
-                                right: true,
-                                delay: 5000
-                            },
-                            {
-                                sender: 'Abhinav',
-                                text: 'Welcome to the group! We\'re organizing a hands-on workshop next Saturday on Gemini API and its applications. Hope you can join us!',
-                                time: '10:36 AM',
-                                avatarColor: '#4285F4', // Google Blue
-                                delay: 7000,
-                                hasReaction: true
-                            },
-                            {
-                                sender: 'Raj',
-                                text: 'Hey @Abhinav, will we be covering Google Cloud Run in the upcoming meetup? I\'ve been experimenting with serverless lately.',
-                                time: '10:37 AM',
-                                avatarColor: '#F4B400', // Google Yellow
-                                delay: 9000
-                            },
-                            {
-                                sender: 'Abhinav',
-                                text: 'Absolutely! We\'ll have a special segment on Cloud Run and how it integrates with AI services. Also planning a demo on deploying Vertex AI models.',
-                                time: '10:38 AM',
-                                avatarColor: '#4285F4', // Google Blue
-                                delay: 11000
-                            },
-                            {
-                                sender: 'Meera',
-                                text: 'For anyone interested, I\'ve shared resources from our last BigQuery ML workshop in the Drive folder. The SQL-based ML models were surprisingly powerful!',
-                                time: '10:39 AM',
-                                avatarColor: '#0F9D58', // Google Green
-                                delay: 13000
-                            },
-                            {
-                                sender: 'Abhinav',
-                                text: 'Quick announcement: We\'re looking for speakers for our DevFest Udaipur event in October. If you\'ve worked on interesting projects using Google Cloud or AI, please DM me!',
-                                time: '10:40 AM',
-                                avatarColor: '#4285F4', // Google Blue
-                                delay: 15000
-                            }
-                        ];
-
-                        // Function to create message elements
-                        function createMessage(message) {
-                            const messageEl = document.createElement('div');
-                            messageEl.className = message.right ? 'message message-right' : 'message message-left';
-                            messageEl.style.animationDelay = '0.1s';
-
-                            if (!message.right) {
-                                const avatarDiv = document.createElement('div');
-                                avatarDiv.className = 'avatar';
-                                avatarDiv.style.background = message.avatarColor;
-                                avatarDiv.textContent = message.sender.charAt(0);
-
-                                const senderName = document.createElement('div');
-                                senderName.style.fontWeight = 'bold';
-                                senderName.style.marginBottom = '5px';
-                                senderName.textContent = message.sender;
-
-                                messageEl.appendChild(avatarDiv);
-                                messageEl.appendChild(senderName);
-                            }
-
-                            const messageText = document.createElement('div');
-                            messageText.textContent = message.text;
-
-                            const messageTime = document.createElement('div');
-                            messageTime.className = 'message-time';
-                            messageTime.textContent = message.time;
-
-                            if (!message.right && message.hasReaction) {
-                                const reaction = document.createElement('div');
-                                reaction.className = 'reaction';
-                                reaction.innerHTML = '👍';
-                                messageEl.appendChild(reaction);
-                            }
-
-                            messageEl.appendChild(messageText);
-                            messageEl.appendChild(messageTime);
-
-                            return messageEl;
-                        }
-
-                        // Function to show typing indicator
-                        function showTyping(duration = 2000) {
-                            const typingEl = document.createElement('div');
-                            typingEl.className = 'typing-indicator';
-                            typingEl.innerHTML = `
-                <div class="typing-dot"></div>
-                <div class="typing-dot"></div>
-                <div class="typing-dot"></div>
-              `;
-
-                            document.getElementById('chat-container').appendChild(typingEl);
-                            setTimeout(() => {
-                                typingEl.style.opacity = 1;
-                            }, 10);
-
-                            return new Promise(resolve => {
-                                setTimeout(() => {
-                                    typingEl.style.opacity = 0;
-                                    setTimeout(() => {
-                                        typingEl.remove();
-                                        resolve();
-                                    }, 300);
-                                }, duration);
-                            });
-                        }
-
-                        // Function to add a new user message
-                        async function addUserMessage(text) {
-                            const message = {
-                                sender: 'You',
-                                text: text,
-                                time: new Date().toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'}),
-                                right: true
-                            };
-
-                            const messageEl = createMessage(message);
-                            document.getElementById('chat-container').appendChild(messageEl);
-                            document.getElementById('chat-container').scrollTop = document.getElementById('chat-container').scrollHeight;
-
-                            // Show typing indicator after user sends message
-                            await showTyping(2000);
-
-                            // Add reply message
-                            const replyMessage = {
-                                sender: 'Abhinav',
-                                text: 'Thanks for your message! Looking forward to seeing you at our next meetup. Don\'t forget to check our GitHub repo for sample projects on Google Cloud and AI.',
-                                time: new Date().toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'}),
-                                avatarColor: '#4285F4'
-                            };
-
-                            const replyEl = createMessage(replyMessage);
-                            document.getElementById('chat-container').appendChild(replyEl);
-                            document.getElementById('chat-container').scrollTop = document.getElementById('chat-container').scrollHeight;
-                        }
-
-                        // Create particles
-                        function createParticles() {
-                            const container = document.getElementById('particles');
-                            for (let i = 0; i < 20; i++) {
-                                const particle = document.createElement('div');
-                                particle.className = 'particle';
-
-                                // Random starting position
-                                const startX = Math.random() * window.innerWidth;
-                                const startY = Math.random() * window.innerHeight;
-
-                                // Random ending position
-                                const endX = Math.random() * window.innerWidth - startX;
-                                const endY = Math.random() * window.innerHeight - startY;
-
-                                particle.style.setProperty('--endX', `${endX}px`);
-                                particle.style.setProperty('--endY', `${endY}px`);
-
-                                particle.style.left = `${startX}px`;
-                                particle.style.top = `${startY}px`;
-                                particle.style.width = `${5 + Math.random() * 10}px`;
-                                particle.style.height = particle.style.width;
-                                particle.style.animationDuration = `${5 + Math.random() * 20}s`;
-                                particle.style.animationDelay = `${Math.random() * 5}s`;
-
-                                container.appendChild(particle);
-                            }
-                        }
-
-                        // Create floating bubbles
-                        function createBubbles() {
-                            const container = document.getElementById('bubbles');
-                            for (let i = 0; i < 15; i++) {
-                                const bubble = document.createElement('div');
-                                bubble.className = 'bubble';
-
-                                // Random position
-                                const posX = Math.random() * window.innerWidth;
-                                const posY = Math.random() * window.innerHeight;
-
-                                // Random movement
-                                const moveX = (Math.random() - 0.5) * 100;
-                                const moveY = (Math.random() - 0.5) * 100;
-
-                                bubble.style.setProperty('--moveX', `${moveX}px`);
-                                bubble.style.setProperty('--moveY', `${moveY}px`);
-
-                                bubble.style.left = `${posX}px`;
-                                bubble.style.top = `${posY}px`;
-                                bubble.style.width = `${20 + Math.random() * 60}px`;
-                                bubble.style.height = bubble.style.width;
-                                bubble.style.animationDuration = `${8 + Math.random() * 7}s`;
-                                bubble.style.animationDelay = `${Math.random() * 5}s`;
-
-                                container.appendChild(bubble);
-                            }
-                        }
-                        function adjustBubbleHeight() {
-                            document.getElementById('bubbles').style.height = `${document.body.scrollHeight}px`;
-                        }
-
-                        // Call function when the page loads and on resize
-                        window.addEventListener('load', adjustBubbleHeight);
-                        window.addEventListener('resize', adjustBubbleHeight);
-
-                        async function initChat() {
-                            createParticles();
-                            createBubbles();
-
-                            // Add 3D tilt effect
-                            const phone = document.getElementById('phone');
-                            const scene = document.getElementById('whatsapp-scene');
-
-                            scene.addEventListener('mousemove', (e) => {
-                                const xAxis = (window.innerWidth / 2 - e.pageX) / 270;
-                                const yAxis = (window.innerHeight / 2 - e.pageY) / 270;
-                                phone.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
-                            });
-
-                            scene.addEventListener('mouseleave', () => {
-                                phone.style.transform = 'rotateY(0) rotateX(0)';
-                            });
-
-                            // Display messages with delays
-                            for (const message of chatMessages) {
-                                await new Promise(resolve => setTimeout(resolve, message.delay));
-
-                                if (Math.random() > 0.7 && !message.right) {
-                                    await showTyping(1500);
-                                }
-
-                                const messageEl = createMessage(message);
-                                document.getElementById('chat-container').appendChild(messageEl);
-                                document.getElementById('chat-container').scrollTop = document.getElementById('chat-container').scrollHeight;
-                            }
-
-                            // Setup send button
-                            document.getElementById('send-btn').addEventListener('click', () => {
-                                const input = document.getElementById('message-input');
-                                if (input.value.trim()) {
-                                    addUserMessage(input.value.trim());
-                                    input.value = '';
-                                }
-                            });
-
-                            // Allow pressing Enter to send message
-                            document.getElementById('message-input').addEventListener('keypress', (e) => {
-                                if (e.key === 'Enter') {
-                                    const input = document.getElementById('message-input');
-                                    if (input.value.trim()) {
-                                        addUserMessage(input.value.trim());
-                                        input.value = '';
-                                    }
-                                }
-                            });
-
-                            // Connect button effect
-                            document.getElementById('connect-btn').addEventListener('click', () => {
-                                alert('Thanks for joining GDG Cloud Udaipur! You would be redirected to WhatsApp in a real implementation.');
-                            });
-                        }
-
-                        function updateClock() {
-                            const now = new Date();
-                            const timeString = now.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
-                            document.querySelector('.status-bar-time').textContent = timeString;
-                            setTimeout(updateClock, 60000); // Update every minute
-                        }
-
-                        window.addEventListener('load', () => {
-                            initChat();
-                            updateClock();
-                        });
-                        //for whatsapp scroll down animation
-                        document.addEventListener('DOMContentLoaded', function () {
-                            const whatsappSection = document.querySelector('.whatsapp-container');
-                            const membershipSection = document.querySelector('.membership-section');
-                            const observer = new IntersectionObserver((entries) => {
-                                entries.forEach(entry => {
-                                    if (entry.isIntersecting) {
-                                        whatsappSection.classList.add('visible');
-                                        observer.unobserve(whatsappSection);
-                                    }
-                                });
-                            }, {
-                                threshold: 0.1
-                            });
-
-                            observer.observe(whatsappSection);
-                            observer.observe(membershipSection);
-                        });
-                        //for navbar
-
-                        document.addEventListener('DOMContentLoaded', function () {
-                            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-                            const mobileMenu = document.getElementById('mobile-menu');
-
-                            mobileMenuBtn.addEventListener('click', function () {
-                                mobileMenu.classList.toggle('active');
-                            });
-                        });
-
-
-
-
-                        function openModal(modalId, registerUrl) {
-                            if (modalId === 'membershipModal') {
-                            window.open('https://gdg.community.dev/gdg-cloud-udaipur/', '_blank');
-                                    } else if (modalId === 'eventModal' && 'Build With Ai') {
-                                        window.open('https://photos.app.goo.gl/eaEjs9vNKgUU4yuZA', '_blank');
-                                    } else {
-                                        document.getElementById(modalId).style.display = 'block';
-                                    }
-                                }
-                         function closeModal(modalId) {
-                                    document.getElementById(modalId).style.display = 'none';
-                                }
-                                document.addEventListener('DOMContentLoaded', function () {
-    const events = [
-        {
-            title: "Build With AI - Udaipur Hands-on Edition",
-            date: "2025-04-06",
-            description: "Get hands-on experience with AI and Machine Learning. Learn how to build and deploy AI-powered applications, explore cutting-edge AI models, and leverage Google Cloud's AI services.",
-            image: "buildwithai.webp",
-            link: "https://photos.app.goo.gl/eaEjs9vNKgUU4yuZA"
-        },
-        {
-            title: "Cloud Community Days",
-            date: "2025-06-29",
-            description: "Our flagship annual event with keynotes from industry experts, workshops, networking opportunities, and much more.",
-            image: "cloudcommunity.jpeg",
-            link: "https://photos.app.goo.gl/eaEjs9vNKgUU4yuZA"
-        },
-        {
-            title: "Hackathon",
-            date: "2025-06-29",
-            description: "Join our annual hackathon to showcase your skills, collaborate with fellow developers, and build innovative solutions using Google Cloud technologies.",
-            image: "hackathon.jpg",
-            link: "Hackathon.html"
-        }
-    ];
-
-    const upcomingEventsContainer = document.getElementById('upcoming-events');
-    const pastEventsContainer = document.getElementById('past-events-grid');
-    const today = new Date();
-
-    events.forEach(event => {
-        const eventDate = new Date(event.date);
-        const isPastEvent = eventDate < today;
-
-        const eventCard = document.createElement('div');
-        eventCard.className = 'event-card';
-        eventCard.innerHTML = `
-            <div class="card-img" style="background-image: url('${event.image}')"></div>
-            <div class="card-content">
-                <span class="card-date">${eventDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
-                <h3 class="card-title">${event.title}</h3>
-                <p class="card-description">${event.description}</p>
-                ${!isPastEvent ? `<a href="${event.link}" target="_blank" class="btn card-btn">Register Now</a>` : ''}
+                </div>
             </div>
-        `;
+        </section>
 
-        if (isPastEvent) {
-            pastEventsContainer.appendChild(eventCard);
-        } else {
-            upcomingEventsContainer.appendChild(eventCard);
-        }
-    });
-});                                
+        <!-- Footer -->
+        <footer>
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#events">Events</a></li>
+                        <li><a href="#organizers">Organizers</a></li>
+                        <li><a href="#about">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                         <a href="https://www.linkedin.com/company/gdg-cloud-udaipur/" target="_blank" class="social-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                        </a>
+                        <a href="https://x.com/gdgcloududp" target="_blank" class="social-icon">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.617l-5.21-6.817-6.022 6.817h-3.308l7.732-8.835-8.232-10.665h6.828l4.611 6.033 5.543-6.033zm-1.083 18.2h1.727l-10.543-14.234h-1.62l10.436 14.234z"/></svg>
+                        </a>
+                        <a href="https://www.instagram.com/gdgcloududaipur/" target="_blank" class="social-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.584-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.069-1.645-.069-4.85s.011-3.584.069-4.85c.149-3.225 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.85-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072s3.667-.014 4.947-.072c4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.947s-.014-3.667-.072-4.947c-.196-4.358-2.617-6.78-6.979-6.98-1.281-.059-1.69-.072-4.948-.072zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.441 1.441 1.441 1.441-.645 1.441-1.441-.645-1.44-1.441-1.44z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <p>Have questions? Reach out to us!</p>
+                    <a href="mailto:gdgcloududaipur@gmail.com" class="btn btn-secondary" style="margin-top:10px; padding: 8px 20px;">Email Us</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2024 Google Developer Group Cloud Udaipur. All Rights Reserved.
+            </div>
+        </footer>
 
-</script>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // --- Mobile Menu ---
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuBtn.addEventListener('click', function () {
+                mobileMenu.classList.toggle('active');
+            });
+
+            // --- Particle Background ---
+            const particlesContainer = document.getElementById('particles-bg');
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = `${Math.random() * 100}vw`;
+                particle.style.top = `${Math.random() * 100}vh`;
+                particle.style.width = `${2 + Math.random() * 4}px`;
+                particle.style.height = particle.style.width;
+                particle.style.animationDuration = `${10 + Math.random() * 15}s`;
+                particle.style.animationDelay = `${Math.random() * 10}s`;
+                const color = ['var(--google-blue)', 'var(--google-red)', 'var(--google-yellow)', 'var(--google-green)'][Math.floor(Math.random() * 4)];
+                particle.style.background = color;
+                particlesContainer.appendChild(particle);
+            }
+
+            // --- Events Data and Rendering ---
+            const events = [
+                {
+                    title: "Build With AI - Udaipur Hands-on Edition",
+                    date: "2025-04-06",
+                    description: "Get hands-on experience with AI and Machine Learning. Learn how to build and deploy AI-powered applications, explore cutting-edge AI models, and leverage Google Cloud's AI services.",
+                    image: "https://raw.githubusercontent.com/GDGCloudUdaipur/gdgcloududaipur.github.io/main/buildwithai.webp",
+                    link: "https://photos.app.goo.gl/eaEjs9vNKgUU4yuZA"
+                },
+                {
+                    title: "Cloud Community Days",
+                    date: "2025-06-29",
+                    description: "Our flagship annual event with keynotes from industry experts, workshops, networking opportunities, and much more.",
+                    image: "https://raw.githubusercontent.com/GDGCloudUdaipur/gdgcloududaipur.github.io/main/cloudcommunity.jpeg",
+                    link: "https://photos.app.goo.gl/eaEjs9vNKgUU4yuZA"
+                },
+                {
+                    title: "Hackathon",
+                    date: "2025-06-29",
+                    description: "Join our annual hackathon to showcase your skills, collaborate with fellow developers, and build innovative solutions using Google Cloud technologies.",
+                    image: "https://raw.githubusercontent.com/GDGCloudUdaipur/gdgcloududaipur.github.io/main/hackathon.jpg",
+                    link: "https://gdg.community.dev/gdg-cloud-udaipur/"
+                }
+            ];
+
+            const upcomingEventsContainer = document.getElementById('upcoming-events');
+            const pastEventsContainer = document.getElementById('past-events-grid');
+            const today = new Date();
+            
+            let hasUpcomingEvents = false;
+            let hasPastEvents = false;
+
+            events.forEach(event => {
+                const eventDate = new Date(event.date);
+                const isPastEvent = eventDate < today;
+
+                const eventCard = document.createElement('div');
+                eventCard.className = 'event-card';
+
+                // Conditionally render button based on event type and link availability
+                let buttonHtml = '';
+                if (event.link) {
+                    if (!isPastEvent) {
+                        buttonHtml = `<a href="${event.link}" target="_blank" class="btn card-btn">Register Now</a>`;
+                    } else {
+                        buttonHtml = `<a href="${event.link}" target="_blank" class="btn card-btn">View Photos</a>`;
+                    }
+                }
+
+                eventCard.innerHTML = `
+                    <div class="card-img" style="background-image: url('${event.image}')"></div>
+                    <div class="card-content">
+                        <span class="card-date">${eventDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+                        <h3 class="card-title">${event.title}</h3>
+                        <p class="card-description">${event.description}</p>
+                        ${buttonHtml}
+                    </div>
+                `;
+
+                if (isPastEvent) {
+                    pastEventsContainer.appendChild(eventCard);
+                    hasPastEvents = true;
+                } else {
+                    upcomingEventsContainer.appendChild(eventCard);
+                    hasUpcomingEvents = true;
+                }
+            });
+            
+            // Hide sections if no events
+            if (!hasUpcomingEvents) {
+                document.getElementById('events').style.display = 'none';
+            }
+            if (!hasPastEvents) {
+                 document.getElementById('past-events').style.display = 'none';
+            }
+
+
+            // --- WhatsApp Chat Animation ---
+            const chatContainer = document.getElementById('chat-container');
+            const chatMessages = [
+                { sender: 'Abhinav', text: 'Hello everyone! Welcome to the GDG Cloud Udaipur community! 🎉', time: '10:32 AM', avatarColor: '#4285F4' },
+                { sender: 'Priya', text: 'Hey all! Looking forward to our next Study Jam.', time: '10:33 AM', avatarColor: '#DB4437' },
+                { sender: 'You', text: 'Hi! New member here. Excited to learn!', time: '10:35 AM', right: true },
+                { sender: 'Abhinav', text: 'Welcome! Our next workshop is on Gemini. Hope you can join!', time: '10:36 AM', avatarColor: '#4285F4' }
+            ];
+
+            function createMessage(msg) {
+                const messageEl = document.createElement('div');
+                messageEl.className = msg.right ? 'message message-right' : 'message message-left';
+                
+                let avatarHtml = '';
+                if (!msg.right) {
+                    avatarHtml = `<div class="avatar" style="background-color:${msg.avatarColor};">${msg.sender.charAt(0)}</div>`;
+                }
+                
+                messageEl.innerHTML = `
+                    ${avatarHtml}
+                    <div class="message-content">
+                        ${!msg.right ? `<div class="message-sender">${msg.sender}</div>` : ''}
+                        <div>${msg.text}</div>
+                        <div class="message-time">${msg.time}</div>
+                    </div>
+                `;
+                return messageEl;
+            }
+
+            let messageIndex = 0;
+            function showNextMessage() {
+                if (messageIndex < chatMessages.length) {
+                    const msg = chatMessages[messageIndex];
+                    const messageEl = createMessage(msg);
+                    chatContainer.appendChild(messageEl);
+                    chatContainer.scrollTop = chatContainer.scrollHeight;
+                    messageIndex++;
+                    setTimeout(showNextMessage, 2000 + Math.random() * 2000);
+                } else {
+                    // loop back
+                    setTimeout(() => {
+                        chatContainer.innerHTML = '';
+                        messageIndex = 0;
+                        showNextMessage();
+                    }, 5000);
+                }
+            }
+            
+            // --- Intersection Observer for animations ---
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        if (entry.target.id === 'contact') {
+                            entry.target.classList.add('visible');
+                            // Start chat animation only when it's visible
+                            if (messageIndex === 0) {
+                                showNextMessage();
+                            }
+                        }
+                    }
+                });
+            }, { threshold: 0.4 });
+
+            const contactSection = document.getElementById('contact');
+            if(contactSection) {
+                observer.observe(contactSection);
+            }
+        });
+    </script>
 
 </body>
 
