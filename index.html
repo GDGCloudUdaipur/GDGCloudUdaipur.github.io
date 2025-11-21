@@ -520,12 +520,26 @@
             color: white;
             transition: all 0.3s;
             border: 1px solid var(--glass-border);
+            text-decoration: none;
+            animation: floatIcon 3s ease-in-out infinite;
         }
 
         .social-btn:hover {
             background: var(--g-blue);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(66, 133, 244, 0.4);
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 5px 15px rgba(66, 133, 244, 0.6);
+        }
+
+        @keyframes floatIcon {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-5px);
+            }
         }
 
         /* About Section */
@@ -565,75 +579,150 @@
             font-size: 1.1rem;
         }
 
-        /* 3D Cube Animation for About */
-        .cube-wrapper {
-            perspective: 800px;
+        /* 3D Tesseract Animation for About */
+        .tesseract-wrapper {
+            perspective: 1000px;
             width: 200px;
             height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        .cube {
+        .tesseract {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            transform-style: preserve-3d;
+            animation: rotateTesseract 12s infinite linear;
+        }
+
+        .cube-outer,
+        .cube-inner {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            position: relative;
             transform-style: preserve-3d;
-            animation: spin 10s infinite linear;
+        }
+
+        .cube-inner {
+            width: 50%;
+            height: 50%;
+            top: 25%;
+            left: 25%;
+            animation: counterRotate 12s infinite linear;
         }
 
         .face {
             position: absolute;
-            width: 200px;
-            height: 200px;
-            background: rgba(66, 133, 244, 0.1);
-            border: 2px solid var(--g-blue);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 40px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0 0 15px rgba(66, 133, 244, 0.3);
+            backface-visibility: visible;
+            opacity: 0.8;
+            transition: all 0.3s;
+        }
+
+        /* Outer Cube Faces */
+        .cube-outer .face {
+            width: 200px;
+            height: 200px;
+            border: 2px solid var(--g-blue);
+            background: rgba(66, 133, 244, 0.05);
+            font-size: 1.2rem;
             color: var(--g-blue);
-            box-shadow: 0 0 20px rgba(66, 133, 244, 0.2);
         }
 
-        .front {
-            transform: rotateY(0deg) translateZ(100px);
+        .cube-outer .front {
+            transform: translateZ(100px);
         }
 
-        .back {
+        .cube-outer .back {
             transform: rotateY(180deg) translateZ(100px);
         }
 
-        .right {
+        .cube-outer .right {
             transform: rotateY(90deg) translateZ(100px);
             border-color: var(--g-red);
             color: var(--g-red);
-            background: rgba(234, 67, 53, 0.1);
+            background: rgba(234, 67, 53, 0.05);
         }
 
-        .left {
+        .cube-outer .left {
             transform: rotateY(-90deg) translateZ(100px);
             border-color: var(--g-green);
             color: var(--g-green);
-            background: rgba(52, 168, 83, 0.1);
+            background: rgba(52, 168, 83, 0.05);
         }
 
-        .top {
+        .cube-outer .top {
             transform: rotateX(90deg) translateZ(100px);
             border-color: var(--g-yellow);
             color: var(--g-yellow);
-            background: rgba(251, 188, 5, 0.1);
+            background: rgba(251, 188, 5, 0.05);
         }
 
-        .bottom {
+        .cube-outer .bottom {
             transform: rotateX(-90deg) translateZ(100px);
         }
 
-        @keyframes spin {
+        /* Inner Cube Faces */
+        .cube-inner .face {
+            width: 100px;
+            height: 100px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.1);
+            font-size: 0;
+            /* No text on inner cube */
+        }
+
+        .cube-inner .front {
+            transform: translateZ(50px);
+        }
+
+        .cube-inner .back {
+            transform: rotateY(180deg) translateZ(50px);
+        }
+
+        .cube-inner .right {
+            transform: rotateY(90deg) translateZ(50px);
+        }
+
+        .cube-inner .left {
+            transform: rotateY(-90deg) translateZ(50px);
+        }
+
+        .cube-inner .top {
+            transform: rotateX(90deg) translateZ(50px);
+        }
+
+        .cube-inner .bottom {
+            transform: rotateX(-90deg) translateZ(50px);
+        }
+
+        @keyframes rotateTesseract {
             0% {
-                transform: rotateX(0) rotateY(0);
+                transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
             }
 
             100% {
-                transform: rotateX(360deg) rotateY(360deg);
+                transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
+            }
+        }
+
+        @keyframes counterRotate {
+            0% {
+                transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
+            }
+
+            100% {
+                transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
             }
         }
 
@@ -941,9 +1030,23 @@
                     <p class="profile-role">Lead Organizer</p>
                     <p class="profile-bio">Tech Innovator and Community Leader with 5+ years in AI & Cloud.</p>
                     <div class="social-icons">
-                        <a href="#" class="social-btn">IN</a>
-                        <a href="#" class="social-btn">X</a>
-                        <a href="#" class="social-btn">IG</a>
+                        <a href="https://www.linkedin.com/in/abhinav-jain-8b4bab62/" target="_blank" class="social-btn"
+                            title="LinkedIn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="currentColor">
+                                <path
+                                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                            </svg>
+                        </a>
+                        <a href="mailto:abhinav.jain1411@gmail.com" class="social-btn" title="Email">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                                </path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -955,14 +1058,24 @@
     <section id="about">
         <div class="about-container">
             <div class="about-visual">
-                <div class="cube-wrapper">
-                    <div class="cube">
-                        <div class="face front">G</div>
-                        <div class="face back">C</div>
-                        <div class="face right">P</div>
-                        <div class="face left">AI</div>
-                        <div class="face top">ML</div>
-                        <div class="face bottom">Dev</div>
+                <div class="tesseract-wrapper">
+                    <div class="tesseract">
+                        <div class="cube-outer">
+                            <div class="face front">Innovate</div>
+                            <div class="face back">Build</div>
+                            <div class="face right">Connect</div>
+                            <div class="face left">Grow</div>
+                            <div class="face top">Learn</div>
+                            <div class="face bottom">Lead</div>
+                        </div>
+                        <div class="cube-inner">
+                            <div class="face front"></div>
+                            <div class="face back"></div>
+                            <div class="face right"></div>
+                            <div class="face left"></div>
+                            <div class="face top"></div>
+                            <div class="face bottom"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1021,9 +1134,20 @@
             <a href="#">Privacy</a>
         </div>
         <div class="social-icons" style="justify-content: center; margin-bottom: 20px;">
-            <a href="#" class="social-btn">Li</a>
-            <a href="#" class="social-btn">X</a>
-            <a href="#" class="social-btn">Ig</a>
+            <a href="https://www.linkedin.com/company/gdg-cloud-udaipur/" target="_blank" class="social-btn"
+                title="LinkedIn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                </svg>
+            </a>
+            <a href="https://chat.whatsapp.com/EesExCP4NMD4CjvT7TlQ2x" target="_blank" class="social-btn"
+                title="WhatsApp">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
+                </svg>
+            </a>
         </div>
         <p class="copyright">&copy; 2025 GDG Cloud Udaipur. All Rights Reserved.</p>
     </footer>
