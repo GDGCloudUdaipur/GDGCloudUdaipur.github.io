@@ -4,148 +4,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Google Developer Group Cloud Udaipur</title>
+    <title>GDG Cloud Udaipur | Innovate. Build. Grow.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <style>
-        /*scroll-bar*/
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-
-        ::-webkit-scrollbar-track-piece {
-            background-color: #ffffff00;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background-color: #CBCBCB;
-            outline: 2px solid #FFF;
-            outline-offset: -2px;
-            border: .1px solid #B7B7B7;
-            border-radius: 5px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background-color: #909090;
-        }
-
         :root {
-            --google-blue: #4285F4;
-            --google-red: #EA4335;
-            --google-yellow: #FBBC05;
-            --google-green: #34A853;
-            --dark-bg: #121212;
-            --card-bg: rgba(30, 30, 30, 0.9);
-            --glow: 0 0 15px rgba(66, 133, 244, 0.7);
+            --g-blue: #4285F4;
+            --g-red: #EA4335;
+            --g-yellow: #FBBC05;
+            --g-green: #34A853;
+            --bg-dark: #050505;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.05);
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.7);
+            --card-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Google Sans', Arial, sans-serif;
+            font-family: 'Outfit', sans-serif;
         }
 
         body {
-            background-color: var(--dark-bg);
-            color: #fff;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
             overflow-x: hidden;
-            background-image:
-                radial-gradient(circle at 20% 30%, rgba(66, 133, 244, 0.1) 0%, transparent 30%),
-                radial-gradient(circle at 80% 70%, rgba(251, 188, 5, 0.1) 0%, transparent 30%),
-                radial-gradient(circle at 50% 50%, rgba(52, 168, 83, 0.05) 0%, transparent 70%);
-            width: 100%;
-            min-height: 100vh; /* ensure full viewport height */
-            display: flex;
-            flex-direction: column;
+            perspective: 1000px;
         }
 
-        .particles {
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--g-blue);
+        }
+
+        /* Background Animation */
+        #canvas-container {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: -1;
-            overflow: hidden;
+            opacity: 0.6;
         }
 
-        .particle {
-            position: absolute;
-            border-radius: 50%;
-            opacity: 0.5;
-            animation: float 15s infinite linear;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(0) translateX(0) rotate(0deg);
-                opacity: 0;
-            }
-
-            10% {
-                opacity: 0.5;
-            }
-
-            90% {
-                opacity: 0.5;
-            }
-
-            100% {
-                transform: translateY(-100vh) translateX(100px) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            flex: 1 0 auto; /* allow container to grow and push footer to bottom */
-        }
-
-        /* Navigation bar */
-        header {
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-            width: 100%;
-            box-sizing: border-box;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background: rgba(5, 5, 5, 0.5);
+            border-bottom: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
         }
-        
-        .logo-container {
-            flex-shrink: 0;
+
+        nav.scrolled {
+            padding: 15px 50px;
+            background: rgba(5, 5, 5, 0.9);
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            height: 40px;
         }
 
         .nav-links {
             display: flex;
-            gap: 30px;
-            flex: 1;
-            justify-content: flex-end;
+            gap: 40px;
         }
 
         .nav-links a {
-            color: #fff;
+            color: var(--text-secondary);
             text-decoration: none;
             font-weight: 500;
             position: relative;
-            padding: 5px 0;
             transition: color 0.3s;
         }
 
-        .nav-links a:hover {
-            color: var(--google-blue);
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--text-primary);
         }
 
         .nav-links a::after {
             content: '';
             position: absolute;
-            bottom: 0;
+            bottom: -5px;
             left: 0;
             width: 0;
             height: 2px;
-            background: var(--google-blue);
+            background: linear-gradient(90deg, var(--g-blue), var(--g-red), var(--g-yellow), var(--g-green));
             transition: width 0.3s;
         }
 
@@ -153,1383 +132,1093 @@
             width: 100%;
         }
 
-        /* Mobile menu button */
-        .mobile-menu-btn {
-            display: none;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 30px;
-            height: 21px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            z-index: 1001;
-            color: white;
-            font-size: 24px;
-        }
-
-        .mobile-menu-btn .bar {
-            height: 3px;
-            width: 100%;
-            background-color: #fff;
-            border-radius: 10px;
-            transition: all 0.3s;
-        }
-
-        /* Mobile menu */
-        .mobile-menu {
-            display: none;
-            flex-direction: column;
-            position: absolute;
-            top: 80px;
-            right: 20px;
-            background-color: var(--dark-bg);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-        }
-
-        .mobile-menu a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: 500;
-            padding: 10px 0;
-            transition: color 0.3s;
-        }
-
-        .mobile-menu a:hover {
-            color: var(--google-blue);
-        }
-
+        /* Hero Section */
         .hero {
-            min-height: 80vh;
+            height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
+            padding: 0 20px;
             overflow: hidden;
-            text-align: center;
         }
 
         .hero-content {
-            z-index: 2;
-            animation: fadeIn 1s ease-out;
+            text-align: center;
+            z-index: 10;
+            max-width: 900px;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 50px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(5px);
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--g-blue);
+            box-shadow: 0 0 20px rgba(66, 133, 244, 0.2);
+            animation: float 3s ease-in-out infinite;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 5rem;
+            line-height: 1.1;
             margin-bottom: 20px;
-            background: linear-gradient(90deg, var(--google-blue), var(--google-red), var(--google-yellow), var(--google-green));
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff 0%, #ccc 100%);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            animation: gradientFlow 10s linear infinite;
-            background-size: 400% 100%;
+            text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
-        @keyframes gradientFlow {
-            0% {
-                background-position: 0% 50%;
-            }
-
-            100% {
-                background-position: 400% 50%;
-            }
+        .hero h1 span {
+            background: linear-gradient(90deg, var(--g-blue), var(--g-red), var(--g-yellow), var(--g-green));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
 
         .hero p {
             font-size: 1.2rem;
-            margin-bottom: 30px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
-            color: rgba(255, 255, 255, 0.8);
         }
 
-        .hero-buttons {
+        .cta-group {
             display: flex;
             gap: 20px;
             justify-content: center;
-            margin-top: 40px;
         }
 
         .btn {
-            padding: 12px 30px;
-            background-color: var(--google-blue);
-            color: white;
-            border: none;
-            border-radius: 30px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
             z-index: 1;
-            box-shadow: var(--glow);
-            text-decoration: none;
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.2);
-            transition: width 0.3s;
-            z-index: -1;
-        }
-
-        .btn:hover::before {
-            width: 100%;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .btn-primary {
-            background-color: var(--google-blue);
+            background: var(--g-blue);
+            color: white;
+            box-shadow: 0 0 20px rgba(66, 133, 244, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(66, 133, 244, 0.6);
         }
 
         .btn-secondary {
-            background-color: transparent;
-            border: 2px solid var(--google-blue);
-        }
-
-        .events-section {
-            padding: 80px 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: #fff;
-            margin-bottom: 15px;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background: var(--google-blue);
-        }
-
-        .events-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-            align-items: stretch; /* Changed from start to stretch for equal height */
-        }
-
-        .event-card {
-            background: var(--card-bg);
-            border-radius: 15px;
-            overflow: hidden;
-            transition: transform 0.3s, box-shadow 0.3s;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            backdrop-filter: blur(5px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-            display: flex; /* Added for flex layout */
-            flex-direction: column; /* Added for vertical layout */
         }
 
-        .event-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--glow);
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
         }
 
-        .event-card::before {
-            content: '';
+        /* 3D Floating Elements in Hero */
+        .floating-icon {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, var(--google-blue), var(--google-red), var(--google-yellow), var(--google-green));
-        }
-
-        .card-img {
-            height: 200px;
-            background-color: #2a2a2a;
+            width: 60px;
+            height: 60px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-            overflow: hidden;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: float 6s ease-in-out infinite;
+            z-index: 1;
         }
 
-        .card-img::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.7) 100%);
+        .floating-icon svg {
+            width: 30px;
+            height: 30px;
         }
 
-        .card-content {
-            padding: 25px;
-            flex-grow: 1; /* Allows content to fill space */
-            display: flex; /* Flex layout for content */
-            flex-direction: column; /* Vertical layout */
+        .icon-1 {
+            top: 20%;
+            left: 15%;
+            animation-delay: 0s;
+            border-color: rgba(66, 133, 244, 0.3);
         }
 
-        .card-title {
-            font-size: 1.4rem;
-            margin-bottom: 10px;
-            color: #fff;
+        .icon-2 {
+            top: 30%;
+            right: 15%;
+            animation-delay: 2s;
+            border-color: rgba(234, 67, 53, 0.3);
         }
 
-        .card-date {
-            display: inline-block;
-            padding: 5px 12px;
-            background-color: rgba(66, 133, 244, 0.2);
-            border-radius: 20px;
-            font-size: 0.8rem;
-            color: var(--google-blue);
-            margin-bottom: 15px;
-            align-self: flex-start;
+        .icon-3 {
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+            border-color: rgba(251, 188, 5, 0.3);
         }
 
-        .card-description {
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 20px;
-            line-height: 1.6;
-            flex-grow: 1; /* Pushes button to the bottom */
+        .icon-4 {
+            bottom: 25%;
+            right: 20%;
+            animation-delay: 1s;
+            border-color: rgba(52, 168, 83, 0.3);
         }
 
-        .card-price {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--google-yellow);
-            margin-bottom: 15px;
-        }
+        @keyframes float {
 
-        .card-btn {
-            width: 100%;
-            text-align: center;
-            margin-top: auto; /* Pushes button to the bottom */
-        }
-
-        /* Organizers Section */
-        .organizers-section {
-            padding: 80px 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .organizers-grid {
-            display: grid; /* Using grid for organizers */
-            grid-template-columns: 1fr; /* Single column */
-            gap: 30px;
-            margin-top: 50px;
-        }
-
-        .organizer-card {
-            background: var(--card-bg);
-            border-radius: 15px;
-            overflow: hidden;
-            padding: 30px;
-            position: relative;
-            transition: transform 0.4s, box-shadow 0.4s;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            height: 100%;
-        }
-
-        .organizer-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--glow);
-        }
-
-        .organizer-avatar {
-            position: relative;
-            margin-bottom: 25px;
-        }
-
-        .avatar-wrapper {
-            width: 120px;
-            height: 120px;
-            position: relative;
-            margin: 0 auto;
-        }
-
-        .avatar-img {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid var(--google-blue);
-            transition: transform 0.5s;
-        }
-
-        .organizer-card:hover .avatar-img {
-            transform: scale(1.05);
-        }
-
-        .avatar-glow {
-            position: absolute;
-            top: -5px;
-            left: -5px;
-            right: -5px;
-            bottom: -5px;
-            border-radius: 50%;
-            background: conic-gradient(var(--google-blue),
-                    var(--google-red),
-                    var(--google-yellow),
-                    var(--google-green),
-                    var(--google-blue));
-            opacity: 0.7;
-            z-index: -1;
-            animation: rotate 5s linear infinite;
-            filter: blur(10px);
-        }
-
-        .connection-lines {
-            position: absolute;
-            width: 160px;
-            height: 160px;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            border-radius: 50%;
-            border: 1px dashed rgba(255, 255, 255, 0.2);
-            z-index: -1;
-            animation: pulse 3s infinite alternate ease-in-out;
-        }
-
-        .connection-dot {
-            position: absolute;
-            width: 8px;
-            height: 8px;
-            background-color: var(--google-blue);
-            border-radius: 50%;
-            box-shadow: 0 0 10px var(--google-blue);
-        }
-
-        .connection-dot:nth-child(1) {
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: moveDot 5s infinite alternate;
-        }
-
-        .connection-dot:nth-child(2) {
-            bottom: 30%;
-            right: 0;
-            background-color: var(--google-red);
-            box-shadow: 0 0 10px var(--google-red);
-            animation: moveDot 7s infinite alternate-reverse;
-        }
-
-        .connection-dot:nth-child(3) {
-            bottom: 30%;
-            left: 0;
-            background-color: var(--google-green);
-            box-shadow: 0 0 10px var(--google-green);
-            animation: moveDot 6s infinite alternate;
-        }
-
-        @keyframes moveDot {
-            0% {
-                transform: translateY(0);
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
             }
 
             50% {
-                transform: translateY(-5px);
-            }
-
-            100% {
-                transform: translateY(5px);
+                transform: translateY(-20px) rotate(5deg);
             }
         }
 
-        .organizer-info {
+        /* Sections Global */
+        section {
+            padding: 100px 50px;
+            position: relative;
+        }
+
+        .section-header {
             text-align: center;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
+            margin-bottom: 80px;
         }
 
-        .organizer-name {
-            font-size: 1.4rem;
-            font-weight: 600;
-            margin-bottom: 5px;
-            background: linear-gradient(90deg, var(--google-blue), var(--google-red));
+        .section-header h2 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, #fff, #888);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
 
-        .organizer-role {
-            color: var(--google-yellow);
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-            font-weight: 500;
+        .section-header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
         }
 
-        .organizer-bio {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.95rem;
-            margin-bottom: 20px;
-            line-height: 1.6;
+        /* Events Section (3D Cards) */
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            perspective: 1000px;
         }
 
-        .organizer-skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-
-        .skill-tag {
-            padding: 5px 12px;
-            background-color: rgba(66, 133, 244, 0.2);
-            border-radius: 20px;
-            font-size: 0.8rem;
-            color: var(--google-blue);
-            transition: background-color 0.3s, transform 0.3s;
-        }
-
-        .skill-tag:hover {
-            background-color: rgba(66, 133, 244, 0.4);
-            transform: scale(1.05);
-        }
-
-        .organizer-social {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            margin-top: auto;
-        }
-
-        .social-icon {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            transition: all 0.3s;
-        }
-
-        .social-icon:hover {
-            background-color: var(--google-blue);
-            transform: translateY(-3px);
-        }
-
-        .ai-assistant {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s, transform 0.3s;
-        }
-
-        .organizer-card:hover .ai-assistant {
-            opacity: 1;
-            transform: translateY(-10px);
-        }
-
-        .ai-blob {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            background: radial-gradient(circle, var(--google-blue) 0%, rgba(66, 133, 244, 0) 70%);
-            animation: pulse 2s infinite alternate;
-            opacity: 0.7;
-        }
-
-        .ai-icon {
+        .card-3d {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 10px;
             position: relative;
-            z-index: 2;
+            transition: transform 0.1s;
+            transform-style: preserve-3d;
+            backdrop-filter: blur(10px);
+        }
+
+        .card-inner {
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 20px;
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            transform: translateZ(20px);
+        }
+
+        .card-image {
+            height: 220px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .card-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.8));
+        }
+
+        .card-date {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            padding: 8px 15px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--g-yellow);
+            border: 1px solid rgba(251, 188, 5, 0.3);
+        }
+
+        .card-content {
+            padding: 25px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
             color: white;
         }
 
-        @keyframes pulse {
-            0% {
-                transform: scale(0.8);
-                opacity: 0.5;
-            }
-
-            100% {
-                transform: scale(1.2);
-                opacity: 0.8;
-            }
-        }
-        
-        /* About Section */
-        .about-section {
-            padding: 80px 0;
-            position: relative;
-        }
-
-        .about-content {
-            display: flex;
-            align-items: center;
-            gap: 50px;
-        }
-
-        .about-image {
-            flex: 1;
-            position: relative;
-        }
-
-        .about-image-wrapper {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            border-radius: 15px;
-            box-shadow: var(--glow);
-        }
-
-        .about-image-placeholder {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-color: #2a2a2a;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 1.2rem;
-        }
-
-        .about-text {
+        .card-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
             flex: 1;
         }
 
-        .about-text h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: #fff;
-        }
-
-        .about-text p {
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.7;
-            margin-bottom: 20px;
-        }
-
-        /* Footer */
-        footer {
-            background-color: #0a0a0a;
-            padding: 30px 20px; /* slightly reduced padding to avoid large overlay */
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            width: 100vw; /* span full viewport width */
-            position: relative;
-            left: 50%;
-            right: 50%;
-            margin-left: -50vw;
-            margin-right: -50vw; /* make footer touch the sides even when inside centered container */
-            box-sizing: border-box;
-            z-index: 1000;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-        }
-
-        .footer-column h3 {
-            color: #fff;
-            margin-bottom: 20px;
-            font-size: 1.2rem;
-        }
-
-        .footer-column ul {
-            list-style: none;
-        }
-
-        .footer-column ul li {
-            margin-bottom: 10px;
-        }
-
-        .footer-column ul li a {
-            color: rgba(255, 255, 255, 0.7);
+        .card-link {
+            color: var(--g-blue);
             text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-column ul li a:hover {
-            color: var(--google-blue);
-        }
-        .footer-column{
-            margin-left: 60px;
-        }
-        .footer-bottom {
-            text-align: center;
-            padding-top: 30px;
-            margin-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 0.9rem;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 15px;
-            justify-content: center;
-        }
-
-        .social-links a {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.1);
-            display: flex;
+            font-weight: 600;
+            display: inline-flex;
             align-items: center;
-            justify-content: center;
-            color: #fff;
-            transition: background-color 0.3s;
+            gap: 5px;
+            transition: gap 0.3s;
         }
 
-        .social-links a:hover {
-            background-color: var(--google-blue);
+        .card-link:hover {
+            gap: 10px;
         }
 
-        /* WhatsApp Section */
-        .whatsapp-container {
+        /* Organizers (Holographic) */
+        .organizers-container {
             display: flex;
-            align-items: center;
             justify-content: center;
-            padding: 80px 0;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-            position: relative;
-            z-index: 1;
-            min-height: 100vh;
-        }
-
-        .whatsapp-container.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .whatsapp-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
-            width: 100%;
+            flex-wrap: wrap;
             gap: 40px;
         }
 
-        .whatsapp-text {
-            max-width: 50%;
-            text-align: left;
-        }
-        
-        .whatsapp-scene {
+        .profile-card {
+            width: 320px;
+            height: 450px;
             position: relative;
-            width: 350px;
-            height: 600px;
             transform-style: preserve-3d;
-            animation: floatWhatsApp 6s ease-in-out infinite;
-            flex-shrink: 0;
-        }
-        
-        @keyframes floatWhatsApp {
-            0%, 100% {
-                transform: translateY(0) rotateY(5deg);
-            }
-            50% {
-                transform: translateY(-20px) rotateY(-5deg);
-            }
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
-        .phone {
+        .profile-content {
             position: absolute;
-            width: 100%;
-            height: 100%;
-            background: #111;
-            border-radius: 30px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            padding: 10px;
-            transform-style: preserve-3d;
-            transform: rotateY(0deg) rotateX(0deg);
-            transition: transform 0.5s ease;
-        }
-
-        .phone-screen {
-            width: 100%;
-            height: 100%;
-            background: #fff;
-            border-radius: 20px;
+            inset: 0;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+            border-radius: 24px;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
             overflow: hidden;
+        }
+
+        .profile-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: 0.5s;
+        }
+
+        .profile-card:hover .profile-content::before {
+            left: 100%;
+        }
+
+        .profile-img-container {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            padding: 5px;
+            background: linear-gradient(45deg, var(--g-blue), var(--g-red), var(--g-yellow), var(--g-green));
+            margin-bottom: 20px;
             position: relative;
-            display: flex;
-            flex-direction: column;
         }
 
-        .status-bar {
-            height: 24px;
-            background: #000;
-            color: white;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 10px;
-            font-size: 12px;
-            flex-shrink: 0;
-        }
-        
-        .app-header {
-            background: #075e54;
-            padding: 15px;
-            display: flex;
-            align-items: center;
-            position: relative;
-            z-index: 10;
-            color: white;
-            flex-shrink: 0;
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--bg-dark);
         }
 
-        .app-title {
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin-left: 10px;
-        }
-        
-        .group-details {
-            display: flex;
-            padding: 15px;
-            background: #f9f9f9;
-            border-bottom: 1px solid #eee;
-            align-items: center;
-            flex-shrink: 0;
-        }
-        
-        .group-info {
-            flex: 1;
+        .profile-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            background: linear-gradient(90deg, #fff, #aaa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
 
-        .group-name {
-            font-weight: bold;
-            color: #000;
-        }
-
-        .group-members {
-            font-size: 0.8rem;
-            color: #777;
-        }
-
-        .chat-container {
-            flex-grow: 1;
-            overflow-y: auto;
-            padding: 15px;
-            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZGlhZ29uYWxIYXRjaCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgd2lkdGg9IjQiIGhlaWdodD0iNCIgcGF0dGVyblRyYW5zZm9ybT0icm90YXRlKDQ1KSI+PHBhdGggZD0iTSAtMSwxIGwgMiwtMiBNIDAsMCBsIDQsLTQgTSAzLC0xIGwgMiwyIiBzdHJva2U9IiNlNWREZDUiIHN0cm9rZS13aWR0aD0iMC41Ii8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZTVkZGQ1Ii8+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNkaWFnb25hbEhhdGNoKSIvPjwvc3ZnPg==');
-            display: flex;
-            flex-direction: column;
-        }
-
-        .message {
-            max-width: 80%;
-            padding: 10px 15px;
-            border-radius: 10px;
+        .profile-role {
+            color: var(--g-blue);
+            font-weight: 500;
             margin-bottom: 15px;
-            position: relative;
-            word-break: break-word;
-            animation: messageIn 0.5s forwards;
-            opacity: 0;
-            transform: translateY(20px);
-            color: #000;
+            font-size: 1rem;
         }
 
-        .message-time {
-            font-size: 0.7rem;
-            opacity: 0.7;
-            text-align: right;
-            margin-top: 5px;
+        .profile-bio {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
         }
 
-        .message-left {
-            background: white;
-            align-self: flex-start;
-            border-top-left-radius: 0;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .message-right {
-            background: #dcf8c6;
-            align-self: flex-end;
-            border-top-right-radius: 0;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-        
-        .chat-input {
+        .social-icons {
             display: flex;
-            padding: 10px;
-            background: #f0f0f0;
-            align-items: center;
-            flex-shrink: 0;
+            gap: 15px;
         }
 
-        .input-box {
-            flex: 1;
-            border: none;
-            background: white;
-            border-radius: 20px;
-            padding: 10px 15px;
-            margin-right: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .send-btn {
+        .social-btn {
             width: 40px;
             height: 40px;
             border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: all 0.3s;
+            border: 1px solid var(--glass-border);
+        }
+
+        .social-btn:hover {
+            background: var(--g-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(66, 133, 244, 0.4);
+        }
+
+        /* About Section */
+        .about-container {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            background: var(--glass-bg);
+            border-radius: 30px;
+            padding: 50px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .about-visual {
+            flex: 1;
+            height: 400px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .about-content {
+            flex: 1;
+        }
+
+        .about-content h3 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .about-content p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        /* 3D Cube Animation for About */
+        .cube-wrapper {
+            perspective: 800px;
+            width: 200px;
+            height: 200px;
+        }
+
+        .cube {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: spin 10s infinite linear;
+        }
+
+        .face {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: rgba(66, 133, 244, 0.1);
+            border: 2px solid var(--g-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: var(--g-blue);
+            box-shadow: 0 0 20px rgba(66, 133, 244, 0.2);
+        }
+
+        .front {
+            transform: rotateY(0deg) translateZ(100px);
+        }
+
+        .back {
+            transform: rotateY(180deg) translateZ(100px);
+        }
+
+        .right {
+            transform: rotateY(90deg) translateZ(100px);
+            border-color: var(--g-red);
+            color: var(--g-red);
+            background: rgba(234, 67, 53, 0.1);
+        }
+
+        .left {
+            transform: rotateY(-90deg) translateZ(100px);
+            border-color: var(--g-green);
+            color: var(--g-green);
+            background: rgba(52, 168, 83, 0.1);
+        }
+
+        .top {
+            transform: rotateX(90deg) translateZ(100px);
+            border-color: var(--g-yellow);
+            color: var(--g-yellow);
+            background: rgba(251, 188, 5, 0.1);
+        }
+
+        .bottom {
+            transform: rotateX(-90deg) translateZ(100px);
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotateX(0) rotateY(0);
+            }
+
+            100% {
+                transform: rotateX(360deg) rotateY(360deg);
+            }
+        }
+
+        /* Contact Section (3D Phone) */
+        .contact-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-container {
+            display: flex;
+            width: 100%;
+            max-width: 1200px;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .contact-info {
+            flex: 1;
+            padding-right: 50px;
+        }
+
+        .contact-info h2 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+
+        .contact-info p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+        }
+
+        .phone-wrapper {
+            flex: 1;
+            height: 700px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            perspective: 1500px;
+        }
+
+        .phone-3d {
+            width: 320px;
+            height: 650px;
+            background: #000;
+            border-radius: 40px;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: rotateY(-15deg) rotateX(10deg);
+            box-shadow: -20px 20px 50px rgba(0, 0, 0, 0.5);
+            border: 4px solid #333;
+            transition: transform 0.5s ease;
+            animation: floatPhone 6s ease-in-out infinite;
+        }
+
+        .phone-3d:hover {
+            transform: rotateY(0) rotateX(0);
+        }
+
+        @keyframes floatPhone {
+
+            0%,
+            100% {
+                transform: rotateY(-15deg) rotateX(10deg) translateY(0);
+            }
+
+            50% {
+                transform: rotateY(-15deg) rotateX(10deg) translateY(-20px);
+            }
+        }
+
+        .screen {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            background: #fff;
+            border-radius: 30px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-header {
             background: #075e54;
+            padding: 15px;
             color: white;
             display: flex;
-            justify-content: center;
             align-items: center;
-            cursor: pointer;
+            gap: 10px;
+        }
+
+        .chat-body {
+            flex: 1;
+            background: #e5ddd5;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .msg {
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            position: relative;
+            animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            opacity: 0;
+            transform: scale(0.8);
+            color: #000;
+        }
+
+        .msg.incoming {
+            background: white;
+            align-self: flex-start;
+            border-top-left-radius: 2px;
+        }
+
+        .msg.outgoing {
+            background: #dcf8c6;
+            align-self: flex-end;
+            border-top-right-radius: 2px;
+        }
+
+        @keyframes popIn {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .chat-footer {
+            padding: 10px;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 10px 15px;
+            border-radius: 20px;
             border: none;
             outline: none;
         }
 
-        .connect-button {
-            margin-top: 30px;
-        }
-        
-        .community-icon {
-            width: 30px;
-            height: 30px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .community-icon svg {
-            width: 20px;
-            height: 20px;
-            fill: white;
-        }
-
-        .avatar {
+        .send-btn-icon {
             width: 40px;
             height: 40px;
+            background: #075e54;
             border-radius: 50%;
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             color: white;
-            font-weight: bold;
-            margin-right: 10px;
-            flex-shrink: 0;
         }
-        
-        .message-sender {
-            font-weight: bold;
-            margin-bottom: 5px;
-            color: var(--google-blue);
+
+        /* Footer */
+        footer {
+            background: black;
+            padding: 50px 20px;
+            border-top: 1px solid var(--glass-border);
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--g-blue);
+        }
+
+        .copyright {
+            color: #555;
+            font-size: 0.9rem;
         }
 
         /* Responsive */
-        @media (max-width: 768px) {
-            .container {
-                padding: 10px;
+        @media (max-width: 900px) {
+            .hero h1 {
+                font-size: 3.5rem;
             }
-            
+
+            .about-container {
+                flex-direction: column;
+            }
+
+            .contact-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .contact-info {
+                padding-right: 0;
+                margin-bottom: 50px;
+            }
+
             .nav-links {
                 display: none;
             }
 
-            .mobile-menu-btn {
-                display: flex;
-            }
-
-            .mobile-menu.active {
-                display: flex;
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-                gap: 10px;
-                align-items: center;
-            }
-            
-            .about-content {
-                flex-direction: column;
-            }
-            
-            .whatsapp-content {
-                flex-direction: column;
-                align-items: center;
-                gap: 40px;
-            }
-            
-            .whatsapp-text, .whatsapp-scene {
-                max-width: 100%;
-                width: 100%;
-                text-align: center;
-            }
-            
-            .whatsapp-text {
-                text-align: center;
-            }
-
-            .whatsapp-scene {
-                transform: scale(0.9);
-                margin: 20px 0;
-            }
+            /* Simplified for mobile */
         }
-
     </style>
 </head>
 
 <body>
-    <!-- Particles background -->
-    <div class="particles" id="particles-bg"></div>
 
-    <!-- Main container -->
-    <div class="container">
-        <!-- Header -->
-        <header>
-            <div class="logo-container">
-                <img src="https://raw.githubusercontent.com/GDGCloudUdaipur/gdgcloududaipur.github.io/main/gdglogo.png" alt="GDG Cloud Udaipur Logo" class="logo" width="200px" height="50px">
+    <!-- Canvas Background -->
+    <canvas id="canvas-container"></canvas>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="logo">
+            <img src="https://raw.githubusercontent.com/GDGCloudUdaipur/gdgcloududaipur.github.io/main/gdglogo.png"
+                alt="GDG Logo">
+            <span>Cloud Udaipur</span>
+        </div>
+        <div class="nav-links">
+            <a href="#home" class="active">Home</a>
+            <a href="#events">Events</a>
+            <a href="#organizers">Team</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <!-- Floating Icons -->
+        <div class="floating-icon icon-1"><svg viewBox="0 0 24 24" fill="var(--g-blue)">
+                <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
+            </svg></div>
+        <div class="floating-icon icon-2"><svg viewBox="0 0 24 24" fill="var(--g-red)">
+                <path
+                    d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" />
+            </svg></div>
+        <div class="floating-icon icon-3"><svg viewBox="0 0 24 24" fill="var(--g-yellow)">
+                <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
+            </svg></div>
+        <div class="floating-icon icon-4"><svg viewBox="0 0 24 24" fill="var(--g-green)">
+                <path
+                    d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-5 14H9v-2h6v2zm-3-7c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z" />
+            </svg></div>
+
+        <div class="hero-content">
+            <div class="hero-badge">Welcome to the Future</div>
+            <h1>Innovate with <br><span>Google Cloud</span></h1>
+            <p>Join Udaipur's premier developer community. We build, learn, and grow together using the latest Google
+                technologies.</p>
+            <div class="cta-group">
+                <a href="#events" class="btn btn-primary">Explore Events</a>
+                <a href="https://gdg.community.dev/gdg-cloud-udaipur/" target="_blank" class="btn btn-secondary">Join
+                    Chapter</a>
             </div>
+        </div>
+    </section>
 
-            <!-- Desktop Navigation -->
-            <nav class="nav-links">
-                <a href="#home">Home</a>
-                <a href="#events">Events</a>
-                <a href="#organizers">Organizers</a>
-                <a href="#about">About</a>
-                <a href="#contact">Contact</a>
-            </nav>
+    <!-- Events Section -->
+    <section id="events">
+        <div class="section-header">
+            <h2>Upcoming Events</h2>
+            <p>Level up your skills with our hands-on workshops and tech talks.</p>
+        </div>
+        <div class="events-grid" id="events-container">
+            <!-- Events injected via JS -->
+        </div>
+    </section>
 
-            <!-- Mobile Menu Button -->
-            <button class="mobile-menu-btn" id="mobile-menu-btn">
-                ☰
-            </button>
-
-            <!-- Mobile Menu -->
-            <div class="mobile-menu" id="mobile-menu">
-                <a href="#home">Home</a>
-                <a href="#events">Events</a>
-                <a href="#organizers">Organizers</a>
-                <a href="#about">About</a>
-                <a href="#contact">Contact</a>
-            </div>
-        </header>
-
-        <!-- Hero section -->
-        <section class="hero" id="home">
-            <div class="hero-content">
-                <h1>Google Developer Group Cloud Udaipur</h1>
-                <p>Join our vibrant tech community to learn, share, and grow with cloud technology enthusiasts. Discover the future of cloud computing with hands-on workshops, tech talks, and networking opportunities.</p>
-                <div class="hero-buttons">
-                    <a href="#events" class="btn btn-primary">See Events</a>
-                    <a href="https://gdg.community.dev/gdg-cloud-udaipur/" target="_blank" class="btn btn-secondary">Become a Member</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Events Section -->
-        <section class="events-section" id="events">
-            <div class="section-title">
-                <h2>Upcoming Events</h2>
-                <p>Enhance your skills with our exciting events and workshops</p>
-            </div>
-            <div class="events-grid" id="upcoming-events">
-                
-            </div>
-        </section>
-
-        <!-- Past Events Section -->
-        <section class="events-section" id="past-events">
-            <div class="section-title">
-                <h2>Past Events</h2>
-                <p>Take a look at some of our past events and workshops</p>
-            </div>
-            <div class="events-grid" id="past-events-grid">
-                <!-- Past events will be dynamically added here -->
-            </div>
-        </section>
-
-
-        <!-- Organizers Section -->
-        <section class="organizers-section" id="organizers">
-            <div class="section-title">
-                <h2>Our Organizers</h2>
-                <p>Meet the team behind GDG Cloud Udaipur</p>
-            </div>
-            <div class="organizers-grid">
-                <div class="organizer-card">
-                    <div class="organizer-avatar">
-                        <div class="avatar-wrapper">
-                            <img src="https://raw.githubusercontent.com/GDGCloudUdaipur/gdgcloududaipur.github.io/main/abhinav.jpeg" alt="Abhinav Jain" class="avatar-img">
-                            <div class="avatar-glow"></div>
-                        </div>
+    <!-- Organizers Section -->
+    <section id="organizers">
+        <div class="section-header">
+            <h2>Meet the Team</h2>
+            <p>The passionate individuals behind GDG Cloud Udaipur.</p>
+        </div>
+        <div class="organizers-container">
+            <div class="profile-card" data-tilt>
+                <div class="profile-content">
+                    <div class="profile-img-container">
+                        <img src="https://raw.githubusercontent.com/GDGCloudUdaipur/gdgcloududaipur.github.io/main/abhinav.jpeg"
+                            alt="Abhinav Jain" class="profile-img">
                     </div>
-                    <div class="organizer-info">
-                        <h3 class="organizer-name">Abhinav Jain</h3>
-                        <p class="organizer-role">Lead Organizer</p>
-                        <p class="organizer-bio">Tech Innovator and community Leader with 5 years of experience in AI and Cloud technologies.</p>
-                        <div class="organizer-skills">
-                            <span class="skill-tag">AI/ML</span>
-                            <span class="skill-tag">Innovations</span>
-                            <span class="skill-tag">Tech Geek</span>
-                        </div>
-                        <div class="organizer-social">
-                            <a href="https://www.linkedin.com/in/abhinav-jain-8b4bab62/" target="_blank" class="social-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                                    <rect x="2" y="9" width="4" height="12"></rect>
-                                    <circle cx="4" cy="4" r="2"></circle>
-                                </svg>
-                            </a>
-                            <a href="mailto:abhinav.jain1411@gmail.com" class="social-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <rect x="2" y="4" width="20" height="16" rx="2" ry="2"></rect>
-                                    <polyline points="2,4 12,12 22,4"></polyline>
-                                </svg>
-                            </a>
-                        </div>
+                    <h3 class="profile-name">Abhinav Jain</h3>
+                    <p class="profile-role">Lead Organizer</p>
+                    <p class="profile-bio">Tech Innovator and Community Leader with 5+ years in AI & Cloud.</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-btn">IN</a>
+                        <a href="#" class="social-btn">X</a>
+                        <a href="#" class="social-btn">IG</a>
                     </div>
                 </div>
             </div>
-        </section>
-        
-        <!-- About Section -->
-        <section class="about-section" id="about">
-             <div class="section-title">
-                <h2>About Us</h2>
+            <!-- Add more organizers here if needed -->
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="about-container">
+            <div class="about-visual">
+                <div class="cube-wrapper">
+                    <div class="cube">
+                        <div class="face front">G</div>
+                        <div class="face back">C</div>
+                        <div class="face right">P</div>
+                        <div class="face left">AI</div>
+                        <div class="face top">ML</div>
+                        <div class="face bottom">Dev</div>
+                    </div>
+                </div>
             </div>
             <div class="about-content">
-                <div class="about-image">
-                    <div class="about-image-wrapper">
-                         <img src="https://raw.githubusercontent.com/GDGCloudUdaipur/gdgcloududaipur.github.io/main/cloudcommunity.jpeg" style="width:100%; height:100%; object-fit:cover;" alt="GDG Cloud Udaipur Event">
-                    </div>
-                </div>
-                <div class="about-text">
-                    <p>GDG Cloud Udaipur is a community of developers, students, and tech enthusiasts passionate about Google Cloud Platform and open-source technologies.</p>
-                    <p>Our mission is to create a vibrant, inclusive learning environment where members can share knowledge, collaborate on projects, and grow their skills. We host regular meetups, workshops, and study jams covering a wide range of topics from cloud infrastructure and serverless computing to AI, machine learning, and big data.</p>
-                    <p>Join us to connect with fellow tech lovers, learn from industry experts, and be a part of the future of technology in Udaipur.</p>
-                </div>
+                <h3>About Our Community</h3>
+                <p>GDG Cloud Udaipur is a vibrant ecosystem of developers, students, and tech enthusiasts. We are
+                    passionate about Google Cloud Platform, Open Source, and the future of technology.</p>
+                <p>Our mission is to foster an inclusive learning environment where everyone can share knowledge,
+                    collaborate on innovative projects, and accelerate their career growth.</p>
+                <a href="#" class="btn btn-secondary" style="margin-top: 20px;">Read More</a>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- WhatsApp Contact Section -->
-        <section class="whatsapp-container" id="contact">
-            <div class="whatsapp-content">
-                <div class="whatsapp-text">
-                    <h2 class="section-title" style="text-align:left; margin-bottom: 20px;">Connect with Us</h2>
-                    <p>Have questions or want to get more involved? Join our official WhatsApp group to stay updated on all our activities and connect with the community.</p>
-                    <a href="https://chat.whatsapp.com/EesExCP4NMD4CjvT7TlQ2x" target="_blank" class="btn connect-button">Join Our Community</a>
-                </div>
-                <div class="whatsapp-scene" id="whatsapp-scene">
-                    <div class="phone" id="phone">
-                        <div class="phone-screen">
-                            <div class="status-bar">
-                                <div class="status-bar-time">10:32 AM</div>
-                                <div class="status-bar-icons">
-                                    <span>📶</span>
-                                    <span>🔋</span>
-                                </div>
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="contact-container">
+            <div class="contact-info">
+                <h2>Stay Connected</h2>
+                <p>Join our official WhatsApp group to get instant updates, network with peers, and be part of the
+                    conversation.</p>
+                <a href="https://chat.whatsapp.com/EesExCP4NMD4CjvT7TlQ2x" target="_blank" class="btn btn-primary">
+                    Join WhatsApp Group
+                </a>
+            </div>
+            <div class="phone-wrapper">
+                <div class="phone-3d">
+                    <div class="screen">
+                        <div class="chat-header">
+                            <div style="width:30px;height:30px;background:rgba(255,255,255,0.2);border-radius:50%;">
                             </div>
-                            <div class="app-header">
-                                 <div class="community-icon">
-                                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 12.75c1.63 0 3.07.39 4.24.9 1.08.48 1.76 1.56 1.76 2.73V18H6v-1.62c0-1.17.68-2.25 1.76-2.73 1.17-.51 2.61-.9 4.24-.9zm0-10c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3z" fill="#fff"/></svg>
-                                </div>
-                                <div class="app-title">GDG Cloud Udaipur</div>
+                            <div>
+                                <div style="font-weight:bold;font-size:0.9rem;">GDG Cloud Udaipur</div>
+                                <div style="font-size:0.7rem;opacity:0.8;">Tap to view info</div>
                             </div>
-                             <div class="group-details">
-                                <div class="avatar" style="background:#4285F4;">G</div>
-                                <div class="group-info">
-                                    <div class="group-name">GDG Cloud Udaipur</div>
-                                    <div class="group-members">You, Abhinav, Priya, +28 more</div>
-                                </div>
-                            </div>
-                            <div class="chat-container" id="chat-container">
-                                <!-- Messages will be added here by JavaScript -->
-                            </div>
-                            <div class="chat-input">
-                                <input type="text" class="input-box" placeholder="Type a message..." id="message-input">
-                                <button class="send-btn" id="send-btn">
-                                    <svg viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" fill="#fff"/></svg>
-                                </button>
-                            </div>
+                        </div>
+                        <div class="chat-body" id="chat-body">
+                            <!-- Messages injected via JS -->
+                        </div>
+                        <div class="chat-footer">
+                            <input type="text" class="chat-input" placeholder="Type a message...">
+                            <div class="send-btn-icon">➤</div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Footer -->
-        <footer>
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#events">Events</a></li>
-                        <li><a href="#organizers">Organizers</a></li>
-                        <li><a href="#about">About</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Follow Us</h3>
-                    <div class="social-links">
-                         <a href="https://www.linkedin.com/company/gdg-cloud-udaipur/" target="_blank" class="social-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-                        </a>
-                        <a href="https://x.com/gdgcloududp" target="_blank" class="social-icon">
-                           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.617l-5.21-6.817-6.022 6.817h-3.308l7.732-8.835-8.232-10.665h6.828l4.611 6.033 5.543-6.033zm-1.083 18.2h1.727l-10.543-14.234h-1.62l10.436 14.234z"/></svg>
-                        </a>
-                        <a href="https://www.instagram.com/gdgcloududaipur/" target="_blank" class="social-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.584-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.069-1.645-.069-4.85s.011-3.584.069-4.85c.149-3.225 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.85-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072s3.667-.014 4.947-.072c4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.947s-.014-3.667-.072-4.947c-.196-4.358-2.617-6.78-6.979-6.98-1.281-.059-1.69-.072-4.948-.072zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.441 1.441 1.441 1.441-.645 1.441-1.441-.645-1.44-1.441-1.44z"/></svg>
-                        </a>
-                    </div>
-                </div>
-                <div class="footer-column">
-                    <h3>Contact</h3>
-                    <p>Have questions? Reach out to us!</p>
-                    <a href="mailto:gdgcloududaipur@gmail.com" class="btn btn-secondary" style="padding: 8px 50px; margin-top: 20px; display: inline-block;">Email Us</a>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                &copy; 2024 Google Developer Group Cloud Udaipur. All Rights Reserved.
-            </div>
-        </footer>
-
-    </div>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="#">Home</a>
+            <a href="#">Events</a>
+            <a href="#">Team</a>
+            <a href="#">Privacy</a>
+        </div>
+        <div class="social-icons" style="justify-content: center; margin-bottom: 20px;">
+            <a href="#" class="social-btn">Li</a>
+            <a href="#" class="social-btn">X</a>
+            <a href="#" class="social-btn">Ig</a>
+        </div>
+        <p class="copyright">&copy; 2025 GDG Cloud Udaipur. All Rights Reserved.</p>
+    </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // --- Mobile Menu ---
-            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenuBtn.addEventListener('click', function () {
-                mobileMenu.classList.toggle('active');
-            });
+        // --- 1. Particle Background Animation ---
+        const canvas = document.getElementById('canvas-container');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
 
-            // --- Particle Background ---
-            const particlesContainer = document.getElementById('particles-bg');
-            for (let i = 0; i < 20; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = `${Math.random() * 100}vw`;
-                particle.style.top = `${Math.random() * 100}vh`;
-                particle.style.width = `${2 + Math.random() * 4}px`;
-                particle.style.height = particle.style.width;
-                particle.style.animationDuration = `${10 + Math.random() * 15}s`;
-                particle.style.animationDelay = `${Math.random() * 10}s`;
-                const color = ['var(--google-blue)', 'var(--google-red)', 'var(--google-yellow)', 'var(--google-green)'][Math.floor(Math.random() * 4)];
-                particle.style.background = color;
-                particlesContainer.appendChild(particle);
+        let particles = [];
+        const colors = ['#4285F4', '#EA4335', '#FBBC05', '#34A853'];
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 3;
+                this.speedX = Math.random() * 1 - 0.5;
+                this.speedY = Math.random() * 1 - 0.5;
+                this.color = colors[Math.floor(Math.random() * colors.length)];
             }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.y < 0) this.y = canvas.height;
+            }
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
 
-            // --- Events Data and Rendering ---
-            const events = [
-                {
-                    title: "Build With AI - Udaipur Hands-on Edition",
-                    date: "2025-04-06",
-                    description: "Get hands-on experience with AI and Machine Learning. Learn how to build and deploy AI-powered applications, explore cutting-edge AI models, and leverage Google Cloud's AI services.",
-                    image: "https://raw.githubusercontent.com/GDGCloudUdaipur/gdgcloududaipur.github.io/main/buildwithai.webp",
-                    link: "https://photos.app.goo.gl/eaEjs9vNKgUU4yuZA"
-                },
-                {
-                    title: "Cloud Community Days",
-                    date: "2025-06-29",
-                    description: "Our flagship annual event with keynotes from industry experts, workshops, networking opportunities, and much more.",
-                    image: "https://raw.githubusercontent.com/GDGCloudUdaipur/gdgcloududaipur.github.io/main/cloudcommunity.jpeg",
-                    link: "https://photos.app.goo.gl/eaEjs9vNKgUU4yuZA"
-                },
-                {
-                    title: "Hackathon",
-                    date: "2025-06-29",
-                    description: "Join our annual hackathon to showcase your skills, collaborate with fellow developers, and build innovative solutions using Google Cloud technologies.",
-                    image: "https://raw.githubusercontent.com/GDGCloudUdaipur/gdgcloududaipur.github.io/main/hackathon.jpg",
-                    link: "https://gdg.community.dev/gdg-cloud-udaipur/"
-                },
-                {
-                    title: "AI for Everyone - Learn, Build, and Innovate with GDG Cloud Udaipur",
-                    date: "2025-11-30",
-                    description: "Join us for an exciting offline workshop - 'AI for Everyone: Learn, Build, and Innovate with Google Cloud and Gemini'. In this engaging session, you will discover how to harness the power of AI using Google Cloud and the innovative Gemini platform.",
-                    image: "https://raw.githubusercontent.com/GDGCloudUdaipur/gdgcloududaipur.github.io/main/aiforeveryone.png",
-                    link: "https://gdg.community.dev/events/details/google-gdg-cloud-udaipur-presents-ai-for-everyone-learn-build-and-innovate-with-gdg-cloud-udaipur/"
-                },
-                {
-                    title: "Hackathon 2026!",
-                    date: "2026",
-                    description: "Get ready to turn your brilliant ideas into reality. Join us for a 24-hour marathon of coding, collaboration, and innovation. Whether you're a seasoned developer or a first-time hacker, this is your chance to build something amazing, solve real-world problems, and compete for awesome prizes. Registration opens soon! ",
-                    image: "https://raw.githubusercontent.com/GDGCloudUdaipur/gdgcloududaipur.github.io/main/hackathon.jpg",
-                    link: "https://gdg.community.dev/gdg-cloud-udaipur/"
-                }
-            ];
+        function initParticles() {
+            for (let i = 0; i < 100; i++) {
+                particles.push(new Particle());
+            }
+        }
 
-            const upcomingEventsContainer = document.getElementById('upcoming-events');
-            const pastEventsContainer = document.getElementById('past-events-grid');
-            const today = new Date();
-            
-            let hasUpcomingEvents = false;
-            let hasPastEvents = false;
-
-            events.forEach(event => {
-                const eventDate = new Date(event.date);
-                const isPastEvent = eventDate < today;
-
-                const eventCard = document.createElement('div');
-                eventCard.className = 'event-card';
-
-                // Conditionally render button based on event type and link availability
-                let buttonHtml = '';
-                if (event.link) {
-                    if (!isPastEvent) {
-                        buttonHtml = `<a href="${event.link}" target="_blank" class="btn card-btn">Register Now</a>`;
-                    } else {
-                        buttonHtml = `<a href="${event.link}" target="_blank" class="btn card-btn">View Photos</a>`;
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+                // Connect particles
+                for (let j = i; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < 100) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(255, 255, 255, ${0.1 - distance / 1000})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
                     }
                 }
+            }
+            requestAnimationFrame(animateParticles);
+        }
+        initParticles();
+        animateParticles();
 
-                eventCard.innerHTML = `
-                    <div class="card-img" style="background-image: url('${event.image}')"></div>
-                    <div class="card-content">
-                        <span class="card-date">${eventDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
-                        <h3 class="card-title">${event.title}</h3>
-                        <p class="card-description">${event.description}</p>
-                        ${buttonHtml}
-                    </div>
-                `;
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
 
-                if (isPastEvent) {
-                    pastEventsContainer.appendChild(eventCard);
-                    hasPastEvents = true;
+
+        // --- 2. 3D Tilt Effect for Cards ---
+        document.addEventListener('mousemove', (e) => {
+            const cards = document.querySelectorAll('.card-3d, .profile-card');
+            cards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                if (x >= 0 && x <= rect.width && y >= 0 && y <= rect.height) {
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const rotateX = ((y - centerY) / centerY) * -10; // Max 10deg
+                    const rotateY = ((x - centerX) / centerX) * 10;
+
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
                 } else {
-                    upcomingEventsContainer.appendChild(eventCard);
-                    hasUpcomingEvents = true;
+                    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
                 }
             });
-            
-            // Hide sections if no events
-            if (!hasUpcomingEvents) {
-                document.getElementById('events').style.display = 'none';
+        });
+
+
+        // --- 3. Populate Events ---
+        const eventsData = [
+            {
+                title: "Build With AI - Hands-on",
+                date: "Apr 06, 2025",
+                desc: "Deep dive into GenAI with Google Cloud. Build real-world apps.",
+                img: "https://raw.githubusercontent.com/GDGCloudUdaipur/gdgcloududaipur.github.io/main/buildwithai.webp",
+                link: "#"
+            },
+            {
+                title: "Cloud Community Days",
+                date: "Jun 29, 2025",
+                desc: "Our flagship event. Keynotes, networking, and swag!",
+                img: "https://raw.githubusercontent.com/GDGCloudUdaipur/gdgcloududaipur.github.io/main/cloudcommunity.jpeg",
+                link: "#"
+            },
+            {
+                title: "Hackathon 2025",
+                date: "Jun 29, 2025",
+                desc: "24-hour coding marathon. Solve problems, win prizes.",
+                img: "https://raw.githubusercontent.com/GDGCloudUdaipur/gdgcloududaipur.github.io/main/hackathon.jpg",
+                link: "#"
             }
-            if (!hasPastEvents) {
-                 document.getElementById('past-events').style.display = 'none';
-            }
+        ];
 
-
-            // --- WhatsApp Chat Animation ---
-            const chatContainer = document.getElementById('chat-container');
-            const chatMessages = [
-                { sender: 'Abhinav', text: 'Hello everyone! Welcome to the GDG Cloud Udaipur community! 🎉', time: '10:32 AM', avatarColor: '#4285F4' },
-                { sender: 'Priya', text: 'Hey all! Looking forward to our next Study Jam.', time: '10:33 AM', avatarColor: '#DB4437' },
-                { sender: 'You', text: 'Hi! New member here. Excited to learn!', time: '10:35 AM', right: true },
-                { sender: 'Abhinav', text: 'Welcome! Our next workshop is on Gemini. Hope you can join!', time: '10:36 AM', avatarColor: '#4285F4' }
-            ];
-
-            function createMessage(msg) {
-                const messageEl = document.createElement('div');
-                messageEl.className = msg.right ? 'message message-right' : 'message message-left';
-                
-                let avatarHtml = '';
-                if (!msg.right) {
-                    avatarHtml = `<div class="avatar" style="background-color:${msg.avatarColor};">${msg.sender.charAt(0)}</div>`;
-                }
-                
-                messageEl.innerHTML = `
-                    ${avatarHtml}
-                    <div class="message-content">
-                        ${!msg.right ? `<div class="message-sender">${msg.sender}</div>` : ''}
-                        <div>${msg.text}</div>
-                        <div class="message-time">${msg.time}</div>
+        const eventsContainer = document.getElementById('events-container');
+        eventsData.forEach(ev => {
+            eventsContainer.innerHTML += `
+                <div class="card-3d">
+                    <div class="card-inner">
+                        <div class="card-image" style="background-image: url('${ev.img}')">
+                            <div class="card-date">${ev.date}</div>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">${ev.title}</h3>
+                            <p class="card-desc">${ev.desc}</p>
+                            <a href="${ev.link}" class="card-link">Register Now <span>→</span></a>
+                        </div>
                     </div>
-                `;
-                return messageEl;
-            }
+                </div>
+            `;
+        });
 
-            let messageIndex = 0;
-            function showNextMessage() {
-                if (messageIndex < chatMessages.length) {
-                    const msg = chatMessages[messageIndex];
-                    const messageEl = createMessage(msg);
-                    chatContainer.appendChild(messageEl);
-                    chatContainer.scrollTop = chatContainer.scrollHeight;
-                    messageIndex++;
-                    setTimeout(showNextMessage, 2000 + Math.random() * 2000);
-                } else {
-                    // loop back
-                    setTimeout(() => {
-                        chatContainer.innerHTML = '';
-                        messageIndex = 0;
-                        showNextMessage();
-                    }, 5000);
+
+        // --- 4. Chat Animation ---
+        const chatBody = document.getElementById('chat-body');
+        const messages = [
+            { text: "Hey! When is the next meetup?", type: "incoming", delay: 1000 },
+            { text: "It's on April 6th! We're covering Gemini AI.", type: "outgoing", delay: 2500 },
+            { text: "Awesome! Can I bring my laptop?", type: "incoming", delay: 4000 },
+            { text: "Yes, it's a hands-on session! 💻", type: "outgoing", delay: 5500 }
+        ];
+
+        let msgIndex = 0;
+        function playChat() {
+            if (msgIndex < messages.length) {
+                const msg = messages[msgIndex];
+                setTimeout(() => {
+                    const div = document.createElement('div');
+                    div.className = `msg ${msg.type}`;
+                    div.innerText = msg.text;
+                    chatBody.appendChild(div);
+                    chatBody.scrollTop = chatBody.scrollHeight;
+                    msgIndex++;
+                    playChat();
+                }, msg.delay - (msgIndex > 0 ? messages[msgIndex - 1].delay : 0));
+            } else {
+                setTimeout(() => {
+                    chatBody.innerHTML = '';
+                    msgIndex = 0;
+                    playChat();
+                }, 3000);
+            }
+        }
+
+        // Start chat when in view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    playChat();
+                    observer.unobserve(entry.target);
                 }
-            }
-            
-            // --- Intersection Observer for animations ---
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        if (entry.target.id === 'contact') {
-                            entry.target.classList.add('visible');
-                            // Start chat animation only when it's visible
-                            if (messageIndex === 0) {
-                                showNextMessage();
-                            }
-                        }
-                    }
-                });
-            }, { threshold: 0.4 });
+            });
+        });
+        observer.observe(document.getElementById('contact'));
 
-            const contactSection = document.getElementById('contact');
-            if(contactSection) {
-                observer.observe(contactSection);
+        // --- 5. Navbar Scroll Effect ---
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
             }
         });
-    </script>
 
+    </script>
 </body>
 
 </html>
