@@ -1013,6 +1013,17 @@
         </div>
     </section>
 
+    <!-- Past Events Section -->
+    <section id="past-events">
+        <div class="section-header">
+            <h2>Past Events</h2>
+            <p>Check out what we've been up to.</p>
+        </div>
+        <div class="events-grid" id="past-events-container">
+            <!-- Past Events injected via JS -->
+        </div>
+    </section>
+
     <!-- Organizers Section -->
     <section id="organizers">
         <div class="section-header">
@@ -1253,27 +1264,54 @@
                 date: "Apr 06, 2025",
                 desc: "Deep dive into GenAI with Google Cloud. Build real-world apps.",
                 img: "https://raw.githubusercontent.com/GDGCloudUdaipur/gdgcloududaipur.github.io/main/buildwithai.webp",
-                link: "#"
+                link: "https://gdg.community.dev/events/details/google-gdg-cloud-udaipur-presents-build-with-ai-udaipur-hands-on-edition/"
+            },
+            {
+                title: "Build with AI: Chapter 2 Stock Markets and Financial Markets with Gemini — AI Power for Everyone",
+                date: "May 11, 2025",
+                desc: "Build with AI: Chapter 2 dives deep into how Gemini AI is reshaping two critical areas: the world of stock and financial markets, and the future of no-code innovation.",
+                img: "https://raw.githubusercontent.com/GDGCloudUdaipur/gdgcloududaipur.github.io/main/buildwithai.webp",
+                link: "https://gdg.community.dev/events/details/google-gdg-cloud-udaipur-presents-build-with-ai-chapter-2-stock-markets-and-financial-markets-with-gemini-ai-power-for-everyone/"
+            },
+            {
+                title: "AI for everyone - Udaipur Cloud Edition",
+                date: "Dec 29, 2024",
+                desc: "AI for Everyone at Udaipur Cloud Edition, powered by Google, is a mixture of Tech talks and hands-on session designed to demystify AI and showcase its transformative potential using Google Cloud technologies. This session will introduce developers and tech enthusiasts to the powerful AI and machine learning tools available on Google Cloud, including Vertex AI, TensorFlow, and AutoML. ",
+                img: "https://raw.githubusercontent.com/GDGCloudUdaipur/gdgcloududaipur.github.io/main/aiforeveryone.png",
+                link: "https://gdg.community.dev/events/details/google-gdg-cloud-udaipur-presents-ai-for-everyone-udaipur-cloud-edition/"
             },
             {
                 title: "Cloud Community Days",
                 date: "Jun 29, 2025",
-                desc: "Our flagship event. Keynotes, networking, and swag!",
+                desc: "Udaipur, the flagship event by Google Developer Group Cloud Udaipur, where innovation meets inspiration. This full-day experience will bring together Googlers, Google Developer Experts (GDEs), startup leaders, and cloud professionals to explore the future of technology.",
                 img: "https://raw.githubusercontent.com/GDGCloudUdaipur/gdgcloududaipur.github.io/main/cloudcommunity.jpeg",
-                link: "#"
+                link: "https://gdg.community.dev/events/details/google-gdg-cloud-udaipur-presents-google-cloud-community-days-udaipur-2025/"
             },
             {
-                title: "Hackathon 2025",
-                date: "Jun 29, 2025",
-                desc: "24-hour coding marathon. Solve problems, win prizes.",
+                title: "AI for Everyone - Learn, Build, and Innovate with GDG Cloud Udaipur",
+                date: "Nov 30, 2025",
+                desc: "Join us for an exciting offline workshop - 'AI for Everyone: Learn, Build, and Innovate with Google Cloud and Gemini'. In this engaging session, you will discover how to harness the power of AI using Google Cloud and the innovative Gemini platform. Our expert speakers will guide you through basic AI concepts, help you develop some practical skills and, and provide hands-on experience with Google Cloud tools.",
+                img: "https://raw.githubusercontent.com/GDGCloudUdaipur/gdgcloududaipur.github.io/main/aiforeveryone.png",
+                link: "https://gdg.community.dev/events/details/google-gdg-cloud-udaipur-presents-ai-for-everyone-learn-build-and-innovate-with-gdg-cloud-udaipur/"
+            },
+            {
+                title: "Hackathon 2026 - Round 1",
+                date: "Jan 15, 2026",
+                desc: "Google Lakecity Hackathon 2026 invites you to design and build impactful tech solutions using Google AI, Gemini APIs, or Google Cloud. Participants may create any project within the following broad themes, using Google technologies in creative and innovative ways.",
                 img: "https://raw.githubusercontent.com/GDGCloudUdaipur/gdgcloududaipur.github.io/main/hackathon.jpg",
-                link: "#"
+                link: "hackathon26.html"
             }
         ];
 
         const eventsContainer = document.getElementById('events-container');
+        const pastEventsContainer = document.getElementById('past-events-container');
+        const currentDate = new Date();
+
         eventsData.forEach(ev => {
-            eventsContainer.innerHTML += `
+            const eventDate = new Date(ev.date);
+            const isPast = eventDate < currentDate;
+
+            const eventCard = `
                 <div class="card-3d">
                     <div class="card-inner">
                         <div class="card-image" style="background-image: url('${ev.img}')">
@@ -1282,11 +1320,17 @@
                         <div class="card-content">
                             <h3 class="card-title">${ev.title}</h3>
                             <p class="card-desc">${ev.desc}</p>
-                            <a href="${ev.link}" class="card-link">Register Now <span>→</span></a>
+                            <a href="${ev.link}" class="card-link">${isPast ? 'View Details' : 'Register Now'} <span>→</span></a>
                         </div>
                     </div>
                 </div>
             `;
+
+            if (isPast) {
+                pastEventsContainer.innerHTML += eventCard;
+            } else {
+                eventsContainer.innerHTML += eventCard;
+            }
         });
 
 
