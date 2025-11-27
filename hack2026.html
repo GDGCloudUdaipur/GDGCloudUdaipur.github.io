@@ -177,6 +177,8 @@
       width: 100%;
     }
 
+    /* legacy .btn-register removed — use .btn-future for all prominent buttons */
+
     /* --- HERO --- */
     .hero {
       height: 100vh;
@@ -370,6 +372,46 @@
 
       /* Restore default cursor */
     }
+
+    /* --- FAQ Accordion --- */
+    .faq-item {
+      text-align: left;
+      padding: 20px;
+      cursor: auto;
+    }
+
+    .faq-question {
+      width: 100%;
+      background: transparent;
+      border: none;
+      text-align: left;
+      font-weight: 700;
+      color: var(--neon-blue);
+      font-size: 1.1rem;
+      padding: 10px 0;
+      display: block;
+    }
+
+    .faq-question:focus {
+      outline: 2px dashed var(--neon-blue);
+      outline-offset: 4px;
+    }
+
+    .faq-answer {
+      color: #e6e9ef; /* slightly brighter for readability */
+      font-size: 1.05rem; /* larger answer text for readability */
+      line-height: 1.8; /* increase spacing for readability */
+      margin-top: 10px;
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.45s ease, opacity 0.2s ease;
+      opacity: 0;
+    }
+
+    .faq-item.open .faq-answer {
+      max-height: 1000px; /* allow for longer answers */
+      opacity: 1;
+    }
   </style>
 </head>
 
@@ -396,6 +438,12 @@
         <button class="btn-future" style="border-color: var(--g-green); color: var(--g-green);"
           onclick="document.getElementById('themes').scrollIntoView({behavior:'smooth'})"><i
             class="fa-solid fa-compass"></i> Explore Themes</button>
+        <button class="btn-future" style="border-color: var(--neon-purple); color: var(--neon-purple);"
+          onclick="document.getElementById('faq').scrollIntoView({behavior:'smooth'})"><i
+            class="fa-solid fa-question"></i> FAQ</button>
+        <a class="btn-future" target="_blank" rel="noopener noreferrer" aria-label="Register for Google Lakecity Hackathon 2026" href="https://gdg.community.dev/events/details/google-gdg-cloud-udaipur-presents-google-lakecity-hackathon-2026-win-100000-worth-of-prizes/" style="display:flex;align-items:center;gap:8px;">
+          <i class="fa-solid fa-right-to-bracket" style="color:#fff"></i> Register Now
+        </a>
       </div>
     </div>
   </header>
@@ -454,30 +502,58 @@
   <section id="submission" style="padding: 80px 0;">
     <div class="container">
       <h2 class="royal-font text-center" style="font-size: 2.5rem; margin-bottom: 20px;">Round 1 <span
-          style="color: var(--g-red)">Details</span></h2>
-      <div style="text-align: center; margin-bottom: 40px;">
-        <p style="font-size: 1.1rem; margin-bottom: 10px;"><i class="fa-solid fa-users"></i> Team Size: <span
-            style="color: var(--g-yellow); font-weight: bold;">1-3 Members</span></p>
-        <p style="font-size: 1.1rem;"><i class="fa-solid fa-calendar-days"></i> Submission Deadline: <span
-            style="color: var(--g-red); font-weight: bold;">15 Jan 2026 (Online)</span></p>
+          style="color: var(--g-red)">(Online) — Submission Details</span></h2>
+      <div style="text-align: center; margin-bottom: 24px; color: #ddd; max-width:900px; margin-left:auto; margin-right:auto">
+        <p style="font-size: 1.05rem; margin-bottom: 12px;">Round 1 is an online submission round intended to evaluate
+          the concept, technical feasibility, and immediate impact of your idea. Teams are requested to submit
+          a concise yet complete package that helps judges quickly understand your solution and how it was
+          implemented.</p>
+        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:8px;">
+          <div style="background:rgba(255,255,255,0.03);border:1px solid var(--glass-border);padding:12px 16px;border-radius:12px;">
+            <i class="fa-solid fa-users" style="margin-right:8px;color:var(--neon-blue)"></i>
+            <strong>Team Size:</strong> 1–3 Members
+          </div>
+          <div style="background:rgba(255,255,255,0.03);border:1px solid var(--glass-border);padding:12px 16px;border-radius:12px;">
+            <i class="fa-solid fa-laptop" style="margin-right:8px;color:var(--g-green)"></i>
+            <strong>Round Type:</strong> Online Submission
+          </div>
+          <div style="background:rgba(255,255,255,0.03);border:1px solid var(--glass-border);padding:12px 16px;border-radius:12px;">
+            <i class="fa-solid fa-calendar-days" style="margin-right:8px;color:var(--g-red)"></i>
+            <strong>Deadline:</strong> 15 Jan 2026 (by 23:59 IST)
+          </div>
+        </div>
+      </div>
+      <div style="text-align: center; margin-bottom: 24px; display:flex;gap:12px; justify-content:center;">
+        <a target="_blank" href="https://chat.whatsapp.com/C6eOQRiaUXOIAJGONGvZWz?mode=hqrt3" class="btn-future" style="border-color: #25D366; color:#25D366;">
+          <i class="fa-brands fa-whatsapp"></i> Join WhatsApp Group
+        </a>
+        <a target="_blank" rel="noopener noreferrer" aria-label="Register for Google Lakecity Hackathon 2026" href="https://gdg.community.dev/events/details/google-gdg-cloud-udaipur-presents-google-lakecity-hackathon-2026-win-100000-worth-of-prizes/" class="btn-future">
+          <i class="fa-solid fa-right-to-bracket" style="color:#fff; margin-right:8px"></i> Register Now
+        </a>
       </div>
 
-      <h3 class="text-center" style="margin-bottom: 30px; color: var(--neon-blue);">Must Have Checklist</h3>
+      <h3 class="text-center" style="margin-bottom: 30px; color: var(--neon-blue);">Must-Have Submission Checklist</h3>
       <div class="icon-grid">
         <div class="holo-card">
           <div class="icon-box" style="color: #FF0000;"><i class="fa-brands fa-youtube"></i></div>
-          <h3>Working Prototype</h3>
-          <p style="color: #aaa; margin-top: 10px;">Video Demo on YouTube</p>
+          <h3>Working Prototype / Demo</h3>
+          <p style="color: #aaa; margin-top: 10px;">Provide a working prototype or a hosted demo (GitHub, Firebase, Netlify).
+            A short YouTube demo (2–4 minutes) explaining the core flow, UX, and feature highlights is highly recommended.
+          </p>
         </div>
         <div class="holo-card">
           <div class="icon-box" style="color: #FBBC05;"><i class="fa-solid fa-file-powerpoint"></i></div>
           <h3>Slide Deck</h3>
-          <p style="color: #aaa; margin-top: 10px;">Google Slides Presentation</p>
+          <p style="color: #aaa; margin-top: 10px;">Share a short (6–10 slide) Google Slides deck covering: problem statement,
+            solution, architecture, demo screenshots, technology stack, and a clear call-to-action or next steps.
+          </p>
         </div>
         <div class="holo-card">
           <div class="icon-box" style="color: #4285F4;"><i class="fa-solid fa-video"></i></div>
           <h3>Elevator Pitch</h3>
-          <p style="color: #aaa; margin-top: 10px;">Record a YouTube video (2 Min)</p>
+          <p style="color: #aaa; margin-top: 10px;">A concise 60–120 second pitch video explaining the problem and how your
+            solution addresses it. Use this to highlight the most compelling value proposition and the target user persona.
+          </p>
         </div>
       </div>
     </div>
@@ -513,9 +589,87 @@
     <div class="container prize-content">
       <h2 class="royal-font" style="font-size: 2rem; margin-bottom: 20px;">Total Prize Pool</h2>
       <div class="prize-amount">₹1,00,000</div>
-      <p style="font-size: 1.2rem; margin-top: 20px; color: var(--g-yellow);"> Worth of Prizes & Google Developers
-        Certificate of Achievement</p>
-      <p style="margin-top: 10px; color: #aaa;">3 Winners | Final Round in Udaipur</p>
+      <p style="font-size: 1.15rem; margin-top: 20px; color: var(--g-yellow);">Total Prize Pool <strong>₹1,00,000</strong> and Google
+        Developers Certificates of Achievement awarded to winners and distinguished teams.</p>
+      <p style="margin-top: 10px; color: #aaa;">Top <strong>3 Winners</strong> will be selected for prizes. The Final Round will be held
+        in-person in <strong>Udaipur (Offline)</strong> where finalists present their solutions to judges. Please note
+        that travel and accommodation costs are <strong>not covered</strong> by the organizers; finalists should plan and
+        budget for their own travel and lodging. Organizers will provide local logistics guidance where possible,
+        but are unable to offer financial support for travel or expenses.</p>
+      <div style="margin-top:16px">
+        <a class="btn-future" target="_blank" rel="noopener noreferrer" aria-label="Register for Google Lakecity Hackathon 2026" href="https://gdg.community.dev/events/details/google-gdg-cloud-udaipur-presents-google-lakecity-hackathon-2026-win-100000-worth-of-prizes/"><i class="fa-solid fa-right-to-bracket" style="color:#fff;margin-right:8px"></i> Register Now</a>
+      </div>
+      <p style="margin-top: 8px; color: #aaa;">Prize distribution across winners will be announced closer to the final event.</p>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" style="padding: 80px 0;">
+    <div class="container">
+      <h2 class="royal-font text-center" style="font-size: 2.5rem; margin-bottom: 20px;">Frequently Asked <span
+          style="color: var(--neon-blue)">Questions</span></h2>
+
+      <div class="theme-grid" style="grid-template-columns: 1fr; gap: 20px; max-width: 900px; margin: 0 auto;">
+        <div class="holo-card faq-item">
+          <button class="faq-question" aria-expanded="false">Who can participate in the hackathon?</button>
+          <div class="faq-answer" hidden>
+            <p style="color: #e6e9ef; margin-top: 10px;">
+              Google Lakecity Hackathon 2026 is open to individuals and teams who are enthusiastic about building
+              technology-driven solutions. This includes students (undergraduates and postgraduates), working
+              professionals, hobbyist developers, and early-stage startups. Teams should consist of 1–3 members; if you
+              plan to include advisors or mentors, list their roles clearly in your submission. Please check the official
+              event rules for any specific eligibility or legal requirements.
+            </p>
+          </div>
+        </div>
+
+        <div class="holo-card faq-item">
+          <button class="faq-question" aria-expanded="false">How do I register?</button>
+          <div class="faq-answer" hidden>
+            <p style="color: #e6e9ef; margin-top: 10px;">
+              Register for the event through the official GDG event page (click any “Register Now” button on this page
+              to go there). After registering, please join the WhatsApp group for real-time updates and community
+              support. Complete the registration form with your team details (names, roles, contact information), a
+              concise concept summary, and links to your submission materials. You will receive a confirmation message
+              and timely instructions for preparing and submitting your Round 1 materials; make sure to submit all
+              required items before the deadline on <strong>15 Jan 2026</strong>.
+            </p>
+          </div>
+        </div>
+
+        <div class="holo-card faq-item">
+          <button class="faq-question" aria-expanded="false">What should the submission include?</button>
+          <div class="faq-answer" hidden>
+            <p style="color: #e6e9ef; margin-top: 10px;">
+              For Round 1 please provide materials that clearly demonstrate your idea and its execution. At minimum,
+              include the following:
+            </p>
+            <ul style="color: #e6e9ef; margin-top: 8px; margin-left: 18px;">
+              <li>Working prototype or a hosted demo (link to GitHub / live demo if applicable).</li>
+              <li>Short demo video (2–4 minutes) hosted on YouTube that highlights how your solution works and its
+                key features.</li>
+              <li>Google Slides deck that covers the problem statement, solution, technology stack, architecture,
+                implementation plan, and expected impact or business model.</li>
+              <li>Optional: README or documentation in a public repo with setup instructions and dependencies.</li>
+            </ul>
+            <p style="color: #e6e9ef; margin-top: 10px;">Clear, well-documented submissions make it easier for judges to evaluate feasibility and impact.</p>
+          </div>
+        </div>
+
+        <div class="holo-card faq-item">
+          <button class="faq-question" aria-expanded="false">Are travel or accommodations covered?</button>
+          <div class="faq-answer" hidden>
+            <p style="color: #e6e9ef; margin-top: 10px;">
+              Travel and accommodation costs are not covered by the event organizers. Finalists who are invited to the
+              in-person final rounds in Udaipur are responsible for arranging and funding their own travel and lodging.
+              Organizers may provide recommended hotels and local logistics information where possible, but any
+              expenses related to travel, accommodation, visas, or local transport must be borne by the participant or
+              their sponsor. If you have financial constraints, please contact the organizers (email provided in the footer)
+              —though organizers cannot guarantee support, they may provide guidance on potential sponsorship options.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -545,7 +699,7 @@
           </p>
           <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
             <button id="restart-btn" class="btn-future">Try Again</button>
-            <a href="https://chat.whatsapp.com/C6eOQRiaUXOIAJGONGvZWz?mode=hqrt3" target="_blank" class="btn-future"
+            <a href="https://gdg.community.dev/events/details/google-gdg-cloud-udaipur-presents-google-lakecity-hackathon-2026-win-100000-worth-of-prizes/" target="_blank" rel="noopener noreferrer" aria-label="Register for Google Lakecity Hackathon 2026" class="btn-future"
               style="border-color: var(--g-green); color: var(--g-green);">Register Now</a>
           </div>
         </div>
@@ -559,7 +713,10 @@
       <div class="social-links" style="margin-bottom: 20px;">
         <a href="https://www.linkedin.com/company/gdg-cloud-udaipur/"><i class="fa-brands fa-linkedin"></i></a>
       </div>
-      <p style="color: #888; font-size: 0.9rem;">📧 abhinav.jain1411@gmail.com <br> 📞 9529912550</p>
+      <p style="color: #888; font-size: 0.9rem; margin-bottom: 10px;">📧 abhinav.jain1411@gmail.com <br> 📞 9529912550</p>
+      <div style="margin-bottom: 18px">
+        <a class="btn-future" aria-label="Register for Google Lakecity Hackathon 2026" rel="noopener noreferrer" target="_blank" href="https://gdg.community.dev/events/details/google-gdg-cloud-udaipur-presents-google-lakecity-hackathon-2026-win-100000-worth-of-prizes/">Register Now</a>
+      </div>
       <p style="color: #555; font-size: 0.8rem; margin-top: 20px;">&copy; 2025 GDG Cloud Udaipur</p>
     </div>
   </footer>
@@ -788,6 +945,33 @@
       initFireworks();
       initGame();
       gsap.from('.hero h1', { duration: 2, scale: 0.8, opacity: 0, ease: 'elastic.out(1, 0.3)' });
+      // FAQ Accordion behaviour
+      document.querySelectorAll('.faq-question').forEach(btn => {
+        // ensure default state
+        btn.setAttribute('aria-expanded', btn.getAttribute('aria-expanded') || 'false');
+        const parent = btn.closest('.faq-item');
+        const answer = parent.querySelector('.faq-answer');
+        if (btn.getAttribute('aria-expanded') === 'true') {
+          parent.classList.add('open');
+          answer.hidden = false;
+        } else {
+          parent.classList.remove('open');
+          answer.hidden = true;
+        }
+        btn.addEventListener('click', () => {
+          const isOpen = btn.getAttribute('aria-expanded') === 'true';
+          btn.setAttribute('aria-expanded', (!isOpen).toString());
+          if (!isOpen) { parent.classList.add('open'); answer.hidden = false; }
+          else { parent.classList.remove('open'); answer.hidden = true; }
+        });
+        // keyboard support
+        btn.addEventListener('keydown', (e) => {
+          if (e.code === 'Space' || e.code === 'Enter') {
+            e.preventDefault();
+            btn.click();
+          }
+        });
+      });
     };
   </script>
 </body>
