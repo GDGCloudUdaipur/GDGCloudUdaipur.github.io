@@ -438,9 +438,9 @@
         <button class="btn-future" style="border-color: var(--g-green); color: var(--g-green);"
           onclick="document.getElementById('themes').scrollIntoView({behavior:'smooth'})"><i
             class="fa-solid fa-compass"></i> Explore Themes</button>
-        <button class="btn-future" style="border-color: var(--neon-purple); color: var(--neon-purple);"
-          onclick="document.getElementById('faq').scrollIntoView({behavior:'smooth'})"><i
-            class="fa-solid fa-question"></i> FAQ</button>
+        <a class="btn-future" target="_blank" rel="noopener noreferrer" href="https://forms.gle/fZBEciY6tuH4Lu699" style="border-color: var(--neon-purple); color: var(--neon-purple); display:inline-flex;align-items:center;gap:8px;">
+          <i class="fa-solid fa-upload"></i> Submission Form
+        </a>
         <a class="btn-future" target="_blank" rel="noopener noreferrer" aria-label="Register for Google Lakecity Hackathon 2026" href="https://gdg.community.dev/events/details/google-gdg-cloud-udaipur-presents-google-lakecity-hackathon-2026-win-100000-worth-of-prizes/" style="display:flex;align-items:center;gap:8px;">
           <i class="fa-solid fa-right-to-bracket" style="color:#fff"></i> Register Now
         </a>
@@ -505,9 +505,9 @@
           style="color: var(--g-red)">(Online) — Submission Details</span></h2>
       <div style="text-align: center; margin-bottom: 24px; color: #ddd; max-width:900px; margin-left:auto; margin-right:auto">
         <p style="font-size: 1.05rem; margin-bottom: 12px;">Round 1 is an online submission round intended to evaluate
-          the concept, technical feasibility, and immediate impact of your idea. Teams are requested to submit
-          a concise yet complete package that helps judges quickly understand your solution and how it was
-          implemented.</p>
+          the concept, technical feasibility, and immediate impact of your idea. Teams are requested to submit a
+          <strong>fully working prototype</strong> that demonstrates core features and functionality; submissions that
+          only include design plans or implementation proposals will not qualify.</p>
         <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:8px;">
           <div style="background:rgba(255,255,255,0.03);border:1px solid var(--glass-border);padding:12px 16px;border-radius:12px;">
             <i class="fa-solid fa-users" style="margin-right:8px;color:var(--neon-blue)"></i>
@@ -536,9 +536,11 @@
       <div class="icon-grid">
         <div class="holo-card">
           <div class="icon-box" style="color: #FF0000;"><i class="fa-brands fa-youtube"></i></div>
-          <h3>Working Prototype / Demo</h3>
-          <p style="color: #aaa; margin-top: 10px;">Provide a working prototype or a hosted demo (GitHub, Firebase, Netlify).
-            A short YouTube demo (2–4 minutes) explaining the core flow, UX, and feature highlights is highly recommended.
+          <h3>Fully Working Prototype</h3>
+          <p style="color: #aaa; margin-top: 10px;">Submit a fully functional prototype that demonstrates all core features.
+            Upload a short demonstration video (maximum <strong>3 minutes</strong>) to YouTube and include the link in your
+            submission. The YouTube demo is the primary evidence of functionality — code repositories are allowed as
+            supplementary material but cannot replace the working demo video.
           </p>
         </div>
         <div class="holo-card">
@@ -550,10 +552,10 @@
         </div>
         <div class="holo-card">
           <div class="icon-box" style="color: #4285F4;"><i class="fa-solid fa-video"></i></div>
-          <h3>Elevator Pitch</h3>
-          <p style="color: #aaa; margin-top: 10px;">A concise 60–120 second pitch video explaining the problem and how your
-            solution addresses it. Use this to highlight the most compelling value proposition and the target user persona.
-          </p>
+          <h3>Elevator Pitch (YouTube)</h3>
+          <p style="color: #aaa; margin-top: 10px;">Record a concise 60–120 second elevator pitch and upload it to YouTube.
+            This video should highlight the problem, the solution's value proposition, and the target user. Judges will
+            assess clarity and impact from this short pitch.</p>
         </div>
       </div>
     </div>
@@ -589,17 +591,12 @@
     <div class="container prize-content">
       <h2 class="royal-font" style="font-size: 2rem; margin-bottom: 20px;">Total Prize Pool</h2>
       <div class="prize-amount">₹1,00,000</div>
-      <p style="font-size: 1.15rem; margin-top: 20px; color: var(--g-yellow);">Total Prize Pool <strong>₹1,00,000</strong> and Google
-        Developers Certificates of Achievement awarded to winners and distinguished teams.</p>
-      <p style="margin-top: 10px; color: #aaa;">Top <strong>3 Winners</strong> will be selected for prizes. The Final Round will be held
-        in-person in <strong>Udaipur (Offline)</strong> where finalists present their solutions to judges. Please note
-        that travel and accommodation costs are <strong>not covered</strong> by the organizers; finalists should plan and
-        budget for their own travel and lodging. Organizers will provide local logistics guidance where possible,
-        but are unable to offer financial support for travel or expenses.</p>
+      <p style="font-size: 1.15rem; margin-top: 20px; color: var(--g-yellow);">Total Prize Pool <strong>₹1,00,000</strong></p>
+      <p style="margin-top: 10px; color: #aaa;">Top <strong>3 Winners</strong> — Final Round in <strong>Udaipur (Offline)</strong>.</p>
       <div style="margin-top:16px">
         <a class="btn-future" target="_blank" rel="noopener noreferrer" aria-label="Register for Google Lakecity Hackathon 2026" href="https://gdg.community.dev/events/details/google-gdg-cloud-udaipur-presents-google-lakecity-hackathon-2026-win-100000-worth-of-prizes/"><i class="fa-solid fa-right-to-bracket" style="color:#fff;margin-right:8px"></i> Register Now</a>
       </div>
-      <p style="margin-top: 8px; color: #aaa;">Prize distribution across winners will be announced closer to the final event.</p>
+      <p style="margin-top: 8px; color: #aaa;">Prize distribution details and finalist logistics are available in the FAQ.</p>
     </div>
   </section>
 
@@ -619,6 +616,8 @@
               professionals, hobbyist developers, and early-stage startups. Teams should consist of 1–3 members; if you
               plan to include advisors or mentors, list their roles clearly in your submission. Please check the official
               event rules for any specific eligibility or legal requirements.
+              <br>
+              <strong>Age limits:</strong> There is <strong>no age limit</strong> to participate.
             </p>
           </div>
         </div>
@@ -645,27 +644,120 @@
               include the following:
             </p>
             <ul style="color: #e6e9ef; margin-top: 8px; margin-left: 18px;">
-              <li>Working prototype or a hosted demo (link to GitHub / live demo if applicable).</li>
-              <li>Short demo video (2–4 minutes) hosted on YouTube that highlights how your solution works and its
-                key features.</li>
-              <li>Google Slides deck that covers the problem statement, solution, technology stack, architecture,
-                implementation plan, and expected impact or business model.</li>
-              <li>Optional: README or documentation in a public repo with setup instructions and dependencies.</li>
+              <li>A fully working prototype demonstrated in a video (primary evidence must be a YouTube demo).</li>
+              <li>Short demo video (maximum <strong>3 minutes</strong>) uploaded to YouTube that demonstrates core
+                features and workflows; do not use code hosting platforms in place of the video.</li>
+              <li>Google Slides deck (6–10 slides) covering problem statement, solution, architecture, tech stack,
+                implementation plan, and impact.</li>
+              <li>Optional: README / documentation in a public repo with setup instructions and dependencies (supporting
+                material only).</li>
             </ul>
             <p style="color: #e6e9ef; margin-top: 10px;">Clear, well-documented submissions make it easier for judges to evaluate feasibility and impact.</p>
           </div>
         </div>
 
         <div class="holo-card faq-item">
-          <button class="faq-question" aria-expanded="false">Are travel or accommodations covered?</button>
+          <button class="faq-question" aria-expanded="false">How many rounds are there?</button>
           <div class="faq-answer" hidden>
-            <p style="color: #e6e9ef; margin-top: 10px;">
-              Travel and accommodation costs are not covered by the event organizers. Finalists who are invited to the
-              in-person final rounds in Udaipur are responsible for arranging and funding their own travel and lodging.
-              Organizers may provide recommended hotels and local logistics information where possible, but any
-              expenses related to travel, accommodation, visas, or local transport must be borne by the participant or
-              their sponsor. If you have financial constraints, please contact the organizers (email provided in the footer)
-              —though organizers cannot guarantee support, they may provide guidance on potential sponsorship options.
+            <p style="color: #e6e9ef; margin-top: 10px;">There are two rounds: Round 1 (Online), and the Final Round (In-person)
+              held in Udaipur. Round 1 evaluates submissions and selects finalists for the offline final where winners are
+              determined.
+            </p>
+          </div>
+        </div>
+
+        <div class="holo-card faq-item">
+          <button class="faq-question" aria-expanded="false">What is expected in each round?</button>
+          <div class="faq-answer" hidden>
+            <p style="color: #e6e9ef; margin-top: 10px;">Round 1 (Online) requires a fully functioning prototype, a 3-minute
+              YouTube demo, a slide deck, and a short elevator pitch (60–120 seconds). Finalists invited to the in-person
+              final round should prepare a live demonstration, a deeper technical walkthrough, and be ready for Q&amp;A.
+            </p>
+          </div>
+        </div>
+
+        <div class="holo-card faq-item">
+          <button class="faq-question" aria-expanded="false">What shall be covered in the submission? (Evaluation framework)</button>
+          <div class="faq-answer" hidden>
+            <p style="color: #e6e9ef; margin-top: 10px;">Judges will evaluate submissions using a framework that includes:</p>
+            <ul style="color: #e6e9ef; margin-top: 8px; margin-left: 18px;">
+              <li><strong>Innovation:</strong> Is the idea original and creative?</li>
+              <li><strong>Technical Execution:</strong> Is the prototype functional, well-built, and reproducible?</li>
+              <li><strong>Impact:</strong> Does the solution address a real problem with measurable benefit?</li>
+              <li><strong>Feasibility:</strong> Is the solution practical and executable within current constraints?</li>
+              <li><strong>UX & Design:</strong> Is the user experience clear and compelling?</li>
+              <li><strong>Use of Google Tech:</strong> Effective use of Google technologies will be considered a plus.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="holo-card faq-item">
+          <button class="faq-question" aria-expanded="false">Is it compulsory to attend the Final Round if selected in person?</button>
+          <div class="faq-answer" hidden>
+            <p style="color: #e6e9ef; margin-top: 10px;">Yes. Finalists are expected to be present at the in-person final
+              event in Udaipur. Remote presentations are not guaranteed; absence from the final round may affect a team’s
+              eligibility to be declared a winner.
+            </p>
+          </div>
+        </div>
+
+        
+
+        <div class="holo-card faq-item">
+          <button class="faq-question" aria-expanded="false">Who owns the project IP?</button>
+          <div class="faq-answer" hidden>
+            <p style="color: #e6e9ef; margin-top: 10px;">Participants retain ownership of their intellectual property.
+              By participating, you grant the organizers a non-exclusive right to publicize the project (for marketing
+              and presentation of finalists and winners) but you retain all other rights.
+            </p>
+          </div>
+        </div>
+
+        <div class="holo-card faq-item">
+          <button class="faq-question" aria-expanded="false">Are pretrained models, third-party APIs, or datasets allowed?</button>
+          <div class="faq-answer" hidden>
+            <p style="color: #e6e9ef; margin-top: 10px;">Yes — you may use third-party models, APIs, and datasets, but you must
+              clearly list all external libraries and datasets used, and ensure that your usage complies with those
+              licenses. When possible, cite references and provide attribution in your submission materials.
+            </p>
+          </div>
+        </div>
+
+        <div class="holo-card faq-item">
+          <button class="faq-question" aria-expanded="false">Can we submit prior or pre-existing projects?</button>
+          <div class="faq-answer" hidden>
+            <p style="color: #e6e9ef; margin-top: 10px;">You may submit projects that were started earlier, provided you
+              clearly disclose prior work and the portion completed for the hackathon. Judges will consider novelty of
+              the team's contribution when evaluating submissions.
+            </p>
+          </div>
+        </div>
+
+        <div class="holo-card faq-item">
+          <button class="faq-question" aria-expanded="false">Are there mentors available during the hackathon?</button>
+          <div class="faq-answer" hidden>
+            <p style="color: #e6e9ef; margin-top: 10px;">Organizers may provide mentors or office hours; details about mentor
+              availability will be shared closer to the event. Mentorship schedules and contact points (if any) will be
+              announced via the official event channels.
+            </p>
+          </div>
+        </div>
+
+        <div class="holo-card faq-item">
+          <button class="faq-question" aria-expanded="false">How are winners selected and notified?</button>
+          <div class="faq-answer" hidden>
+            <p style="color: #e6e9ef; margin-top: 10px;">A jury of judges will evaluate finalists and determine the winners
+              based on the evaluation framework listed above. Finalists and winners will be notified via the registered
+              email and the WhatsApp group. Winners will also be announced publicly after the final round.
+            </p>
+          </div>
+        </div>
+
+        <div class="holo-card faq-item">
+          <button class="faq-question" aria-expanded="false">Are travel and accommodation costs covered?</button>
+          <div class="faq-answer" hidden>
+            <p style="color: #e6e9ef; margin-top: 10px;">No — travel and accommodation will not be covered by the
+              organizers. Finalists should plan their travel and lodging independently.
             </p>
           </div>
         </div>
@@ -713,10 +805,8 @@
       <div class="social-links" style="margin-bottom: 20px;">
         <a href="https://www.linkedin.com/company/gdg-cloud-udaipur/"><i class="fa-brands fa-linkedin"></i></a>
       </div>
-      <p style="color: #888; font-size: 0.9rem; margin-bottom: 10px;">📧 abhinav.jain1411@gmail.com <br> 📞 9529912550</p>
-      <div style="margin-bottom: 18px">
-        <a class="btn-future" aria-label="Register for Google Lakecity Hackathon 2026" rel="noopener noreferrer" target="_blank" href="https://gdg.community.dev/events/details/google-gdg-cloud-udaipur-presents-google-lakecity-hackathon-2026-win-100000-worth-of-prizes/">Register Now</a>
-      </div>
+      <p style="color: #888; font-size: 0.9rem; margin-bottom: 10px;">📧 abhinav.jain1411@gmail.com</p>
+      <!-- Footer register button removed per request -->
       <p style="color: #555; font-size: 0.8rem; margin-top: 20px;">&copy; 2025 GDG Cloud Udaipur</p>
     </div>
   </footer>
