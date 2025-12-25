@@ -1246,8 +1246,11 @@
                 if (x >= 0 && x <= rect.width && y >= 0 && y <= rect.height) {
                     const centerX = rect.width / 2;
                     const centerY = rect.height / 2;
-                    const rotateX = ((y - centerY) / centerY) * -10; // Max 10deg
-                    const rotateY = ((x - centerX) / centerX) * 10;
+                    // Use less movement for upcoming events
+                    const isUpcoming = card.classList.contains('upcoming-card-3d');
+                    const maxTilt = isUpcoming ? 3 : 10; // Decreased tilt for upcoming
+                    const rotateX = ((y - centerY) / centerY) * -maxTilt;
+                    const rotateY = ((x - centerX) / centerX) * maxTilt;
 
                     card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
                 } else {
@@ -1310,9 +1313,10 @@
         eventsData.forEach(ev => {
             const eventDate = new Date(ev.date);
             const isPast = eventDate < currentDate;
-
+            // Add a special class for upcoming event cards
+            const cardClass = isPast ? 'card-3d' : 'card-3d upcoming-card-3d';
             const eventCard = `
-                <div class="card-3d">
+                <div class="${cardClass}">
                     <div class="card-inner">
                         <div class="card-image" style="background-image: url('${ev.img}')">
                             <div class="card-date">${ev.date}</div>
