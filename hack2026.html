@@ -413,6 +413,20 @@
       max-height: 1000px; /* allow for longer answers */
       opacity: 1;
     }
+
+    /* --- PITCH DECK SECTION --- */
+    #pitch-deck { padding: 80px 0; }
+    .pitch-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 30px; }
+    .pitch-card { text-align: left; padding: 30px; min-height: 220px; display:flex; flex-direction:column; align-items:flex-start; }
+    .pitch-card .theme-icon { font-size: 2.4rem; margin-bottom: 12px; }
+    .pitch-card h3 { margin-top: 6px; margin-bottom: 10px; }
+
+    .btn-future.small { padding:8px 14px; font-size:0.9rem; border-radius:8px; }
+    .arch-svg { width:100%; max-width:920px; height:150px; margin: 18px auto 0 auto; display:block; }
+    @media (max-width: 768px) {
+      .arch-svg { height:auto; }
+      .pitch-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 
@@ -498,6 +512,59 @@
         </div>
       </div>
     </div>
+  </section>
+
+  <section id="pitch-deck" style="padding: 80px 0;">
+    <div class="container">
+      <h2 class="royal-font text-center" style="font-size: 2.5rem; margin-bottom: 20px;">Pitch Deck <span style="color: var(--neon-blue)">Overview</span></h2>
+      <div class="pitch-grid">
+        <div class="holo-card pitch-card">
+          <span class="theme-icon" style="color: var(--g-blue)"><i class="fa-solid fa-bolt"></i></span>
+          <h3 class="royal-font">Title & Value Proposition</h3>
+          <p style="color: #aaa; margin-top: 12px;">We built <strong>[Project]</strong> to deliver <em>[core outcome]</em> — saving time/costs or improving accuracy for <strong>[target users]</strong>.</p>
+      </div>
+        <div class="holo-card pitch-card">
+          <span class="theme-icon" style="color: var(--g-red)"><i class="fa-solid fa-triangle-exclamation"></i></span>
+          <h3 class="royal-font">Problem Statement</h3>
+          <p style="color: #aaa; margin-top: 12px;">[Target users] face [clear problem] that causes [time/money/risk loss] and limits scale or quality.</p>
+
+        </div>
+        <div class="holo-card pitch-card">
+          <span class="theme-icon" style="color: var(--g-yellow)"><i class="fa-solid fa-users"></i></span>
+          <h3 class="royal-font">Target Users</h3>
+          <p style="color: #aaa; margin-top: 12px;">Primary users: <strong>[Persona A]</strong>, secondary: <strong>[Persona B]</strong>. Explain why it matters to them.</p>
+
+        </div>
+        <div class="holo-card pitch-card">
+          <span class="theme-icon" style="color: var(--g-green)"><i class="fa-solid fa-gear"></i></span>
+          <h3 class="royal-font">Current Gaps</h3>
+          <p style="color: #aaa; margin-top: 12px;">Existing tools are fragmented, manual, expensive, or don't integrate with needed Google services.</p>
+
+        </div>
+        <div class="holo-card pitch-card">
+          <span class="theme-icon" style="color: var(--neon-blue)"><i class="fa-solid fa-lightbulb"></i></span>
+          <h3 class="royal-font">Solution Overview</h3>
+          <p style="color: #aaa; margin-top: 12px;">A unified, automated product that uses <strong>[AI/Maps/Cloud]</strong> to convert input into actionable results.</p>
+
+        </div>
+        <div class="holo-card pitch-card">
+          <span class="theme-icon" style="color: #fff"><i class="fa-solid fa-star"></i></span>
+          <h3 class="royal-font">Key Features</h3>
+          <p style="color: #aaa; margin-top: 12px;">Feature 1: Automated pipeline. Feature 2: Smart suggestions (AI). Feature 3: Maps/visualization & real-time updates.</p>
+
+        </div>
+        <div class="holo-card pitch-card">
+          <span class="theme-icon" style="color: var(--g-blue)"><i class="fa-brands fa-google"></i></span>
+          <h3 class="royal-font">Google Tech Stack</h3>
+          <p style="color: #aaa; margin-top: 12px;">We use <strong>Cloud Run/Functions</strong>, <strong>BigQuery</strong>, <strong>Vertex AI</strong>, and <strong>Maps</strong> for scaling, data, ML, and geospatial features.</p>
+        </div>
+        <div class="holo-card pitch-card">
+          <span class="theme-icon" style="color: var(--g-red)"><i class="fa-solid fa-sitemap"></i></span>
+          <h3 class="royal-font">Architecture</h3>
+          <p style="color: #aaa; margin-top: 12px;">High-level flow: User → Frontend → API → Data Store → ML → Results (see diagram).</p>
+
+        </div>
+      </div>
   </section>
 
   <section id="submission" style="padding: 80px 0;">
