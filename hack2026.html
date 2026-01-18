@@ -4,13 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="hackathon.jpg" type="image/png">
-  <title>LakeCity Hackathon 2026 | Udaipur x Google</title>
+  <title>Google Lakecity Hackathon 2026 | Future Utopia</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Space+Grotesk:wght@300;400;600;700&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -19,13 +16,14 @@
     :root {
       --neon-blue: #00f3ff;
       --neon-purple: #bc13fe;
+      --neon-green: #39ff14;
       --g-blue: #4285F4;
       --g-red: #EA4335;
       --g-yellow: #FBBC05;
       --g-green: #34A853;
-      --bg-dark: #020408;
-      --glass: rgba(255, 255, 255, 0.03);
-      --glass-border: rgba(255, 255, 255, 0.1);
+      --bg-dark: #010204;
+      --glass: rgba(255, 255, 255, 0.05);
+      --glass-border: rgba(0, 243, 255, 0.2);
     }
 
     * {
@@ -40,45 +38,31 @@
       color: #fff;
       font-family: 'Space Grotesk', sans-serif;
       overflow-x: hidden;
+      background: radial-gradient(circle at 50% 50%, #05101a 0%, #010204 100%);
     }
 
-    h1,
-    h2,
-    h3,
-    .royal-font {
-      font-family: 'Cinzel', serif;
+    h1, h2, h3, .royal-font {
+      font-family: 'Orbitron', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 2px;
     }
 
-    /* --- CUSTOM CURSOR --- */
+    /* --- CYBER CURSOR --- */
     #cursor {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 20px;
-      height: 20px;
-      border: 2px solid var(--neon-blue);
+      width: 30px;
+      height: 30px;
+      border: 1px solid var(--neon-blue);
       border-radius: 50%;
       pointer-events: none;
       z-index: 9999;
       transform: translate(-50%, -50%);
-      transition: width 0.2s, height 0.2s;
-      mix-blend-mode: difference;
+      transition: width 0.3s, height 0.3s;
+      mix-blend-mode: screen;
+      box-shadow: 0 0 15px var(--neon-blue);
     }
 
-    #cursor-trail {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 8px;
-      height: 8px;
-      background: var(--g-red);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9998;
-      transform: translate(-50%, -50%);
-    }
-
-    /* --- 3D BACKGROUND --- */
+    /* --- 3D CANVAS --- */
     #canvas-container {
       position: fixed;
       top: 0;
@@ -86,1075 +70,719 @@
       width: 100%;
       height: 100%;
       z-index: -1;
+      opacity: 0.4;
     }
 
-    /* --- UI COMPONENTS --- */
+    /* --- UI ELEMENTS --- */
     .container {
-      max-width: 1400px;
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 0 40px;
+      padding: 0 20px;
+    }
+
+    .btn-future {
+      padding: 12px 30px;
+      background: rgba(0, 243, 255, 0.1);
+      border: 1px solid var(--neon-blue);
+      color: var(--neon-blue);
+      text-decoration: none;
+      font-weight: bold;
       position: relative;
-      z-index: 10;
+      overflow: hidden;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: 0.4s;
+      clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+    }
+
+    .btn-future:hover {
+      background: var(--neon-blue);
+      color: #000;
+      box-shadow: 0 0 30px var(--neon-blue);
+      transform: scale(1.05);
     }
 
     .holo-card {
       background: var(--glass);
       border: 1px solid var(--glass-border);
-      border-radius: 20px;
-      padding: 40px;
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      border-radius: 15px;
+      padding: 30px;
+      backdrop-filter: blur(15px);
+      transition: 0.4s;
       position: relative;
       overflow: hidden;
-      transition: 0.5s;
       height: 100%;
       display: flex;
       flex-direction: column;
-      text-align: center;
-    }
-
-    .holo-card::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-      transform: rotate(45deg);
-      animation: shine 6s infinite;
     }
 
     .holo-card:hover {
       border-color: var(--neon-blue);
-      box-shadow: 0 0 30px rgba(0, 243, 255, 0.2);
-      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);
+      transform: translateY(-5px);
     }
-
-    @keyframes shine {
-      0% {
-        transform: translateX(-100%) rotate(45deg);
-      }
-
-      100% {
-        transform: translateX(100%) rotate(45deg);
-      }
-    }
-
-    .btn-future {
-      padding: 15px 40px;
-      background: transparent;
-      border: 1px solid var(--neon-blue);
-      color: var(--neon-blue);
-      font-family: 'Space Grotesk', sans-serif;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      position: relative;
-      overflow: hidden;
-      transition: 0.3s;
-      cursor: none;
-      text-decoration: none;
-      display: inline-block;
-      text-align: center;
-    }
-
-    .btn-future::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 0%;
-      height: 100%;
-      background: var(--neon-blue);
-      transition: 0.3s;
-      z-index: -1;
-    }
-
-    .btn-future:hover {
-      color: #000;
-    }
-
-    .btn-future:hover::after {
-      width: 100%;
-    }
-
-    /* legacy .btn-register removed — use .btn-future for all prominent buttons */
 
     /* --- HERO --- */
     .hero {
       height: 100vh;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      perspective: 1000px;
-      padding: 0 20px;
-    }
-
-    .hero h1 {
-      font-size: 6vw;
-      line-height: 1.1;
-      margin-bottom: 10px;
-      background: linear-gradient(to right, #fff, #aaa);
-      -webkit-background-clip: text;
-      color: transparent;
-      text-shadow: 0 0 50px rgba(255, 255, 255, 0.3);
-    }
-
-    .hero-subtitle {
-      font-size: 1.5rem;
-      color: var(--neon-blue);
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      margin-top: 10px;
-      margin-bottom: 30px;
-    }
-
-    /* --- THEMES --- */
-    .theme-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-      margin-top: 50px;
-    }
-
-    .theme-icon {
-      font-size: 3rem;
-      margin-bottom: 20px;
-      display: block;
-    }
-
-    /* --- SUBMISSION ICONS --- */
-    .icon-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-      margin-top: 50px;
-    }
-
-    .icon-box {
-      font-size: 3rem;
-      margin-bottom: 20px;
-    }
-
-    /* --- FIREWORKS SECTION --- */
-    #prize-section {
-      position: relative;
-      min-height: 80vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      text-align: center;
-      padding: 0 20px;
-    }
-
-    #fireworks-canvas {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-    }
-
-    .prize-content {
-      position: relative;
-      z-index: 2;
-      background: rgba(0, 0, 0, 0.6);
-      padding: 50px;
-      border-radius: 30px;
-      border: 1px solid var(--g-yellow);
-      backdrop-filter: blur(10px);
-      width: 100%;
-      max-width: 800px;
-    }
-
-    .prize-amount {
-      font-size: 6rem;
-      font-weight: 800;
-      background: linear-gradient(to right, var(--g-blue), var(--g-red), var(--g-yellow), var(--g-green));
-      -webkit-background-clip: text;
-      color: transparent;
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0% {
-        transform: scale(1);
-      }
-
-      50% {
-        transform: scale(1.05);
-      }
-
-      100% {
-        transform: scale(1);
-      }
-    }
-
-    /* --- FOOTER --- */
-    footer {
-      padding: 50px 0;
-      border-top: 1px solid var(--glass-border);
-      margin-top: 100px;
-      text-align: center;
-      background: linear-gradient(to top, #000, transparent);
-    }
-
-    .social-links a {
-      color: #aaa;
-      margin: 0 15px;
-      text-decoration: none;
-      font-size: 1.5rem;
-      transition: 0.3s;
-      cursor: none;
-    }
-
-    .social-links a:hover {
-      color: var(--neon-blue);
-    }
-
-    /* --- GAME OVER MODAL --- */
-    #game-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.9);
-      display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      z-index: 10;
-      display: none;
-      padding: 20px;
+      text-align: center;
     }
 
-    /* --- MOBILE RESPONSIVENESS --- */
-    @media (max-width: 768px) {
-      .container {
-        padding: 0 20px;
-      }
-
-      .hero h1 {
-        font-size: 3rem;
-      }
-
-      .hero-subtitle {
-        font-size: 1rem;
-        letter-spacing: 2px;
-      }
-
-      .prize-amount {
-        font-size: 3rem;
-      }
-
-      .theme-grid,
-      .icon-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .btn-future {
-        width: 100%;
-        margin-bottom: 10px;
-      }
-
-      #cursor,
-      #cursor-trail {
-        display: none;
-      }
-
-      /* Hide custom cursor on touch devices */
-      * {
-        cursor: auto;
-      }
-
-      /* Restore default cursor */
+    .hero h1 {
+      font-size: clamp(2.5rem, 8vw, 5.5rem);
+      background: linear-gradient(to bottom, #fff, var(--neon-blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 20px;
+      line-height: 1.1;
     }
 
-    /* --- FAQ Accordion --- */
-    .faq-item {
-      text-align: left;
-      padding: 20px;
-      cursor: auto;
+    /* --- PRIZE REVEAL --- */
+    #prize-reveal-section {
+      padding: 100px 0;
+      background: #000;
+      min-height: 110vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
-    .faq-question {
+    .shutter-wrap {
+      position: relative;
+      height: 600px;
       width: 100%;
-      background: transparent;
-      border: none;
-      text-align: left;
-      font-weight: 700;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: rgba(255,255,255,0.02);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .shutter {
+      position: absolute;
+      top: 0;
+      width: 50.1%;
+      height: 100%;
+      background: linear-gradient(90deg, #050505, #151515);
+      z-index: 10;
+      border: 1px solid var(--glass-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 50px rgba(0,0,0,1);
+    }
+
+    .shutter.left { left: 0; border-right: 2px solid var(--neon-blue); }
+    .shutter.right { right: 0; border-left: 2px solid var(--neon-blue); }
+
+    .shutter-label {
+      font-size: 2.5rem;
       color: var(--neon-blue);
-      font-size: 1.1rem;
-      padding: 10px 0;
+      text-shadow: 0 0 20px var(--neon-blue);
+      opacity: 0.4;
+      transform: rotate(-90deg);
+      font-weight: bold;
+    }
+
+    .prize-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      z-index: 5;
+      width: 90%;
+      max-width: 1100px;
+      position: absolute;
+      opacity: 0;
+      transform: scale(0.8);
+    }
+
+    .box-3d {
+      margin: 20px auto;
+      transform-style: preserve-3d;
+      filter: drop-shadow(0 0 15px var(--neon-blue));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.5s;
+    }
+
+    .pixel-box { 
+      width: 80px; height: 150px; background: #eee; border-radius: 10px; 
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+    }
+    .laptop-box { 
+      width: 180px; height: 110px; background: #222; border: 2px solid #444; border-radius: 5px;
+    }
+    .airpods-box { 
+      width: 100px; height: 100px; background: #fff; border-radius: 15px;
+    }
+
+    /* --- THEMES GRID --- */
+    .grid-layout {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin-top: 50px;
+    }
+
+    .icon-large {
+      font-size: 3rem;
+      margin-bottom: 20px;
       display: block;
     }
 
-    .faq-question:focus {
-      outline: 2px dashed var(--neon-blue);
-      outline-offset: 4px;
+    /* --- FAQ --- */
+    .faq-item { margin-bottom: 15px; }
+    .faq-question {
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      color: var(--neon-blue);
+      font-size: 1.15rem;
+      padding: 20px;
+      cursor: pointer;
+      font-family: 'Orbitron';
     }
-
     .faq-answer {
-      color: #e6e9ef; /* slightly brighter for readability */
-      font-size: 1.05rem; /* larger answer text for readability */
-      line-height: 1.8; /* increase spacing for readability */
-      margin-top: 10px;
-      overflow: hidden;
       max-height: 0;
-      transition: max-height 0.45s ease, opacity 0.2s ease;
-      opacity: 0;
+      overflow: hidden;
+      transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      padding: 0 20px;
+      color: #aaa;
+      line-height: 1.6;
+    }
+    .faq-item.active .faq-answer { max-height: 600px; padding-bottom: 20px; }
+
+    /* --- GAME --- */
+    #game-canvas {
+      width: 100%;
+      height: 450px;
+      background: linear-gradient(to bottom, #001220, #000);
+      border-radius: 20px;
+      border: 1px solid var(--glass-border);
+      touch-action: none;
     }
 
-    .faq-item.open .faq-answer {
-      max-height: 1000px; /* allow for longer answers */
-      opacity: 1;
-    }
-
-    /* --- PITCH DECK SECTION --- */
-    #pitch-deck { padding: 80px 0; }
-    .pitch-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 30px; }
-    .pitch-card { text-align: left; padding: 30px; min-height: 220px; display:flex; flex-direction:column; align-items:flex-start; }
-    .pitch-card .theme-icon { font-size: 2.4rem; margin-bottom: 12px; }
-    .pitch-card h3 { margin-top: 6px; margin-bottom: 10px; }
-
-    .btn-future.small { padding:8px 14px; font-size:0.9rem; border-radius:8px; }
-    .arch-svg { width:100%; max-width:920px; height:150px; margin: 18px auto 0 auto; display:block; }
     @media (max-width: 768px) {
-      .arch-svg { height:auto; }
-      .pitch-grid { grid-template-columns: 1fr; }
+      .shutter { display: none; }
+      .prize-container { grid-template-columns: 1fr; position: relative; opacity: 1; transform: none; }
+      .shutter-wrap { height: auto; padding: 40px 0; }
+      #cursor { display: none; }
+      * { cursor: auto; }
     }
   </style>
 </head>
 
 <body>
 
-  <!-- 3D Background -->
+  <div id="cursor"></div>
   <div id="canvas-container"></div>
 
-  <!-- Custom Cursor -->
-  <div id="cursor"></div>
-  <div id="cursor-trail"></div>
-
+  <!-- Hero Section -->
   <header class="hero">
     <div class="container">
-      <h1 class="royal-font">Google Lakecity<br><span style="color: var(--g-blue)">Hackathon 2026</span></h1>
-      <div class="hero-subtitle">by GDG Cloud Udaipur</div>
-      <p style="font-size: 1.1rem; max-width: 600px; margin: 0 auto 2rem auto; color: #aaa; line-height: 1.6;">
-        Where Udaipur's Heritage meets the AI Singularity. <br>
-        Innovate. Collaborate. Elevate.
+      <div style="color: var(--neon-purple); letter-spacing: 12px; margin-bottom: 15px; font-weight: bold;">UDAIPUR x GOOGLE</div>
+      <h1>LAKECITY<br><span style="color:var(--neon-blue)">HACKATHON 2026</span></h1>
+      <p style="color: #bbb; max-width: 700px; margin: 0 auto 40px; line-height: 1.8; font-size: 1.1rem;">
+        The singularity has arrived in the City of Lakes. Join the futuristic assembly where Udaipur's heritage meets 2050's AI technologies.
       </p>
-      <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
-        <a href="https://chat.whatsapp.com/C6eOQRiaUXOIAJGONGvZWz?mode=hqrt3" target="_blank" class="btn-future"><i
-            class="fa-brands fa-whatsapp"></i> Join WhatsApp</a>
-        <button class="btn-future" style="border-color: var(--g-green); color: var(--g-green);"
-          onclick="document.getElementById('themes').scrollIntoView({behavior:'smooth'})"><i
-            class="fa-solid fa-compass"></i> Explore Themes</button>
-        <a class="btn-future" target="_blank" rel="noopener noreferrer" href="https://forms.gle/fZBEciY6tuH4Lu699" style="border-color: var(--neon-purple); color: var(--neon-purple); display:inline-flex;align-items:center;gap:8px;">
-          <i class="fa-solid fa-upload"></i> Submission Form
-        </a>
-        <a class="btn-future" target="_blank" rel="noopener noreferrer" aria-label="Register for Google Lakecity Hackathon 2026" href="https://gdg.community.dev/events/details/google-gdg-cloud-udaipur-presents-google-lakecity-hackathon-2026-win-100000-worth-of-prizes/" style="display:flex;align-items:center;gap:8px;">
-          <i class="fa-solid fa-right-to-bracket" style="color:#fff"></i> Register Now
-        </a>
+      <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+        <a href="#prize-reveal-section" class="btn-future"><i class="fa-solid fa-vault"></i> REVEAL REWARDS</a>
+        <a href="https://gdg.community.dev/events/details/google-gdg-cloud-udaipur-presents-google-lakecity-hackathon-2026-win-100000-worth-of-prizes/" class="btn-future" style="border-color: var(--neon-purple); color: var(--neon-purple);"><i class="fa-solid fa-id-badge"></i> REGISTER NOW</a>
       </div>
     </div>
   </header>
 
-  <section id="themes" style="padding: 80px 0;">
+  <!-- Prize Reveal Section -->
+  <section id="prize-reveal-section">
+    <div class="container" style="text-align: center; margin-bottom: 60px;">
+      <h2 style="font-size: 2.8rem;">THE <span style="color: var(--neon-blue)">REWARDS</span> OF 2050</h2>
+      <p style="color: #666; letter-spacing: 4px; text-transform: uppercase;">DECRYPTING HARDWARE VAULT...</p>
+    </div>
+
+    <div class="shutter-wrap">
+      <div class="shutter left"><div class="shutter-label">SECURED</div></div>
+      <div class="shutter right"><div class="shutter-label">LOCKED</div></div>
+
+      <div class="prize-container">
+        <!-- Silver Place -->
+        <div class="holo-card" style="text-align: center;">
+          <div style="color: #C0C0C0; font-size: 0.85rem; margin-bottom: 10px; font-weight: bold; letter-spacing: 2px;">SILVER RANK</div>
+          <h3 style="font-size: 1.4rem;">Lenovo Laptop</h3>
+          <div class="box-3d laptop-box">
+            <i class="fa-solid fa-laptop-code" style="color:var(--neon-blue); font-size: 3rem;"></i>
+          </div>
+          <div style="color: var(--neon-green); font-weight: bold;">Master the Digital Craft</div>
+          <div style="color: #666; font-size: 0.9rem; margin-top: 10px;">Forge the future & build next-gen tools</div>
+        </div>
+
+        <!-- Gold Place -->
+        <div class="holo-card" style="text-align: center; border-color: var(--g-yellow); background: rgba(251, 188, 5, 0.05);">
+          <div style="color: var(--g-yellow); font-size: 0.85rem; margin-bottom: 10px; font-weight: bold; letter-spacing: 2px;">GOLD RANK</div>
+          <h3 style="font-size: 1.6rem;">Google Pixel</h3>
+          <div class="box-3d pixel-box">
+            <i class="fa-brands fa-google" style="color:#4285F4; font-size: 3.5rem;"></i>
+          </div>
+          <div style="color: var(--neon-green); font-weight: bold;">Next-Gen Flagship</div>
+          <div style="color: #666; font-size: 0.9rem; margin-top: 10px;">The Ultimate AI Companion</div>
+        </div>
+
+        <!-- Bronze Place -->
+        <div class="holo-card" style="text-align: center;">
+          <div style="color: #CD7F32; font-size: 0.85rem; margin-bottom: 10px; font-weight: bold; letter-spacing: 2px;">BRONZE RANK</div>
+          <h3 style="font-size: 1.4rem;">Apple AirPods</h3>
+          <div class="box-3d airpods-box">
+            <i class="fa-brands fa-apple" style="color:#333; font-size: 3rem;"></i>
+          </div>
+          <div style="color: var(--neon-green); font-weight: bold;">Spatial Audio Bliss</div>
+          <div style="color: #666; font-size: 0.9rem; margin-top: 10px;">Immersive Soundscape</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="container" style="text-align: center; margin-top: 60px;">
+        <div class="royal-font" style="font-size: 3rem; color: #fff; text-shadow: 0 0 20px var(--neon-green);">₹1,00,000</div>
+        <p style="color: var(--neon-blue); letter-spacing: 2px;">TOTAL ACCUMULATED PRIZE POOL</p>
+    </div>
+  </section>
+
+  <!-- Innovation Themes -->
+  <section id="themes" style="padding: 100px 0;">
     <div class="container">
-      <h2 class="royal-font text-center" style="font-size: 2.5rem; margin-bottom: 20px;">Innovation <span
-          style="color: var(--neon-blue)">Themes</span></h2>
-      <div class="theme-grid">
-        <!-- Theme 1 -->
+      <h2 style="text-align: center; margin-bottom: 50px;">FUTURE <span style="color: var(--neon-purple);">THEMES</span></h2>
+      <div class="grid-layout">
         <div class="holo-card">
-          <span class="theme-icon" style="color: var(--g-blue)"><i class="fa-solid fa-city"></i></span>
-          <h3 style="color: var(--g-blue)">Smart & Sustainable Cities</h3>
-          <p style="color: #aaa; margin-top: 15px; line-height: 1.6;">Innovate solutions that enhance city
-            living—cleanliness, mobility, governance, safety, or environmental quality.</p>
+          <i class="fa-solid fa-city icon-large" style="color: var(--g-blue);"></i>
+          <h3>Smart Cities</h3>
+          <p style="color:#aaa; line-height: 1.6;">Build urban intelligence for mobility, safety, and sustainable living in Udaipur 2050.</p>
         </div>
-        <!-- Theme 2 -->
         <div class="holo-card">
-          <span class="theme-icon" style="color: var(--g-red)"><i class="fa-solid fa-heart-pulse"></i></span>
-          <h3 style="color: var(--g-red)">AI for Healthcare</h3>
-          <p style="color: #aaa; margin-top: 15px; line-height: 1.6;">Build intelligent health and wellness solutions
-            that improve diagnostics, patient support, hospital operations, or preventive care.</p>
+          <i class="fa-solid fa-heart-pulse icon-large" style="color: var(--g-red);"></i>
+          <h3>AI Healthcare</h3>
+          <p style="color:#aaa; line-height: 1.6;">Develop smart wellness solutions, diagnostics, and predictive patient care systems.</p>
         </div>
-        <!-- Theme 3 -->
         <div class="holo-card">
-          <span class="theme-icon" style="color: var(--g-yellow)"><i class="fa-solid fa-briefcase"></i></span>
-          <h3 style="color: var(--g-yellow)">MSME Automation</h3>
-          <p style="color: #aaa; margin-top: 15px; line-height: 1.6;">Create tools or agents that help small businesses
-            with operations, marketing, finance, customer service, or analytics.</p>
+          <i class="fa-solid fa-briefcase icon-large" style="color: var(--g-yellow);"></i>
+          <h3>MSME Automation</h3>
+          <p style="color:#aaa; line-height: 1.6;">Empower small businesses with intelligent agents for marketing and finance.</p>
         </div>
-        <!-- Theme 4 -->
         <div class="holo-card">
-          <span class="theme-icon" style="color: var(--g-green)"><i class="fa-solid fa-leaf"></i></span>
-          <h3 style="color: var(--g-green)">Climate & Env Tech</h3>
-          <p style="color: #aaa; margin-top: 15px; line-height: 1.6;">Develop solutions for sustainability,
-            conservation, climate resilience, smart energy, or ecological monitoring.</p>
+          <i class="fa-solid fa-leaf icon-large" style="color: var(--g-green);"></i>
+          <h3>Climate Tech</h3>
+          <p style="color:#aaa; line-height: 1.6;">Innovate for ecological monitoring and conservation of our lake ecosystems.</p>
         </div>
-        <!-- Theme 5 -->
         <div class="holo-card">
-          <span class="theme-icon" style="color: var(--neon-blue)"><i class="fa-solid fa-graduation-cap"></i></span>
-          <h3 style="color: var(--neon-blue)">Education & Skills</h3>
-          <p style="color: #aaa; margin-top: 15px; line-height: 1.6;">Design platforms that improve learning, teaching,
-            assessments, mentorship, or career development using AI.</p>
+          <i class="fa-solid fa-graduation-cap icon-large" style="color: var(--neon-blue);"></i>
+          <h3>Edu-Tech</h3>
+          <p style="color:#aaa; line-height: 1.6;">Reimagine learning and skill development through adaptive AI platforms.</p>
         </div>
-        <!-- Theme 6 -->
         <div class="holo-card">
-          <span class="theme-icon" style="color: #fff"><i class="fa-solid fa-rocket"></i></span>
-          <h3 style="color: #fff">Open Innovation</h3>
-          <p style="color: #aaa; margin-top: 15px; line-height: 1.6;">Any creative, original, or experimental build that
-            uses Google technologies to solve a real-world challenge.</p>
+          <i class="fa-solid fa-landmark icon-large" style="color: var(--g-yellow);"></i>
+          <h3>Culture Tech</h3>
+          <p style="color:#aaa; line-height: 1.6;">Preserve and promote Udaipur's rich cultural heritage through immersive tech.</p>
         </div>
-        <!-- Theme 7 -->
         <div class="holo-card">
-          <span class="theme-icon" style="color: var(--g-yellow)"><i class="fa-solid fa-landmark"></i></span>
-          <h3 style="color: var(--g-yellow)">Culture & Heritage Tech</h3>
-          <p style="color: #aaa; margin-top: 15px; line-height: 1.6;">Build solutions that preserve, promote, and reimagine cultural heritage, arts, crafts, languages, and traditions using technology and innovation.</p>
+          <i class="fa-solid fa-rocket icon-large" style="color: #fff;"></i>
+          <h3>Open Frontier</h3>
+          <p style="color:#aaa; line-height: 1.6;">Experimental builds using Google Cloud, Gemini, and any high-impact tech.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="pitch-deck" style="padding: 80px 0;">
+  <!-- Pitch Deck Overview -->
+  <section id="pitch-deck" style="padding: 100px 0; background: rgba(0,0,0,0.4);">
     <div class="container">
-      <h2 class="royal-font text-center" style="font-size: 2.5rem; margin-bottom: 20px;">Pitch Deck <span style="color: var(--neon-blue)">Overview</span></h2>
-      <div class="pitch-grid">
-        <div class="holo-card pitch-card">
-          <span class="theme-icon" style="color: var(--g-blue)"><i class="fa-solid fa-bolt"></i></span>
-          <h3 class="royal-font">Title & Value Proposition</h3>
-          <p style="color: #aaa; margin-top: 12px;">State what you built and the primary outcome it delivers in a single clear sentence.</p>
-      </div>
-        <div class="holo-card pitch-card">
-          <span class="theme-icon" style="color: var(--g-red)"><i class="fa-solid fa-triangle-exclamation"></i></span>
-          <h3 class="royal-font">Problem Statement</h3>
-          <p style="color: #aaa; margin-top: 12px;">Describe the real, high-impact problem and the negative outcome it causes for users.</p>
-
-        </div>
-        <div class="holo-card pitch-card">
-          <span class="theme-icon" style="color: var(--g-yellow)"><i class="fa-solid fa-users"></i></span>
-          <h3 class="royal-font">Target Users</h3>
-          <p style="color: #aaa; margin-top: 12px;">Identify which users are affected and why solving this problem matters to them.</p>
-
-        </div>
-        <div class="holo-card pitch-card">
-          <span class="theme-icon" style="color: var(--g-green)"><i class="fa-solid fa-gear"></i></span>
-          <h3 class="royal-font">Current Gaps</h3>
-          <p style="color: #aaa; margin-top: 12px;">Summarize the shortcomings of current solutions that create the opportunity for your product.</p>
-
-        </div>
-        <div class="holo-card pitch-card">
-          <span class="theme-icon" style="color: var(--neon-blue)"><i class="fa-solid fa-lightbulb"></i></span>
-          <h3 class="royal-font">Solution Overview</h3>
-          <p style="color: #aaa; margin-top: 12px;">Explain how your product addresses the problem and the core mechanism it uses.</p>
-
-        </div>
-        <div class="holo-card pitch-card">
-          <span class="theme-icon" style="color: #fff"><i class="fa-solid fa-star"></i></span>
-          <h3 class="royal-font">Key Features</h3>
-          <p style="color: #aaa; margin-top: 12px;">List 2–3 differentiating capabilities that directly solve user pain — keep each item short and focused.</p>
-
-        </div>
-        <div class="holo-card pitch-card">
-          <span class="theme-icon" style="color: var(--g-blue)"><i class="fa-brands fa-google"></i></span>
-          <h3 class="royal-font">Google Tech Stack</h3>
-          <p style="color: #aaa; margin-top: 12px;">List the Google products you plan to use and a concise reason for each (what it enables).</p>
-        </div>
-        <div class="holo-card pitch-card">
-          <span class="theme-icon" style="color: var(--g-red)"><i class="fa-solid fa-sitemap"></i></span>
-          <h3 class="royal-font">Architecture</h3>
-          <p style="color: #aaa; margin-top: 12px;">Provide a brief high-level flow naming major components and how data moves between them.</p>
-
-        </div>
-      </div>
-  </section>
-
-  <section id="submission" style="padding: 80px 0;">
-    <div class="container">
-      <h2 class="royal-font text-center" style="font-size: 2.5rem; margin-bottom: 20px;">Round 1 <span
-          style="color: var(--g-red)">(Online) — Submission Details</span></h2>
-      <div style="text-align: center; margin-bottom: 24px; color: #ddd; max-width:900px; margin-left:auto; margin-right:auto">
-        <p style="font-size: 1.05rem; margin-bottom: 12px;">Round 1 is an online submission round intended to evaluate
-          the concept, technical feasibility, and immediate impact of your idea. Teams are requested to submit a
-          <strong>fully working prototype</strong> that demonstrates core features and functionality; submissions that
-          only include design plans or implementation proposals will not qualify.</p>
-        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:8px;">
-          <div style="background:rgba(255,255,255,0.03);border:1px solid var(--glass-border);padding:12px 16px;border-radius:12px;">
-            <i class="fa-solid fa-users" style="margin-right:8px;color:var(--neon-blue)"></i>
-            <strong>Team Size:</strong> 1–3 Members
-          </div>
-          <div style="background:rgba(255,255,255,0.03);border:1px solid var(--glass-border);padding:12px 16px;border-radius:12px;">
-            <i class="fa-solid fa-laptop" style="margin-right:8px;color:var(--g-green)"></i>
-            <strong>Round Type:</strong> Online Submission
-          </div>
-          <div style="background:rgba(255,255,255,0.03);border:1px solid var(--glass-border);padding:12px 16px;border-radius:12px;">
-            <i class="fa-solid fa-calendar-days" style="margin-right:8px;color:var(--g-red)"></i>
-            <strong>Deadline:</strong> 30 Jan 2026 (by 23:59 IST)
-          </div>
-        </div>
-      </div>
-      <div style="text-align: center; margin-bottom: 24px; display:flex;gap:12px; justify-content:center;">
-        <a target="_blank" href="https://chat.whatsapp.com/C6eOQRiaUXOIAJGONGvZWz?mode=hqrt3" class="btn-future" style="border-color: #25D366; color:#25D366;">
-          <i class="fa-brands fa-whatsapp"></i> Join WhatsApp Group
-        </a>
-        <a target="_blank" rel="noopener noreferrer" aria-label="Register for Google Lakecity Hackathon 2026" href="https://gdg.community.dev/events/details/google-gdg-cloud-udaipur-presents-google-lakecity-hackathon-2026-win-100000-worth-of-prizes/" class="btn-future">
-          <i class="fa-solid fa-right-to-bracket" style="color:#fff; margin-right:8px"></i> Register Now
-        </a>
-      </div>
-
-      <h3 class="text-center" style="margin-bottom: 30px; color: var(--neon-blue);">Must-Have Submission Checklist</h3>
-      <div class="icon-grid">
+      <h2 style="text-align: center; margin-bottom: 50px;">PITCH DECK <span style="color: var(--neon-blue);">ARCHITECTURE</span></h2>
+      <div class="grid-layout">
         <div class="holo-card">
-          <div class="icon-box" style="color: #FF0000;"><i class="fa-brands fa-youtube"></i></div>
-          <h3>Fully Working Prototype</h3>
-          <p style="color: #aaa; margin-top: 10px;">Submit a fully functional prototype that demonstrates all core features.
-            Upload a short demonstration video (maximum <strong>3 minutes</strong>) to YouTube and include the link in your
-            submission. The YouTube demo is the primary evidence of functionality.
-          </p>
+          <h3>1. Value Proposition</h3>
+          <p style="color:#888; margin-top:10px;">What did you build and why does it matter? One clear statement.</p>
         </div>
         <div class="holo-card">
-          <div class="icon-box" style="color: #FBBC05;"><i class="fa-solid fa-file-powerpoint"></i></div>
-          <h3>Slide Deck</h3>
-          <p style="color: #aaa; margin-top: 10px;">Share a short (6–10 slide) Google Slides deck covering: problem statement,
-            solution, architecture, demo screenshots, technology stack, and a clear call-to-action or next steps.
-          </p>
+          <h3>2. Problem Statement</h3>
+          <p style="color:#888; margin-top:10px;">The high-impact friction point your solution addresses.</p>
         </div>
         <div class="holo-card">
-          <div class="icon-box" style="color: #4285F4;"><i class="fa-solid fa-video"></i></div>
-          <h3>Elevator Pitch (YouTube)</h3>
-          <p style="color: #aaa; margin-top: 10px;">Record a concise 60–120 second elevator pitch and upload it to YouTube.
-            This video should highlight the problem, the solution's value proposition, and the target user. Judges will
-            assess clarity and impact from this short pitch.</p>
+          <h3>3. Target Users</h3>
+          <p style="color:#888; margin-top:10px;">Who are the primary beneficiaries of this technology?</p>
+        </div>
+        <div class="holo-card">
+          <h3>4. Current Gaps</h3>
+          <p style="color:#888; margin-top:10px;">What is wrong with current solutions in the market?</p>
+        </div>
+        <div class="holo-card">
+          <h3>5. Solution Overview</h3>
+          <p style="color:#888; margin-top:10px;">The core mechanism of your build and its workflow.</p>
+        </div>
+        <div class="holo-card">
+          <h3>6. Key Features</h3>
+          <p style="color:#888; margin-top:10px;">The top 3 differentiating capabilities of your product.</p>
+        </div>
+        <div class="holo-card">
+          <h3>7. Google Tech Stack</h3>
+          <p style="color:#888; margin-top:10px;">Cloud, Gemini, Firebase—what's under the hood?</p>
+        </div>
+        <div class="holo-card">
+          <h3>8. Flow & Architecture</h3>
+          <p style="color:#888; margin-top:10px;">High-level data flow and system diagram overview.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="criteria" style="padding: 50px 0;">
+  <!-- Submission Details -->
+  <section id="submission" style="padding: 100px 0;">
     <div class="container">
-      <h2 class="royal-font text-center" style="font-size: 2.5rem; margin-bottom: 40px;">Evaluation <span
-          style="color: var(--neon-blue)">Criteria</span></h2>
-      <div class="icon-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
-        <div class="holo-card" style="padding: 20px;">
-          <div class="icon-box"><i class="fa-solid fa-lightbulb"></i></div>
-          <h4>Innovation</h4>
+      <h2 style="text-align: center; margin-bottom: 50px;">ROUND 1 <span style="color: var(--g-red);">PROTOCOLS</span></h2>
+      <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; margin-bottom: 50px;">
+        <div class="holo-card" style="padding: 20px 40px; text-align: center;">
+          <div style="color: var(--neon-blue); font-weight: bold;">TEAM SIZE</div>
+          <div>1–3 Members</div>
         </div>
-        <div class="holo-card" style="padding: 20px;">
-          <div class="icon-box"><i class="fa-solid fa-coins"></i></div>
-          <h4>Feasibility</h4>
+        <div class="holo-card" style="padding: 20px 40px; text-align: center;">
+          <div style="color: var(--g-green); font-weight: bold;">TYPE</div>
+          <div>Online Submission</div>
         </div>
-        <div class="holo-card" style="padding: 20px;">
-          <div class="icon-box"><i class="fa-solid fa-earth-americas"></i></div>
-          <h4>Impact</h4>
-        </div>
-        <div class="holo-card" style="padding: 20px;">
-          <div class="icon-box"><i class="fa-brands fa-google"></i></div>
-          <h4>Google Tech</h4>
+        <div class="holo-card" style="padding: 20px 40px; text-align: center;">
+          <div style="color: var(--g-red); font-weight: bold;">DEADLINE</div>
+          <div>30 Jan 2026</div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <section id="prize-section">
-    <canvas id="fireworks-canvas"></canvas>
-    <div class="container prize-content">
-      <h2 class="royal-font" style="font-size: 2rem; margin-bottom: 20px;">Total Prize Pool</h2>
-      <div class="prize-amount">₹1,00,000</div>
-      <p style="font-size: 1.15rem; margin-top: 20px; color: var(--g-yellow);">Total Prize Pool <strong>₹1,00,000</strong></p>
-      <p style="margin-top: 10px; color: #aaa;">Top <strong>3 Winners</strong> — Final Round in <strong>Udaipur (Offline)</strong>.</p>
-      <div style="margin-top:16px">
-        <a class="btn-future" target="_blank" rel="noopener noreferrer" aria-label="Register for Google Lakecity Hackathon 2026" href="https://gdg.community.dev/events/details/google-gdg-cloud-udaipur-presents-google-lakecity-hackathon-2026-win-100000-worth-of-prizes/"><i class="fa-solid fa-right-to-bracket" style="color:#fff;margin-right:8px"></i> Register Now</a>
+      
+      <div class="grid-layout">
+        <div class="holo-card" style="border-left: 4px solid #FF0000;">
+          <i class="fa-brands fa-youtube" style="font-size: 2.5rem; color: #FF0000; margin-bottom: 15px;"></i>
+          <h3>Working Prototype</h3>
+          <p style="color:#aaa;">Upload a 3-minute technical demo to YouTube. This is the core evidence of your work.</p>
+        </div>
+        <div class="holo-card" style="border-left: 4px solid #FBBC05;">
+          <i class="fa-solid fa-file-powerpoint" style="font-size: 2.5rem; color: #FBBC05; margin-bottom: 15px;"></i>
+          <h3>Slides & Deck</h3>
+          <p style="color:#aaa;">6–10 slides covering strategy, tech stack, and impact metrics.</p>
+        </div>
+        <div class="holo-card" style="border-left: 4px solid #4285F4;">
+          <i class="fa-solid fa-video" style="font-size: 2.5rem; color: #4285F4; margin-bottom: 15px;"></i>
+          <h3>Elevator Pitch</h3>
+          <p style="color:#aaa;">A concise 90-second pitch highlighting your project's unique value.</p>
+        </div>
       </div>
-      <p style="margin-top: 8px; color: #aaa;">Prize distribution details and finalist logistics are available in the FAQ.</p>
     </div>
   </section>
 
   <!-- FAQ Section -->
-  <section id="faq" style="padding: 80px 0;">
+  <section id="faq" style="padding: 100px 0; background: rgba(0,0,0,0.5);">
     <div class="container">
-      <h2 class="royal-font text-center" style="font-size: 2.5rem; margin-bottom: 20px;">Frequently Asked <span
-          style="color: var(--neon-blue)">Questions</span></h2>
-
-      <div class="theme-grid" style="grid-template-columns: 1fr; gap: 20px; max-width: 900px; margin: 0 auto;">
+      <h2 style="text-align: center; margin-bottom: 50px;">TECHNICAL <span style="color: var(--neon-blue);">BRIEFING</span> (FAQ)</h2>
+      <div style="max-width: 900px; margin: 0 auto;">
         <div class="holo-card faq-item">
-          <button class="faq-question" aria-expanded="false">Who can participate in the hackathon?</button>
-          <div class="faq-answer" hidden>
-            <p style="color: #e6e9ef; margin-top: 10px;">
-              Google Lakecity Hackathon 2026 is open to individuals and teams who are enthusiastic about building
-              technology-driven solutions. This includes students (undergraduates and postgraduates), working
-              professionals, hobbyist developers, and early-stage startups. Teams should consist of 1–3 members; if you
-              plan to include advisors or mentors, list their roles clearly in your submission. Please check the official
-              event rules for any specific eligibility or legal requirements.
-              <br>
-              <strong>Age limits:</strong> There is <strong>no age limit</strong> to participate.
-            </p>
-          </div>
-        </div>
-
-        <div class="holo-card faq-item">
-          <button class="faq-question" aria-expanded="false">How do I register?</button>
-          <div class="faq-answer" hidden>
-            <p style="color: #e6e9ef; margin-top: 10px;">
-              Register for the event through the official GDG event page (click any “Register Now” button on this page
-              to go there). After registering, please join the WhatsApp group for real-time updates and community
-              support. Complete the registration form with your team details (names, roles, contact information), a
-              concise concept summary, and links to your submission materials. You will receive a confirmation message
-              and timely instructions for preparing and submitting your Round 1 materials; make sure to submit all
-              required items before the deadline on <strong>15 Jan 2026</strong>.
-            </p>
-          </div>
-        </div>
-
-        <div class="holo-card faq-item">
-          <button class="faq-question" aria-expanded="false">What should the submission include?</button>
-          <div class="faq-answer" hidden>
-            <p style="color: #e6e9ef; margin-top: 10px;">
-              For Round 1 please provide materials that clearly demonstrate your idea and its execution. At minimum,
-              include the following:
-            </p>
-            <ul style="color: #e6e9ef; margin-top: 8px; margin-left: 18px;">
-              <li>A fully working prototype demonstrated in a video (primary evidence must be a YouTube demo).</li>
-              <li>Short demo video (maximum <strong>3 minutes</strong>) uploaded to YouTube that demonstrates core
-                features and workflows; do not use code hosting platforms in place of the video.</li>
-              <li>Google Slides deck (6–10 slides) covering problem statement, solution, architecture, tech stack,
-                implementation plan, and impact.</li>
-              <li>Optional: README / documentation in a public repo with setup instructions and dependencies (supporting
-                material only).</li>
-            </ul>
-            <p style="color: #e6e9ef; margin-top: 10px;">Clear, well-documented submissions make it easier for judges to evaluate feasibility and impact.</p>
-          </div>
-        </div>
-
-        <div class="holo-card faq-item">
-          <button class="faq-question" aria-expanded="false">How many rounds are there?</button>
-          <div class="faq-answer" hidden>
-            <p style="color: #e6e9ef; margin-top: 10px;">There are two rounds: Round 1 (Online), and the Final Round (In-person)
-              held in Udaipur. Round 1 evaluates submissions and selects finalists for the offline final where winners are
-              determined.
-            </p>
-          </div>
-        </div>
-
-        <div class="holo-card faq-item">
-          <button class="faq-question" aria-expanded="false">What is expected in each round?</button>
-          <div class="faq-answer" hidden>
-            <p style="color: #e6e9ef; margin-top: 10px;">Round 1 (Online) requires a fully functioning prototype, a 3-minute
-              YouTube demo, a slide deck, and a short elevator pitch (60–120 seconds). Finalists invited to the in-person
-              final round should prepare a live demonstration, a deeper technical walkthrough, and be ready for Q&amp;A.
-            </p>
-          </div>
-        </div>
-
-        <div class="holo-card faq-item">
-          <button class="faq-question" aria-expanded="false">What shall be covered in the submission? (Evaluation framework)</button>
-          <div class="faq-answer" hidden>
-            <p style="color: #e6e9ef; margin-top: 10px;">Judges will evaluate submissions using a framework that includes:</p>
-            <ul style="color: #e6e9ef; margin-top: 8px; margin-left: 18px;">
-              <li><strong>Innovation:</strong> Is the idea original and creative?</li>
-              <li><strong>Technical Execution:</strong> Is the prototype functional, well-built, and reproducible?</li>
-              <li><strong>Impact:</strong> Does the solution address a real problem with measurable benefit?</li>
-              <li><strong>Feasibility:</strong> Is the solution practical and executable within current constraints?</li>
-              <li><strong>UX & Design:</strong> Is the user experience clear and compelling?</li>
-              <li><strong>Use of Google Tech:</strong> Effective use of Google technologies will be considered a plus.</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="holo-card faq-item">
-          <button class="faq-question" aria-expanded="false">Is it compulsory to attend the Final Round if selected in person?</button>
-          <div class="faq-answer" hidden>
-            <p style="color: #e6e9ef; margin-top: 10px;">Yes. Finalists are expected to be present at the in-person final
-              event in Udaipur. Absence from the final round may affect a team’s
-              eligibility to be declared a winner.
-            </p>
-          </div>
-        </div>
-
-        
-
-        <div class="holo-card faq-item">
-          <button class="faq-question" aria-expanded="false">Who owns the project IP?</button>
-          <div class="faq-answer" hidden>
-            <p style="color: #e6e9ef; margin-top: 10px;">Participants retain ownership of their intellectual property.
-              By participating, you grant the organizers a non-exclusive right to publicize the project (for marketing
-              and presentation of finalists and winners) but you retain all other rights.
-            </p>
-          </div>
-        </div>
-
-        <div class="holo-card faq-item">
-          <button class="faq-question" aria-expanded="false">Are pretrained models, third-party APIs, or datasets allowed?</button>
-          <div class="faq-answer" hidden>
-            <p style="color: #e6e9ef; margin-top: 10px;">Yes — you may use third-party models, APIs, and datasets, but you must
-              clearly list all external libraries and datasets used, and ensure that your usage complies with those
-              licenses. When possible, cite references and provide attribution in your submission materials.
-            </p>
-          </div>
-        </div>
-
-        <div class="holo-card faq-item">
-          <button class="faq-question" aria-expanded="false">Can we submit prior or pre-existing projects?</button>
-          <div class="faq-answer" hidden>
-            <p style="color: #e6e9ef; margin-top: 10px;">You may submit projects that were started earlier, provided you
-              clearly disclose prior work and the portion completed for the hackathon. Judges will consider novelty of
-              the team's contribution when evaluating submissions.
-            </p>
-          </div>
-        </div>
-
-        <div class="holo-card faq-item">
-          <button class="faq-question" aria-expanded="false">Are there mentors available during the hackathon?</button>
-          <div class="faq-answer" hidden>
-            <p style="color: #e6e9ef; margin-top: 10px;">Organizers may provide mentors or office hours; details about mentor
-              availability will be shared closer to the event. Mentorship schedules and contact points (if any) will be
-              announced via the official event channels.
-            </p>
-          </div>
-        </div>
-
-        <div class="holo-card faq-item">
-          <button class="faq-question" aria-expanded="false">How are winners selected and notified?</button>
-          <div class="faq-answer" hidden>
-            <p style="color: #e6e9ef; margin-top: 10px;">A jury of judges will evaluate finalists and determine the winners
-              based on the evaluation framework listed above. Finalists and winners will be notified via the registered
-              email and the WhatsApp group. Winners will also be announced publicly after the final round.
-            </p>
-          </div>
-        </div>
-
-        <div class="holo-card faq-item">
-          <button class="faq-question" aria-expanded="false">Are travel and accommodation costs covered?</button>
-          <div class="faq-answer" hidden>
-            <p style="color: #e6e9ef; margin-top: 10px;">No — travel and accommodation will not be covered by the
-              organizers. Finalists should plan their travel and lodging independently.
-            </p>
-          </div>
+          <button class="faq-question">Who can participate in the hackathon?</button>
+          <div class="faq-answer">Open to students, professionals, hobbyists, and startups. Anyone passionate about future-tech. No age limit.</div>
         </div>
         <div class="holo-card faq-item">
-          <button class="faq-question" aria-expanded="false">Do all team members need to complete RSVP on the GDG event page?</button>
-          <div class="faq-answer" hidden>
-            <p style="color: #e6e9ef; margin-top: 10px;">Yes. Every individual participant must complete the RSVP, even if they are part of a team.</p>
-          </div>
+          <button class="faq-question">How do I register?</button>
+          <div class="faq-answer">Click any 'Register Now' button to visit the GDG Cloud Udaipur event page. RSVP and join the WhatsApp group.</div>
         </div>
-
         <div class="holo-card faq-item">
-          <button class="faq-question" aria-expanded="false">Do all team members need to fill the Google submission form?</button>
-          <div class="faq-answer" hidden>
-            <p style="color: #e6e9ef; margin-top: 10px;">No. Only the team leader is required to fill the submission form on behalf of the entire team.</p>
-          </div>
+          <button class="faq-question">What should the submission include?</button>
+          <div class="faq-answer">Round 1 requires a working prototype (YouTube demo), a 6-10 slide deck, and an elevator pitch video.</div>
         </div>
-
         <div class="holo-card faq-item">
-          <button class="faq-question" aria-expanded="false">Can one person be part of multiple teams?</button>
-          <div class="faq-answer" hidden>
-            <p style="color: #e6e9ef; margin-top: 10px;">No. Each participant is allowed to be a member of only one team for the hackathon.</p>
+          <button class="faq-question">How many rounds are there?</button>
+          <div class="faq-answer">Two rounds: Round 1 is Online (Submissions), and the Final Round is In-Person in Udaipur.</div>
+        </div>
+        <div class="holo-card faq-item">
+          <button class="faq-question">Who owns the project IP?</button>
+          <div class="faq-answer">You retain 100% of your project IP. We only reserve the right to showcase your work for event promotion.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lake AI Navigator Game -->
+  <section id="game-section" style="padding: 100px 0;">
+    <div class="container">
+      <h2 style="text-align: center; margin-bottom: 20px;">LAKE <span style="color: var(--neon-blue)">AI NAVIGATOR</span></h2>
+      <p style="text-align: center; color: #888; margin-bottom: 30px;">PILOT THE FUTURE: SYNC HERITAGE NODES ON LAKE PICHOLA</p>
+      <div style="position: relative; max-width: 900px; margin: 0 auto;">
+        <canvas id="game-canvas"></canvas>
+        <div id="game-ui" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; width: 100%;">
+          <button id="start-game" class="btn-future">INITIALIZE MISSION</button>
+          <div id="game-stats" style="display: none; margin-top: 20px; font-family: 'Orbitron';">
+            <div id="score-val" style="font-size: 2rem; color: var(--neon-blue);">SYNC: 0%</div>
+            <div style="color: #666; font-size: 0.8rem; margin-top: 5px;">DRAG TO STEER • COLLECT BLUE/GREEN • AVOID RED</div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="game" style="padding: 80px 0;">
+  <footer style="padding: 80px 0; border-top: 1px solid var(--glass-border); text-align: center;">
     <div class="container">
-      <h2 class="royal-font text-center" style="font-size: 2.5rem; margin-bottom: 40px;">Sky <span
-          style="color: var(--g-red)">Surfer</span></h2>
-      <div
-        style="position: relative; width: 100%; height: 400px; border: 1px solid var(--glass-border); border-radius: 20px; overflow: hidden; background: rgba(0,0,0,0.5);">
-        <canvas id="game-canvas" style="width: 100%; height: 100%;"></canvas>
-
-        <!-- Game UI Overlay -->
-        <div id="game-ui"
-          style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; width: 100%;">
-          <button id="start-game-btn" class="btn-future"
-            style="background: var(--g-blue); color: white; border: none;">Initialize Flight</button>
-          <p id="game-score" style="margin-top: 20px; font-size: 1.5rem; display: none;">Score: 0</p>
-        </div>
-
-        <!-- Game Over Overlay -->
-        <div id="game-overlay">
-          <h3 style="font-size: 1.8rem; color: var(--g-red); margin-bottom: 20px; text-align: center;">Mission Failed
-          </h3>
-          <p style="font-size: 1.1rem; max-width: 90%; text-align: center; margin-bottom: 30px; line-height: 1.5;">
-            You lost the game but you can win <span style="color: var(--g-yellow); font-weight: bold;">₹1,00,000</span>
-            worth of prizes!
-          </p>
-          <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
-            <button id="restart-btn" class="btn-future">Try Again</button>
-            <a href="https://gdg.community.dev/events/details/google-gdg-cloud-udaipur-presents-google-lakecity-hackathon-2026-win-100000-worth-of-prizes/" target="_blank" rel="noopener noreferrer" aria-label="Register for Google Lakecity Hackathon 2026" class="btn-future"
-              style="border-color: var(--g-green); color: var(--g-green);">Register Now</a>
-          </div>
-        </div>
+      <div class="royal-font" style="margin-bottom: 30px; color: var(--neon-blue); font-size: 1.4rem;">GOOGLE LAKECITY HACKATHON 2026</div>
+      <div style="margin-bottom: 40px; opacity: 0.6; font-size: 0.9rem;">The City of Lakes meets the City of Tomorrow. Built by GDG Cloud Udaipur.</div>
+      <div style="display: flex; justify-content: center; gap: 40px; font-size: 2rem;">
+        <a href="https://www.linkedin.com/company/gdg-cloud-udaipur/" style="color: #fff;"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="mailto:abhinav.jain1411@gmail.com" style="color: #fff;"><i class="fa-solid fa-envelope"></i></a>
       </div>
-    </div>
-  </section>
-
-  <footer>
-    <div class="container">
-      <p class="royal-font" style="font-size: 1.2rem; margin-bottom: 20px;">Google Lakecity Hackathon 2026</p>
-      <div class="social-links" style="margin-bottom: 20px;">
-        <a href="https://www.linkedin.com/company/gdg-cloud-udaipur/"><i class="fa-brands fa-linkedin"></i></a>
-      </div>
-      <p style="color: #888; font-size: 0.9rem; margin-bottom: 10px;">📧 abhinav.jain1411@gmail.com</p>
-      <!-- Footer register button removed per request -->
-      <p style="color: #555; font-size: 0.8rem; margin-top: 20px;">&copy; 2025 GDG Cloud Udaipur</p>
+      <p style="margin-top: 60px; font-size: 0.75rem; color: #333; letter-spacing: 5px;">&copy; 2026 GDG CLOUD UDAIPUR | FUTURE-LINK SECURED</p>
     </div>
   </footer>
 
-  <!-- SHADERS -->
-  <script id="vertexShader" type="x-shader/x-vertex">
-        varying vec2 vUv;
-        varying float vElevation;
-        uniform float uTime;
-        void main() {
-            vUv = uv;
-            vec4 modelPosition = modelMatrix * vec4(position, 1.0);
-            float elevation = sin(modelPosition.x * 0.1 + uTime) * sin(modelPosition.z * 0.1 + uTime) * 2.0;
-            modelPosition.y += elevation;
-            vElevation = elevation;
-            gl_Position = projectionMatrix * viewMatrix * modelPosition;
-        }
-    </script>
-  <script id="fragmentShader" type="x-shader/x-fragment">
-        varying vec2 vUv;
-        varying float vElevation;
-        uniform vec3 uColor1;
-        uniform vec3 uColor2;
-        void main() {
-            float mixStrength = (vElevation + 2.0) * 0.25;
-            vec3 color = mix(uColor1, uColor2, mixStrength);
-            gl_FragColor = vec4(color, 0.8);
-        }
-    </script>
-
   <script>
-    // --- CUSTOM CURSOR ---
+    // --- CURSOR LOGIC ---
     const cursor = document.getElementById('cursor');
-    const trail = document.getElementById('cursor-trail');
-
-    // Only enable custom cursor on non-touch devices
-    if (window.matchMedia("(pointer: fine)").matches) {
-      document.addEventListener('mousemove', (e) => {
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
-        gsap.to(trail, { duration: 0.1, left: e.clientX, top: e.clientY });
-      });
-    }
+    window.onmousemove = (e) => {
+      gsap.to(cursor, { x: e.clientX, y: e.clientY, duration: 0.1 });
+    };
 
     // --- THREE.JS BACKGROUND ---
     const initThree = () => {
-      const container = document.getElementById('canvas-container');
       const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+      const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 2000);
       const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
       renderer.setSize(window.innerWidth, window.innerHeight);
-      container.appendChild(renderer.domElement);
+      document.getElementById('canvas-container').appendChild(renderer.domElement);
 
-      const material = new THREE.ShaderMaterial({
-        vertexShader: document.getElementById('vertexShader').textContent,
-        fragmentShader: document.getElementById('fragmentShader').textContent,
-        uniforms: {
-          uTime: { value: 0 },
-          uColor1: { value: new THREE.Color('#050A14') },
-          uColor2: { value: new THREE.Color('#4285F4') }
-        },
-        wireframe: true, transparent: true
-      });
-      const plane = new THREE.Mesh(new THREE.PlaneGeometry(150, 150, 128, 128), material);
-      plane.rotation.x = -Math.PI / 2;
-      plane.position.y = -10;
-      scene.add(plane);
-      camera.position.set(0, 5, 20);
+      const geometry = new THREE.BufferGeometry();
+      const vertices = [];
+      for (let i = 0; i < 8000; i++) {
+        vertices.push(Math.random()*4000-2000, Math.random()*4000-2000, Math.random()*4000-2000);
+      }
+      geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+      const material = new THREE.PointsMaterial({ color: 0x00f3ff, size: 2, transparent: true, opacity: 0.4 });
+      const stars = new THREE.Points(geometry, material);
+      scene.add(stars);
 
-      const clock = new THREE.Clock();
-      const animate = () => {
-        material.uniforms.uTime.value = clock.getElapsedTime();
-        renderer.render(scene, camera);
+      camera.position.z = 1000;
+      function animate() {
         requestAnimationFrame(animate);
-      };
+        stars.rotation.y += 0.0005;
+        stars.rotation.x += 0.0002;
+        renderer.render(scene, camera);
+      }
       animate();
-      window.addEventListener('resize', () => {
+
+      window.onresize = () => {
         camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();
         renderer.setSize(window.innerWidth, window.innerHeight);
+      };
+    };
+
+    // --- GSAP REVEAL ANIMATION ---
+    gsap.registerPlugin(ScrollTrigger);
+
+    const initReveal = () => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: "#prize-reveal-section",
+          start: "top 60%", 
+          end: "bottom center",
+          scrub: 1
+        }
+      });
+
+      tl.to(".shutter.left", { xPercent: -100, duration: 2 }, 0);
+      tl.to(".shutter.right", { xPercent: 100, duration: 2 }, 0);
+      
+      tl.to(".prize-container", {
+        opacity: 1,
+        scale: 1,
+        duration: 1.5,
+        ease: "power2.out"
+      }, 0.5);
+
+      gsap.to(".box-3d", {
+        rotateY: 360,
+        duration: 10,
+        repeat: -1,
+        ease: "none"
       });
     };
 
-    // --- FIREWORKS ---
-    const initFireworks = () => {
-      const canvas = document.getElementById('fireworks-canvas');
-      const ctx = canvas.getContext('2d');
-      let particles = [];
-
-      const resize = () => {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-      };
-      window.addEventListener('resize', resize);
-      resize();
-
-      class Particle {
-        constructor(x, y, color) {
-          this.x = x; this.y = y; this.color = color;
-          this.velocity = { x: (Math.random() - 0.5) * 8, y: (Math.random() - 0.5) * 8 };
-          this.alpha = 1;
-          this.friction = 0.95;
-        }
-        draw() {
-          ctx.globalAlpha = this.alpha;
-          ctx.fillStyle = this.color;
-          ctx.beginPath();
-          ctx.arc(this.x, this.y, 3, 0, Math.PI * 2);
-          ctx.fill();
-        }
-        update() {
-          this.velocity.x *= this.friction;
-          this.velocity.y *= this.friction;
-          this.x += this.velocity.x;
-          this.y += this.velocity.y;
-          this.alpha -= 0.01;
-        }
-      }
-
-      const colors = ['#4285F4', '#EA4335', '#FBBC05', '#34A853'];
-      const createFirework = () => {
-        const x = Math.random() * canvas.width;
-        const y = Math.random() * canvas.height / 2;
-        const color = colors[Math.floor(Math.random() * colors.length)];
-        for (let i = 0; i < 50; i++) {
-          particles.push(new Particle(x, y, color));
-        }
-      };
-
-      const animate = () => {
-        requestAnimationFrame(animate);
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        particles.forEach((p, i) => {
-          if (p.alpha > 0) { p.update(); p.draw(); }
-          else particles.splice(i, 1);
-        });
-        if (Math.random() < 0.05) createFirework();
-      };
-
-      ScrollTrigger.create({
-        trigger: "#prize-section",
-        start: "top center",
-        onEnter: () => animate()
-      });
-    };
-
-    // --- GAME (Simplified) ---
+    // --- LAKE AI NAVIGATOR GAME ---
     const initGame = () => {
       const canvas = document.getElementById('game-canvas');
       const ctx = canvas.getContext('2d');
-      const startBtn = document.getElementById('start-game-btn');
-      const restartBtn = document.getElementById('restart-btn');
-      const scoreEl = document.getElementById('game-score');
-      const gameUi = document.getElementById('game-ui');
-      const gameOverlay = document.getElementById('game-overlay');
+      const startBtn = document.getElementById('start-game');
+      const statsUI = document.getElementById('game-stats');
+      const scoreText = document.getElementById('score-val');
+      
+      let active = false;
+      let score = 0;
+      let player = { x: 0, targetX: 0, width: 60, height: 30 };
+      let objects = [];
+      let speed = 4;
+      let frame = 0;
 
-      const resizeGame = () => {
-        canvas.width = canvas.parentElement.offsetWidth;
-        canvas.height = canvas.parentElement.offsetHeight;
-      };
-      resizeGame();
-      window.addEventListener('resize', resizeGame);
+      function resize() {
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+        player.x = canvas.width / 2;
+        player.targetX = player.x;
+      }
+      resize();
+      window.addEventListener('resize', resize);
 
-      let gameActive = false, score = 0, player = { x: 50, y: 200, dy: 0 };
-      let obstacles = [];
+      function spawnObject() {
+        const types = ['sync', 'cloud', 'obstacle'];
+        const type = types[Math.floor(Math.random() * types.length)];
+        const x = Math.random() * (canvas.width - 40) + 20;
+        objects.push({ x, y: -50, type, size: 25 });
+      }
 
-      const update = () => {
-        if (!gameActive) return;
+      function update() {
+        if(!active) return;
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        player.dy += 0.5; player.y += player.dy;
-        if (player.y > canvas.height || player.y < 0) { gameOver(); return; }
+        // Water effect
+        ctx.strokeStyle = 'rgba(0, 243, 255, 0.1)';
+        ctx.lineWidth = 1;
+        for(let i = 0; i < 10; i++) {
+          let y = (frame * 2 + i * 50) % canvas.height;
+          ctx.beginPath();
+          ctx.moveTo(0, y);
+          ctx.lineTo(canvas.width, y);
+          ctx.stroke();
+        }
 
-        if (Math.random() < 0.02) obstacles.push({ x: canvas.width, h: Math.random() * 200 });
+        // Smooth player move
+        player.x += (player.targetX - player.x) * 0.15;
 
-        obstacles.forEach((obs, i) => {
-          obs.x -= 5;
-          ctx.fillStyle = '#EA4335';
-          ctx.fillRect(obs.x, 0, 30, obs.h);
-          ctx.fillRect(obs.x, obs.h + 150, 30, canvas.height);
-          if (obs.x < -30) { obstacles.splice(i, 1); score++; scoreEl.innerText = "Score: " + score; }
+        // Draw Player (Futuristic Boat)
+        ctx.save();
+        ctx.translate(player.x, canvas.height - 80);
+        ctx.fillStyle = varColor('--neon-blue');
+        ctx.shadowBlur = 15;
+        ctx.shadowColor = varColor('--neon-blue');
+        
+        // Boat Body
+        ctx.beginPath();
+        ctx.moveTo(-player.width/2, 0);
+        ctx.lineTo(player.width/2, 0);
+        ctx.lineTo(player.width/2.5, player.height);
+        ctx.lineTo(-player.width/2.5, player.height);
+        ctx.closePath();
+        ctx.fill();
 
-          if (player.x > obs.x && player.x < obs.x + 30 && (player.y < obs.h || player.y > obs.h + 150)) {
-            gameOver();
+        // Boat Cabin (Neon Glow)
+        ctx.fillStyle = '#fff';
+        ctx.fillRect(-10, 5, 20, 10);
+        ctx.restore();
+
+        // Objects
+        objects.forEach((obj, i) => {
+          obj.y += speed;
+          
+          if(obj.type === 'sync') {
+            ctx.fillStyle = varColor('--g-blue');
+            ctx.shadowColor = varColor('--g-blue');
+            ctx.beginPath(); ctx.arc(obj.x, obj.y, obj.size/2, 0, Math.PI*2); ctx.fill();
+            // Icon inner
+            ctx.fillStyle = '#fff';
+            ctx.font = '12px FontAwesome';
+            ctx.fillText('\uf0e7', obj.x - 4, obj.y + 4);
+          } else if(obj.type === 'cloud') {
+            ctx.fillStyle = varColor('--g-green');
+            ctx.shadowColor = varColor('--g-green');
+            ctx.beginPath(); ctx.arc(obj.x, obj.y, obj.size/2, 0, Math.PI*2); ctx.fill();
+            ctx.fillStyle = '#fff';
+            ctx.font = '10px FontAwesome';
+            ctx.fillText('\uf0c2', obj.x - 6, obj.y + 4);
+          } else {
+            ctx.fillStyle = varColor('--g-red');
+            ctx.shadowColor = varColor('--g-red');
+            ctx.fillRect(obj.x - obj.size/2, obj.y - obj.size/2, obj.size, obj.size);
           }
+
+          // Collision
+          const dx = obj.x - player.x;
+          const dy = obj.y - (canvas.height - 80);
+          if(Math.abs(dx) < player.width/2 + obj.size/2 && Math.abs(dy) < player.height + obj.size/2) {
+            if(obj.type === 'obstacle') {
+              endGame();
+            } else {
+              score += 2;
+              scoreText.innerText = `SYNC: ${score}%`;
+              objects.splice(i, 1);
+              if(score >= 100) winGame();
+            }
+          }
+
+          if(obj.y > canvas.height + 50) objects.splice(i, 1);
         });
 
-        ctx.fillStyle = '#4285F4';
-        ctx.beginPath(); ctx.arc(player.x, player.y, 10, 0, Math.PI * 2); ctx.fill();
+        frame++;
+        if(frame % 40 === 0) spawnObject();
         requestAnimationFrame(update);
-      };
+      }
 
-      const gameOver = () => {
-        gameActive = false;
-        gameOverlay.style.display = 'flex';
-        scoreEl.style.display = 'none';
-      };
+      function varColor(name) {
+        return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+      }
 
-      const startGame = () => {
-        gameActive = true; score = 0; obstacles = []; player.y = 200; player.dy = 0;
-        gameUi.style.display = 'none';
-        gameOverlay.style.display = 'none';
-        scoreEl.style.display = 'block';
-        scoreEl.innerText = "Score: 0";
+      function handleInput(e) {
+        if(!active) return;
+        const rect = canvas.getBoundingClientRect();
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        player.targetX = clientX - rect.left;
+        if(player.targetX < player.width/2) player.targetX = player.width/2;
+        if(player.targetX > canvas.width - player.width/2) player.targetX = canvas.width - player.width/2;
+      }
+
+      function winGame() {
+        active = false;
+        startBtn.style.display = 'block';
+        startBtn.innerText = "MISSION SUCCESS - REBOOT";
+        startBtn.style.borderColor = varColor('--neon-green');
+        startBtn.style.color = varColor('--neon-green');
+      }
+
+      function endGame() {
+        active = false;
+        startBtn.style.display = 'block';
+        startBtn.innerText = "SYNC INTERRUPTED - RETRY";
+      }
+
+      startBtn.onclick = () => {
+        active = true;
+        score = 0;
+        objects = [];
+        frame = 0;
+        startBtn.style.display = 'none';
+        statsUI.style.display = 'block';
+        scoreText.innerText = "SYNC: 0%";
         update();
       };
 
-      startBtn.addEventListener('click', startGame);
-      restartBtn.addEventListener('click', startGame);
-
-      // Touch and Mouse controls
-      const jump = (e) => {
-        if (e.type === 'keydown' && e.code !== 'Space') return;
-        if (e.type === 'touchstart') e.preventDefault();
-        player.dy = -8;
-      };
-
-      window.addEventListener('keydown', jump);
-      canvas.addEventListener('mousedown', jump);
-      canvas.addEventListener('touchstart', jump, { passive: false });
+      canvas.addEventListener('mousemove', handleInput);
+      canvas.addEventListener('touchmove', (e) => {
+        e.preventDefault();
+        handleInput(e);
+      }, { passive: false });
     };
+
+    // --- FAQ TOGGLE ---
+    document.querySelectorAll('.faq-question').forEach(q => {
+      q.onclick = () => {
+        const item = q.parentElement;
+        item.classList.toggle('active');
+      };
+    });
 
     window.onload = () => {
       initThree();
-      initFireworks();
+      initReveal();
       initGame();
-      gsap.from('.hero h1', { duration: 2, scale: 0.8, opacity: 0, ease: 'elastic.out(1, 0.3)' });
-      // FAQ Accordion behaviour
-      document.querySelectorAll('.faq-question').forEach(btn => {
-        // ensure default state
-        btn.setAttribute('aria-expanded', btn.getAttribute('aria-expanded') || 'false');
-        const parent = btn.closest('.faq-item');
-        const answer = parent.querySelector('.faq-answer');
-        if (btn.getAttribute('aria-expanded') === 'true') {
-          parent.classList.add('open');
-          answer.hidden = false;
-        } else {
-          parent.classList.remove('open');
-          answer.hidden = true;
-        }
-        btn.addEventListener('click', () => {
-          const isOpen = btn.getAttribute('aria-expanded') === 'true';
-          btn.setAttribute('aria-expanded', (!isOpen).toString());
-          if (!isOpen) { parent.classList.add('open'); answer.hidden = false; }
-          else { parent.classList.remove('open'); answer.hidden = true; }
-        });
-        // keyboard support
-        btn.addEventListener('keydown', (e) => {
-          if (e.code === 'Space' || e.code === 'Enter') {
-            e.preventDefault();
-            btn.click();
-          }
-        });
-      });
+      gsap.from(".hero h1", { opacity: 0, y: 50, duration: 2, ease: "power4.out" });
     };
   </script>
 </body>
