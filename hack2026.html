@@ -205,7 +205,7 @@
     .box-3d {
       margin: 20px auto;
       transform-style: preserve-3d;
-      filter: drop-shadow(0 0 15px rgba(0,0,0,0.5));
+      filter: drop-shadow(0 0 15px var(--neon-blue));
       display: flex;
       align-items: center;
       justify-content: center;
@@ -213,24 +213,14 @@
     }
 
     .pixel-box { 
-      width: 80px; height: 150px; background: #fff; border-radius: 10px; 
-      box-shadow: inset 0 0 15px rgba(0,0,0,0.1), 0 10px 30px rgba(0,0,0,0.5);
+      width: 80px; height: 150px; background: #eee; border-radius: 10px; 
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
     }
     .laptop-box { 
-      width: 180px; height: 110px; background: #1a1a1a; border: 2px solid #333; border-radius: 5px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      width: 180px; height: 110px; background: #222; border: 2px solid #444; border-radius: 5px;
     }
     .airpods-box { 
       width: 100px; height: 100px; background: #fff; border-radius: 15px;
-      box-shadow: inset 0 0 10px rgba(0,0,0,0.05), 0 10px 30px rgba(0,0,0,0.3);
-    }
-
-    /* Google Multi-color Hack */
-    .google-logo-multi {
-      background: linear-gradient(to right, #4285F4 25%, #EA4335 25%, #EA4335 50%, #FBBC05 50%, #FBBC05 75%, #34A853 75%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      display: inline-block;
     }
 
     /* --- THEMES GRID --- */
@@ -259,17 +249,6 @@
       padding: 20px;
       cursor: pointer;
       font-family: 'Orbitron';
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .faq-question::after {
-      content: '+';
-      font-size: 1.5rem;
-      transition: 0.3s;
-    }
-    .faq-item.active .faq-question::after {
-      transform: rotate(45deg);
     }
     .faq-answer {
       max-height: 0;
@@ -279,16 +258,15 @@
       color: #aaa;
       line-height: 1.6;
     }
-    .faq-item.active .faq-answer { max-height: 800px; padding-bottom: 20px; }
+    .faq-item.active .faq-answer { max-height: 600px; padding-bottom: 20px; }
 
     /* --- GAME --- */
     #game-canvas {
       width: 100%;
-      height: 450px;
-      background: linear-gradient(to bottom, #001220, #000);
+      height: 400px;
+      background: rgba(0,0,0,0.6);
       border-radius: 20px;
       border: 1px solid var(--glass-border);
-      touch-action: none;
     }
 
     @media (max-width: 768px) {
@@ -311,20 +289,51 @@
     <div class="container">
       <div style="color: var(--neon-purple); letter-spacing: 12px; margin-bottom: 15px; font-weight: bold;">UDAIPUR x GOOGLE</div>
       <h1>LAKECITY<br><span style="color:var(--neon-blue)">HACKATHON 2026</span></h1>
-      <p style="color: #bbb; max-width: 700px; margin: 0 auto 40px; line-height: 1.8; font-size: 1.1rem;">
+      <p style="color: #bbb; max-width: 700px; margin: 0 auto 10px; line-height: 1.8; font-size: 1.1rem;">
         The singularity has arrived in the City of Lakes. Join the futuristic assembly where Udaipur's heritage meets 2050's AI technologies.
+      </p>
+      <p style="color: var(--neon-green); font-weight: bold; margin-bottom: 30px; display: flex; align-items: center; justify-content: center; gap: 10px;">
+        <i class="fa-solid fa-map-marker-alt"></i> Venue: City Palace Udaipur
       </p>
       <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
         <a href="#prize-reveal-section" class="btn-future"><i class="fa-solid fa-vault"></i> REVEAL REWARDS</a>
         <a href="https://gdg.community.dev/events/details/google-gdg-cloud-udaipur-presents-google-lakecity-hackathon-2026-win-100000-worth-of-prizes/" class="btn-future" style="border-color: var(--neon-purple); color: var(--neon-purple);"><i class="fa-solid fa-id-badge"></i> REGISTER NOW</a>
+        <a href="httpsa://chat.whatsapp.com/C6eOQRiaUXOIAJGONGvZWz?mode=hqrt3" target="_blank" class="btn-future" style="border-color: var(--g-green); color: var(--g-green);"><i class="fa-brands fa-whatsapp"></i> Join WhatsApp</a>
+        <button class="btn-future" style="border-color: var(--g-yellow); color: var(--g-yellow);" onclick="document.getElementById('themes').scrollIntoView({behavior:'smooth'})"><i class="fa-solid fa-compass"></i> Explore Themes</button>
+        <a class="btn-future" target="_blank" rel="noopener noreferrer" href="https://forms.gle/fZBEciY6tuH4Lu699" style="border-color: var(--neon-purple); color: var(--neon-purple); display:inline-flex;align-items:center;gap:8px;"><i class="fa-solid fa-upload"></i> Submission Form</a>
       </div>
     </div>
   </header>
 
+  <!-- Event Partners Section -->
+  <section id="partners" style="padding: 100px 0; background: rgba(0,0,0,0.4);">
+    <div class="container">
+      <h2 style="text-align: center; margin-bottom: 50px;">EVENT <span style="color: var(--neon-purple);">PARTNERS</span></h2>
+      <div class="grid-layout" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+        <div class="holo-card">
+          <div style="text-align: center;">
+            <div style="height: 100px; width: 100px; background: rgba(255,255,255,0.1); border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center;">
+              <img src="placeholder_mmcf_logo.png" alt="Maharana of Mewar Charitable Foundation Logo" style="max-width: 80%; max-height: 80%; object-fit: contain;">
+            </div>
+            <h3 style="font-size: 1.2rem; color: var(--neon-blue);">Maharana of Mewar Charitable Foundation</h3>
+          </div>
+        </div>
+        <div class="holo-card">
+          <div style="text-align: center;">
+            <div style="height: 100px; width: 100px; background: rgba(255,255,255,0.1); border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center;">
+              <img src="placeholder_mmcf_logo.png" alt="The City Palace Museum Logo" style="max-width: 80%; max-height: 80%; object-fit: contain;">
+            </div>
+            <h3 style="font-size: 1.2rem; color: var(--neon-blue);">The City Palace Museum, Udaipur</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Prize Reveal Section -->
   <section id="prize-reveal-section">
     <div class="container" style="text-align: center; margin-bottom: 60px;">
-      <h2 style="font-size: 2.8rem;">THE <span style="color: var(--neon-blue);">REWARDS</span> OF 2050</h2>
+      <h2 style="font-size: 2.8rem;">THE <span style="color: var(--neon-blue)">REWARDS</span> OF 2050</h2>
       <p style="color: #666; letter-spacing: 4px; text-transform: uppercase;">DECRYPTING HARDWARE VAULT...</p>
     </div>
 
@@ -338,7 +347,7 @@
           <div style="color: #C0C0C0; font-size: 0.85rem; margin-bottom: 10px; font-weight: bold; letter-spacing: 2px;">SILVER RANK</div>
           <h3 style="font-size: 1.4rem;">Lenovo Laptop</h3>
           <div class="box-3d laptop-box">
-            <i class="fa-solid fa-laptop-code" style="color:#0094D2; font-size: 3.5rem;"></i>
+            <i class="fa-solid fa-laptop-code" style="color:var(--neon-blue); font-size: 3rem;"></i>
           </div>
           <div style="color: var(--neon-green); font-weight: bold;">Master the Digital Craft</div>
           <div style="color: #666; font-size: 0.9rem; margin-top: 10px;">Forge the future & build next-gen tools</div>
@@ -349,9 +358,7 @@
           <div style="color: var(--g-yellow); font-size: 0.85rem; margin-bottom: 10px; font-weight: bold; letter-spacing: 2px;">GOLD RANK</div>
           <h3 style="font-size: 1.6rem;">Google Pixel</h3>
           <div class="box-3d pixel-box">
-            <div class="google-logo-multi">
-                <i class="fa-brands fa-google" style="font-size: 4rem;"></i>
-            </div>
+            <i class="fa-brands fa-google" style="color:#4285F4; font-size: 3.5rem;"></i>
           </div>
           <div style="color: var(--neon-green); font-weight: bold;">Next-Gen Flagship</div>
           <div style="color: #666; font-size: 0.9rem; margin-top: 10px;">The Ultimate AI Companion</div>
@@ -362,7 +369,7 @@
           <div style="color: #CD7F32; font-size: 0.85rem; margin-bottom: 10px; font-weight: bold; letter-spacing: 2px;">BRONZE RANK</div>
           <h3 style="font-size: 1.4rem;">Apple AirPods</h3>
           <div class="box-3d airpods-box">
-            <i class="fa-brands fa-apple" style="color:#222; font-size: 3.5rem;"></i>
+            <i class="fa-brands fa-apple" style="color:#333; font-size: 3rem;"></i>
           </div>
           <div style="color: var(--neon-green); font-weight: bold;">Spatial Audio Bliss</div>
           <div style="color: #666; font-size: 0.9rem; margin-top: 10px;">Immersive Soundscape</div>
@@ -500,92 +507,55 @@
     </div>
   </section>
 
-  <!-- FAQ Section -->
-  <section id="faq" style="padding: 100px 0; background: rgba(0,0,0,0.5);">
+  <!-- Evaluation Criteria -->
+  <section id="criteria" style="padding: 100px 0;">
     <div class="container">
-      <h2 style="text-align: center; margin-bottom: 50px;">TECHNICAL <span style="color: var(--neon-blue);">BRIEFING</span> (FAQ)</h2>
-      <div style="max-width: 900px; margin: 0 auto;">
-        <div class="holo-card faq-item">
-          <button class="faq-question">Who can participate in the hackathon?</button>
-          <div class="faq-answer">Google Lakecity Hackathon 2026 is open to individuals and teams who are enthusiastic about building technology-driven solutions. This includes students (undergraduates and postgraduates), working professionals, hobbyist developers, and early-stage startups. Teams should consist of 1–3 members. There is no age limit to participate.</div>
+      <h2 style="text-align: center; margin-bottom: 50px;">Evaluation <span style="color: var(--neon-blue);">Criteria</span></h2>
+      <div class="grid-layout" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+        <div class="holo-card" style="padding: 20px; text-align: center;">
+          <i class="fa-solid fa-lightbulb icon-large" style="color: var(--g-yellow);"></i>
+          <h4>Innovation</h4>
         </div>
-        <div class="holo-card faq-item">
-          <button class="faq-question">How do I register?</button>
-          <div class="faq-answer">Register for the event through the official GDG event page (click any “Register Now” button on this page). After registering, please join the WhatsApp group for real-time updates and community support. You will receive a confirmation message and timely instructions for preparing and submitting your Round 1 materials before the deadline on 30 Jan 2026.</div>
+        <div class="holo-card" style="padding: 20px; text-align: center;">
+          <i class="fa-solid fa-coins icon-large" style="color: var(--g-green);"></i>
+          <h4>Feasibility</h4>
         </div>
-        <div class="holo-card faq-item">
-          <button class="faq-question">What should the submission include?</button>
-          <div class="faq-answer">For Round 1, include: a fully working prototype demonstrated via YouTube video (max 3 mins), a Google Slides deck (6–10 slides) covering the problem, solution, architecture, and tech stack, and a short elevator pitch video.</div>
+        <div class="holo-card" style="padding: 20px; text-align: center;">
+          <i class="fa-solid fa-earth-americas icon-large" style="color: var(--g-red);"></i>
+          <h4>Impact</h4>
         </div>
-        <div class="holo-card faq-item">
-          <button class="faq-question">How many rounds are there?</button>
-          <div class="faq-answer">There are two rounds: Round 1 (Online Online Submission), and the Final Round (In-person) held in Udaipur. Round 1 evaluates submissions and selects finalists for the offline final where winners are determined.</div>
-        </div>
-        <div class="holo-card faq-item">
-          <button class="faq-question">What is expected in each round?</button>
-          <div class="faq-answer">Round 1 (Online) requires a fully functioning prototype, a 3-minute YouTube demo, a slide deck, and a short elevator pitch. Finalists invited to the in-person final round should prepare a live demonstration, a deeper technical walkthrough, and be ready for Q&A.</div>
-        </div>
-        <div class="holo-card faq-item">
-          <button class="faq-question">What shall be covered in the submission? (Evaluation framework)</button>
-          <div class="faq-answer">Judges will evaluate submissions using a framework that includes: Innovation, Technical Execution (Functional Prototype), Impact (Measurable Benefit), Feasibility, UX & Design, and effective use of Google Tech.</div>
-        </div>
-        <div class="holo-card faq-item">
-          <button class="faq-question">Is it compulsory to attend the Final Round if selected in person?</button>
-          <div class="faq-answer">Yes. Finalists are expected to be present at the in-person final event in Udaipur. Absence from the final round may affect a team’s eligibility to be declared a winner.</div>
-        </div>
-        <div class="holo-card faq-item">
-          <button class="faq-question">Who owns the project IP?</button>
-          <div class="faq-answer">Participants retain ownership of their intellectual property. By participating, you grant the organizers a non-exclusive right to publicize the project for marketing and presentation purposes.</div>
-        </div>
-        <div class="holo-card faq-item">
-          <button class="faq-question">Are pretrained models, third-party APIs, or datasets allowed?</button>
-          <div class="faq-answer">Yes — you may use third-party models, APIs, and datasets, but you must clearly list all external libraries and datasets used, and ensure that your usage complies with those licenses.</div>
-        </div>
-        <div class="holo-card faq-item">
-          <button class="faq-question">Can we submit prior or pre-existing projects?</button>
-          <div class="faq-answer">You may submit projects that were started earlier, provided you clearly disclose prior work and the portion completed for the hackathon. Judges will consider novelty of the team's contribution.</div>
-        </div>
-        <div class="holo-card faq-item">
-          <button class="faq-question">Are there mentors available during the hackathon?</button>
-          <div class="faq-answer">Organizers may provide mentors or office hours; details about mentor availability will be shared closer to the event via official channels.</div>
-        </div>
-        <div class="holo-card faq-item">
-          <button class="faq-question">How are winners selected and notified?</button>
-          <div class="faq-answer">A jury of judges will evaluate finalists and determine the winners based on the evaluation framework. Finalists and winners will be notified via registered email and the WhatsApp group.</div>
-        </div>
-        <div class="holo-card faq-item">
-          <button class="faq-question">Are travel and accommodation costs covered?</button>
-          <div class="faq-answer">No — travel and accommodation will not be covered by the organizers. Finalists should plan their travel and lodging independently in Udaipur.</div>
-        </div>
-        <div class="holo-card faq-item">
-          <button class="faq-question">Do all team members need to complete RSVP on the GDG event page?</button>
-          <div class="faq-answer">Yes. Every individual participant must complete the RSVP on the official GDG event page, even if they are part of a team.</div>
-        </div>
-        <div class="holo-card faq-item">
-          <button class="faq-question">Do all team members need to fill the Google submission form?</button>
-          <div class="faq-answer">No. Only the team leader is required to fill the submission form on behalf of the entire team.</div>
-        </div>
-        <div class="holo-card faq-item">
-          <button class="faq-question">Can one person be part of multiple teams?</button>
-          <div class="faq-answer">No. Each participant is allowed to be a member of only one team for the hackathon.</div>
+        <div class="holo-card" style="padding: 20px; text-align: center;">
+          <i class="fa-brands fa-google icon-large" style="color: var(--g-blue);"></i>
+          <h4>Google Tech</h4>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Lake AI Navigator Game -->
+  <!-- FAQ Section -->
+  <section id="faq" style="padding: 100px 0; background: rgba(0,0,0,0.5);">
+    <div class="container">
+      <h2 style="text-align: center; margin-bottom: 50px;">TECHNICAL <span style="color: var(--neon-blue);">BRIEFING</span> (FAQ)</h2>
+      <div style="max-width: 900px; margin: 0 auto;">
+        <div id="faq-container">
+            <!-- FAQ items will be dynamically inserted here by JavaScript -->
+        </div>
+        <div id="faq-pagination" style="text-align: center; margin-top: 30px; display: flex; justify-content: center; align-items: center; gap: 10px;">
+            <!-- Pagination controls will be dynamically inserted here -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sky Surfer Mini Game -->
   <section id="game-section" style="padding: 100px 0;">
     <div class="container">
-      <h2 style="text-align: center; margin-bottom: 20px;">LAKE <span style="color: var(--neon-blue)">AI NAVIGATOR</span></h2>
-      <p style="text-align: center; color: #888; margin-bottom: 30px;">PILOT THE FUTURE: SYNC HERITAGE NODES ON LAKE PICHOLA</p>
+      <h2 style="text-align: center; margin-bottom: 30px;">SKY <span style="color: var(--g-red)">SURFER</span> SIM</h2>
       <div style="position: relative; max-width: 900px; margin: 0 auto;">
         <canvas id="game-canvas"></canvas>
-        <div id="game-ui" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; width: 100%;">
+        <div id="game-ui" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
           <button id="start-game" class="btn-future">INITIALIZE MISSION</button>
-          <div id="game-stats" style="display: none; margin-top: 20px; font-family: 'Orbitron';">
-            <div id="score-val" style="font-size: 2rem; color: var(--neon-blue);">SYNC: 0%</div>
-            <div style="color: #666; font-size: 0.8rem; margin-top: 5px;">DRAG TO STEER • COLLECT BLUE/GREEN • AVOID RED</div>
-          </div>
+          <div id="score-display" style="display: none; margin-top: 20px; font-size: 1.5rem; font-family: 'Orbitron';">SYNC: 0</div>
         </div>
       </div>
     </div>
@@ -651,15 +621,17 @@
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: "#prize-reveal-section",
-          start: "top 60%", 
+          start: "top 60%", // Start earlier
           end: "bottom center",
           scrub: 1
         }
       });
 
+      // Part Shutters
       tl.to(".shutter.left", { xPercent: -100, duration: 2 }, 0);
       tl.to(".shutter.right", { xPercent: 100, duration: 2 }, 0);
       
+      // Reveal Prizes from Center
       tl.to(".prize-container", {
         opacity: 1,
         scale: 1,
@@ -667,6 +639,7 @@
         ease: "power2.out"
       }, 0.5);
 
+      // Continuous rotation for boxes
       gsap.to(".box-3d", {
         rotateY: 360,
         duration: 10,
@@ -675,166 +648,68 @@
       });
     };
 
-    // --- LAKE AI NAVIGATOR GAME ---
+    // --- MINI GAME LOGIC ---
     const initGame = () => {
       const canvas = document.getElementById('game-canvas');
       const ctx = canvas.getContext('2d');
       const startBtn = document.getElementById('start-game');
-      const statsUI = document.getElementById('game-stats');
-      const scoreText = document.getElementById('score-val');
+      const scoreDisp = document.getElementById('score-display');
       
       let active = false;
+      let player = { y: 200, v: 0 };
+      let obstacles = [];
       let score = 0;
-      let player = { x: 0, targetX: 0, width: 60, height: 30 };
-      let objects = [];
-      let speed = 4;
-      let frame = 0;
-
-      function resize() {
-        canvas.width = canvas.offsetWidth;
-        canvas.height = canvas.offsetHeight;
-        player.x = canvas.width / 2;
-        player.targetX = player.x;
-      }
-      resize();
-      window.addEventListener('resize', resize);
-
-      function spawnObject() {
-        const types = ['sync', 'cloud', 'obstacle'];
-        const type = types[Math.floor(Math.random() * types.length)];
-        const x = Math.random() * (canvas.width - 40) + 20;
-        objects.push({ x, y: -50, type, size: 25 });
-      }
 
       function update() {
         if(!active) return;
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        // Water effect
-        ctx.strokeStyle = 'rgba(0, 243, 255, 0.1)';
-        ctx.lineWidth = 1;
-        for(let i = 0; i < 10; i++) {
-          let y = (frame * 2 + i * 50) % canvas.height;
-          ctx.beginPath();
-          ctx.moveTo(0, y);
-          ctx.lineTo(canvas.width, y);
-          ctx.stroke();
-        }
-
-        // Smooth player move
-        player.x += (player.targetX - player.x) * 0.15;
-
-        // Draw Player (Futuristic Boat)
-        ctx.save();
-        ctx.translate(player.x, canvas.height - 80);
-        ctx.fillStyle = varColor('--neon-blue');
-        ctx.shadowBlur = 15;
-        ctx.shadowColor = varColor('--neon-blue');
         
-        // Boat Body
-        ctx.beginPath();
-        ctx.moveTo(-player.width/2, 0);
-        ctx.lineTo(player.width/2, 0);
-        ctx.lineTo(player.width/2.5, player.height);
-        ctx.lineTo(-player.width/2.5, player.height);
-        ctx.closePath();
-        ctx.fill();
+        player.v += 0.4; player.y += player.v;
+        if(player.y > canvas.height) player.y = canvas.height;
+        if(player.y < 0) player.y = 0;
 
-        // Boat Cabin (Neon Glow)
-        ctx.fillStyle = '#fff';
-        ctx.fillRect(-10, 5, 20, 10);
-        ctx.restore();
+        // Draw Player
+        ctx.fillStyle = "#4285F4";
+        ctx.shadowBlur = 15;
+        ctx.shadowColor = "#4285F4";
+        ctx.beginPath(); ctx.arc(80, player.y, 12, 0, Math.PI*2); ctx.fill();
+        ctx.shadowBlur = 0;
 
-        // Objects
-        objects.forEach((obj, i) => {
-          obj.y += speed;
+        // Obstacles
+        if(Math.random() < 0.03) obstacles.push({ x: canvas.width, y: Math.random()*canvas.height, w: 20, h: 20 });
+        obstacles.forEach((o, i) => {
+          o.x -= 6;
+          ctx.fillStyle = "#EA4335";
+          ctx.fillRect(o.x, o.y, o.w, o.h);
           
-          if(obj.type === 'sync') {
-            ctx.fillStyle = varColor('--g-blue');
-            ctx.shadowColor = varColor('--g-blue');
-            ctx.beginPath(); ctx.arc(obj.x, obj.y, obj.size/2, 0, Math.PI*2); ctx.fill();
-            // Icon inner
-            ctx.fillStyle = '#fff';
-            ctx.font = '12px FontAwesome';
-            ctx.fillText('\uf0e7', obj.x - 4, obj.y + 4);
-          } else if(obj.type === 'cloud') {
-            ctx.fillStyle = varColor('--g-green');
-            ctx.shadowColor = varColor('--g-green');
-            ctx.beginPath(); ctx.arc(obj.x, obj.y, obj.size/2, 0, Math.PI*2); ctx.fill();
-            ctx.fillStyle = '#fff';
-            ctx.font = '10px FontAwesome';
-            ctx.fillText('\uf0c2', obj.x - 6, obj.y + 4);
-          } else {
-            ctx.fillStyle = varColor('--g-red');
-            ctx.shadowColor = varColor('--g-red');
-            ctx.fillRect(obj.x - obj.size/2, obj.y - obj.size/2, obj.size, obj.size);
+          if(o.x < -30) {
+            obstacles.splice(i, 1);
+            score++;
+            scoreDisp.innerText = "SYNC: " + score;
           }
 
           // Collision
-          const dx = obj.x - player.x;
-          const dy = obj.y - (canvas.height - 80);
-          if(Math.abs(dx) < player.width/2 + obj.size/2 && Math.abs(dy) < player.height + obj.size/2) {
-            if(obj.type === 'obstacle') {
-              endGame();
-            } else {
-              score += 2;
-              scoreText.innerText = `SYNC: ${score}%`;
-              objects.splice(i, 1);
-              if(score >= 100) winGame();
-            }
+          if(Math.abs(o.x - 80) < 25 && Math.abs(o.y - player.y) < 25) {
+            active = false;
+            startBtn.style.display = 'block';
+            startBtn.innerText = "MISSION FAILED - REBOOT";
           }
-
-          if(obj.y > canvas.height + 50) objects.splice(i, 1);
         });
 
-        frame++;
-        if(frame % 40 === 0) spawnObject();
         requestAnimationFrame(update);
-      }
-
-      function varColor(name) {
-        return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
-      }
-
-      function handleInput(e) {
-        if(!active) return;
-        const rect = canvas.getBoundingClientRect();
-        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-        player.targetX = clientX - rect.left;
-        if(player.targetX < player.width/2) player.targetX = player.width/2;
-        if(player.targetX > canvas.width - player.width/2) player.targetX = canvas.width - player.width/2;
-      }
-
-      function winGame() {
-        active = false;
-        startBtn.style.display = 'block';
-        startBtn.innerText = "MISSION SUCCESS - REBOOT";
-        startBtn.style.borderColor = varColor('--neon-green');
-        startBtn.style.color = varColor('--neon-green');
-      }
-
-      function endGame() {
-        active = false;
-        startBtn.style.display = 'block';
-        startBtn.innerText = "SYNC INTERRUPTED - RETRY";
       }
 
       startBtn.onclick = () => {
         active = true;
-        score = 0;
-        objects = [];
-        frame = 0;
         startBtn.style.display = 'none';
-        statsUI.style.display = 'block';
-        scoreText.innerText = "SYNC: 0%";
+        scoreDisp.style.display = 'block';
+        player.y = 200; player.v = 0; obstacles = []; score = 0;
+        scoreDisp.innerText = "SYNC: 0";
         update();
       };
 
-      canvas.addEventListener('mousemove', handleInput);
-      canvas.addEventListener('touchmove', (e) => {
-        e.preventDefault();
-        handleInput(e);
-      }, { passive: false });
+      canvas.onmousedown = () => { if(active) player.v = -7; };
+      window.onkeydown = (e) => { if(active && e.code === 'Space') player.v = -7; };
     };
 
     // --- FAQ TOGGLE ---
@@ -845,10 +720,118 @@
       };
     });
 
+    // --- FAQ PAGINATION ---
+    const initFaqPagination = () => {
+        const faqs = [
+            { q: "Who can participate in the hackathon?", a: "Google Lakecity Hackathon 2026 is open to individuals and teams who are enthusiastic about building technology-driven solutions. This includes students (undergraduates and postgraduates), working professionals, hobbyist developers, and early-stage startups. Teams should consist of 1–3 members. There is no age limit to participate." },
+            { q: "How do I register?", a: "Register for the event through the official GDG event page. After registering, please join the WhatsApp group for real-time updates and community support. Complete the registration form with your team details, concept summary, and links to your submission materials. Make sure to submit all required items before the deadline on 30 Jan 2026." },
+            { q: "What should the submission include?", a: "For Round 1 please provide:<br><br>A fully working prototype demonstrated in a video (primary evidence must be a YouTube demo).<br>Short demo video (maximum 3 minutes) uploaded to YouTube.<br>Google Slides deck (6–10 slides) covering problem statement, solution, architecture, tech stack, implementation plan, and impact.<br>Concise 60–120 second elevator pitch uploaded to YouTube.<br>Optional: README / documentation." },
+            { q: "How many rounds are there?", a: "There are two rounds: Round 1 (Online), and the Final Round (In-person) held in Udaipur. Round 1 evaluates submissions and selects finalists for the offline final where winners are determined." },
+            { q: "What is expected in each round?", a: "Round 1 (Online) requires a fully functioning prototype, a 3-minute YouTube demo, a slide deck, and a short elevator pitch (60–120 seconds). Finalists invited to the in-person final round should prepare a live demonstration, a deeper technical walkthrough, and be ready for Q&A." },
+            { q: "What shall be covered in the submission? (Evaluation framework)", a: "Judges will evaluate submissions using a framework that includes:<br><br>Innovation: Is the idea original and creative?<br>Technical Execution: Is the prototype functional, well-built, and reproducible?<br>Impact: Does the solution address a real problem with measurable benefit?<br>Feasibility: Is the solution practical and executable within current constraints?<br>UX & Design: Is the user experience clear and compelling?<br>Use of Google Tech: Effective use of Google technologies will be considered a plus." },
+            { q: "Is it compulsory to attend the Final Round if selected in person?", a: "Yes. Finalists are expected to be present at the in-person final event in Udaipur. Absence from the final round may affect a team’s eligibility to be declared a winner." },
+            { q: "Who owns the project IP?", a: "Participants retain ownership of their intellectual property. By participating, you grant the organizers a non-exclusive right to publicize the project (for marketing and presentation of finalists and winners) but you retain all other rights." },
+            { q: "Are pretrained models, third-party APIs, or datasets allowed?", a: "Yes — you may use third-party models, APIs, and datasets, but you must clearly list all external libraries and datasets used, and ensure that your usage complies with those licenses. When possible, cite references and provide attribution in your submission materials." },
+            { q: "Can we submit prior or pre-existing projects?", a: "You may submit projects that were started earlier, provided you clearly disclose prior work and the portion completed for the hackathon. Judges will consider novelty of the team's contribution when evaluating submissions." },
+            { q: "Are there mentors available during the hackathon?", a: "Organizers may provide mentors or office hours; details about mentor availability will be shared closer to the event via the official event channels." },
+            { q: "How are winners selected and notified?", a: "A jury of judges will evaluate finalists and determine the winners based on the evaluation framework. Finalists and winners will be notified via the registered email and the WhatsApp group. Winners will also be announced publicly after the final round." },
+            { q: "Are travel and accommodation costs covered?", a: "No — travel and accommodation will not be covered by the organizers. Finalists should plan their travel and lodging independently." },
+            { q: "Do all team members need to complete RSVP on the GDG event page?", a: "Yes. Every individual participant must complete the RSVP, even if they are part of a team." },
+            { q: "Do all team members need to fill the Google submission form?", a: "No. Only the team leader is required to fill the submission form on behalf of the entire team." },
+            { q: "Can one person be part of multiple teams?", a: "No. Each participant is allowed to be a member of only one team for the hackathon." }
+        ];
+
+        const faqContainer = document.getElementById('faq-container');
+        const paginationContainer = document.getElementById('faq-pagination');
+        const itemsPerPage = 5;
+        let currentPage = 1;
+        const totalPages = Math.ceil(faqs.length / itemsPerPage);
+
+        const displayFaqs = () => {
+            faqContainer.innerHTML = '';
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const pageFaqs = faqs.slice(startIndex, endIndex);
+
+            pageFaqs.forEach(faq => {
+                const faqItem = document.createElement('div');
+                faqItem.className = 'holo-card faq-item';
+                faqItem.innerHTML = `
+                    <button class="faq-question">${faq.q}</button>
+                    <div class="faq-answer">${faq.a}</div>
+                `;
+                faqContainer.appendChild(faqItem);
+            });
+
+            document.querySelectorAll('.faq-question').forEach(q => {
+                q.onclick = () => {
+                    const item = q.parentElement;
+                    item.classList.toggle('active');
+                };
+            });
+        };
+
+        const setupPagination = () => {
+            paginationContainer.innerHTML = '';
+
+            // Previous button
+            const prevButton = document.createElement('button');
+            prevButton.innerHTML = '<i class="fa-solid fa-angle-left"></i>';
+            prevButton.className = 'btn-future';
+            prevButton.style.clipPath = 'polygon(20% 0, 100% 0, 80% 100%, 0 100%)';
+            prevButton.disabled = currentPage === 1;
+            prevButton.onclick = () => {
+                if (currentPage > 1) {
+                    currentPage--;
+                    displayFaqs();
+                    setupPagination();
+                }
+            };
+            paginationContainer.appendChild(prevButton);
+
+            // Page indicators
+            for (let i = 1; i <= totalPages; i++) {
+                const pageButton = document.createElement('button');
+                pageButton.innerText = i;
+                pageButton.className = 'btn-future';
+                pageButton.style.clipPath = 'polygon(50% 0, 85% 50%, 50% 100%, 15% 50%)';
+                if (i === currentPage) {
+                    pageButton.style.backgroundColor = 'var(--neon-blue)';
+                    pageButton.style.color = '#000';
+                }
+                pageButton.onclick = () => {
+                    currentPage = i;
+                    displayFaqs();
+                    setupPagination();
+                };
+                paginationContainer.appendChild(pageButton);
+            }
+
+            // Next button
+            const nextButton = document.createElement('button');
+            nextButton.innerHTML = '<i class="fa-solid fa-angle-right"></i>';
+            nextButton.className = 'btn-future';
+            nextButton.style.clipPath = 'polygon(20% 0, 100% 0, 80% 100%, 0 100%)';
+            nextButton.disabled = currentPage === totalPages;
+            nextButton.onclick = () => {
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    displayFaqs();
+                    setupPagination();
+                }
+            };
+            paginationContainer.appendChild(nextButton);
+        };
+
+        displayFaqs();
+        setupPagination();
+    };
+
     window.onload = () => {
       initThree();
       initReveal();
       initGame();
+      initFaqPagination();
       gsap.from(".hero h1", { opacity: 0, y: 50, duration: 2, ease: "power4.out" });
     };
   </script>
