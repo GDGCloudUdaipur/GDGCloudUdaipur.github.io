@@ -295,12 +295,22 @@
       <p style="color: var(--neon-green); font-weight: bold; margin-bottom: 30px; display: flex; align-items: center; justify-content: center; gap: 10px;">
         <i class="fa-solid fa-map-marker-alt"></i> Venue: City Palace Udaipur
       </p>
-      <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
-        <a href="#prize-reveal-section" class="btn-future"><i class="fa-solid fa-vault"></i> REVEAL REWARDS</a>
-        <a href="https://gdg.community.dev/events/details/google-gdg-cloud-udaipur-presents-google-lakecity-hackathon-2026-win-100000-worth-of-prizes/" class="btn-future" style="border-color: var(--neon-purple); color: var(--neon-purple);"><i class="fa-solid fa-id-badge"></i> REGISTER NOW</a>
-        <a href="httpsa://chat.whatsapp.com/C6eOQRiaUXOIAJGONGvZWz?mode=hqrt3" target="_blank" class="btn-future" style="border-color: var(--g-green); color: var(--g-green);"><i class="fa-brands fa-whatsapp"></i> Join WhatsApp</a>
-        <button class="btn-future" style="border-color: var(--g-yellow); color: var(--g-yellow);" onclick="document.getElementById('themes').scrollIntoView({behavior:'smooth'})"><i class="fa-solid fa-compass"></i> Explore Themes</button>
-        <a class="btn-future" target="_blank" rel="noopener noreferrer" href="https://forms.gle/fZBEciY6tuH4Lu699" style="border-color: var(--neon-purple); color: var(--neon-purple); display:inline-flex;align-items:center;gap:8px;"><i class="fa-solid fa-upload"></i> Submission Form</a>
+      <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; flex-direction: column; align-items: center; margin-bottom: 30px;">
+        <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
+          <a href="#prize-reveal-section" class="btn-future"><i class="fa-solid fa-vault"></i> REVEAL REWARDS</a>
+          <a href="httpsa://chat.whatsapp.com/C6eOQRiaUXOIAJGONGvZWz?mode=hqrt3" target="_blank" class="btn-future" style="border-color: var(--g-green); color: var(--g-green);"><i class="fa-brands fa-whatsapp"></i> Join WhatsApp</a>
+          <button class="btn-future" style="border-color: var(--g-yellow); color: var(--g-yellow);" onclick="document.getElementById('themes').scrollIntoView({behavior:'smooth'})"><i class="fa-solid fa-compass"></i> Explore Themes</button>
+        </div>
+        <div style="margin-top: 30px; display: flex; gap: 40px; justify-content: center; flex-wrap: wrap;">
+          <div class="holo-card" style="padding: 18px 32px; text-align: center; border-left: 4px solid var(--g-blue); min-width: 220px;">
+            <div style="color: var(--g-blue); font-weight: bold; font-size: 1.1rem; margin-bottom: 6px;">Round 1 Results Announcement</div>
+            <div style="font-size: 1.4rem; color: #fff;">25 Feb 2026</div>
+          </div>
+          <div class="holo-card" style="padding: 18px 32px; text-align: center; border-left: 4px solid var(--g-yellow); min-width: 220px;">
+            <div style="color: var(--g-yellow); font-weight: bold; font-size: 1.1rem; margin-bottom: 6px;">Finale Event</div>
+            <div style="font-size: 1.4rem; color: #fff;">29th Mar 2026</div>
+          </div>
+        </div>
       </div>
     </div>
   </header>
@@ -460,42 +470,22 @@
     </div>
   </section>
 
-  <!-- Submission Details -->
-  <section id="submission" style="padding: 100px 0;">
+
+  <!-- Results & Finale Section -->
+  <section id="results-finale" style="padding: 100px 0; background: rgba(0,0,0,0.4);">
     <div class="container">
-      <h2 style="text-align: center; margin-bottom: 50px;">ROUND 1 <span style="color: var(--g-red);">PROTOCOLS</span></h2>
-      <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; margin-bottom: 50px;">
-        <div class="holo-card" style="padding: 20px 40px; text-align: center;">
-          <div style="color: var(--neon-blue); font-weight: bold;">TEAM SIZE</div>
-          <div>1–3 Members</div>
+      <h2 style="text-align: center; margin-bottom: 50px;">IMPORTANT <span style="color: var(--neon-blue);">DATES</span></h2>
+      <div class="grid-layout" style="justify-content: center;">
+        <div class="holo-card" style="padding: 30px 40px; text-align: center; border-left: 4px solid var(--g-blue);">
+          <div style="color: var(--g-blue); font-weight: bold; font-size: 1.2rem; margin-bottom: 10px;">Results Announcement</div>
+          <div style="font-size: 2rem; color: #fff;">25 Feb 2026</div>
         </div>
-        <div class="holo-card" style="padding: 20px 40px; text-align: center;">
-          <div style="color: var(--g-green); font-weight: bold;">TYPE</div>
-          <div>Online Submission</div>
-        </div>
-        <div class="holo-card" style="padding: 20px 40px; text-align: center;">
-          <div style="color: var(--g-red); font-weight: bold;">DEADLINE</div>
-          <div>30 Jan 2026</div>
+        <div class="holo-card" style="padding: 30px 40px; text-align: center; border-left: 4px solid var(--g-yellow);">
+          <div style="color: var(--g-yellow); font-weight: bold; font-size: 1.2rem; margin-bottom: 10px;">Finale Event</div>
+          <div style="font-size: 2rem; color: #fff;">29th March</div>
         </div>
       </div>
-      
-      <div class="grid-layout">
-        <div class="holo-card" style="border-left: 4px solid #FF0000;">
-          <i class="fa-brands fa-youtube" style="font-size: 2.5rem; color: #FF0000; margin-bottom: 15px;"></i>
-          <h3>Working Prototype</h3>
-          <p style="color:#aaa;">Upload a 3-minute technical demo to YouTube. This is the core evidence of your work.</p>
-        </div>
-        <div class="holo-card" style="border-left: 4px solid #FBBC05;">
-          <i class="fa-solid fa-file-powerpoint" style="font-size: 2.5rem; color: #FBBC05; margin-bottom: 15px;"></i>
-          <h3>Slides & Deck</h3>
-          <p style="color:#aaa;">6–10 slides covering strategy, tech stack, and impact metrics.</p>
-        </div>
-        <div class="holo-card" style="border-left: 4px solid #4285F4;">
-          <i class="fa-solid fa-video" style="font-size: 2.5rem; color: #4285F4; margin-bottom: 15px;"></i>
-          <h3>Elevator Pitch</h3>
-          <p style="color:#aaa;">A concise 90-second pitch highlighting your project's unique value.</p>
-        </div>
-      </div>
+      <p style="text-align:center; color:#aaa; margin-top:40px;">Stay tuned for more details on the finale venue and schedule. All updates will be shared via email and the official WhatsApp group.</p>
     </div>
   </section>
 
@@ -716,7 +706,7 @@
     const initFaqPagination = () => {
         const faqs = [
             { q: "Who can participate in the hackathon?", a: "Google Lakecity Hackathon 2026 is open to individuals and teams who are enthusiastic about building technology-driven solutions. This includes students (undergraduates and postgraduates), working professionals, hobbyist developers, and early-stage startups. Teams should consist of 1–3 members. There is no age limit to participate." },
-            { q: "How do I register?", a: "Register for the event through the official GDG event page. After registering, please join the WhatsApp group for real-time updates and community support. Complete the registration form with your team details, concept summary, and links to your submission materials. Make sure to submit all required items before the deadline on 30 Jan 2026." },
+            { q: "How do I register?", a: "Register for the event through the official GDG event page. After registering, please join the WhatsApp group for real-time updates and community support. Complete the registration form with your team details, concept summary, and links to your submission materials. Make sure to submit all required items before the deadline on 30 Jan 2026. Results will be announced on 25 Feb 2026. The Finale will be held on 29th March." },
             { q: "What should the submission include?", a: "For Round 1 please provide:<br><br>A fully working prototype demonstrated in a video (primary evidence must be a YouTube demo).<br>Short demo video (maximum 3 minutes) uploaded to YouTube.<br>Google Slides deck (6–10 slides) covering problem statement, solution, architecture, tech stack, implementation plan, and impact.<br>Concise 60–120 second elevator pitch uploaded to YouTube.<br>Optional: README / documentation." },
             { q: "How many rounds are there?", a: "There are two rounds: Round 1 (Online), and the Final Round (In-person) held in Udaipur. Round 1 evaluates submissions and selects finalists for the offline final where winners are determined." },
             { q: "What is expected in each round?", a: "Round 1 (Online) requires a fully functioning prototype, a 3-minute YouTube demo, a slide deck, and a short elevator pitch (60–120 seconds). Finalists invited to the in-person final round should prepare a live demonstration, a deeper technical walkthrough, and be ready for Q&A." },
