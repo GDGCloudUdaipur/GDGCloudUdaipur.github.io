@@ -3,1401 +3,274 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GDG Cloud Udaipur - Lakecity Hackathon 2026</title>
-    
-    <!-- Tailwind CSS -->
+    <title>Project Showcase Gallery - Dark Mode</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
     <style>
-        body { font-family: 'Inter', sans-serif; }
-        .scrollbar-hide::-webkit-scrollbar { display: none; }
-        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
-        
-        /* Animations */
-        @keyframes fade-in-up {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .modal-overlay { transition: opacity 0.3s ease-in-out; }
+        .modal-content { transition: transform 0.3s ease-out; }
+        .line-clamp-1 {
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;  
+            overflow: hidden;
         }
-        .animate-fade-in-up { animation: fade-in-up 0.8s ease-out forwards; }
+        /* Custom scrollbar for dark theme */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
     </style>
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        slate: {
-                            950: '#020617', // Custom dark background
-                        }
-                    }
-                }
-            }
-        }
-    </script>
 </head>
-<body class="min-h-screen bg-slate-950 text-slate-200 selection:bg-blue-500/30 selection:text-blue-200">
+<body class="bg-[#0b0f1a] text-slate-200 antialiased">
 
-    <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-slate-950/80 backdrop-blur-lg border-b border-slate-800">
-        <div class="container mx-auto px-6 h-20 flex items-center justify-between">
+    <!-- Header -->
+    <header class="sticky top-0 z-40 bg-[#0f172a]/80 backdrop-blur-xl border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
             <div class="flex items-center gap-3">
-                <div class="relative">
-                    <div class="absolute inset-0 bg-blue-500 blur-lg opacity-20 rounded-full"></div>
-                    <i data-lucide="cloud" class="w-8 h-8 text-blue-500 relative z-10"></i>
-                </div>
-                <div>
-                    <h1 class="text-lg font-bold text-white leading-none">GDG Cloud</h1>
-                    <p class="text-xs text-slate-400 font-medium tracking-widest">UDAIPUR</p>
+                <div class="h-9 flex items-center">
+                    <img 
+                        src="gdglogo.png" 
+                        alt="GDG Logo" 
+                        class="h-full w-auto object-contain brightness-110"
+                        onerror="this.onerror=null; this.src='https://www.gstatic.com/images/branding/product/1x/googleg_48dp.png';"
+                    >
+                    <span class="hidden ml-3 text-lg font-bold tracking-tight text-white sm:block">Innovation Hub</span>
                 </div>
             </div>
             
-            <!-- Navigation links removed -->
-
-            </div>
-        </div>
-    </nav>
-
-    <main>
-        <!-- Hero Section -->
-        <div class="relative pt-32 pb-20 overflow-hidden">
-            <div class="absolute top-0 left-1/4 w-96 h-96 bg-blue-600/20 rounded-full blur-[120px] -z-10"></div>
-            <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-600/20 rounded-full blur-[120px] -z-10"></div>
-            
-            <div class="container mx-auto px-6 text-center">
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-blue-400 text-xs font-semibold mb-6 animate-fade-in-up">
-                    <i data-lucide="zap" class="w-3 h-3"></i> 
-                    LAKECITY HACKATHON 2026
-                </div>
-                
-                <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight">
-                    Building the <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">Future</span> <br />
-                    in the City of Lakes
-                </h1>
-                
-                <p class="text-lg text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
-                    Showcasing <span id="project-count">200+</span> Showcasing 235+ innovative solutions.Discover the brilliance redefining tomorrow with Google Cloud. 
-                </p>
-                
-                <div class="flex flex-col md:flex-row items-center justify-center gap-4">
-                    <button class="w-full md:w-auto px-8 py-3 bg-white text-slate-950 rounded-full font-bold hover:bg-slate-200 transition-colors flex items-center justify-center gap-2">
-                        <i data-lucide="play" class="w-4 h-4 fill-current"></i> Watch Highlights
-                    </button>
-                    <button id="view-winners-btn" class="w-full md:w-auto px-8 py-3 bg-slate-900 border border-slate-700 text-white rounded-full font-bold hover:border-blue-500 hover:text-blue-400 transition-all flex items-center justify-center gap-2">
-                        <i data-lucide="users" class="w-4 h-4"></i> View Winners
-                    </button>
-                </div>
-            </div>
-        </div>
-        <div id="winners-announcement" class="hidden container mx-auto px-6 py-10 text-center bg-yellow-900/20 text-yellow-300 rounded-lg text-lg font-semibold mt-10">
-            Winners will be announced soon!
-        </div>
-
-        <!-- Gallery Section -->
-        <section class="container mx-auto px-6 pb-24" id="gallery">
-            <!-- Controls -->
-            <div class="flex flex-col md:flex-row justify-between items-center gap-6 mb-12">
-                
-                <!-- Search Bar -->
-                <div class="relative w-full md:w-72">
-                    <i data-lucide="search" class="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-slate-500"></i>
+            <div class="flex-1 max-w-md mx-4">
+                <div class="relative group">
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                    </div>
                     <input 
                         type="text" 
-                        id="search-input"
-                        placeholder="Search projects or teams..." 
-                        class="w-full bg-slate-900 border border-slate-800 rounded-full py-2 pl-10 pr-4 text-sm text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all placeholder:text-slate-600"
-                    />
+                        id="searchInput"
+                        placeholder="Search projects or teams..."
+                        class="w-full pl-10 pr-4 py-2 bg-slate-900/50 rounded-xl border border-slate-700 focus:bg-slate-900 focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all outline-none text-slate-200 placeholder-slate-500"
+                    >
                 </div>
             </div>
 
-            <!-- Grid -->
-            <div id="gallery-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                <!-- Cards injected by JS -->
-            </div>
-            
-            <!-- Empty State -->
-            <div id="empty-state" class="hidden text-center py-20 bg-slate-900/30 rounded-2xl border border-slate-800 border-dashed">
-                <div class="inline-flex p-4 rounded-full bg-slate-800 mb-4">
-                    <i data-lucide="search" class="w-8 h-8 text-slate-500"></i>
-                </div>
-                <h3 class="text-xl font-bold text-white mb-2">No projects found</h3>
-                <p class="text-slate-500">Try adjusting your search or filters to find what you're looking for.</p>
-                <button onclick="resetFilters()" class="mt-6 text-blue-400 hover:text-blue-300 font-medium">
-                    Clear all filters
+            <div class="flex items-center gap-2">
+                <button id="gridBtn" class="p-2 rounded-lg bg-blue-600/20 text-blue-400 border border-blue-500/30">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
+                </button>
+                <button id="listBtn" class="p-2 rounded-lg text-slate-500 hover:bg-slate-800 transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
                 </button>
             </div>
-        </section>
-    </main>
+        </div>
+    </header>
 
-    <!-- Footer -->
-    <footer class="border-t border-slate-800 bg-slate-950 py-12">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
-                <div class="flex items-center gap-2">
-                    <i data-lucide="cloud" class="w-6 h-6 text-slate-600"></i>
-                    <span class="text-slate-500 font-semibold">GDG Cloud Udaipur</span>
-                </div>
-                <p class="text-slate-600 text-sm">
-                    © 2026 Google Developer Group Udaipur. All rights reserved.
-                </p>
-                <div class="flex gap-6 text-slate-600">
-                    <i data-lucide="globe" class="w-5 h-5 hover:text-blue-400 cursor-pointer transition-colors"></i>
-                    <i data-lucide="code" class="w-5 h-5 hover:text-blue-400 cursor-pointer transition-colors"></i>
-                    <i data-lucide="cpu" class="w-5 h-5 hover:text-blue-400 cursor-pointer transition-colors"></i>
-                </div>
+    <main class="max-w-7xl mx-auto px-4 py-8">
+        <div class="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <div>
+                <h2 class="text-4xl font-black text-white tracking-tight" id="statHeading">Project Gallery</h2>
+                <p class="text-slate-400 mt-2 text-lg" id="statSubheading">Discover the future of technology.</p>
+            </div>
+            <div class="px-4 py-1 bg-slate-800/50 border border-slate-700 rounded-full text-xs font-medium text-slate-400" id="countBadge">
+                0 PROJECTS
             </div>
         </div>
-    </footer>
 
-    <!-- Video Modal Overlay -->
-    <div id="video-modal" class="fixed inset-0 z-[100] bg-black/95 backdrop-blur-xl hidden flex items-center justify-center p-4 md:p-8 opacity-0 transition-opacity duration-300">
-        <div class="relative w-full max-w-6xl bg-black rounded-2xl overflow-hidden shadow-2xl border border-slate-800 flex flex-col">
-            <!-- Header -->
-            <div class="flex items-center justify-between p-4 border-b border-slate-800 bg-slate-900">
-                <h3 id="modal-title" class="text-white font-semibold truncate pr-4">Project Video</h3>
-                <div class="flex items-center gap-2">
-                    <!-- Added External Link as fallback -->
-                    <a id="modal-yt-link" href="#" target="_blank" class="p-2 text-slate-400 hover:text-red-500 transition-colors" title="Open on YouTube">
-                        <i data-lucide="external-link" class="w-5 h-5"></i>
-                    </a>
-                    <button onclick="closeModal()" class="p-2 bg-slate-800 hover:bg-slate-700 text-white rounded-full transition-colors">
-                        <i data-lucide="x" class="w-5 h-5"></i>
-                    </button>
-                </div>
+        <!-- Grid Container -->
+        <div id="gridContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <!-- Projects injected here -->
+        </div>
+
+        <!-- List Container -->
+        <div id="listContainer" class="hidden bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden">
+            <table class="w-full text-left">
+                <thead class="bg-slate-800/50 border-b border-slate-700 text-xs font-bold text-slate-400 uppercase tracking-wider">
+                    <tr>
+                        <th class="px-6 py-4">Team & Project</th>
+                        <th class="px-6 py-4 hidden sm:table-cell">Resource ID</th>
+                        <th class="px-6 py-4 text-right">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="listBody" class="divide-y divide-slate-800">
+                    <!-- List rows injected here -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Empty State -->
+        <div id="emptyState" class="hidden text-center py-32 bg-slate-900/50 rounded-3xl border-2 border-dashed border-slate-800">
+            <div class="w-20 h-20 bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-6">
+                <svg class="w-10 h-10 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
             </div>
-            
-            <!-- Video Container (16:9 Aspect Ratio) -->
-            <div class="relative w-full aspect-video bg-black">
-                <div id="modal-video-container" class="absolute inset-0 w-full h-full">
-                    <!-- Iframe will be injected here -->
+            <h3 class="text-2xl font-bold text-white">No results found</h3>
+            <p class="text-slate-500 mt-2 max-w-xs mx-auto">We couldn't find any projects matching your current search criteria.</p>
+            <button onclick="clearSearch()" class="mt-6 text-blue-400 hover:text-blue-300 font-semibold underline underline-offset-4">Clear search</button>
+        </div>
+    </main>
+
+    <!-- Modal -->
+    <div id="videoModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+        <div id="modalOverlay" class="absolute inset-0 bg-black/95 backdrop-blur-md opacity-0 modal-overlay" onclick="closeModal()"></div>
+        <div id="modalContent" class="relative bg-slate-900 w-full max-w-5xl rounded-3xl overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)] border border-slate-800 scale-95 opacity-0 modal-content">
+            <div class="p-5 border-b border-slate-800 flex items-center justify-between bg-slate-900/50">
+                <div class="flex items-center gap-3">
+                    <div class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></div>
+                    <h3 id="modalTitle" class="text-lg font-bold text-white truncate max-w-md">Project Video</h3>
                 </div>
+                <button onclick="closeModal()" class="w-10 h-10 flex items-center justify-center rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white transition-all">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+            <div class="aspect-video bg-black relative">
+                <iframe id="videoIframe" class="w-full h-full" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+            <div class="p-4 bg-slate-900 border-t border-slate-800 flex justify-between items-center px-6">
+                <div class="flex items-center gap-2 text-slate-500 text-xs font-mono bg-slate-800/50 px-3 py-1.5 rounded-lg">
+                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                    <span id="modalVideoId"></span>
+                </div>
+                <button onclick="closeModal()" class="px-8 py-2.5 bg-white text-black font-bold rounded-xl hover:bg-slate-200 active:scale-95 transition-all">Close Player</button>
             </div>
         </div>
     </div>
 
-    <!-- JavaScript Logic -->
     <script>
-        // --- DATA ---
-        
-const RAW_VIDEO_IDS = [
-            "vWFFAxlQGgE", "sQVwo6gvkO0", "5oWlH0XTK1Q", "ycoaklzyVpE", "toPribhPSwg", "UKZI-VwADeU", "g1-7DePD7NU", "NbYfQSQAbpo", "g9mSFuFn7vc", "_8BKb2a0cs8", "QkjDTLg5igw", "jD6AZTZU160", "BjCQw7AmBI8", "ebba0pLg7VE", "OFbrmcpk5Sk", "fUI4t83WWVk", "C9VsSXfIyHA", "Hxc6wym6Y9E", "qdFBZGsWAYY", "uVwZtgxuvk4", "urJanyOjk3k", "i7aHy8hImfw", "DjXJqR-vGhQ", "tYOLLC5IsYU", "NYsnRIpX3Lg", "GQH9_Lsabp0", "TaxsBH_TBVU", "mJ_XwnTEDtY", "aRLRKoZ_ulo", "90gycwoEIEo", "GsKblcDndnw", "yx-LGilB6is", "b0e7D1leMew", "YM7SefxINe8", "uekBNd4saWA", "5B9RIS86mNg", "L7BgRoWw7o0", "6c0bcjb5Mqs", "e10x3ctO7Xk", "nL_q50ZvYnY", "LN3Ey7KdW5g", "BbmooTKvEn4", "mshHG3RTOfk", "tPqFrl7jV0Y", "bCA0eI0Skow", "KO7I3c8RBUo", "X47CrhWFIJA", "ErDsejPVAHM", "f7nwlviewlE", "dVI-DI_gJhs", "VDab5Ohh_Dc", "AMKBFtam3Xg", "Ig1WqOGLnOs", "64884A8Azgc", "J4MjsRxAFAI", "UudH1iBDEH8", "b_cSGxuOHj4", "2A4LYU4Y7ME", "9ozhxkyDkx0", "iTWUb6MzzFg", "CE97um6omY0", "z6AP71zg6GI", "yxpKqBjEgj8", "Nk_EEP8bV8Y", "83f4YUnXohY", "p-aoqlkf0z8", "xxikr3S6pzM", "hiIMwMTd8n8", "4mRvoDB1T_I", "OCGDTeTES40", "f3uemr00exg", "LUlRUcFu1qA", "gWn2YpNikIw", "KprKUSI0Gxo", "yhF9rghmvBA", "R_W7xElL8NQ", "vk9g_sWHpQM", "YYFbY23xXpA", "28r0XnmS_Bo", "1QU94aTehpk", "C_XPJi3eGrs", "t-NOLLj3HsM", "VaB4AujIzxg", "1L4t6PZtNP8", "8VG8E_H6PVw", "UQCRR9R6S7g", "eMVOuhv36SY", "8yIpCj-73S0", "cazih4HUAoE", "qLbwaqfva1g", "Yhp7eYdS6pQ", "5rn__JfgUwA", "YgtnNF5Fn4I", "mei33sVS3NY", "wx2_sE1tdSk", "Icz27JBOToI", "9ggHTfWLmzs", "nbg9ZLFDpO8", "KKLrV_4vP4E", "0Qfrz3YTjRI", "3gVqKHP1nv8", "OS0Rn4DoOYk", "uLORO5FGN20", "zYVVBQthN5o", "SkIgkAqyRfQ", "if7CUPSbicI", "kcQxUMohjJ8", "2nNEGAsfNNc", "qlSU4XSfQaA", "ayuuH5la1Zw", "GJ_7vIgojdA", "WItU34EnRAc", "0Qfrz3YTjRI", "d0zJxe5opXs", "vLmOKGU4TWI", "12rf92s4tJ4", "-rv8la542Xc", "UH0N8r3kWmg", "rvNxcRX-eTg", "H9np69Md96Y", "hTOFCd1wYCg", "AFGDQ3eYbfs", "A7OJXhw4TsU", "b5Emak_xJMQ", "eVXtTzE-Y7s", "wIbOaR_ti7I", "jnQlqDLL8AQ", "-2DPafNSmKk", "OHchZHDsEno", "6SfxrJSbj60", "R1HRE96_2Mg", "CuM5E_PEexw", "CD5bK-Zd_NU", "tKlXekQwhTE", "iwEwOYafD4A", "X7JcFiA7gSc", "933pXDewaRE", "6OEDPikJ7iE", "YW7IscscLgg", "RV0QCBV4OTI", "IOydRAH7GL0", "FWW4tXv7dwk", "8Pt1v4PaCMA", "1obyFxhUXM8", "bF7-PRuLzuM", "GYOaMGxnh5c", "UMdowkXcTN0", "uavMVqgqJQI", "a-uR5iM4CWQ", "EOmgC3-hznM", "n3GWdxuCHa4", "nrhYrRRjOKA", "mCd6teZf3is", "llNVyh_ECec", "PBj-4UxUkzA", "ISk7xP5BFPI", "37viTzQhWYM", "_2dpAGj721M", "CFg22d7iwx0", "-SGhfART6Fw", "gdOQingOUEg", "42hhhs20L8A", "WFV6wWWirvg", "fpsczPEAAE4", "-cOdL0vmzb4", "hGfR-eJoMNQ", "71BjY-drkZo", "Kezb7X5xLmE", "Odmxo4NvNKw", "V7uPHn93fdM", "RqJN0r2jigE", "XnUQdwLBpSA", "7yLfntVDu2Q", "M_MDCAOHVYo", "gnJGzSIfuZ8", "rwqhIIdJy54", "88obiaf2wLY", "uuS00oemh2w", "VDDoIfaD0EY", "qkppZq7dBkE", "ykYgFf-pxJU", "s3F9yCdodQw", "loqiTpoc6Nw", "WBn4J6fY6pM", "uUe3HUEf5GM", "wdcekiCLUYo", "Q77Wc3XYlw0", "z863S0XGyXY", "cvK9sABIQgg", "e6TZvPpCaWA", "oP72KlB0ZLw", "gJjH11e_a3I", "ROmiBk46kFY", "7y14-Dud9C0", "ouMflTN4RWw", "neYApbOMu2g", "ngw-4sEvgqY", "88yvJnpAVvw", "VL4TkiegSAw", "Wzj6t6cB8yQ", "yeHhmjD7YOI", "EmVSMfwrSME", "jkU9ozCDnJU", "Xh6rqJymq3I", "NPA60flgdck", "XUGjWLsepNI", "NPA60flgdck", "QCYg3SCuQ94", "bNKfbrqAyxE", "n-9dbOyHt74", "MimWAYS3krs", "qDsQgK9ia_Y", "f0XybwGnKDU", "amHT2jGrjsc", "Ta4ERrjtJo0", "8pfLnUaDSWc", "iyzmwcHwOuc", "gBwlqHLqYuM", "4SieS5_rp98", "wN8mzl5C_jU", "kDvNEr-tIXA", "MqZCp0ZRFCE", "czwVR2Ls84Y", "pD7-TKurGiA", "fIePjLsu4lw", "7LuR5XfZMXc", "TzuAmpNrbV8", "mGdFQPUsL6Y", "7orKi3TR_nA", "IDCq4b3qBU8", "1oMW1F_sUOE", "QZ-bhD4R6bg", "ul3wOaexx_A", "SarBBBcceN8", "vl18TVuIq8Q", "wwFpv6uEtoI", "ryhFQAxyqPo"
+        const projects = [
+            {"teamName": "Yogita Paliwal", "videoId": "vWFFAxlQGgE"}, {"teamName": "Tech Titans", "videoId": "sQVwo6gvkO0"}, {"teamName": "Varahi", "videoId": "5oWlH0XTK1Q"}, {"teamName": "Howlers", "videoId": "ycoaklzyVpE"}, {"teamName": "Team ElevateAI", "videoId": "toPribhPSwg"}, {"teamName": "Code-Matrix", "videoId": "UKZI-VwADeU"}, {"teamName": "Koushik Sharma", "videoId": "g1-7DePD7NU"}, {"teamName": "Innov8ors", "videoId": "NbYfQSQAbpo"}, {"teamName": "HexaCare Intelligence", "videoId": "g9mSFuFn7vc"}, {"teamName": "Team Gravity", "videoId": "_8BKb2a0cs8"}, {"teamName": "Divyanshu jain", "videoId": "QkjDTLg5igw"}, {"teamName": "Hatless Coders", "videoId": "jD6AZTZU160"}, {"teamName": "SAMLUX", "videoId": "BjCQw7AmBI8"}, {"teamName": "namanoncode", "videoId": "ebba0pLg7VE"}, {"teamName": "MBA CoDeRs", "videoId": "OFbrmcpk5Sk"}, {"teamName": "Aqua Revive", "videoId": "fUI4t83WWVk"}, {"teamName": "ClassIQ", "videoId": "C9VsSXfIyHA"}, {"teamName": "Praved EV", "videoId": "Hxc6wym6Y9E"}, {"teamName": "SSInnovaters", "videoId": "qdFBZGsWAYY"}, {"teamName": "Team \"VAIDYA\"", "videoId": "uVwZtgxuvk4"}, {"teamName": "Codeinnovators", "videoId": "urJanyOjk3k"}, {"teamName": "SoloSphere", "videoId": "i7aHy8hImfw"}, {"teamName": "Xor", "videoId": "DjXJqR-vGhQ"}, {"teamName": "URBEMO", "videoId": "tYOLLC5IsYU"}, {"teamName": "Lionxcode", "videoId": "NYsnRIpX3Lg"}, {"teamName": "Team Hydra", "videoId": "GQH9_Lsabp0"}, {"teamName": "Chizel Labs", "videoId": "TaxsBH_TBVU"}, {"teamName": "Bhavyansh's Team", "videoId": "mJ_XwnTEDtY"}, {"teamName": "DecisionGuard", "videoId": "aRLRKoZ_ulo"}, {"teamName": "Neural Nets", "videoId": "90gycwoEIEo"}, {"teamName": "CityOfCloud", "videoId": "GsKblcDndnw"}, {"teamName": "SkillMorph", "videoId": "yx-LGilB6is"}, {"teamName": "Extra Showcase", "videoId": "b0e7D1leMew"}, {"teamName": "Team CODERS", "videoId": "YM7SefxINe8"}, {"teamName": "BitHappens", "videoId": "uekBNd4saWA"}, {"teamName": "SwasthyaSetu", "videoId": "5B9RIS86mNg"}, {"teamName": "TechTitans", "videoId": "L7BgRoWw7o0"}, {"teamName": "Civic Innovators", "videoId": "6c0bcjb5Mqs"}, {"teamName": "CodeRed", "videoId": "e10x3ctO7Xk"}, {"teamName": "The NotFounders", "videoId": "nL_q50ZvYnY"}, {"teamName": "compiler", "videoId": "LN3Ey7KdW5g"}, {"teamName": "CerebroTech", "videoId": "BbmooTKvEn4"}, {"teamName": "CAPYBARA", "videoId": "mshHG3RTOfk"}, {"teamName": "Vaayu", "videoId": "tPqFrl7jV0Y"}, {"teamName": "PulseCoders", "videoId": "bCA0eI0Skow"}, {"teamName": "LakeCity Innovators", "videoId": "KO7I3c8RBUo"}, {"teamName": "MANAS", "videoId": "X47CrhWFIJA"}, {"teamName": "Asteroids", "videoId": "ErDsejPVAHM"}, {"teamName": "Team Techy Dev", "videoId": "f7nwlviewlE"}, {"teamName": "Jester", "videoId": "dVI-DI_gJhs"}, {"teamName": "DREAMFORGE", "videoId": "VDab5Ohh_Dc"}, {"teamName": "Team YouSafe", "videoId": "AMKBFtam3Xg"}, {"teamName": "Brainwave", "videoId": "Ig1WqOGLnOs"}, {"teamName": "The Dawn", "videoId": "64884A8Azgc"}, {"teamName": "Meducaters", "videoId": "J4MjsRxAFAI"}, {"teamName": "Desert Innovators", "videoId": "UudH1iBDEH8"}, {"teamName": "LifeLink", "videoId": "b_cSGxuOHj4"}, {"teamName": "Dhanwantari.AI", "videoId": "2A4LYU4Y7ME"}, {"teamName": "Team Elite", "videoId": "9ozhxkyDkx0"}, {"teamName": "smart sphere", "videoId": "iTWUb6MzzFg"}, {"teamName": "Team Udaay", "videoId": "CE97um6omY0"}, {"teamName": "Doc GPT", "videoId": "z6AP71zg6GI"}, {"teamName": "Debug Dynamos", "videoId": "yxpKqBjEgj8"}, {"teamName": "Shasakth", "videoId": "Nk_EEP8bV8Y"}, {"teamName": "TechSqaud", "videoId": "83f4YUnXohY"}, {"teamName": "SupplyChain.AI", "videoId": "p-aoqlkf0z8"}, {"teamName": "CarlsBug", "videoId": "xxikr3S6pzM"}, {"teamName": "Vyapaar Mitr", "videoId": "hiIMwMTd8n8"}, {"teamName": "AI Vengers", "videoId": "4mRvoDB1T_I"}, {"teamName": "Brain Stack", "videoId": "OCGDTeTES40"}, {"teamName": "Hack Horizon", "videoId": "f3uemr00exg"}, {"teamName": "OneForAll", "videoId": "LUlRUcFu1qA"}, {"teamName": "SmritiSarthi", "videoId": "gWn2YpNikIw"}, {"teamName": "TraveX", "videoId": "KprKUSI0Gxo"}, {"teamName": "Breaking Barriers", "videoId": "yhF9rghmvBA"}, {"teamName": "InfO", "videoId": "R_W7xElL8NQ"}, {"teamName": "Debug Divas", "videoId": "vk9g_sWHpQM"}, {"teamName": "Brand Alchemists", "videoId": "YYFbY23xXpA"}, {"teamName": "Edzen", "videoId": "28r0XnmS_Bo"}, {"teamName": "Echo404", "videoId": "1QU94aTehpk"}, {"teamName": "Rehabify", "videoId": "C_XPJi3eGrs"}, {"teamName": "VSDJR", "videoId": "t-NOLLj3HsM"}, {"teamName": "Cyber Nerds", "videoId": "VaB4AujIzxg"}, {"teamName": "B2BClientConnectors", "videoId": "1L4t6PZtNP8"}, {"teamName": "Tech Titans (Alt)", "videoId": "8VG8E_H6PVw"}, {"teamName": "CODE BLOCKS", "videoId": "UQCRR9R6S7g"}, {"teamName": "Code Shastra", "videoId": "eMVOuhv36SY"}, {"teamName": "Nexis", "videoId": "8yIpCj-73S0"}, {"teamName": "Skill Busters", "videoId": "cazih4HUAoE"}, {"teamName": "The NxtGen", "videoId": "qLbwaqfva1g"}, {"teamName": "Tech4Impact", "videoId": "Yhp7eYdS6pQ"}, {"teamName": "Jv group", "videoId": "5rn__JfgUwA"}, {"teamName": "tower and the plane", "videoId": "YgtnNF5Fn4I"}, {"teamName": "Team Care Vibe", "videoId": "mei33sVS3NY"}, {"teamName": "Lakecity AI", "videoId": "wx2_sE1tdSk"}, {"teamName": "Veda", "videoId": "Icz27JBOToI"}, {"teamName": "OMNITRIX", "videoId": "9ggHTfWLmzs"}, {"teamName": "HackPack", "videoId": "nbg9ZLFDpO8"}, {"teamName": "Radiance", "videoId": "KKLrV_4vP4E"}, {"teamName": "Team Tribyte", "videoId": "0Qfrz3YTjRI"}, {"teamName": "R\u039eSCUE", "videoId": "3gVqKHP1nv8"}, {"teamName": "Arcane", "videoId": "OS0Rn4DoOYk"}, {"teamName": "Unstoppable", "videoId": "uLORO5FGN20"}, {"teamName": "Outliers", "videoId": "zYVVBQthN5o"}, {"teamName": "climatepulse", "videoId": "SkIgkAqyRfQ"}, {"teamName": "Binary Slayers", "videoId": "if7CUPSbicI"}, {"teamName": "Coding ninja's", "videoId": "kcQxUMohjJ8"}, {"teamName": "Pranama", "videoId": "2nNEGAsfNNc"}, {"teamName": "Team Tech Trio", "videoId": "qlSU4XSfQaA"}, {"teamName": "Cradles", "videoId": "ayuuH5la1Zw"}, {"teamName": "Invoice genius", "videoId": "GJ_7vIgojdA"}, {"teamName": "Recursives", "videoId": "WItU34EnRAc"}, {"teamName": "Tribyte", "videoId": "0Qfrz3YTjRI"}, {"teamName": "Spiceroute Pixel", "videoId": "d0zJxe5opXs"}, {"teamName": "code hub", "videoId": "vLmOKGU4TWI"}, {"teamName": "No Quit Crew", "videoId": "12rf92s4tJ4"}, {"teamName": "VibeCoders", "videoId": "-rv8la542Xc"}, {"teamName": "FastAsCache", "videoId": "UH0N8r3kWmg"}, {"teamName": "Gen AI Smart solutions", "videoId": "rvNxcRX-eTg"}, {"teamName": "Tech Surfers", "videoId": "H9np69Md96Y"}, {"teamName": "Bizpilot", "videoId": "hTOFCd1wYCg"}, {"teamName": "Well Weave", "videoId": "AFGDQ3eYbfs"}, {"teamName": "SmartBizz", "videoId": "A7OJXhw4TsU"}, {"teamName": "udaipur-360", "videoId": "b5Emak_xJMQ"}, {"teamName": "Artify Rajasthan", "videoId": "eVXtTzE-Y7s"}, {"teamName": "Byte@Coders", "videoId": "wIbOaR_ti7I"}, {"teamName": "wildfire sentinel", "videoId": "jnQlqDLL8AQ"}, {"teamName": "NextGen", "videoId": "-2DPafNSmKk"}, {"teamName": "Trustify", "videoId": "OHchZHDsEno"}, {"teamName": "TEAM ELECTRONS", "videoId": "6SfxrJSbj60"}, {"teamName": "Code dominance", "videoId": "R1HRE96_2Mg"}, {"teamName": "Innov8", "videoId": "CuM5E_PEexw"}, {"teamName": "Blue Diamond", "videoId": "CD5bK-Zd_NU"}, {"teamName": "Medi-Forge", "videoId": "tKlXekQwhTE"}, {"teamName": "LYMACH", "videoId": "iwEwOYafD4A"}, {"teamName": "SevaAI", "videoId": "X7JcFiA7gSc"}, {"teamName": "TEAM MARSHAL", "videoId": "933pXDewaRE"}, {"teamName": "M16", "videoId": "6OEDPikJ7iE"}, {"teamName": "OPTI-CIVICS", "videoId": "YW7IscscLgg"}, {"teamName": "Team Syncasist", "videoId": "RV0QCBV4OTI"}, {"teamName": "TechCoders", "videoId": "IOydRAH7GL0"}, {"teamName": "Msme Masters", "videoId": "FWW4tXv7dwk"}, {"teamName": "BrainRoute", "videoId": "8Pt1v4PaCMA"}, {"teamName": "Hyperscanners", "videoId": "1obyFxhUXM8"}, {"teamName": "Code Fusion", "videoId": "bF7-PRuLzuM"}, {"teamName": "Matterialistic", "videoId": "GYOaMGxnh5c"}, {"teamName": "Hyper Grey", "videoId": "UMdowkXcTN0"}, {"teamName": "Code4Life", "videoId": "uavMVqgqJQI"}, {"teamName": "Revati G Chavadal", "videoId": "a-uR5iM4CWQ"}, {"teamName": "Apex", "videoId": "EOmgC3-hznM"}, {"teamName": "Ghewar", "videoId": "n3GWdxuCHa4"}, {"teamName": "HACKAHOLICS", "videoId": "nrhYrRRjOKA"}, {"teamName": "Team Rocket", "videoId": "mCd6teZf3is"}, {"teamName": "Three Dots", "videoId": "llNVyh_ECec"}, {"teamName": "Face Detection System", "videoId": "PBj-4UxUkzA"}, {"teamName": "Live Conversation Model", "videoId": "ISk7xP5BFPI"}, {"teamName": "Aniket", "videoId": "37viTzQhWYM"}, {"teamName": "VYAPAR Nexus", "videoId": "_2dpAGj721M"}, {"teamName": "Gentoo", "videoId": "CFg22d7iwx0"}, {"teamName": "ZeroByte", "videoId": "-SGhfART6Fw"}, {"teamName": "Myndsync", "videoId": "gdOQingOUEg"}, {"teamName": "Saviours", "videoId": "42hhhs20L8A"}, {"teamName": "TechOps", "videoId": "WFV6wWWirvg"}, {"teamName": "ALPHA CODERS", "videoId": "fpsczPEAAE4"}, {"teamName": "Tech Fusion", "videoId": "-cOdL0vmzb4"}, {"teamName": "Code Sena", "videoId": "hGfR-eJoMNQ"}, {"teamName": "Team PulseLens", "videoId": "71BjY-drkZo"}, {"teamName": "GENZ BODHI", "videoId": "Kezb7X5xLmE"}, {"teamName": "AUTONEX", "videoId": "Odmxo4NvNKw"}, {"teamName": "ssmb1", "videoId": "V7uPHn93fdM"}, {"teamName": "Win.exe", "videoId": "RqJN0r2jigE"}, {"teamName": "Guardian", "videoId": "XnUQdwLBpSA"}, {"teamName": "Aqua SmartLake AI", "videoId": "7yLfntVDu2Q"}, {"teamName": "Prisim Learners", "videoId": "M_MDCAOHVYo"}, {"teamName": "BugFixers", "videoId": "gnJGzSIfuZ8"}, {"teamName": "Team NFSU", "videoId": "rwqhIIdJy54"}, {"teamName": "xroz", "videoId": "88obiaf2wLY"}, {"teamName": "The Detector", "videoId": "uuS00oemh2w"}, {"teamName": "Mcare", "videoId": "VDDoIfaD0EY"}, {"teamName": "Karigar", "videoId": "qkppZq7dBkE"}, {"teamName": "Wayne Interns", "videoId": "ykYgFf-pxJU"}, {"teamName": "BrainStack", "videoId": "s3F9yCdodQw"}, {"teamName": "Code Avengers", "videoId": "loqiTpoc6Nw"}, {"teamName": "Next Gen Coders", "videoId": "WBn4J6fY6pM"}, {"teamName": "HackStrom", "videoId": "uUe3HUEf5GM"}, {"teamName": "THE xDEVS", "videoId": "wdcekiCLUYo"}, {"teamName": "Team Dharohar", "videoId": "Q77Wc3XYlw0"}, {"teamName": "CodeWolves", "videoId": "z863S0XGyXY"}, {"teamName": "Completely Compiled", "videoId": "cvK9sABIQgg"}, {"teamName": "404Transit", "videoId": "e6TZvPpCaWA"}, {"teamName": "SecondLayer", "videoId": "oP72KlB0ZLw"}, {"teamName": "Hydra", "videoId": "gJjH11e_a3I"}, {"teamName": "CyberCraft", "videoId": "ROmiBk46kFY"}, {"teamName": "SwiftBook", "videoId": "7y14-Dud9C0"}, {"teamName": "Zency", "videoId": "ouMflTN4RWw"}, {"teamName": "TechTitans Final", "videoId": "neYApbOMu2g"}, {"teamName": "Triobron", "videoId": "ngw-4sEvgqY"}, {"teamName": "Agri Techies", "videoId": "88yvJnpAVvw"}, {"teamName": "StraightUp", "videoId": "VL4TkiegSAw"}, {"teamName": "CYPHER", "videoId": "Wzj6t6cB8yQ"}, {"teamName": "shevaara", "videoId": "yeHhmjD7YOI"}, {"teamName": "CTRL C - CTRL V", "videoId": "EmVSMfwrSME"}, {"teamName": "co-starters", "videoId": "jkU9ozCDnJU"}, {"teamName": "Error404", "videoId": "Xh6rqJymq3I"}, {"teamName": "Reportit", "videoId": "NPA60flgdck"}, {"teamName": "Graviton", "videoId": "XUGjWLsepNI"}, {"teamName": "TechMavericks", "videoId": "QCYg3SCuQ94"}, {"teamName": "AutoSpend", "videoId": "bNKfbrqAyxE"}, {"teamName": "RESCUE-CONNECT", "videoId": "n-9dbOyHt74"}, {"teamName": "Stack Smashers", "videoId": "MimWAYS3krs"}, {"teamName": "Medineers", "videoId": "qDsQgK9ia_Y"}, {"teamName": "Quantum Duo", "videoId": "f0XybwGnKDU"}, {"teamName": "TechConnect", "videoId": "amHT2jGrjsc"}, {"teamName": "Startup Sparks", "videoId": "8pfLnUaDSWc"}, {"teamName": "Infinite Recursion", "videoId": "iyzmwcHwOuc"}, {"teamName": "Safe Care", "videoId": "gBwlqHLqYuM"}, {"teamName": "CODE PIRATES", "videoId": "4SieS5_rp98"}, {"teamName": "Studysakha", "videoId": "wN8mzl5C_jU"}, {"teamName": "BIT for BYTE", "videoId": "kDvNEr-tIXA"}, {"teamName": "CODEx", "videoId": "MqZCp0ZRFCE"}, {"teamName": "TeamAlpha", "videoId": "czwVR2Ls84Y"}, {"teamName": "BitByte", "videoId": "pD7-TKurGiA"}, {"teamName": "Krsna", "videoId": "fIePjLsu4lw"}, {"teamName": "PhishBusters", "videoId": "7LuR5XfZMXc"}, {"teamName": "ALPHA", "videoId": "TzuAmpNrbV8"}, {"teamName": "TBSM", "videoId": "mGdFQPUsL6Y"}, {"teamName": "Technoz", "videoId": "7orKi3TR_nA"}, {"teamName": "Code&Culture", "videoId": "IDCq4b3qBU8"}, {"teamName": "Team Sentōki", "videoId": "1oMW1F_sUOE"}, {"teamName": "the dawn 2.0", "videoId": "QZ-bhD4R6bg"}, {"teamName": "Void", "videoId": "ul3wOaexx_A"}, {"teamName": "The Lakeside Hackers", "videoId": "SarBBBcceN8"}, {"teamName": "INVINCIBLE", "videoId": "vl18TVuIq8Q"}, {"teamName": "Epic Engineers", "videoId": "wwFpv6uEtoI"}, {"teamName": "Viharis", "videoId": "ryhFQAxyqPo"}
         ];
 
-        const CATEGORIES = ["All", "AI/ML", "HealthTech", "Smart City", "Sustainability", "EdTech", "Web3", "Robotics", "FinTech"];
-        const TEAM_PREFIXES = ["Cyber", "Code", "Cloud", "Tech", "Data", "Pixel", "Quantum", "Solar", "Neuro", "Logic", "Binary", "Sky"];
-        const TEAM_SUFFIXES = ["Ninjas", "Titans", "Wizards", "Pioneers", "Voyagers", "Squad", "Labs", "Minds", "Builders", "Crusaders", "Explorers", "Geniuses"];
-        
-        // Helper to generate consistent pseudo-random data
-        function seededRandom(seed) {
-            var x = Math.sin(seed++) * 10000;
-            return x - Math.floor(x);
-        }
+        let currentView = 'grid';
+        let searchQuery = '';
 
-const youtube_projects = [
-    {
-        "teamName": "Yogita Paliwal",
-        "videoId": "vWFFAxlQGgE"
-    },
-    {
-        "teamName": "Tech Titans",
-        "videoId": "sQVwo6gvkO0"
-    },
-    {
-        "teamName": "Varahi",
-        "videoId": "5oWlH0XTK1Q"
-    },
-    {
-        "teamName": "Howlers",
-        "videoId": "ycoaklzyVpE"
-    },
-    {
-        "teamName": "Team ElevateAI",
-        "videoId": "toPribhPSwg"
-    },
-    {
-        "teamName": "Code-Matrix",
-        "videoId": "UKZI-VwADeU"
-    },
-    {
-        "teamName": "Koushik Sharma",
-        "videoId": "g1-7DePD7NU"
-    },
-    {
-        "teamName": "Innov8ors",
-        "videoId": "NbYfQSQAbpo"
-    },
-    {
-        "teamName": "HexaCare Intelligence",
-        "videoId": "g9mSFuFn7vc"
-    },
-    {
-        "teamName": "Team Gravity",
-        "videoId": "_8BKb2a0cs8"
-    },
-    {
-        "teamName": "Divyanshu jain",
-        "videoId": "QkjDTLg5igw"
-    },
-    {
-        "teamName": "Hatless Coders",
-        "videoId": "jD6AZTZU160"
-    },
-    {
-        "teamName": "SAMLUX",
-        "videoId": "BjCQw7AmBI8"
-    },
-    {
-        "teamName": "namanoncode",
-        "videoId": "ebba0pLg7VE"
-    },
-    {
-        "teamName": "MBA CoDeRs",
-        "videoId": "OFbrmcpk5Sk"
-    },
-    {
-        "teamName": "Aqua Revive",
-        "videoId": "fUI4t83WWVk"
-    },
-    {
-        "teamName": "ClassIQ",
-        "videoId": "C9VsSXfIyHA"
-    },
-    {
-        "teamName": "Praved EV",
-        "videoId": "Hxc6wym6Y9E"
-    },
-    {
-        "teamName": "SSInnovaters",
-        "videoId": "qdFBZGsWAYY"
-    },
-    {
-        "teamName": "Team \\\"VAIDYA\\\"",
-        "videoId": "uVwZtgxuvk4"
-    },
-    {
-        "teamName": "Codeinnovators",
-        "videoId": "urJanyOjk3k"
-    },
-    {
-        "teamName": "SoloSphere",
-        "videoId": "i7aHy8hImfw"
-    },
-    {
-        "teamName": "Xor",
-        "videoId": "DjXJqR-vGhQ"
-    },
-    {
-        "teamName": "URBEMO",
-        "videoId": "tYOLLC5IsYU"
-    },
-    {
-        "teamName": "Lionxcode",
-        "videoId": "NYsnRIpX3Lg"
-    },
-    {
-        "teamName": "Team Hydra",
-        "videoId": "GQH9_Lsabp0"
-    },
-    {
-        "teamName": "Chizel Labs",
-        "videoId": "TaxsBH_TBVU"
-    },
-    {
-        "teamName": "Bhavyansh's Team",
-        "videoId": "mJ_XwnTEDtY"
-    },
-    {
-        "teamName": "DecisionGuard",
-        "videoId": "aRLRKoZ_ulo"
-    },
-    {
-        "teamName": "Neural Nets",
-        "videoId": "90gycwoEIEo"
-    },
-    {
-        "teamName": "CityOfCloud",
-        "videoId": "GsKblcDndnw"
-    },
-    {
-        "teamName": "SkillMorph",
-        "videoId": "yx-LGilB6is"
-    },
-    {
-        "teamName": "Extra (Demonstration of tools agent can use) -",
-        "videoId": "b0e7D1leMew"
-    },
-    {
-        "teamName": "Team CODERS",
-        "videoId": "YM7SefxINe8"
-    },
-    {
-        "teamName": "BitHappens",
-        "videoId": "uekBNd4saWA"
-    },
-    {
-        "teamName": "SwasthyaSetu",
-        "videoId": "5B9RIS86mNg"
-    },
-    {
-        "teamName": "TechTitans",
-        "videoId": "L7BgRoWw7o0"
-    },
-    {
-        "teamName": "Civic Innovators",
-        "videoId": "6c0bcjb5Mqs"
-    },
-    {
-        "teamName": "CodeRed",
-        "videoId": "e10x3ctO7Xk"
-    },
-    {
-        "teamName": "The NotFounders",
-        "videoId": "nL_q50ZvYnY"
-    },
-    {
-        "teamName": "compiler",
-        "videoId": "LN3Ey7KdW5g"
-    },
-    {
-        "teamName": "CerebroTech",
-        "videoId": "BbmooTKvEn4"
-    },
-    {
-        "teamName": "CAPYBARA",
-        "videoId": "mshHG3RTOfk"
-    },
-    {
-        "teamName": "Vaayu",
-        "videoId": "tPqFrl7jV0Y"
-    },
-    {
-        "teamName": "PulseCoders",
-        "videoId": "bCA0eI0Skow"
-    },
-    {
-        "teamName": "LakeCity Innovators",
-        "videoId": "KO7I3c8RBUo"
-    },
-    {
-        "teamName": "MANAS",
-        "videoId": "X47CrhWFIJA"
-    },
-    {
-        "teamName": "Asteroids",
-        "videoId": "ErDsejPVAHM"
-    },
-    {
-        "teamName": "Team Techy Dev",
-        "videoId": "f7nwlviewlE"
-    },
-    {
-        "teamName": "Jester",
-        "videoId": "dVI-DI_gJhs"
-    },
-    {
-        "teamName": "DREAMFORGE",
-        "videoId": "VDab5Ohh_Dc"
-    },
-    {
-        "teamName": "Team YouSafe",
-        "videoId": "AMKBFtam3Xg"
-    },
-    {
-        "teamName": "Brainwave",
-        "videoId": "Ig1WqOGLnOs"
-    },
-    {
-        "teamName": "The Dawn",
-        "videoId": "64884A8Azgc"
-    },
-    {
-        "teamName": "Meducaters",
-        "videoId": "J4MjsRxAFAI"
-    },
-    {
-        "teamName": "Desert Innovators",
-        "videoId": "UudH1iBDEH8"
-    },
-    {
-        "teamName": "LifeLink",
-        "videoId": "b_cSGxuOHj4"
-    },
-    {
-        "teamName": "Dhanwantari.AI",
-        "videoId": "2A4LYU4Y7ME"
-    },
-    {
-        "teamName": "Team Elite",
-        "videoId": "9ozhxkyDkx0"
-    },
-    {
-        "teamName": "smart sphere",
-        "videoId": "iTWUb6MzzFg"
-    },
-    {
-        "teamName": "Team Udaay",
-        "videoId": "CE97um6omY0"
-    },
-    {
-        "teamName": "Doc GPT",
-        "videoId": "z6AP71zg6GI"
-    },
-    {
-        "teamName": "Debug Dynamos",
-        "videoId": "yxpKqBjEgj8"
-    },
-    {
-        "teamName": "Shasakth",
-        "videoId": "Nk_EEP8bV8Y"
-    },
-    {
-        "teamName": "TechSqaud",
-        "videoId": "83f4YUnXohY"
-    },
-    {
-        "teamName": "SupplyChain.AI",
-        "videoId": "p-aoqlkf0z8"
-    },
-    {
-        "teamName": "CarlsBug",
-        "videoId": "xxikr3S6pzM"
-    },
-    {
-        "teamName": "Vyapaar Mitr",
-        "videoId": "hiIMwMTd8n8"
-    },
-    {
-        "teamName": "AI Vengers",
-        "videoId": "4mRvoDB1T_I"
-    },
-    {
-        "teamName": "Brain Stack",
-        "videoId": "OCGDTeTES40"
-    },
-    {
-        "teamName": "Hack Horizon",
-        "videoId": "f3uemr00exg"
-    },
-    {
-        "teamName": "OneForAll",
-        "videoId": "LUlRUcFu1qA"
-    },
-    {
-        "teamName": "SmritiSarthi",
-        "videoId": "gWn2YpNikIw"
-    },
-    {
-        "teamName": "TraveX",
-        "videoId": "KprKUSI0Gxo"
-    },
-    {
-        "teamName": "Breaking Barriers",
-        "videoId": "yhF9rghmvBA"
-    },
-    {
-        "teamName": "InfO",
-        "videoId": "R_W7xElL8NQ"
-    },
-    {
-        "teamName": "Debug Divas",
-        "videoId": "vk9g_sWHpQM"
-    },
-    {
-        "teamName": "Brand Alchemists",
-        "videoId": "YYFbY23xXpA"
-    },
-    {
-        "teamName": "Edzen",
-        "videoId": "28r0XnmS_Bo"
-    },
-    {
-        "teamName": "Echo404",
-        "videoId": "1QU94aTehpk"
-    },
-    {
-        "teamName": "Rehabify",
-        "videoId": "C_XPJi3eGrs"
-    },
-    {
-        "teamName": "VSDJR",
-        "videoId": "t-NOLLj3HsM"
-    },
-    {
-        "teamName": "Cyber Nerds",
-        "videoId": "VaB4AujIzxg"
-    },
-    {
-        "teamName": "B2BClientConnectors",
-        "videoId": "1L4t6PZtNP8"
-    },
-    {
-        "teamName": "Tech Titans",
-        "videoId": "8VG8E_H6PVw"
-    },
-    {
-        "teamName": "CODE BLOCKS",
-        "videoId": "UQCRR9R6S7g"
-    },
-    {
-        "teamName": "Code Shastra",
-        "videoId": "eMVOuhv36SY"
-    },
-    {
-        "teamName": "Nexis",
-        "videoId": "8yIpCj-73S0"
-    },
-    {
-        "teamName": "Skill Busters",
-        "videoId": "cazih4HUAoE"
-    },
-    {
-        "teamName": "The NxtGen",
-        "videoId": "qLbwaqfva1g"
-    },
-    {
-        "teamName": "Tech4Impact",
-        "videoId": "Yhp7eYdS6pQ"
-    },
-    {
-        "teamName": "Jv group",
-        "videoId": "5rn__JfgUwA"
-    },
-    {
-        "teamName": "tower and the plane",
-        "videoId": "YgtnNF5Fn4I"
-    },
-    {
-        "teamName": "Team Care Vibe",
-        "videoId": "mei33sVS3NY"
-    },
-    {
-        "teamName": "Lakecity AI",
-        "videoId": "wx2_sE1tdSk"
-    },
-    {
-        "teamName": "Veda",
-        "videoId": "Icz27JBOToI"
-    },
-    {
-        "teamName": "OMNITRIX",
-        "videoId": "9ggHTfWLmzs"
-    },
-    {
-        "teamName": "HackPack",
-        "videoId": "nbg9ZLFDpO8"
-    },
-    {
-        "teamName": "Radiance",
-        "videoId": "KKLrV_4vP4E"
-    },
-    {
-        "teamName": "Team Tribyte",
-        "videoId": "0Qfrz3YTjRI"
-    },
-    {
-        "teamName": "R\u039eSCUE",
-        "videoId": "3gVqKHP1nv8"
-    },
-    {
-        "teamName": "Arcane",
-        "videoId": "OS0Rn4DoOYk"
-    },
-    {
-        "teamName": "Unstoppable",
-        "videoId": "uLORO5FGN20"
-    },
-    {
-        "teamName": "Outliers",
-        "videoId": "zYVVBQthN5o"
-    },
-    {
-        "teamName": "climatepulse",
-        "videoId": "SkIgkAqyRfQ"
-    },
-    {
-        "teamName": "Binary Slayers",
-        "videoId": "if7CUPSbicI"
-    },
-    {
-        "teamName": "Coding ninja's",
-        "videoId": "kcQxUMohjJ8"
-    },
-    {
-        "teamName": "Pranama",
-        "videoId": "2nNEGAsfNNc"
-    },
-    {
-        "teamName": "Team Tech Trio",
-        "videoId": "qlSU4XSfQaA"
-    },
-    {
-        "teamName": "Cradles",
-        "videoId": "ayuuH5la1Zw"
-    },
-    {
-        "teamName": "Invoice genius",
-        "videoId": "GJ_7vIgojdA"
-    },
-    {
-        "teamName": "Recursives",
-        "videoId": "WItU34EnRAc"
-    },
-    {
-        "teamName": "Tribyte",
-        "videoId": "0Qfrz3YTjRI"
-    },
-    {
-        "teamName": "Spiceroute Pixel",
-        "videoId": "d0zJxe5opXs"
-    },
-    {
-        "teamName": "code hub",
-        "videoId": "vLmOKGU4TWI"
-    },
-    {
-        "teamName": "No Quit Crew",
-        "videoId": "12rf92s4tJ4"
-    },
-    {
-        "teamName": "VibeCoders",
-        "videoId": "-rv8la542Xc"
-    },
-    {
-        "teamName": "FastAsCache",
-        "videoId": "UH0N8r3kWmg"
-    },
-    {
-        "teamName": "Gen AI Smart solutions",
-        "videoId": "rvNxcRX-eTg"
-    },
-    {
-        "teamName": "Tech Surfers",
-        "videoId": "H9np69Md96Y"
-    },
-    {
-        "teamName": "Bizpilot",
-        "videoId": "hTOFCd1wYCg"
-    },
-    {
-        "teamName": "Well Weave",
-        "videoId": "AFGDQ3eYbfs"
-    },
-    {
-        "teamName": "SmartBizz",
-        "videoId": "A7OJXhw4TsU"
-    },
-    {
-        "teamName": "udaipur-360",
-        "videoId": "b5Emak_xJMQ"
-    },
-    {
-        "teamName": "Artify Rajasthan",
-        "videoId": "eVXtTzE-Y7s"
-    },
-    {
-        "teamName": "Byte@Coders",
-        "videoId": "wIbOaR_ti7I"
-    },
-    {
-        "teamName": "wildfire sentinel",
-        "videoId": "jnQlqDLL8AQ"
-    },
-    {
-        "teamName": "NextGen",
-        "videoId": "-2DPafNSmKk"
-    },
-    {
-        "teamName": "Trustify",
-        "videoId": "OHchZHDsEno"
-    },
-    {
-        "teamName": "TEAM ELECTRONS",
-        "videoId": "6SfxrJSbj60"
-    },
-    {
-        "teamName": "Code dominance",
-        "videoId": "R1HRE96_2Mg"
-    },
-    {
-        "teamName": "Innov8",
-        "videoId": "CuM5E_PEexw"
-    },
-    {
-        "teamName": "Blue Diamond",
-        "videoId": "CD5bK-Zd_NU"
-    },
-    {
-        "teamName": "Medi-Forge",
-        "videoId": "tKlXekQwhTE"
-    },
-    {
-        "teamName": "LYMACH",
-        "videoId": "iwEwOYafD4A"
-    },
-    {
-        "teamName": "SevaAI",
-        "videoId": "X7JcFiA7gSc"
-    },
-    {
-        "teamName": "TEAM MARSHAL",
-        "videoId": "933pXDewaRE"
-    },
-    {
-        "teamName": "M16",
-        "videoId": "6OEDPikJ7iE"
-    },
-    {
-        "teamName": "OPTI-CIVICS",
-        "videoId": "YW7IscscLgg"
-    },
-    {
-        "teamName": "Team Syncasist",
-        "videoId": "RV0QCBV4OTI"
-    },
-    {
-        "teamName": "TechCoders",
-        "videoId": "IOydRAH7GL0"
-    },
-    {
-        "teamName": "Msme Masters",
-        "videoId": "FWW4tXv7dwk"
-    },
-    {
-        "teamName": "BrainRoute",
-        "videoId": "8Pt1v4PaCMA"
-    },
-    {
-        "teamName": "Hyperscanners",
-        "videoId": "1obyFxhUXM8"
-    },
-    {
-        "teamName": "Code Fusion",
-        "videoId": "bF7-PRuLzuM"
-    },
-    {
-        "teamName": "Matterialistic",
-        "videoId": "GYOaMGxnh5c"
-    },
-    {
-        "teamName": "Hyper Grey",
-        "videoId": "UMdowkXcTN0"
-    },
-    {
-        "teamName": "Code4Life",
-        "videoId": "uavMVqgqJQI"
-    },
-    {
-        "teamName": "Revati G Chavadal",
-        "videoId": "a-uR5iM4CWQ"
-    },
-    {
-        "teamName": "Apex",
-        "videoId": "EOmgC3-hznM"
-    },
-    {
-        "teamName": "Ghewar",
-        "videoId": "n3GWdxuCHa4"
-    },
-    {
-        "teamName": "HACKAHOLICS",
-        "videoId": "nrhYrRRjOKA"
-    },
-    {
-        "teamName": "Team Rocket",
-        "videoId": "mCd6teZf3is"
-    },
-    {
-        "teamName": "Three Dots",
-        "videoId": "llNVyh_ECec"
-    },
-    {
-        "teamName": "During Interview Face Detection System video :",
-        "videoId": "PBj-4UxUkzA"
-    },
-    {
-        "teamName": "Live Dynamic Conversation Model :",
-        "videoId": "ISk7xP5BFPI"
-    },
-    {
-        "teamName": "Aniket",
-        "videoId": "37viTzQhWYM"
-    },
-    {
-        "teamName": "VYAPAR Nexus",
-        "videoId": "_2dpAGj721M"
-    },
-    {
-        "teamName": "Gentoo",
-        "videoId": "CFg22d7iwx0"
-    },
-    {
-        "teamName": "ZeroByte",
-        "videoId": "-SGhfART6Fw"
-    },
-    {
-        "teamName": "Myndsync",
-        "videoId": "gdOQingOUEg"
-    },
-    {
-        "teamName": "Saviours",
-        "videoId": "42hhhs20L8A"
-    },
-    {
-        "teamName": "TechOps",
-        "videoId": "WFV6wWWirvg"
-    },
-    {
-        "teamName": "ALPHA CODERS",
-        "videoId": "fpsczPEAAE4"
-    },
-    {
-        "teamName": "Tech Fusion",
-        "videoId": "-cOdL0vmzb4"
-    },
-    {
-        "teamName": "Code Sena",
-        "videoId": "hGfR-eJoMNQ"
-    },
-    {
-        "teamName": "Team PulseLens",
-        "videoId": "71BjY-drkZo"
-    },
-    {
-        "teamName": "GENZ BODHI",
-        "videoId": "Kezb7X5xLmE"
-    },
-    {
-        "teamName": "AUTONEX",
-        "videoId": "Odmxo4NvNKw"
-    },
-    {
-        "teamName": "ssmb1",
-        "videoId": "V7uPHn93fdM"
-    },
-    {
-        "teamName": "Win.exe",
-        "videoId": "RqJN0r2jigE"
-    },
-    {
-        "teamName": "Guardian",
-        "videoId": "XnUQdwLBpSA"
-    },
-    {
-        "teamName": "Aqua SmartLake AI Monitor",
-        "videoId": "7yLfntVDu2Q"
-    },
-    {
-        "teamName": "Prisim Learners",
-        "videoId": "M_MDCAOHVYo"
-    },
-    {
-        "teamName": "BugFixers",
-        "videoId": "gnJGzSIfuZ8"
-    },
-    {
-        "teamName": "Team NFSU",
-        "videoId": "rwqhIIdJy54"
-    },
-    {
-        "teamName": "xroz",
-        "videoId": "88obiaf2wLY"
-    },
-    {
-        "teamName": "The Detector",
-        "videoId": "uuS00oemh2w"
-    },
-    {
-        "teamName": "Mcare",
-        "videoId": "VDDoIfaD0EY"
-    },
-    {
-        "teamName": "Karigar",
-        "videoId": "qkppZq7dBkE"
-    },
-    {
-        "teamName": "Wayne Industries Interns",
-        "videoId": "ykYgFf-pxJU"
-    },
-    {
-        "teamName": "BrainStack",
-        "videoId": "s3F9yCdodQw"
-    },
-    {
-        "teamName": "Code Avengers </>",
-        "videoId": "loqiTpoc6Nw"
-    },
-    {
-        "teamName": "Next Gen Coders",
-        "videoId": "WBn4J6fY6pM"
-    },
-    {
-        "teamName": "HackStrom",
-        "videoId": "uUe3HUEf5GM"
-    },
-    {
-        "teamName": "THE xDEVS",
-        "videoId": "wdcekiCLUYo"
-    },
-    {
-        "teamName": "Team Dharohar",
-        "videoId": "Q77Wc3XYlw0"
-    },
-    {
-        "teamName": "CodeWolves",
-        "videoId": "z863S0XGyXY"
-    },
-    {
-        "teamName": "Completely Compiled",
-        "videoId": "cvK9sABIQgg"
-    },
-    {
-        "teamName": "404Transit",
-        "videoId": "e6TZvPpCaWA"
-    },
-    {
-        "teamName": "SecondLayer",
-        "videoId": "oP72KlB0ZLw"
-    },
-    {
-        "teamName": "Hydra",
-        "videoId": "gJjH11e_a3I"
-    },
-    {
-        "teamName": "CyberCraft\\`",
-        "videoId": "ROmiBk46kFY"
-    },
-    {
-        "teamName": "SwiftBook",
-        "videoId": "7y14-Dud9C0"
-    },
-    {
-        "teamName": "Zency",
-        "videoId": "ouMflTN4RWw"
-    },
-    {
-        "teamName": "TechTitans",
-        "videoId": "neYApbOMu2g"
-    },
-    {
-        "teamName": "Triobron",
-        "videoId": "ngw-4sEvgqY"
-    },
-    {
-        "teamName": "Agri Techies",
-        "videoId": "88yvJnpAVvw"
-    },
-    {
-        "teamName": "StraightUp",
-        "videoId": "VL4TkiegSAw"
-    },
-    {
-        "teamName": "CYPHER",
-        "videoId": "Wzj6t6cB8yQ"
-    },
-    {
-        "teamName": "shevaara",
-        "videoId": "yeHhmjD7YOI"
-    },
-    {
-        "teamName": "CTRL C - CTRL V",
-        "videoId": "EmVSMfwrSME"
-    },
-    {
-        "teamName": "co-starters",
-        "videoId": "jkU9ozCDnJU"
-    },
-    {
-        "teamName": "Error404",
-        "videoId": "Xh6rqJymq3I"
-    },
-    {
-        "teamName": "Reportit",
-        "videoId": "NPA60flgdck"
-    },
-    {
-        "teamName": "Graviton",
-        "videoId": "XUGjWLsepNI"
-    },
-    {
-        "teamName": "Reportit",
-        "videoId": "NPA60flgdck"
-    },
-    {
-        "teamName": "TechMavericks",
-        "videoId": "QCYg3SCuQ94"
-    },
-    {
-        "teamName": "AutoSpend",
-        "videoId": "bNKfbrqAyxE"
-    },
-    {
-        "teamName": "RESCUE-CONNECT",
-        "videoId": "n-9dbOyHt74"
-    },
-    {
-        "teamName": "Stack Smashers",
-        "videoId": "MimWAYS3krs"
-    },
-    {
-        "teamName": "Medineers",
-        "videoId": "qDsQgK9ia_Y"
-    },
-    {
-        "teamName": "Quantum Duo",
-        "videoId": "f0XybwGnKDU"
-    },
-    {
-        "teamName": "TechConnect",
-        "videoId": "amHT2jGrjsc"
-    },
-    {
-        "teamName": "Stack Smashers",
-        "videoId": "Ta4ERrjtJo0"
-    },
-    {
-        "teamName": "Startup Sparks",
-        "videoId": "8pfLnUaDSWc"
-    },
-    {
-        "teamName": "Infinite Recursion",
-        "videoId": "iyzmwcHwOuc"
-    },
-    {
-        "teamName": "Safe Care",
-        "videoId": "gBwlqHLqYuM"
-    },
-    {
-        "teamName": "CODE PIRATES",
-        "videoId": "4SieS5_rp98"
-    },
-    {
-        "teamName": "Studysakha",
-        "videoId": "wN8mzl5C_jU"
-    },
-    {
-        "teamName": "BIT for BYTE",
-        "videoId": "kDvNEr-tIXA"
-    },
-    {
-        "teamName": "CODEx",
-        "videoId": "MqZCp0ZRFCE"
-    },
-    {
-        "teamName": "TeamAlpha",
-        "videoId": "czwVR2Ls84Y"
-    },
-    {
-        "teamName": "BitByte",
-        "videoId": "pD7-TKurGiA"
-    },
-    {
-        "teamName": "Krsna",
-        "videoId": "fIePjLsu4lw"
-    },
-    {
-        "teamName": "PhishBusters",
-        "videoId": "7LuR5XfZMXc"
-    },
-    {
-        "teamName": "ALPHA",
-        "videoId": "TzuAmpNrbV8"
-    },
-    {
-        "teamName": "TBSM",
-        "videoId": "mGdFQPUsL6Y"
-    },
-    {
-        "teamName": "Technoz",
-        "videoId": "7orKi3TR_nA"
-    },
-    {
-        "teamName": "Code&Culture",
-        "videoId": "IDCq4b3qBU8"
-    },
-    {
-        "teamName": "Team Sent\u014dki",
-        "videoId": "1oMW1F_sUOE"
-    },
-    {
-        "teamName": "the dawn 2.0",
-        "videoId": "QZ-bhD4R6bg"
-    },
-    {
-        "teamName": "Void",
-        "videoId": "ul3wOaexx_A"
-    },
-    {
-        "teamName": "The Lakeside Hackers",
-        "videoId": "SarBBBcceN8"
-    },
-    {
-        "teamName": "INVINCIBLE",
-        "videoId": "vl18TVuIq8Q"
-    },
-    {
-        "teamName": "Epic Engineers",
-        "videoId": "wwFpv6uEtoI"
-    },
-    {
-        "teamName": "Viharis",
-        "videoId": "ryhFQAxyqPo"
-    }
-];
+        const gridContainer = document.getElementById('gridContainer');
+        const listContainer = document.getElementById('listContainer');
+        const listBody = document.getElementById('listBody');
+        const searchInput = document.getElementById('searchInput');
+        const gridBtn = document.getElementById('gridBtn');
+        const listBtn = document.getElementById('listBtn');
+        const emptyState = document.getElementById('emptyState');
+        const statSubheading = document.getElementById('statSubheading');
+        const countBadge = document.getElementById('countBadge');
 
-        const TEAMS_DATA = youtube_projects.map((project, index) => {
-            const seed = index * 99;
-            const catIndex1 = Math.floor(seededRandom(seed) * (CATEGORIES.length - 1)) + 1;
-            const catIndex2 = Math.floor(seededRandom(seed + 1) * (CATEGORIES.length - 1)) + 1;
-            const votes = Math.floor(seededRandom(seed + 4) * 300) + 20;
-            
-            return {
-                id: index + 1,
-                teamName: project.teamName,
-                projectTitle: `${project.teamName}: ${CATEGORIES[catIndex1]} Solution`,
-                description: `Innovative ${CATEGORIES[catIndex1].toLowerCase()} solution designed for the hackathon. Solving real-world problems with technology.`,
-                videoId: project.videoId,
-                tags: [CATEGORIES[catIndex1], CATEGORIES[catIndex2]],
-                votes: votes
-            };
-        });
+        function render() {
+            const filtered = projects.filter(p => 
+                (p.teamName || "").toLowerCase().includes(searchQuery.toLowerCase())
+            );
 
-        // Add duplicate check just in case
-        const UNIQUE_TEAMS = Array.from(new Map(TEAMS_DATA.map(item => [item.videoId, item])).values());
-        
-        // Update count
-        document.getElementById('project-count').innerText = `${UNIQUE_TEAMS.length}+`;
+            countBadge.textContent = `${filtered.length} PROJECTS FOUND`;
+            statSubheading.textContent = searchQuery ? `Found ${filtered.length} matches for "${searchQuery}"` : "Discover the future of technology.";
 
-
-                // --- STATE ---
-
-
-                let currentSearch = "";
-
-
-        
-
-
-                // --- RENDER FUNCTIONS ---
-
-
-                
-
-
-                function renderGallery() {
-            const container = document.getElementById('gallery-grid');
-            const emptyState = document.getElementById('empty-state');
-            
-            // Filter logic
-            let filtered = UNIQUE_TEAMS.filter(team => {
-                const matchesSearch = team.projectTitle.toLowerCase().includes(currentSearch.toLowerCase()) || 
-                                      team.teamName.toLowerCase().includes(currentSearch.toLowerCase());
-                return matchesSearch;
-            });
-
-            // Toggle empty state
             if (filtered.length === 0) {
-                container.innerHTML = '';
-                container.classList.add('hidden');
+                gridContainer.classList.add('hidden');
+                listContainer.classList.add('hidden');
                 emptyState.classList.remove('hidden');
                 return;
-            } else {
-                container.classList.remove('hidden');
-                emptyState.classList.add('hidden');
             }
 
-            // Render cards
-            container.innerHTML = filtered.map(team => `
-                <div class="group relative bg-slate-900/50 backdrop-blur-md border border-slate-700/50 rounded-2xl overflow-hidden hover:border-blue-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/10 flex flex-col h-full">
-                    
-                    <!-- Video Container -->
-                    <div class="relative aspect-video bg-black overflow-hidden">
-                        <div 
-                            class="absolute inset-0 cursor-pointer group-hover:scale-105 transition-transform duration-700"
-                            onclick="playVideo(${team.id}, '${team.videoId}', '${team.projectTitle.replace(/'/g, "\\'")}')"
-                        >
-                            <!-- Thumbnail -->
-                            <img 
-                                src="https://img.youtube.com/vi/${team.videoId}/mqdefault.jpg" 
-                                alt="${team.projectTitle}"
-                                loading="lazy"
-                                class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
-                                onerror="this.onerror=null; this.src='https://img.youtube.com/vi/${team.videoId}/0.jpg';"
-                            />
-                            
-                            <!-- Play Button Overlay -->
-                            <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/10 transition-colors">
-                                <div class="w-16 h-16 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/20 group-hover:scale-110 group-hover:bg-red-600 group-hover:border-red-500 transition-all duration-300 shadow-2xl">
-                                    <i data-lucide="play" class="w-6 h-6 text-white ml-1 fill-current"></i>
+            emptyState.classList.add('hidden');
+
+            if (currentView === 'grid') {
+                gridContainer.classList.remove('hidden');
+                listContainer.classList.add('hidden');
+                gridContainer.innerHTML = filtered.map(p => `
+                    <div class="group bg-[#161b2a] rounded-2xl border border-slate-800 overflow-hidden hover:border-blue-500/50 hover:shadow-[0_10px_30px_-10px_rgba(59,130,246,0.2)] transition-all duration-500 flex flex-col h-full">
+                        <div class="relative aspect-video overflow-hidden bg-slate-900 cursor-pointer" onclick="openModal('${p.videoId}', '${(p.teamName || "Project").replace(/'/g, "\\'")}')">
+                            <img src="https://img.youtube.com/vi/${p.videoId}/mqdefault.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80 group-hover:opacity-100">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-60"></div>
+                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <div class="w-14 h-14 bg-blue-600 rounded-full flex items-center justify-center shadow-xl ring-4 ring-blue-600/20">
+                                    <svg class="w-7 h-7 text-white translate-x-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                                 </div>
                             </div>
-                            
-                            <!-- Team Badge -->
-                            <div class="absolute top-4 left-4 bg-black/60 backdrop-blur-md text-white text-xs px-3 py-1 rounded-full border border-white/10 flex items-center gap-2">
-                                <i data-lucide="users" class="w-3 h-3"></i>
-                                ${team.teamName}
+                        </div>
+                        <div class="p-5 flex-1 flex flex-col justify-between">
+                            <h3 class="font-bold text-slate-100 text-base line-clamp-1 group-hover:text-blue-400 transition-colors">${p.teamName || "Untitled Team"}</h3>
+                            <button onclick="openModal('${p.videoId}', '${(p.teamName || "Project").replace(/'/g, "\\'")}')" class="mt-4 w-full py-2.5 text-xs font-bold bg-slate-800 text-slate-300 rounded-xl hover:bg-blue-600 hover:text-white transition-all active:scale-95">Open Presentation</button>
+                        </div>
+                    </div>
+                `).join('');
+            } else {
+                gridContainer.classList.add('hidden');
+                listContainer.classList.remove('hidden');
+                listBody.innerHTML = filtered.map(p => `
+                    <tr class="hover:bg-slate-800/50 transition-colors group">
+                        <td class="px-6 py-4">
+                            <div class="flex items-center gap-4">
+                                <div class="w-14 h-8 rounded-lg bg-slate-800 overflow-hidden border border-slate-700">
+                                    <img src="https://img.youtube.com/vi/${p.videoId}/default.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all">
+                                </div>
+                                <span class="font-bold text-slate-200 group-hover:text-blue-400 transition-colors">${p.teamName || "Untitled Team"}</span>
                             </div>
-                        </div>
-                    </div>
-
-                    <!-- Content -->
-                    <div class="p-6 flex flex-col flex-grow">
-                        <div class="flex justify-between items-start mb-3">
-                            <h3 class="text-lg font-bold text-white group-hover:text-blue-400 transition-colors line-clamp-1" title="${team.projectTitle}">
-                                ${team.projectTitle}
-                            </h3>
-                            <button 
-                                onclick="toggleLike(this)"
-                                class="p-2 rounded-full transition-all bg-slate-800 text-slate-400 hover:text-white hover:bg-slate-700"
-                            >
-                                <i data-lucide="heart" class="w-4 h-4"></i>
-                            </button>
-                        </div>
-
-                        <p class="text-slate-400 text-xs mb-4 line-clamp-2 flex-grow">
-                            ${team.description}
-                        </p>
-
-                    </div>
-                </div>
-            `).join('');
-
-            // Re-initialize icons for new DOM elements
-            lucide.createIcons();
+                        </td>
+                        <td class="px-6 py-4 hidden sm:table-cell text-slate-500 font-mono text-xs uppercase tracking-tighter">${p.videoId}</td>
+                        <td class="px-6 py-4 text-right">
+                            <button onclick="openModal('${p.videoId}', '${(p.teamName || "Project").replace(/'/g, "\\'")}')" class="px-4 py-1.5 bg-slate-800 hover:bg-blue-600 text-slate-400 hover:text-white rounded-lg font-bold text-xs transition-all">Preview</button>
+                        </td>
+                    </tr>
+                `).join('');
+            }
         }
 
-        // --- ACTIONS ---
-
-        function setCategory(category) {
-            currentCategory = category;
-            renderFilters();
-            renderGallery();
+        function clearSearch() {
+            searchInput.value = '';
+            searchQuery = '';
+            render();
         }
 
-        function resetFilters() {
-            currentSearch = "";
-            document.getElementById('search-input').value = "";
-            renderGallery();
-        }
+        function openModal(id, title) {
+            const modal = document.getElementById('videoModal');
+            const overlay = document.getElementById('modalOverlay');
+            const content = document.getElementById('modalContent');
+            const iframe = document.getElementById('videoIframe');
+            const titleEl = document.getElementById('modalTitle');
+            const idEl = document.getElementById('modalVideoId');
 
-        // UPDATED: Completely Rewritten Video Logic to Fix Error 153
-        function playVideo(id, videoId, title) {
-            const modal = document.getElementById('video-modal');
-            const container = document.getElementById('modal-video-container');
-            const titleEl = document.getElementById('modal-title');
-            const linkEl = document.getElementById('modal-yt-link');
-            
-            // Set Modal Title
             titleEl.textContent = title;
-            
-            // Set External Link (Fallback)
-            linkEl.href = `https://www.youtube.com/watch?v=${videoId}`;
-
-            // Escape double quotes for the iframe attribute
-            const safeTitle = title.replace(/"/g, '&quot;');
-
-            // Clean Iframe Implementation
-            // - Removed 'origin' and 'enablejsapi' (Fixes Error 153 in sandboxes)
-            // - Using standard youtube.com domain
-            // - Using standard allow attributes
-            container.innerHTML = `
-                <iframe 
-                    width="100%" 
-                    height="100%" 
-                    src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0" 
-                    title="${safeTitle}" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                        allowfullscreen
-                                        referrerpolicy="strict-origin-when-cross-origin"
-                                        class="w-full h-full"                ></iframe>
-            `;
-            
-            // Show modal with animation
+            idEl.textContent = id;
+            iframe.src = `https://www.youtube.com/embed/${id}?autoplay=1&rel=0&modestbranding=1`;
             modal.classList.remove('hidden');
-            setTimeout(() => {
-                modal.classList.remove('opacity-0');
-            }, 10);
             
-            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            setTimeout(() => {
+                overlay.classList.add('opacity-100');
+                content.classList.remove('scale-95', 'opacity-0');
+                content.classList.add('scale-100', 'opacity-100');
+            }, 10);
         }
 
         function closeModal() {
-            const modal = document.getElementById('video-modal');
-            const container = document.getElementById('modal-video-container');
-            const linkEl = document.getElementById('modal-yt-link');
+            const overlay = document.getElementById('modalOverlay');
+            const content = document.getElementById('modalContent');
+            const iframe = document.getElementById('videoIframe');
             
-            // Start hide animation
-            modal.classList.add('opacity-0');
+            overlay.classList.remove('opacity-100');
+            content.classList.add('scale-95', 'opacity-0');
             
-            // Wait for animation to finish before hiding display and clearing src
             setTimeout(() => {
-                modal.classList.add('hidden');
-                container.innerHTML = ''; // Stop video audio
-                linkEl.href = '#';
+                document.getElementById('videoModal').classList.add('hidden');
+                iframe.src = "";
             }, 300);
-            
-            // Restore scrolling
-            document.body.style.overflow = '';
         }
 
-        // Close on clicking outside the modal content
-        document.getElementById('video-modal').addEventListener('click', (e) => {
-            if (e.target.id === 'video-modal') {
-                closeModal();
-            }
+        // Listeners
+        searchInput.addEventListener('input', (e) => {
+            searchQuery = e.target.value;
+            render();
         });
 
-        // Close on Escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                closeModal();
-            }
+        gridBtn.addEventListener('click', () => {
+            currentView = 'grid';
+            gridBtn.className = "p-2 rounded-lg bg-blue-600/20 text-blue-400 border border-blue-500/30";
+            listBtn.className = "p-2 rounded-lg text-slate-500 hover:bg-slate-800 transition-colors";
+            render();
         });
 
-        function toggleLike(btn) {
-            const icon = btn.querySelector('svg');
-            if (btn.classList.contains('bg-red-500/20')) {
-                btn.classList.remove('bg-red-500/20', 'text-red-500');
-                btn.classList.add('bg-slate-800', 'text-slate-400');
-                icon.setAttribute('fill', 'none');
-            } else {
-                btn.classList.remove('bg-slate-800', 'text-slate-400');
-                btn.classList.add('bg-red-500/20', 'text-red-500');
-                icon.setAttribute('fill', 'currentColor');
-            }
-        }
-
-        // --- INITIALIZATION ---
-        
-        document.addEventListener('DOMContentLoaded', () => {
-            document.getElementById('search-input').addEventListener('input', (e) => {
-                currentSearch = e.target.value;
-                renderGallery();
-            });
-
-            // Handle 'View Winners' button click
-            const viewWinnersBtn = document.getElementById('view-winners-btn');
-            const winnersAnnouncementDiv = document.getElementById('winners-announcement');
-
-            if (viewWinnersBtn && winnersAnnouncementDiv) {
-                viewWinnersBtn.addEventListener('click', () => {
-                    winnersAnnouncementDiv.classList.remove('hidden');
-                    // Optionally, scroll to the message
-                    winnersAnnouncementDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                });
-            }
-
-            renderGallery();
-            lucide.createIcons();
+        listBtn.addEventListener('click', () => {
+            currentView = 'list';
+            listBtn.className = "p-2 rounded-lg bg-blue-600/20 text-blue-400 border border-blue-500/30";
+            gridBtn.className = "p-2 rounded-lg text-slate-500 hover:bg-slate-800 transition-colors";
+            render();
         });
 
+        // Initialize
+        render();
     </script>
 </body>
-
 </html>
-
