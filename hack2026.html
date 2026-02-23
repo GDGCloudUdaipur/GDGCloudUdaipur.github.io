@@ -125,12 +125,13 @@
 
     /* --- HERO --- */
     .hero {
-      height: 100vh;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
+      padding: 100px 0;
     }
 
     .hero h1 {
@@ -140,6 +141,17 @@
       -webkit-text-fill-color: transparent;
       margin-bottom: 20px;
       line-height: 1.1;
+    }
+
+    /* --- FINALISTS GRID --- */
+    .finalist-card {
+      padding: 20px;
+      border-left: 4px solid var(--neon-purple);
+      background: linear-gradient(90deg, rgba(188, 19, 254, 0.05) 0%, rgba(255,255,255,0.02) 100%);
+    }
+    .finalist-card:hover {
+      border-left-color: var(--neon-blue);
+      background: linear-gradient(90deg, rgba(0, 243, 255, 0.1) 0%, rgba(255,255,255,0.05) 100%);
     }
 
     /* --- PRIZE REVEAL --- */
@@ -297,15 +309,15 @@
       </p>
       <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; flex-direction: column; align-items: center; margin-bottom: 30px;">
         <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
+          <a href="#finalists" class="btn-future" style="border-color: var(--neon-purple); color: var(--neon-purple);"><i class="fa-solid fa-trophy"></i> VIEW FINALISTS</a>
           <a href="#prize-reveal-section" class="btn-future"><i class="fa-solid fa-vault"></i> REVEAL REWARDS</a>
-          <a href="httpsa://chat.whatsapp.com/C6eOQRiaUXOIAJGONGvZWz?mode=hqrt3" target="_blank" class="btn-future" style="border-color: var(--g-green); color: var(--g-green);"><i class="fa-brands fa-whatsapp"></i> Join WhatsApp</a>
+          <a href="https://chat.whatsapp.com/C6eOQRiaUXOIAJGONGvZWz?mode=hqrt3" target="_blank" class="btn-future" style="border-color: var(--g-green); color: var(--g-green);"><i class="fa-brands fa-whatsapp"></i> Join WhatsApp</a>
           <button class="btn-future" style="border-color: var(--g-yellow); color: var(--g-yellow);" onclick="document.getElementById('themes').scrollIntoView({behavior:'smooth'})"><i class="fa-solid fa-compass"></i> Explore Themes</button>
-          <a href="prj.html" class="btn-future" style="border-color: var(--g-red); color: var(--g-red);"><i class="fa-solid fa-compass"></i> Explore Submissions</a>
         </div>
         <div style="margin-top: 30px; display: flex; gap: 40px; justify-content: center; flex-wrap: wrap;">
-          <div class="holo-card" style="padding: 18px 32px; text-align: center; border-left: 4px solid var(--g-blue); min-width: 220px;">
-            <div style="color: var(--g-blue); font-weight: bold; font-size: 1.1rem; margin-bottom: 6px;">Round 1 Results Announcement</div>
-            <div style="font-size: 1.4rem; color: #fff;">25 Feb 2026</div>
+          <div class="holo-card" style="padding: 18px 32px; text-align: center; border-left: 4px solid var(--neon-green); min-width: 220px; box-shadow: 0 0 15px rgba(57, 255, 20, 0.2);">
+            <div style="color: var(--neon-green); font-weight: bold; font-size: 1.1rem; margin-bottom: 6px;">Round 1 Results</div>
+            <div style="font-size: 1.4rem; color: #fff; text-transform: uppercase; font-family: 'Orbitron';">Announced!</div>
           </div>
           <div class="holo-card" style="padding: 18px 32px; text-align: center; border-left: 4px solid var(--g-yellow); min-width: 220px;">
             <div style="color: var(--g-yellow); font-weight: bold; font-size: 1.1rem; margin-bottom: 6px;">Finale Event</div>
@@ -315,6 +327,53 @@
       </div>
     </div>
   </header>
+
+  <!-- Finalists Section -->
+  <section id="finalists" style="padding: 80px 0; background: rgba(0,0,0,0.6); border-top: 1px solid var(--glass-border); border-bottom: 1px solid var(--glass-border);">
+    <div class="container">
+      <h2 style="text-align: center; margin-bottom: 15px; font-size: 2.8rem;">HACKATHON <span style="color: var(--neon-purple);">FINALISTS</span></h2>
+      <p style="text-align: center; color: var(--neon-green); font-size: 1.2rem; margin-bottom: 50px; text-shadow: 0 0 10px rgba(57, 255, 20, 0.4);">
+        <i class="fa-solid fa-bolt"></i> Congratulations to the elite innovators who made it to the finale! <i class="fa-solid fa-bolt"></i>
+      </p>
+      
+      <div class="grid-layout" style="grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; margin-top: 0;">
+        
+        <!-- Finalist Cards Generated from Data -->
+        <div class="holo-card finalist-card"><div style="font-size: 1.3rem; font-weight: bold; color: #fff; margin-bottom: 8px;">Howlers</div><div style="color: #aaa; font-size: 0.95rem;"><i class="fa-solid fa-user-astronaut" style="color: var(--g-blue); margin-right: 8px;"></i>Yash Dhiraj Oza</div></div>
+        <div class="holo-card finalist-card"><div style="font-size: 1.3rem; font-weight: bold; color: #fff; margin-bottom: 8px;">Innov8ors</div><div style="color: #aaa; font-size: 0.95rem;"><i class="fa-solid fa-user-astronaut" style="color: var(--g-red); margin-right: 8px;"></i>Aryan Patil</div></div>
+        <div class="holo-card finalist-card"><div style="font-size: 1.3rem; font-weight: bold; color: #fff; margin-bottom: 8px;">Vanguard</div><div style="color: #aaa; font-size: 0.95rem;"><i class="fa-solid fa-user-astronaut" style="color: var(--g-yellow); margin-right: 8px;"></i>Apurv Panchal</div></div>
+        <div class="holo-card finalist-card"><div style="font-size: 1.3rem; font-weight: bold; color: #fff; margin-bottom: 8px;">SSInnovaters</div><div style="color: #aaa; font-size: 0.95rem;"><i class="fa-solid fa-user-astronaut" style="color: var(--g-green); margin-right: 8px;"></i>Satya Padmanabhan Iyer</div></div>
+        <div class="holo-card finalist-card"><div style="font-size: 1.3rem; font-weight: bold; color: #fff; margin-bottom: 8px;">URBEMO</div><div style="color: #aaa; font-size: 0.95rem;"><i class="fa-solid fa-user-astronaut" style="color: var(--neon-blue); margin-right: 8px;"></i>Navya Nistha</div></div>
+        <div class="holo-card finalist-card"><div style="font-size: 1.3rem; font-weight: bold; color: #fff; margin-bottom: 8px;">SkillMorph</div><div style="color: #aaa; font-size: 0.95rem;"><i class="fa-solid fa-user-astronaut" style="color: var(--g-blue); margin-right: 8px;"></i>Rishabh Raj Gupta</div></div>
+        <div class="holo-card finalist-card"><div style="font-size: 1.3rem; font-weight: bold; color: #fff; margin-bottom: 8px;">CerebroTech</div><div style="color: #aaa; font-size: 0.95rem;"><i class="fa-solid fa-user-astronaut" style="color: var(--g-red); margin-right: 8px;"></i>ANBARASAN C G</div></div>
+        <div class="holo-card finalist-card"><div style="font-size: 1.3rem; font-weight: bold; color: #fff; margin-bottom: 8px;">Jester</div><div style="color: #aaa; font-size: 0.95rem;"><i class="fa-solid fa-user-astronaut" style="color: var(--g-yellow); margin-right: 8px;"></i>Aryan Thapliyal</div></div>
+        <div class="holo-card finalist-card"><div style="font-size: 1.3rem; font-weight: bold; color: #fff; margin-bottom: 8px;">Meducaters</div><div style="color: #aaa; font-size: 0.95rem;"><i class="fa-solid fa-user-astronaut" style="color: var(--g-green); margin-right: 8px;"></i>Unmesh Joshi</div></div>
+        <div class="holo-card finalist-card"><div style="font-size: 1.3rem; font-weight: bold; color: #fff; margin-bottom: 8px;">Desert Innovators</div><div style="color: #aaa; font-size: 0.95rem;"><i class="fa-solid fa-user-astronaut" style="color: var(--neon-blue); margin-right: 8px;"></i>Yash Dave</div></div>
+        <div class="holo-card finalist-card"><div style="font-size: 1.3rem; font-weight: bold; color: #fff; margin-bottom: 8px;">Team Elite</div><div style="color: #aaa; font-size: 0.95rem;"><i class="fa-solid fa-user-astronaut" style="color: var(--g-blue); margin-right: 8px;"></i>Gaurav Patil</div></div>
+        <div class="holo-card finalist-card"><div style="font-size: 1.3rem; font-weight: bold; color: #fff; margin-bottom: 8px;">Shasakth</div><div style="color: #aaa; font-size: 0.95rem;"><i class="fa-solid fa-user-astronaut" style="color: var(--g-red); margin-right: 8px;"></i>P.Krishna Koushik</div></div>
+        <div class="holo-card finalist-card"><div style="font-size: 1.3rem; font-weight: bold; color: #fff; margin-bottom: 8px;">TechSqaud</div><div style="color: #aaa; font-size: 0.95rem;"><i class="fa-solid fa-user-astronaut" style="color: var(--g-yellow); margin-right: 8px;"></i>Shreesh Tiwari</div></div>
+        <div class="holo-card finalist-card"><div style="font-size: 1.3rem; font-weight: bold; color: #fff; margin-bottom: 8px;">CarlsBug</div><div style="color: #aaa; font-size: 0.95rem;"><i class="fa-solid fa-user-astronaut" style="color: var(--g-green); margin-right: 8px;"></i>Kabir Singh Khanuja</div></div>
+        <div class="holo-card finalist-card"><div style="font-size: 1.3rem; font-weight: bold; color: #fff; margin-bottom: 8px;">Debug Divas</div><div style="color: #aaa; font-size: 0.95rem;"><i class="fa-solid fa-user-astronaut" style="color: var(--neon-blue); margin-right: 8px;"></i>Hitanshi Ashishbhai Mehta</div></div>
+        <div class="holo-card finalist-card"><div style="font-size: 1.3rem; font-weight: bold; color: #fff; margin-bottom: 8px;">Echo404</div><div style="color: #aaa; font-size: 0.95rem;"><i class="fa-solid fa-user-astronaut" style="color: var(--g-blue); margin-right: 8px;"></i>Saurabh Yadav</div></div>
+        <div class="holo-card finalist-card"><div style="font-size: 1.3rem; font-weight: bold; color: #fff; margin-bottom: 8px;">Rehabify</div><div style="color: #aaa; font-size: 0.95rem;"><i class="fa-solid fa-user-astronaut" style="color: var(--g-red); margin-right: 8px;"></i>Yash Aggarwal</div></div>
+        <div class="holo-card finalist-card"><div style="font-size: 1.3rem; font-weight: bold; color: #fff; margin-bottom: 8px;">Veda</div><div style="color: #aaa; font-size: 0.95rem;"><i class="fa-solid fa-user-astronaut" style="color: var(--g-yellow); margin-right: 8px;"></i>V.Mahendra</div></div>
+        <div class="holo-card finalist-card"><div style="font-size: 1.3rem; font-weight: bold; color: #fff; margin-bottom: 8px;">HackPack</div><div style="color: #aaa; font-size: 0.95rem;"><i class="fa-solid fa-user-astronaut" style="color: var(--g-green); margin-right: 8px;"></i>Adarsh raj</div></div>
+        <div class="holo-card finalist-card"><div style="font-size: 1.3rem; font-weight: bold; color: #fff; margin-bottom: 8px;">Unstoppable</div><div style="color: #aaa; font-size: 0.95rem;"><i class="fa-solid fa-user-astronaut" style="color: var(--neon-blue); margin-right: 8px;"></i>vishal chouhan</div></div>
+        <div class="holo-card finalist-card"><div style="font-size: 1.3rem; font-weight: bold; color: #fff; margin-bottom: 8px;">Outliers</div><div style="color: #aaa; font-size: 0.95rem;"><i class="fa-solid fa-user-astronaut" style="color: var(--g-blue); margin-right: 8px;"></i>Daksh Chetan Jain</div></div>
+        <div class="holo-card finalist-card"><div style="font-size: 1.3rem; font-weight: bold; color: #fff; margin-bottom: 8px;">NextGen</div><div style="color: #aaa; font-size: 0.95rem;"><i class="fa-solid fa-user-astronaut" style="color: var(--g-red); margin-right: 8px;"></i>Shadab Khan</div></div>
+        <div class="holo-card finalist-card"><div style="font-size: 1.3rem; font-weight: bold; color: #fff; margin-bottom: 8px;">Hyperscanners</div><div style="color: #aaa; font-size: 0.95rem;"><i class="fa-solid fa-user-astronaut" style="color: var(--g-yellow); margin-right: 8px;"></i>Saksham Jain</div></div>
+        <div class="holo-card finalist-card"><div style="font-size: 1.3rem; font-weight: bold; color: #fff; margin-bottom: 8px;">Hyper Grey</div><div style="color: #aaa; font-size: 0.95rem;"><i class="fa-solid fa-user-astronaut" style="color: var(--g-green); margin-right: 8px;"></i>Prakhar Chandra</div></div>
+        <div class="holo-card finalist-card"><div style="font-size: 1.3rem; font-weight: bold; color: #fff; margin-bottom: 8px;">StraightUp</div><div style="color: #aaa; font-size: 0.95rem;"><i class="fa-solid fa-user-astronaut" style="color: var(--neon-blue); margin-right: 8px;"></i>Prithvi saini</div></div>
+        <div class="holo-card finalist-card"><div style="font-size: 1.3rem; font-weight: bold; color: #fff; margin-bottom: 8px;">TBSM</div><div style="color: #aaa; font-size: 0.95rem;"><i class="fa-solid fa-user-astronaut" style="color: var(--g-blue); margin-right: 8px;"></i>Hardik Chawhan</div></div>
+        <div class="holo-card finalist-card"><div style="font-size: 1.3rem; font-weight: bold; color: #fff; margin-bottom: 8px;">Code&Culture</div><div style="color: #aaa; font-size: 0.95rem;"><i class="fa-solid fa-user-astronaut" style="color: var(--g-red); margin-right: 8px;"></i>Dhruvin Jobanputra</div></div>
+        <div class="holo-card finalist-card"><div style="font-size: 1.3rem; font-weight: bold; color: #fff; margin-bottom: 8px;">The Lakeside Hackers</div><div style="color: #aaa; font-size: 0.95rem;"><i class="fa-solid fa-user-astronaut" style="color: var(--g-yellow); margin-right: 8px;"></i>Manan Ramani</div></div>
+        <div class="holo-card finalist-card"><div style="font-size: 1.3rem; font-weight: bold; color: #fff; margin-bottom: 8px;">Epic Engineers</div><div style="color: #aaa; font-size: 0.95rem;"><i class="fa-solid fa-user-astronaut" style="color: var(--g-green); margin-right: 8px;"></i>Lakshminarayan Sanjay Iyer</div></div>
+        <div class="holo-card finalist-card"><div style="font-size: 1.3rem; font-weight: bold; color: #fff; margin-bottom: 8px;">Viharis</div><div style="color: #aaa; font-size: 0.95rem;"><i class="fa-solid fa-user-astronaut" style="color: var(--neon-blue); margin-right: 8px;"></i>Dhruv Pandya</div></div>
+        <div class="holo-card finalist-card"><div style="font-size: 1.3rem; font-weight: bold; color: #fff; margin-bottom: 8px;">Urban AI</div><div style="color: #aaa; font-size: 0.95rem;"><i class="fa-solid fa-user-astronaut" style="color: var(--g-blue); margin-right: 8px;"></i>Sravan kumar</div></div>
+
+      </div>
+    </div>
+  </section>
 
   <!-- Event Partners Section -->
   <section id="partners" style="padding: 100px 0; background: rgba(0,0,0,0.4);">
@@ -477,8 +536,8 @@
     <div class="container">
       <h2 style="text-align: center; margin-bottom: 50px;">IMPORTANT <span style="color: var(--neon-blue);">DATES</span></h2>
       <div class="grid-layout" style="justify-content: center;">
-        <div class="holo-card" style="padding: 30px 40px; text-align: center; border-left: 4px solid var(--g-blue);">
-          <div style="color: var(--g-blue); font-weight: bold; font-size: 1.2rem; margin-bottom: 10px;">Results Announcement</div>
+        <div class="holo-card" style="padding: 30px 40px; text-align: center; border-left: 4px solid var(--neon-green); box-shadow: 0 0 15px rgba(57, 255, 20, 0.1);">
+          <div style="color: var(--neon-green); font-weight: bold; font-size: 1.2rem; margin-bottom: 10px;">Results Announced!</div>
           <div style="font-size: 2rem; color: #fff;">25 Feb 2026</div>
         </div>
         <div class="holo-card" style="padding: 30px 40px; text-align: center; border-left: 4px solid var(--g-yellow);">
