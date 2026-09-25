@@ -1,0 +1,16 @@
+{
+  "name": "Cloud Community Days Udaipur 2026",
+  "short_name": "CCD Udaipur",
+  "description": "Agenda, passes and everything for Google Cloud Community Days Udaipur 2026 by GDG Cloud Udaipur.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#fbf7ef",
+  "theme_color": "#fbf7ef",
+  "icons": [
+    { "src": "assets/icon.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "assets/img/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "assets/img/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "assets/img/icon-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
