@@ -4,23 +4,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GDG Cloud Udaipur | Innovate. Build. Grow.</title>
+    <title>GDG Cloud Udaipur | The Lakecity Developer Chapter | Innovate. Build. Grow.</title>
+    <meta name="description" content="Official website of Google Developer Group (GDG) Cloud Udaipur, Rajasthan. The City of Lakes meets Google Cloud, AI, and Agentic Innovation. Featuring the City Palace from the CCD website. खम्मा घणी!">
+    <link rel="icon" href="ccdudaipur2026/ccdudaipur/assets/icon.svg" type="image/svg+xml">
+    
+    <!-- Google Fonts: Outfit (modern tech), Cinzel (royal Mewari headlines), Yatra One (authentic heritage) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800&family=Yatra+One&family=Marcellus&display=swap" rel="stylesheet">
+    
     <style>
         :root {
+            /* Google Core Palette */
             --g-blue: #4285F4;
             --g-red: #EA4335;
             --g-yellow: #FBBC05;
             --g-green: #34A853;
-            --bg-dark: #050505;
-            --glass-bg: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.05);
-            --text-primary: #ffffff;
-            --text-secondary: rgba(255, 255, 255, 0.7);
-            --card-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+
+            /* Udaipur & Mewar Royal Heritage Palette */
+            --royal-gold: #D4AF37;
+            --royal-gold-light: #F9E79F;
+            --royal-gold-glow: rgba(212, 175, 55, 0.4);
+            --sandstone: #E6AF2E;
+            --kesariya: #FF7722;
+            --mewar-crimson: #C1121F;
+            --lake-deep-blue: #060B18;
+            --lake-night-sky: #0A1329;
+            --lake-surface: #0E1D3E;
+            --lake-cyan: #38BDF8;
+            --palace-marble: #FDFBF7;
+            --palace-ivory: #F4EEDD;
+            
+            /* Glassmorphism & UI */
+            --glass-bg: rgba(14, 25, 53, 0.65);
+            --glass-card: rgba(12, 22, 48, 0.78);
+            --glass-border: rgba(212, 175, 55, 0.25);
+            --glass-border-hover: rgba(212, 175, 55, 0.7);
+            --text-primary: #FFFFFF;
+            --text-secondary: rgba(253, 251, 247, 0.82);
+            --text-muted: rgba(253, 251, 247, 0.6);
+            --card-shadow: 0 14px 40px 0 rgba(0, 0, 0, 0.6);
+            --gold-glow: 0 0 25px rgba(212, 175, 55, 0.3);
         }
 
         * {
@@ -30,289 +54,701 @@
             font-family: 'Outfit', sans-serif;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            background-color: var(--bg-dark);
+            background-color: var(--lake-deep-blue);
             color: var(--text-primary);
             overflow-x: hidden;
             perspective: 1000px;
+            position: relative;
         }
 
-        /* Custom Scrollbar */
+        /* Typography accents */
+        .royal-font {
+            font-family: 'Cinzel', serif;
+            letter-spacing: 1px;
+        }
+
+        .mewar-font {
+            font-family: 'Yatra One', cursive;
+        }
+
+        /* Custom Scrollbar with Kesariya & Sandstone Gold */
         ::-webkit-scrollbar {
-            width: 8px;
+            width: 9px;
         }
 
         ::-webkit-scrollbar-track {
-            background: var(--bg-dark);
+            background: var(--lake-deep-blue);
         }
 
         ::-webkit-scrollbar-thumb {
-            background: #333;
-            border-radius: 4px;
+            background: linear-gradient(180deg, var(--royal-gold), var(--g-blue));
+            border-radius: 5px;
         }
 
         ::-webkit-scrollbar-thumb:hover {
-            background: var(--g-blue);
+            background: var(--sandstone);
         }
 
-        /* Background Animation */
-        #canvas-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.6;
+        /* Top Royal Ticker */
+        .royal-ticker {
+            background: linear-gradient(90deg, #1b1002 0%, #3d2305 25%, #182747 50%, #3d2305 75%, #1b1002 100%);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.35);
+            padding: 7px 20px;
+            font-size: 0.84rem;
+            color: var(--royal-gold-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            z-index: 101;
+            position: relative;
+            text-align: center;
+        }
+
+        .royal-ticker span.highlight {
+            color: #FFF;
+            font-weight: 600;
+        }
+
+        .royal-ticker a {
+            color: #FFD56B;
+            text-decoration: underline;
+            font-weight: 600;
+            margin-left: 6px;
+            transition: color 0.2s;
+        }
+
+        .royal-ticker a:hover {
+            color: #FFF;
         }
 
         /* Navbar */
         nav {
             position: fixed;
-            top: 0;
+            top: 34px;
             width: 100%;
-            padding: 20px 50px;
+            padding: 16px 50px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 100;
-            backdrop-filter: blur(10px);
-            background: rgba(5, 5, 5, 0.5);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            background: rgba(6, 11, 24, 0.85);
             border-bottom: 1px solid var(--glass-border);
             transition: all 0.3s ease;
         }
 
         nav.scrolled {
-            padding: 15px 50px;
-            background: rgba(5, 5, 5, 0.9);
+            top: 0;
+            padding: 12px 50px;
+            background: rgba(6, 11, 24, 0.96);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.4);
         }
 
-        .logo {
-            font-weight: 700;
-            font-size: 1.5rem;
+        .logo-wrap {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 14px;
+            text-decoration: none;
         }
 
-        .logo img {
-            height: 40px;
+        .logo-img {
+            height: 38px;
+            filter: drop-shadow(0 2px 8px rgba(66, 133, 244, 0.4));
+        }
+
+        .logo-title-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-brand {
+            font-family: 'Cinzel', serif;
+            font-size: 1.15rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .logo-brand span.cloud {
+            color: var(--g-blue);
+        }
+
+        .logo-tagline {
+            font-size: 0.72rem;
+            color: var(--royal-gold);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-weight: 600;
         }
 
         .nav-links {
             display: flex;
-            gap: 40px;
+            align-items: center;
+            gap: 32px;
         }
 
         .nav-links a {
             color: var(--text-secondary);
             text-decoration: none;
             font-weight: 500;
+            font-size: 0.95rem;
             position: relative;
             transition: color 0.3s;
+            padding: 6px 0;
         }
 
         .nav-links a:hover,
         .nav-links a.active {
-            color: var(--text-primary);
+            color: var(--royal-gold-light);
         }
 
         .nav-links a::after {
             content: '';
             position: absolute;
-            bottom: -5px;
+            bottom: 0;
             left: 0;
             width: 0;
             height: 2px;
-            background: linear-gradient(90deg, var(--g-blue), var(--g-red), var(--g-yellow), var(--g-green));
-            transition: width 0.3s;
+            background: linear-gradient(90deg, var(--royal-gold), var(--g-blue), var(--g-red));
+            transition: width 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+            border-radius: 2px;
         }
 
-        .nav-links a:hover::after {
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
             width: 100%;
         }
 
-        /* Hero Section */
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .khamma-ghani-badge {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            padding: 6px 14px;
+            border-radius: 30px;
+            background: rgba(212, 175, 55, 0.12);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: var(--royal-gold-light);
+            font-size: 0.85rem;
+            font-family: 'Yatra One', cursive;
+        }
+
+        .diya-spark {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #FF9E00;
+            box-shadow: 0 0 10px #FF9E00, 0 0 20px #FF5400;
+            animation: diyaFlicker 1.8s infinite alternate;
+        }
+
+        @keyframes diyaFlicker {
+            0% { transform: scale(0.9); opacity: 0.8; }
+            100% { transform: scale(1.2); opacity: 1; }
+        }
+
+        .btn-join {
+            background: linear-gradient(135deg, var(--royal-gold) 0%, #B8860B 100%);
+            color: #060B18;
+            font-weight: 700;
+            font-size: 0.9rem;
+            padding: 8px 22px;
+            border-radius: 30px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-join:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.55);
+            background: linear-gradient(135deg, #F3E5AB 0%, var(--royal-gold) 100%);
+        }
+
+        /* Mobile Hamburger */
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
+            border: 1px solid var(--glass-border);
+            color: var(--royal-gold-light);
+            padding: 8px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .mobile-menu-btn svg {
+            width: 24px;
+            height: 24px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        /* ==========================================================================
+           HERO & CITY PALACE SCENE (Faithfully Powered by UdaipurScene from CCD)
+           ========================================================================== */
         .hero {
-            height: 100vh;
+            position: relative;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
-            padding: 0 20px;
+            padding: 130px 20px 80px;
             overflow: hidden;
+            isolation: isolate;
+            background: var(--lake-deep-blue);
         }
 
-        .hero-content {
-            text-align: center;
-            z-index: 10;
-            max-width: 900px;
+        .hero-scene {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            pointer-events: auto;
         }
 
-        .hero-badge {
-            display: inline-block;
-            padding: 8px 20px;
-            border-radius: 50px;
-            background: var(--glass-bg);
+        .hero-scene svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .hero-scrim {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            background: radial-gradient(circle at 50% 45%, rgba(6, 11, 24, 0.32) 0%, rgba(6, 11, 24, 0.72) 60%, rgba(4, 7, 16, 0.95) 100%),
+                        linear-gradient(to bottom, rgba(4, 7, 16, 0.75) 0%, transparent 30%, rgba(4, 7, 16, 0.98) 100%);
+            transition: background 0.8s;
+        }
+
+        /* Toran: Festive bunting of Google-colour pennants and marigolds from CCD */
+        .toran {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 75px;
+            height: 60px;
+            z-index: 2;
+            pointer-events: none;
+        }
+        .toran svg { width: 100%; height: 100%; overflow: visible; }
+        .toran .string { fill: none; stroke: rgba(255, 248, 234, 0.4); stroke-width: 1.4; }
+        .toran .pennant { transform-box: fill-box; transform-origin: 50% 0; animation: swing 3.6s ease-in-out infinite alternate; }
+        .toran .marigold { transform-box: fill-box; transform-origin: 50% 0; animation: swing 2.8s ease-in-out infinite alternate; }
+
+        @keyframes swing {
+            from { transform: rotate(-6deg); }
+            to { transform: rotate(6deg); }
+        }
+
+        /* ---------- CSS for the CCD Udaipur SVG Scene ---------- */
+        .udaipur {
+            --night: 1;
+            --blue: var(--g-blue);
+            --green: var(--g-green);
+            --yellow: var(--g-yellow);
+            --red: var(--g-red);
+            --saffron: #ff7722;
+        }
+
+        .udaipur .stars { fill: #fff; opacity: var(--stars, 0); }
+        .udaipur .stars .tw { animation: twinkle 2.6s ease-in-out infinite alternate; }
+        @keyframes twinkle { from { opacity: 1; } to { opacity: .25; } }
+        .udaipur .sun .disc { fill: var(--sun); }
+        .udaipur .sun, .udaipur .moon { transition: opacity .8s; }
+        .udaipur .moon .disc { fill: #f7f2e2; }
+        .udaipur .moon .crater { fill: #ddd5bf; }
+        .udaipur .clouds { fill: var(--cloud); opacity: var(--cloudA); animation: drift 90s linear infinite alternate; }
+        @keyframes drift { to { transform: translateX(160px); } }
+        .udaipur .h4 { fill: var(--h4); }
+        .udaipur .h3 { fill: var(--h3); }
+        .udaipur .h2 { fill: var(--h2); }
+        .udaipur .h1 { fill: var(--h1); }
+        .udaipur .mist { opacity: var(--mist); animation: drift 40s ease-in-out infinite alternate; }
+        .udaipur .pal, .udaipur .pal rect, .udaipur .pal path, .udaipur .pal circle { fill: var(--pal); stroke: var(--pline); stroke-width: 1.5; stroke-linejoin: round; }
+        .udaipur .town, .udaipur .town rect, .udaipur .town path, .udaipur .town circle { fill: var(--town); stroke: var(--line); stroke-width: 1.5; stroke-linejoin: round; }
+        .udaipur .far-pal, .udaipur .far-pal rect, .udaipur .far-pal path, .udaipur .far-pal circle { fill: color-mix(in srgb, var(--pal) 62%, var(--h4)); stroke: color-mix(in srgb, var(--pline) 45%, var(--h4)); stroke-width: 1.1; }
+        .udaipur .post, .udaipur .pal .post, .udaipur .town .post, .udaipur .far-pal .post { fill: none; }
+        .udaipur .shade { fill: var(--palShade); opacity: .5; stroke: none; }
+        .udaipur .course { fill: none !important; stroke: var(--pline); stroke-width: 1; opacity: .4; }
+        .udaipur .step { fill: color-mix(in srgb, var(--town) 82%, var(--line)) !important; }
+        .udaipur .win { fill: var(--win) !important; stroke: var(--pline) !important; stroke-width: .8 !important; }
+        .udaipur .win.lit { fill: color-mix(in srgb, #ffe39a calc(var(--night) * 100%), var(--win)) !important; }
+        .udaipur .win.gate { fill: color-mix(in srgb, var(--water2) 72%, #000) !important; }
+        .udaipur .win.a0 { fill: var(--blue) !important; }
+        .udaipur .win.a1 { fill: var(--green) !important; }
+        .udaipur .win.a2 { fill: var(--yellow) !important; }
+        .udaipur .win.a3 { fill: var(--red) !important; }
+        .udaipur .flag { fill: var(--saffron); animation: wave-flag 1.4s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: 0 50%; }
+        @keyframes wave-flag { to { transform: scaleX(.75) skewY(4deg); } }
+        .udaipur .tree { fill: var(--tree); }
+        .udaipur .palm { fill: none; stroke: var(--tree); stroke-width: 3; stroke-linecap: round; }
+        .udaipur .flood { opacity: var(--glow); }
+        .udaipur .bulb { fill: #ffe7a0; stroke: none !important; opacity: var(--glow); animation: bulb 1.8s ease-in-out infinite alternate; }
+        @keyframes bulb { from { fill-opacity: 1; } to { fill-opacity: .35; } }
+        .udaipur .aarti path { fill: #ffb940; stroke: none; opacity: calc(var(--mist) + var(--glow) * .6); animation: flicker .5s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: 50% 100%; }
+        @keyframes flicker { to { transform: scaleY(.8) scaleX(1.1); } }
+        .udaipur .cable { fill: none; stroke: var(--line); stroke-width: 1.2; opacity: .7; }
+        .udaipur .ropeway { opacity: calc(1 - var(--night) * .5); }
+        .udaipur .reflection { opacity: .42; }
+        .udaipur .ripple-rect { animation: ripple 3.2s linear infinite; }
+        @keyframes ripple { to { transform: translateY(7px); } }
+        .udaipur .streak { fill: #ffd98a; opacity: calc(var(--glow) * .85); animation: twinkle 1.6s ease-in-out infinite alternate; }
+        .udaipur .glitter { fill: var(--glint); opacity: var(--glitter); }
+        .udaipur .glitter ellipse { animation: twinkle 1.3s ease-in-out infinite alternate; }
+        .udaipur .shimmer { fill: none; stroke: color-mix(in srgb, var(--sky3) 70%, #fff); stroke-width: 2.2; stroke-linecap: round; opacity: .45; animation: shimmer 5s ease-in-out infinite alternate; }
+        @keyframes shimmer { to { opacity: .1; transform: translateX(24px); } }
+
+        /* Kites */
+        .udaipur .kites { opacity: var(--day); }
+        .udaipur .kite { cursor: pointer; }
+        .udaipur .k-fly { animation: kite 4.4s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: 50% 0; }
+        @keyframes kite { from { transform: rotate(-7deg) translateY(0); } to { transform: rotate(7deg) translateY(-8px); } }
+        .udaipur .k-string { fill: none; stroke: color-mix(in srgb, var(--line) 60%, transparent); stroke-width: .9; }
+        .udaipur .k-spine { fill: none; stroke: rgba(0, 0, 0, .25); stroke-width: 1; }
+        .udaipur .kite.cut { animation: kite-away 3.4s ease-in forwards; }
+        .udaipur .kite.cut .k-string { opacity: 0; transition: opacity .3s; }
+        @keyframes kite-away { to { transform: translate(var(--kx), -260px) rotate(160deg); opacity: 0; } }
+
+        /* Fireworks over City Palace */
+        .udaipur .fireworks { opacity: var(--fw); }
+        .udaipur .burst { fill: none; stroke-width: 2.4; stroke-linecap: round; transform-box: fill-box; transform-origin: center; animation: burst 3.4s cubic-bezier(.2, .7, .3, 1) infinite; animation-delay: var(--d); opacity: 0; }
+        @keyframes burst { 0% { transform: scale(.05); opacity: 0; } 8% { opacity: 1; } 55% { transform: scale(1); opacity: .9; } 100% { transform: scale(1.12) translateY(10px); opacity: 0; } }
+
+        /* Floating Diyas on Lake Pichola */
+        .udaipur .diyas { opacity: var(--diya); }
+        .udaipur .diya { animation: bob 3.4s ease-in-out infinite alternate; }
+        @keyframes bob { to { transform: translate(6px, 3px); } }
+        .udaipur .flame { fill: #ffc84a; animation: flicker .45s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: 50% 100%; }
+        .udaipur .d-glow { fill: #ffb340; opacity: .35; }
+        .udaipur .d-streak { fill: #ffc84a; opacity: .45; }
+
+        /* Shikara Boats */
+        .udaipur .sail { animation: sail 80s linear infinite; }
+        .udaipur .s2 { animation: sail-rev 110s linear infinite; animation-delay: -50s; }
+        .udaipur .s3 { animation-duration: 140s; animation-delay: -95s; }
+        @keyframes sail { from { transform: translateX(-160px); } to { transform: translateX(1760px); } }
+        @keyframes sail-rev { from { transform: translateX(1760px); } to { transform: translateX(-160px); } }
+        .udaipur .shikara > * { animation: rock 3.2s ease-in-out infinite alternate; }
+        @keyframes rock { to { transform: translateY(2px) rotate(.8deg); } }
+        .udaipur .hull { fill: color-mix(in srgb, var(--town) 70%, #6b4a2a); stroke: var(--line); stroke-width: 1.5; }
+        .udaipur .shikara .post { stroke: var(--line); stroke-width: 1.5; }
+        .udaipur .canopy { stroke: var(--line); stroke-width: 1.2; }
+        .udaipur .lantern { fill: #ffd86b; opacity: var(--night); }
+        .udaipur .rower { fill: var(--line); stroke: var(--line); stroke-width: 2; stroke-linecap: round; }
+        .udaipur .wake { fill: none; stroke: color-mix(in srgb, #fff 55%, var(--water1)); stroke-width: 1.6; stroke-linecap: round; opacity: .55; }
+
+        /* Birds in Sky */
+        .udaipur .birds { opacity: var(--birdA); }
+        .udaipur .flock { animation: flock 46s linear infinite; }
+        @keyframes flock { from { transform: translate(-120px, 170px); } to { transform: translate(1760px, 60px); } }
+        .udaipur .bird { fill: none; stroke: var(--bird); stroke-width: 2; stroke-linecap: round; animation: flap .9s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+        @keyframes flap { 50% { transform: scaleY(.35); } }
+
+        /* Sky Controller Toolbar */
+        .sky-control-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 12px;
+            border-radius: 30px;
+            background: rgba(14, 25, 53, 0.85);
             border: 1px solid var(--glass-border);
-            backdrop-filter: blur(5px);
-            margin-bottom: 20px;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: var(--g-blue);
-            box-shadow: 0 0 20px rgba(66, 133, 244, 0.2);
-            animation: float 3s ease-in-out infinite;
+            backdrop-filter: blur(10px);
+            margin-top: 15px;
+        }
+
+        .sky-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 0.78rem;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.25s;
+        }
+
+        .sky-btn:hover {
+            color: #FFF;
+        }
+
+        .sky-btn.active {
+            background: var(--royal-gold);
+            color: #060B18;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Hero Content */
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            max-width: 980px;
+            margin: 0 auto;
+        }
+
+        .hero-badge-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 24px;
+            border-radius: 50px;
+            background: rgba(14, 25, 53, 0.75);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            backdrop-filter: blur(10px);
+            margin-bottom: 25px;
+            font-size: 0.92rem;
+            color: var(--royal-gold-light);
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.25);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .hero-badge-pill .lotus-icon {
+            color: #FF7722;
         }
 
         .hero h1 {
-            font-size: 5rem;
-            line-height: 1.1;
-            margin-bottom: 20px;
+            font-family: 'Cinzel', serif;
+            font-size: 4.5rem;
+            line-height: 1.15;
+            margin-bottom: 22px;
             font-weight: 800;
-            background: linear-gradient(135deg, #fff 0%, #ccc 100%);
+            letter-spacing: -0.5px;
+            color: #FFFFFF;
+            text-shadow: 0 10px 40px rgba(0, 0, 0, 0.9), 0 2px 10px rgba(0, 0, 0, 0.8);
+        }
+
+        .hero h1 span.highlight-mewar {
+            background: linear-gradient(135deg, #FFFFFF 0%, var(--royal-gold-light) 40%, var(--sandstone) 100%);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
-        .hero h1 span {
-            background: linear-gradient(90deg, var(--g-blue), var(--g-red), var(--g-yellow), var(--g-green));
+        .hero h1 span.highlight-google {
+            background: linear-gradient(90deg, var(--g-blue) 0%, #60A5FA 25%, var(--g-red) 50%, var(--g-yellow) 75%, var(--g-green) 100%);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
 
-        .hero p {
-            font-size: 1.2rem;
+        .hero p.hero-subtitle {
+            font-size: 1.25rem;
             color: var(--text-secondary);
-            margin-bottom: 40px;
-            max-width: 700px;
+            margin-bottom: 35px;
+            max-width: 780px;
             margin-left: auto;
             margin-right: auto;
+            line-height: 1.7;
+            font-weight: 400;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
         }
 
         .cta-group {
             display: flex;
             gap: 20px;
             justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
         }
 
         .btn {
-            padding: 15px 40px;
+            padding: 15px 36px;
             border-radius: 50px;
             font-weight: 600;
+            font-size: 1rem;
             text-decoration: none;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-            z-index: 1;
             display: inline-flex;
             align-items: center;
             gap: 10px;
+            cursor: pointer;
         }
 
-        .btn-primary {
-            background: var(--g-blue);
-            color: white;
-            box-shadow: 0 0 20px rgba(66, 133, 244, 0.4);
+        .btn-gold {
+            background: linear-gradient(135deg, var(--royal-gold) 0%, #B8860B 100%);
+            color: #060B18;
+            font-weight: 700;
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        .btn-primary:hover {
+        .btn-gold:hover {
             transform: translateY(-3px);
-            box-shadow: 0 0 30px rgba(66, 133, 244, 0.6);
+            box-shadow: 0 0 35px rgba(212, 175, 55, 0.65);
+            background: linear-gradient(135deg, #F9E79F 0%, var(--royal-gold) 100%);
+        }
+
+        .btn-ccd-flagship {
+            background: linear-gradient(135deg, rgba(66, 133, 244, 0.35) 0%, rgba(212, 175, 55, 0.2) 100%);
+            color: #FFF;
+            border: 1px solid rgba(66, 133, 244, 0.6);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 20px rgba(66, 133, 244, 0.3);
+        }
+
+        .btn-ccd-flagship:hover {
+            background: linear-gradient(135deg, rgba(66, 133, 244, 0.5) 0%, rgba(212, 175, 55, 0.35) 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(66, 133, 244, 0.55);
+            border-color: var(--royal-gold);
         }
 
         .btn-secondary {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.08);
             color: white;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.18);
+            border-color: var(--royal-gold);
             transform: translateY(-3px);
         }
-
-        /* 3D Floating Elements in Hero */
-        .floating-icon {
-            position: absolute;
-            width: 60px;
-            height: 60px;
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            animation: float 6s ease-in-out infinite;
-            z-index: 1;
-        }
-
-        .floating-icon svg {
-            width: 30px;
-            height: 30px;
-        }
-
-        .icon-1 {
-            top: 20%;
-            left: 15%;
-            animation-delay: 0s;
-            border-color: rgba(66, 133, 244, 0.3);
-        }
-
-        .icon-2 {
-            top: 30%;
-            right: 15%;
-            animation-delay: 2s;
-            border-color: rgba(234, 67, 53, 0.3);
-        }
-
-        .icon-3 {
-            bottom: 20%;
-            left: 20%;
-            animation-delay: 4s;
-            border-color: rgba(251, 188, 5, 0.3);
-        }
-
-        .icon-4 {
-            bottom: 25%;
-            right: 20%;
-            animation-delay: 1s;
-            border-color: rgba(52, 168, 83, 0.3);
-        }
-
         @keyframes float {
-
-            0%,
-            100% {
+            0%, 100% {
                 transform: translateY(0) rotate(0deg);
             }
-
             50% {
-                transform: translateY(-20px) rotate(5deg);
+                transform: translateY(-16px) rotate(2deg);
             }
         }
 
-        /* Sections Global */
-        section {
-            padding: 100px 50px;
+        /* Udaipur Stats / Royal Ticker Strip */
+        .udaipur-stats-strip {
             position: relative;
+            z-index: 10;
+            padding: 30px 20px;
+            background: linear-gradient(180deg, rgba(6, 11, 24, 0.95) 0%, rgba(14, 25, 53, 0.9) 100%);
+            border-top: 1px solid rgba(212, 175, 55, 0.25);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .stats-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 25px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 18px;
+            padding: 22px 20px;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-card:hover {
+            border-color: var(--royal-gold);
+            transform: translateY(-4px);
+            background: rgba(212, 175, 55, 0.08);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.25);
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 2px;
+            background: var(--royal-gold);
+        }
+
+        .stat-num {
+            font-family: 'Cinzel', serif;
+            font-size: 2.3rem;
+            font-weight: 800;
+            color: var(--royal-gold-light);
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .stat-desc {
+            font-size: 0.76rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* Global Section Styles */
+        section {
+            padding: 110px 50px;
+            position: relative;
+            z-index: 2;
         }
 
         .section-header {
             text-align: center;
-            margin-bottom: 80px;
+            margin-bottom: 70px;
+            position: relative;
+        }
+
+        .section-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 18px;
+            border-radius: 30px;
+            background: rgba(212, 175, 55, 0.12);
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            color: var(--royal-gold);
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 16px;
+            backdrop-filter: blur(8px);
         }
 
         .section-header h2 {
-            font-size: 3rem;
-            margin-bottom: 15px;
-            background: linear-gradient(to right, #fff, #888);
+            font-family: 'Cinzel', serif;
+            font-size: 3.2rem;
+            margin-bottom: 16px;
+            color: #FFFFFF;
+            letter-spacing: 0.5px;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+        }
+
+        .section-header h2 span {
+            background: linear-gradient(135deg, var(--royal-gold-light) 0%, var(--sandstone) 100%);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -320,40 +756,197 @@
 
         .section-header p {
             color: var(--text-secondary);
-            font-size: 1.1rem;
+            font-size: 1.15rem;
+            max-width: 680px;
+            margin: 0 auto;
+            line-height: 1.6;
         }
 
-        /* Events Section (3D Cards) */
+        .arch-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .arch-divider .line {
+            width: 80px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--royal-gold), transparent);
+        }
+
+        .arch-divider .symbol {
+            color: var(--royal-gold);
+            font-size: 1.2rem;
+        }
+
+        /* "Spirit of Udaipur" Section */
+        #spirit {
+            background: radial-gradient(circle at 50% 50%, rgba(14, 29, 62, 0.55) 0%, rgba(6, 11, 24, 0.88) 100%);
+        }
+
+        .spirit-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 30px;
+            max-width: 1240px;
+            margin: 0 auto;
+        }
+
+        .spirit-card {
+            background: var(--glass-card);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 35px 25px;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            backdrop-filter: blur(14px);
+        }
+
+        .spirit-card:hover {
+            border-color: var(--royal-gold);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), var(--gold-glow);
+        }
+
+        .spirit-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--royal-gold), var(--g-blue));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .spirit-card:hover::before {
+            opacity: 1;
+        }
+
+        .spirit-icon-wrap {
+            width: 65px;
+            height: 65px;
+            border-radius: 20px;
+            background: rgba(212, 175, 55, 0.12);
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 22px;
+            transition: transform 0.3s;
+        }
+
+        .spirit-card:hover .spirit-icon-wrap {
+            transform: scale(1.1) rotate(5deg);
+            background: rgba(212, 175, 55, 0.22);
+        }
+
+        .spirit-card h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.35rem;
+            color: #FFFFFF;
+            margin-bottom: 8px;
+        }
+
+        .spirit-card .spirit-hindi {
+            font-family: 'Yatra One', cursive;
+            font-size: 0.95rem;
+            color: var(--royal-gold);
+            margin-bottom: 14px;
+        }
+
+        .spirit-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.65;
+            flex: 1;
+        }
+
+        .spirit-tag {
+            margin-top: 20px;
+            display: inline-block;
+            font-size: 0.78rem;
+            color: var(--lake-cyan);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Events Section (3D Royal Glass Cards) */
+        .events-filter-bar {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 45px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            color: var(--text-secondary);
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            backdrop-filter: blur(8px);
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--royal-gold);
+            color: #060B18;
+            border-color: var(--royal-gold);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+        }
+
         .events-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
             gap: 40px;
             perspective: 1000px;
+            max-width: 1300px;
+            margin: 0 auto;
         }
 
         .card-3d {
-            background: var(--glass-bg);
+            background: var(--glass-card);
             border: 1px solid var(--glass-border);
             border-radius: 24px;
             padding: 10px;
             position: relative;
-            transition: transform 0.1s;
+            transition: transform 0.15s ease-out, border-color 0.3s, box-shadow 0.3s;
             transform-style: preserve-3d;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(14px);
+        }
+
+        .card-3d:hover {
+            border-color: var(--royal-gold);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7), 0 0 25px rgba(212, 175, 55, 0.3);
         }
 
         .card-inner {
-            background: rgba(0, 0, 0, 0.4);
-            border-radius: 20px;
+            background: rgba(6, 11, 24, 0.75);
+            border-radius: 18px;
             overflow: hidden;
             height: 100%;
             display: flex;
             flex-direction: column;
             transform: translateZ(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .card-image {
-            height: 220px;
+            height: 230px;
             background-size: cover;
             background-position: center;
             position: relative;
@@ -363,69 +956,105 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.8));
+            background: linear-gradient(to bottom, rgba(6, 11, 24, 0.1) 0%, rgba(6, 11, 24, 0.95) 100%);
+        }
+
+        .card-tag {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(6, 11, 24, 0.88);
+            backdrop-filter: blur(8px);
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 0.76rem;
+            font-weight: 700;
+            color: var(--royal-gold-light);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            z-index: 2;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .card-date {
             position: absolute;
             top: 15px;
             right: 15px;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(5px);
-            padding: 8px 15px;
-            border-radius: 12px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--g-yellow);
-            border: 1px solid rgba(251, 188, 5, 0.3);
+            background: rgba(212, 175, 55, 0.18);
+            backdrop-filter: blur(8px);
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--royal-gold-light);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            z-index: 2;
         }
 
         .card-content {
-            padding: 25px;
+            padding: 26px;
             flex: 1;
             display: flex;
             flex-direction: column;
         }
 
         .card-title {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            color: white;
+            font-size: 1.45rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #FFFFFF;
+            line-height: 1.35;
         }
 
         .card-desc {
             color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 20px;
+            font-size: 0.94rem;
+            line-height: 1.65;
+            margin-bottom: 24px;
             flex: 1;
         }
 
+        .card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 16px;
+        }
+
         .card-link {
-            color: var(--g-blue);
+            color: var(--royal-gold);
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 700;
+            font-size: 0.95rem;
             display: inline-flex;
             align-items: center;
-            gap: 5px;
-            transition: gap 0.3s;
+            gap: 8px;
+            transition: all 0.3s;
         }
 
         .card-link:hover {
-            gap: 10px;
+            color: #FFF;
+            gap: 12px;
         }
 
-        /* Organizers (Holographic) */
+        /* Organizers / Team Section */
+        #organizers {
+            background: radial-gradient(circle at 50% 40%, rgba(14, 25, 53, 0.72) 0%, rgba(6, 11, 24, 0.92) 100%);
+        }
+
         .organizers-container {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
             gap: 40px;
+            max-width: 1100px;
+            margin: 0 auto;
         }
 
         .profile-card {
-            width: 320px;
-            height: 450px;
+            width: 340px;
+            min-height: 480px;
             position: relative;
             transform-style: preserve-3d;
             transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
@@ -434,18 +1063,23 @@
         .profile-content {
             position: absolute;
             inset: 0;
-            background: linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
-            border-radius: 24px;
+            background: linear-gradient(155deg, rgba(22, 38, 77, 0.75) 0%, rgba(10, 18, 38, 0.88) 100%);
+            border-radius: 28px;
             border: 1px solid var(--glass-border);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(14px);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 30px;
+            padding: 35px 25px;
             text-align: center;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
             overflow: hidden;
+        }
+
+        .profile-card:hover .profile-content {
+            border-color: var(--royal-gold);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), var(--gold-glow);
         }
 
         .profile-content::before {
@@ -455,8 +1089,8 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transition: 0.5s;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.15), transparent);
+            transition: 0.6s;
         }
 
         .profile-card:hover .profile-content::before {
@@ -464,13 +1098,14 @@
         }
 
         .profile-img-container {
-            width: 140px;
-            height: 140px;
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
             padding: 5px;
-            background: linear-gradient(45deg, var(--g-blue), var(--g-red), var(--g-yellow), var(--g-green));
-            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--royal-gold), var(--g-blue), var(--g-red));
+            margin-bottom: 22px;
             position: relative;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
         }
 
         .profile-img {
@@ -478,30 +1113,42 @@
             height: 100%;
             border-radius: 50%;
             object-fit: cover;
-            border: 4px solid var(--bg-dark);
+            border: 4px solid var(--lake-deep-blue);
+        }
+
+        .profile-badge {
+            position: absolute;
+            bottom: 2px;
+            right: 8px;
+            background: var(--royal-gold);
+            color: #060B18;
+            font-size: 0.75rem;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-weight: 800;
         }
 
         .profile-name {
-            font-size: 1.8rem;
+            font-family: 'Cinzel', serif;
+            font-size: 1.85rem;
             font-weight: 700;
-            margin-bottom: 5px;
-            background: linear-gradient(90deg, #fff, #aaa);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+            margin-bottom: 6px;
+            color: #FFFFFF;
         }
 
         .profile-role {
-            color: var(--g-blue);
-            font-weight: 500;
-            margin-bottom: 15px;
-            font-size: 1rem;
+            color: var(--royal-gold);
+            font-weight: 600;
+            margin-bottom: 14px;
+            font-size: 1.05rem;
+            letter-spacing: 0.5px;
         }
 
         .profile-bio {
             color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-bottom: 20px;
+            font-size: 0.92rem;
+            margin-bottom: 24px;
+            line-height: 1.6;
         }
 
         .social-icons {
@@ -510,80 +1157,131 @@
         }
 
         .social-btn {
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.06);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
+            color: var(--royal-gold-light);
             transition: all 0.3s;
             border: 1px solid var(--glass-border);
             text-decoration: none;
-            animation: floatIcon 3s ease-in-out infinite;
         }
 
         .social-btn:hover {
-            background: var(--g-blue);
-            transform: translateY(-5px) scale(1.1);
-            box-shadow: 0 5px 15px rgba(66, 133, 244, 0.6);
+            background: var(--royal-gold);
+            color: #060B18;
+            transform: translateY(-4px) scale(1.1);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
         }
 
-        @keyframes floatIcon {
-
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-5px);
-            }
+        /* Volunteer Callout Card */
+        .volunteer-card {
+            width: 340px;
+            min-height: 480px;
+            background: rgba(14, 25, 53, 0.5);
+            border: 2px dashed rgba(212, 175, 55, 0.35);
+            border-radius: 28px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 35px 25px;
+            text-align: center;
+            transition: all 0.3s;
+            backdrop-filter: blur(12px);
         }
 
-        /* About Section */
+        .volunteer-card:hover {
+            border-color: var(--royal-gold);
+            background: rgba(14, 25, 53, 0.75);
+            transform: translateY(-5px);
+        }
+
+        .volunteer-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--royal-gold);
+        }
+
+        /* About Section (Mewar & 3D Cube) */
         .about-container {
             display: flex;
             align-items: center;
-            gap: 60px;
-            background: var(--glass-bg);
-            border-radius: 30px;
-            padding: 50px;
+            gap: 70px;
+            background: var(--glass-card);
+            border-radius: 32px;
+            padding: 60px;
             border: 1px solid var(--glass-border);
+            max-width: 1240px;
+            margin: 0 auto;
+            backdrop-filter: blur(14px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
         }
 
         .about-visual {
             flex: 1;
-            height: 400px;
-            position: relative;
+            height: 420px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
         .about-content {
-            flex: 1;
+            flex: 1.2;
         }
 
         .about-content h3 {
-            font-size: 2.5rem;
+            font-family: 'Cinzel', serif;
+            font-size: 2.6rem;
             margin-bottom: 20px;
-            color: white;
+            color: #FFFFFF;
+            line-height: 1.25;
+        }
+
+        .about-content h3 span {
+            color: var(--royal-gold);
         }
 
         .about-content p {
             color: var(--text-secondary);
             line-height: 1.8;
             margin-bottom: 20px;
-            font-size: 1.1rem;
+            font-size: 1.08rem;
         }
 
-        /* 3D Tesseract Animation for About */
+        .about-stats-mini {
+            display: flex;
+            gap: 25px;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+
+        .mini-stat {
+            border-left: 2px solid var(--royal-gold);
+            padding-left: 14px;
+        }
+
+        .mini-stat .m-val {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #FFF;
+        }
+
+        .mini-stat .m-lbl {
+            font-size: 0.8rem;
+            color: var(--royal-gold);
+            text-transform: uppercase;
+        }
+
+        /* 3D Tesseract / Mewar Heritage Cube */
         .tesseract-wrapper {
-            perspective: 1000px;
-            width: 200px;
-            height: 200px;
+            perspective: 1200px;
+            width: 220px;
+            height: 220px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -594,7 +1292,7 @@
             width: 200px;
             height: 200px;
             transform-style: preserve-3d;
-            animation: rotateTesseract 12s infinite linear;
+            animation: rotateTesseract 16s infinite linear;
         }
 
         .cube-outer,
@@ -612,7 +1310,7 @@
             height: 50%;
             top: 25%;
             left: 25%;
-            animation: counterRotate 12s infinite linear;
+            animation: counterRotate 16s infinite linear;
         }
 
         .face {
@@ -620,113 +1318,97 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            font-family: 'Cinzel', serif;
             font-weight: 700;
-            text-transform: uppercase;
             letter-spacing: 2px;
-            box-shadow: 0 0 15px rgba(66, 133, 244, 0.3);
             backface-visibility: visible;
-            opacity: 0.8;
+            border-radius: 12px;
             transition: all 0.3s;
         }
 
-        /* Outer Cube Faces */
+        /* Outer Cube Faces (Royal Google Colors) */
         .cube-outer .face {
             width: 200px;
             height: 200px;
-            border: 2px solid var(--g-blue);
-            background: rgba(66, 133, 244, 0.05);
-            font-size: 1.2rem;
-            color: var(--g-blue);
+            font-size: 1.15rem;
+            backdrop-filter: blur(4px);
         }
 
         .cube-outer .front {
             transform: translateZ(100px);
+            border: 2px solid var(--g-blue);
+            background: rgba(66, 133, 244, 0.08);
+            color: var(--g-blue);
+            box-shadow: 0 0 20px rgba(66, 133, 244, 0.3);
         }
 
         .cube-outer .back {
             transform: rotateY(180deg) translateZ(100px);
+            border: 2px solid var(--royal-gold);
+            background: rgba(212, 175, 55, 0.08);
+            color: var(--royal-gold);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
         }
 
         .cube-outer .right {
             transform: rotateY(90deg) translateZ(100px);
-            border-color: var(--g-red);
+            border: 2px solid var(--g-red);
+            background: rgba(234, 67, 53, 0.08);
             color: var(--g-red);
-            background: rgba(234, 67, 53, 0.05);
+            box-shadow: 0 0 20px rgba(234, 67, 53, 0.3);
         }
 
         .cube-outer .left {
             transform: rotateY(-90deg) translateZ(100px);
-            border-color: var(--g-green);
+            border: 2px solid var(--g-green);
+            background: rgba(52, 168, 83, 0.08);
             color: var(--g-green);
-            background: rgba(52, 168, 83, 0.05);
+            box-shadow: 0 0 20px rgba(52, 168, 83, 0.3);
         }
 
         .cube-outer .top {
             transform: rotateX(90deg) translateZ(100px);
-            border-color: var(--g-yellow);
+            border: 2px solid var(--g-yellow);
+            background: rgba(251, 188, 5, 0.08);
             color: var(--g-yellow);
-            background: rgba(251, 188, 5, 0.05);
+            box-shadow: 0 0 20px rgba(251, 188, 5, 0.3);
         }
 
         .cube-outer .bottom {
             transform: rotateX(-90deg) translateZ(100px);
+            border: 2px solid var(--lake-cyan);
+            background: rgba(56, 189, 248, 0.08);
+            color: var(--lake-cyan);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
         }
 
-        /* Inner Cube Faces */
+        /* Inner Cube Faces (Glowing Lotus Core) */
         .cube-inner .face {
             width: 100px;
             height: 100px;
-            border: 2px solid rgba(255, 255, 255, 0.5);
-            background: rgba(255, 255, 255, 0.1);
-            font-size: 0;
-            /* No text on inner cube */
+            border: 2px solid rgba(212, 175, 55, 0.6);
+            background: rgba(212, 175, 55, 0.2);
+            font-size: 1.8rem;
         }
 
-        .cube-inner .front {
-            transform: translateZ(50px);
-        }
-
-        .cube-inner .back {
-            transform: rotateY(180deg) translateZ(50px);
-        }
-
-        .cube-inner .right {
-            transform: rotateY(90deg) translateZ(50px);
-        }
-
-        .cube-inner .left {
-            transform: rotateY(-90deg) translateZ(50px);
-        }
-
-        .cube-inner .top {
-            transform: rotateX(90deg) translateZ(50px);
-        }
-
-        .cube-inner .bottom {
-            transform: rotateX(-90deg) translateZ(50px);
-        }
+        .cube-inner .front { transform: translateZ(50px); }
+        .cube-inner .back { transform: rotateY(180deg) translateZ(50px); }
+        .cube-inner .right { transform: rotateY(90deg) translateZ(50px); }
+        .cube-inner .left { transform: rotateY(-90deg) translateZ(50px); }
+        .cube-inner .top { transform: rotateX(90deg) translateZ(50px); }
+        .cube-inner .bottom { transform: rotateX(-90deg) translateZ(50px); }
 
         @keyframes rotateTesseract {
-            0% {
-                transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
-            }
-
-            100% {
-                transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
-            }
+            0% { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
+            100% { transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg); }
         }
 
         @keyframes counterRotate {
-            0% {
-                transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
-            }
-
-            100% {
-                transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
-            }
+            0% { transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg); }
+            100% { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
         }
 
-        /* Contact Section (3D Phone) */
+        /* Contact Section (3D Phone with Udaipur WhatsApp) */
         .contact-section {
             min-height: 100vh;
             display: flex;
@@ -734,6 +1416,7 @@
             justify-content: center;
             position: relative;
             overflow: hidden;
+            background: radial-gradient(circle at 60% 50%, rgba(14, 25, 53, 0.6) 0%, rgba(6, 11, 24, 0.95) 100%);
         }
 
         .contact-container {
@@ -746,18 +1429,25 @@
 
         .contact-info {
             flex: 1;
-            padding-right: 50px;
+            padding-right: 60px;
         }
 
         .contact-info h2 {
+            font-family: 'Cinzel', serif;
             font-size: 3.5rem;
             margin-bottom: 20px;
+            color: #FFFFFF;
+        }
+
+        .contact-info h2 span {
+            color: var(--royal-gold);
         }
 
         .contact-info p {
             font-size: 1.2rem;
             color: var(--text-secondary);
             margin-bottom: 40px;
+            line-height: 1.7;
         }
 
         .phone-wrapper {
@@ -770,15 +1460,15 @@
         }
 
         .phone-3d {
-            width: 320px;
-            height: 650px;
-            background: #000;
-            border-radius: 40px;
+            width: 330px;
+            height: 660px;
+            background: #0B0F19;
+            border-radius: 44px;
             position: relative;
             transform-style: preserve-3d;
             transform: rotateY(-15deg) rotateX(10deg);
-            box-shadow: -20px 20px 50px rgba(0, 0, 0, 0.5);
-            border: 4px solid #333;
+            box-shadow: -25px 25px 60px rgba(0, 0, 0, 0.7), 0 0 30px rgba(212, 175, 55, 0.2);
+            border: 4px solid #2A364F;
             transition: transform 0.5s ease;
             animation: floatPhone 6s ease-in-out infinite;
         }
@@ -788,12 +1478,9 @@
         }
 
         @keyframes floatPhone {
-
-            0%,
-            100% {
+            0%, 100% {
                 transform: rotateY(-15deg) rotateX(10deg) translateY(0);
             }
-
             50% {
                 transform: rotateY(-15deg) rotateX(10deg) translateY(-20px);
             }
@@ -805,52 +1492,69 @@
             left: 10px;
             right: 10px;
             bottom: 10px;
-            background: #fff;
-            border-radius: 30px;
+            background: #0B141A;
+            border-radius: 36px;
             overflow: hidden;
             display: flex;
             flex-direction: column;
         }
 
         .chat-header {
-            background: #075e54;
+            background: #1F2C34;
             padding: 15px;
             color: white;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .chat-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--royal-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #060B18;
         }
 
         .chat-body {
             flex: 1;
-            background: #e5ddd5;
-            padding: 20px;
+            background-color: #0B141A;
+            background-image: radial-gradient(#1B2730 1px, transparent 1px);
+            background-size: 16px 16px;
+            padding: 20px 15px;
             overflow-y: auto;
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 14px;
         }
 
         .msg {
-            max-width: 80%;
-            padding: 10px 15px;
-            border-radius: 15px;
-            font-size: 0.9rem;
+            max-width: 82%;
+            padding: 10px 14px;
+            border-radius: 12px;
+            font-size: 0.88rem;
             position: relative;
             animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
             opacity: 0;
             transform: scale(0.8);
-            color: #000;
+            line-height: 1.45;
         }
 
         .msg.incoming {
-            background: white;
+            background: #202C33;
+            color: #E9EDEF;
             align-self: flex-start;
             border-top-left-radius: 2px;
         }
 
         .msg.outgoing {
-            background: #dcf8c6;
+            background: #005C4B;
+            color: #E9EDEF;
             align-self: flex-end;
             border-top-right-radius: 2px;
         }
@@ -863,8 +1567,8 @@
         }
 
         .chat-footer {
-            padding: 10px;
-            background: #f0f0f0;
+            padding: 12px;
+            background: #202C33;
             display: flex;
             align-items: center;
             gap: 10px;
@@ -872,61 +1576,142 @@
 
         .chat-input {
             flex: 1;
-            padding: 10px 15px;
+            padding: 10px 16px;
             border-radius: 20px;
             border: none;
             outline: none;
+            background: #2A3942;
+            color: #FFF;
+            font-size: 0.9rem;
+        }
+
+        .chat-input::placeholder {
+            color: #8696A0;
         }
 
         .send-btn-icon {
-            width: 40px;
-            height: 40px;
-            background: #075e54;
+            width: 38px;
+            height: 38px;
+            background: #00A884;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        /* Toast notifications for interactive elements like kite cutting */
+        .toast-msg {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: rgba(14, 25, 53, 0.95);
+            border: 1px solid var(--royal-gold);
+            color: #FFF;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            z-index: 999;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            pointer-events: none;
+        }
+
+        .toast-msg.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
         }
 
         /* Footer */
         footer {
-            background: black;
-            padding: 50px 20px;
-            border-top: 1px solid var(--glass-border);
+            background: #04070F;
+            padding: 70px 20px 40px;
+            border-top: 1px solid rgba(212, 175, 55, 0.25);
             text-align: center;
+            position: relative;
+        }
+
+        .footer-toran {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #04070F;
+            padding: 0 25px;
+            color: var(--royal-gold);
+            font-family: 'Yatra One', cursive;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 30px;
+        }
+
+        .footer-brand {
+            margin-bottom: 25px;
+        }
+
+        .footer-brand h4 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.6rem;
+            color: #FFF;
+            margin-bottom: 6px;
+        }
+
+        .footer-brand p {
+            color: var(--royal-gold);
+            font-size: 0.95rem;
         }
 
         .footer-links {
             display: flex;
             justify-content: center;
-            gap: 30px;
+            flex-wrap: wrap;
+            gap: 25px;
             margin-bottom: 30px;
         }
 
         .footer-links a {
             color: var(--text-secondary);
             text-decoration: none;
+            font-size: 0.95rem;
             transition: color 0.3s;
         }
 
         .footer-links a:hover {
-            color: var(--g-blue);
+            color: var(--royal-gold);
+        }
+
+        .footer-disclaimer {
+            max-width: 750px;
+            margin: 0 auto 25px;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            line-height: 1.6;
         }
 
         .copyright {
-            color: #555;
-            font-size: 0.9rem;
+            color: #667085;
+            font-size: 0.88rem;
         }
 
-        /* Responsive */
-        @media (max-width: 900px) {
-            .hero h1 {
-                font-size: 3.5rem;
+        /* Responsive Breakpoints */
+        @media (max-width: 1024px) {
+            nav {
+                padding: 15px 30px;
             }
 
+            .hero h1 {
+                font-size: 3.6rem;
+            }
             .about-container {
                 flex-direction: column;
+                padding: 40px;
             }
 
             .contact-container {
@@ -938,65 +1723,257 @@
                 padding-right: 0;
                 margin-bottom: 50px;
             }
+        }
+
+        @media (max-width: 768px) {
+            .royal-ticker {
+                font-size: 0.76rem;
+                padding: 6px 12px;
+            }
+
+            nav {
+                padding: 12px 20px;
+                top: 30px;
+            }
+
+            nav.scrolled {
+                padding: 10px 20px;
+            }
 
             .nav-links {
+                position: fixed;
+                top: 75px;
+                right: -100%;
+                width: 80%;
+                max-width: 320px;
+                height: calc(100vh - 75px);
+                background: rgba(6, 11, 24, 0.98);
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 40px 30px;
+                backdrop-filter: blur(20px);
+                border-left: 1px solid var(--glass-border);
+                transition: right 0.3s ease;
+                gap: 25px;
+                box-shadow: -10px 0 30px rgba(0, 0, 0, 0.8);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .khamma-ghani-badge {
                 display: none;
             }
 
-            /* Simplified for mobile */
+            .hero {
+                padding-top: 140px;
+            }
+
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero p.hero-subtitle {
+                font-size: 1.05rem;
+            }
+
+            section {
+                padding: 70px 20px;
+            }
+
+            .section-header h2 {
+                font-size: 2.4rem;
+            }
+
+            .phone-3d {
+                width: 290px;
+                height: 580px;
+            }
+
+            .toran {
+                top: 65px;
+                height: 45px;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <!-- Canvas Background -->
-    <canvas id="canvas-container"></canvas>
+    <!-- Top Royal Ticker -->
+    <div class="royal-ticker">
+        <span>✨ <strong class="mewar-font">खम्मा घणी!</strong> Welcome to GDG Cloud Udaipur</span>
+        <span>•</span>
+        <span class="highlight">City of Lakes, Hub of Builders</span>
+        <span>•</span>
+        <span>Flagship: <strong>CCD Udaipur 2026</strong> <a href="ccdudaipur2026/ccdudaipur/ccd.html">Register Now →</a></span>
+    </div>
 
     <!-- Navigation -->
     <nav id="navbar">
-        <div class="logo">
-            <img src="https://raw.githubusercontent.com/GDGCloudUdaipur/gdgcloududaipur.github.io/main/gdglogo.png"
-                alt="GDG Logo">
-        </div>
-        <div class="nav-links">
+        <a href="#home" class="logo-wrap">
+            <img src="gdglogo.png" alt="GDG Cloud Udaipur Logo" class="logo-img">
+            <div class="logo-title-group">
+                <div class="logo-brand">GDG <span class="cloud">Cloud</span> Udaipur</div>
+                <div class="logo-tagline">Lakecity Chapter · झीलों की नगरी</div>
+            </div>
+        </a>
+
+        <div class="nav-links" id="navLinks">
             <a href="#home" class="active">Home</a>
-            <a href="#events">Events</a>
-            <a href="#organizers">Team</a>
+            <a href="#spirit">Spirit of Mewar</a>
+            <a href="#events">Lakecity Events</a>
             <a href="#about">About</a>
-            <a href="#contact">Contact</a>
+            <a href="#organizers">Team</a>
+            <a href="#contact">Connect</a>
+        </div>
+
+        <div class="nav-actions">
+            <div class="khamma-ghani-badge">
+                <span class="diya-spark"></span>
+                <span>खम्मा घणी</span>
+            </div>
+
+            <a href="https://gdg.community.dev/gdg-cloud-udaipur/" target="_blank" rel="noopener" class="btn-join">
+                <span>Join Chapter</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation">
+                <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16" /></svg>
+            </button>
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero Section with City Palace from the CCD Website -->
     <section class="hero" id="home">
-        <!-- Floating Icons -->
-        <div class="floating-icon icon-1"><svg viewBox="0 0 24 24" fill="var(--g-blue)">
-                <path
-                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
-            </svg></div>
-        <div class="floating-icon icon-2"><svg viewBox="0 0 24 24" fill="var(--g-red)">
-                <path
-                    d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" />
-            </svg></div>
-        <div class="floating-icon icon-3"><svg viewBox="0 0 24 24" fill="var(--g-yellow)">
-                <path
-                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
-            </svg></div>
-        <div class="floating-icon icon-4"><svg viewBox="0 0 24 24" fill="var(--g-green)">
-                <path
-                    d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-5 14H9v-2h6v2zm-3-7c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z" />
-            </svg></div>
+        <!-- Live City Palace SVG Scene from CCD Website -->
+        <div class="hero-scene" id="heroScene"></div>
+        <div class="hero-scrim"></div>
+        <div class="toran" id="toran"></div>
 
         <div class="hero-content">
-            <div class="hero-badge">Welcome to the Future</div>
-            <h1>Innovate with <br><span>Google Cloud</span></h1>
-            <p>Join Udaipur's premier developer community. We build, learn, and grow together using the latest Google
-                technologies.</p>
+            <div class="hero-badge-pill">
+                <span class="lotus-icon">🪔</span>
+                <span class="mewar-font">पधारो म्हारे देस</span>
+                <span>·</span>
+                <span>City of Lakes, Cradle of Builders</span>
+            </div>
+
+            <h1>Where Royal Mewar Meets<br><span class="highlight-google">Cloud & AI Innovation</span></h1>
+
+            <p class="hero-subtitle">
+                Welcome to <strong>GDG Cloud Udaipur</strong>. Rooted in 500+ years of unyielding Mewari resilience, we build the future of Google Cloud, Vertex AI, and Agentic intelligence—right from the serene shores of Lake Pichola and Fateh Sagar.
+            </p>
+
             <div class="cta-group">
-                <a href="#events" class="btn btn-primary">Explore Events</a>
-                <a href="https://gdg.community.dev/gdg-cloud-udaipur/" target="_blank" class="btn btn-secondary">Join
-                    Chapter</a>
+                <a href="#events" class="btn btn-gold">
+                    <span>Explore Lakecity Events</span>
+                    <span>🌊</span>
+                </a>
+                <a href="ccdudaipur2026/ccdudaipur/ccd.html" class="btn btn-ccd-flagship">
+                    <span>CCD Udaipur '26</span>
+                    <span>☁️</span>
+                </a>
+                <a href="https://gdg.community.dev/gdg-cloud-udaipur/" target="_blank" rel="noopener" class="btn btn-secondary">
+                    <span>Join Chapter</span>
+                    <span>🤝</span>
+                </a>
+            </div>
+
+            <!-- Sky Mood Controls (Day, Sunset, Gold Night, Live IST) from CCD -->
+            <div class="sky-control-pill">
+                <span style="font-size:0.75rem; color:var(--royal-gold); font-weight:700; margin-right:4px;">SKY:</span>
+                <button class="sky-btn active" data-hour="20">🌙 Night Palace</button>
+                <button class="sky-btn" data-hour="18">🌅 Sunset</button>
+                <button class="sky-btn" data-hour="13">☀️ Day</button>
+                <button class="sky-btn" id="skyLiveBtn">⏰ Live IST</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Udaipur Chapter Stats Strip -->
+    <div class="udaipur-stats-strip">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-num">500+</div>
+                <div class="stat-label">Years of Mewar Heritage</div>
+                <div class="stat-desc">Courage, grit & artistic excellence</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-num">5</div>
+                <div class="stat-label">Historic Lakes Inspiring Us</div>
+                <div class="stat-desc">Pichola, Fateh Sagar, Badi & more</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-num">2,000+</div>
+                <div class="stat-label">Community Innovators</div>
+                <div class="stat-desc">Developers, students & founders</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-num">10+</div>
+                <div class="stat-label">Flagship Gatherings</div>
+                <div class="stat-desc">From Hackathons to Cloud Days</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- "The Spirit of Udaipur" Section -->
+    <section id="spirit">
+        <div class="section-header">
+            <div class="section-pill">⚜️ Mewar Tech Ethos ⚜️</div>
+            <h2>The Spirit of <span>Udaipur</span></h2>
+            <p>How the lakes, monuments, and timeless culture of Mewar fuel Rajasthan's most passionate developer chapter.</p>
+            <div class="arch-divider">
+                <div class="line"></div>
+                <div class="symbol">🪔</div>
+                <div class="line"></div>
+            </div>
+        </div>
+
+        <div class="spirit-grid">
+            <div class="spirit-card">
+                <div class="spirit-icon-wrap">🌊</div>
+                <h3>Fateh Sagar Paal</h3>
+                <div class="spirit-hindi">फ़तेह सागर पाल · The Open Ideation Hub</div>
+                <p>
+                    Evening breeze, roadside kulhad chai, and open whiteboards. Udaipur's developers have long gathered by the waters of Fateh Sagar to debate architectures, brainstorm hackathon prototypes, and collaborate beyond classroom walls.
+                </p>
+                <div class="spirit-tag">#LakefrontVibes</div>
+            </div>
+
+            <div class="spirit-card">
+                <div class="spirit-icon-wrap">🏰</div>
+                <h3>City Palace Resilience</h3>
+                <div class="spirit-hindi">सिटी पैलेस · Architectural Scalability</div>
+                <p>
+                    Constructed over 400 years by generations of Mewar rulers, the City Palace stands unshakeable against the tests of time. That same resilience inspires how we design distributed, high-availability, fault-tolerant cloud systems on GCP.
+                </p>
+                <div class="spirit-tag">#ResilientSystems</div>
+            </div>
+
+            <div class="spirit-card">
+                <div class="spirit-icon-wrap">⛰️</div>
+                <h3>Sajjangarh Vision</h3>
+                <div class="spirit-hindi">सज्जनगढ़ · Elevated Horizons</div>
+                <p>
+                    Perched high atop Bansdara Peak, the Monsoon Palace watches over the entire Aravalli skyline. We channel this panoramic vision into frontier tech—deep diving into Gemini 2.0, autonomous AI agents, and next-gen cloud infra.
+                </p>
+                <div class="spirit-tag">#FrontierAI</div>
+            </div>
+
+            <div class="spirit-card">
+                <div class="spirit-icon-wrap">🪔</div>
+                <h3>Khamma Ghani Warmth</h3>
+                <div class="spirit-hindi">खम्मा घणी · Rajasthani Inclusivity</div>
+                <p>
+                    <em>Atithi Devo Bhava</em> runs in our veins. Whether you are writing your first line of Python in college or leading an enterprise cloud migration, GDG Cloud Udaipur welcomes you with open arms, equal respect, and generous mentorship.
+                </p>
+                <div class="spirit-tag">#CommunityFirst</div>
             </div>
         </div>
     </section>
@@ -1004,63 +1981,27 @@
     <!-- Events Section -->
     <section id="events">
         <div class="section-header">
-            <h2>Upcoming Events</h2>
-            <p>Level up your skills with our hands-on workshops and tech talks.</p>
-        </div>
-        <div class="events-grid" id="events-container">
-            <!-- Events injected via JS -->
-        </div>
-    </section>
-
-    <!-- Past Events Section -->
-    <section id="past-events">
-        <div class="section-header">
-            <h2>Past Events</h2>
-            <p>Check out what we've been up to.</p>
-        </div>
-        <div class="events-grid" id="past-events-container">
-            <!-- Past Events injected via JS -->
-        </div>
-    </section>
-
-    <!-- Organizers Section -->
-    <section id="organizers">
-        <div class="section-header">
-            <h2>Meet the Team</h2>
-            <p>The passionate individuals behind GDG Cloud Udaipur.</p>
-        </div>
-        <div class="organizers-container">
-            <div class="profile-card" data-tilt>
-                <div class="profile-content">
-                    <div class="profile-img-container">
-                        <img src="https://raw.githubusercontent.com/GDGCloudUdaipur/gdgcloududaipur.github.io/main/abhinav.jpeg"
-                            alt="Abhinav Jain" class="profile-img">
-                    </div>
-                    <h3 class="profile-name">Abhinav Jain</h3>
-                    <p class="profile-role">Lead Organizer</p>
-                    <p class="profile-bio">Tech Innovator and Community Leader with 5+ years in AI & Cloud.</p>
-                    <div class="social-icons">
-                        <a href="https://www.linkedin.com/in/abhinav-jain-8b4bab62/" target="_blank" class="social-btn"
-                            title="LinkedIn">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                fill="currentColor">
-                                <path
-                                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                            </svg>
-                        </a>
-                        <a href="mailto:abhinav.jain1411@gmail.com" class="social-btn" title="Email">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
-                                </path>
-                                <polyline points="22,6 12,13 2,6"></polyline>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
+            <div class="section-pill">🎪 Tech Gatherings 🎪</div>
+            <h2>Lakecity <span>Events & Hackathons</span></h2>
+            <p>Hands-on workshops, national hackathons, and Google Cloud summits crafted for passionate builders.</p>
+            <div class="arch-divider">
+                <div class="line"></div>
+                <div class="symbol">⚡</div>
+                <div class="line"></div>
             </div>
-            <!-- Add more organizers here if needed -->
+        </div>
+
+        <div class="events-filter-bar">
+            <button class="filter-btn active" data-filter="all">All Gatherings</button>
+            <button class="filter-btn" data-filter="upcoming">Upcoming Events</button>
+            <button class="filter-btn" data-filter="past">Past Chronicles</button>
+        </div>
+
+        <!-- Upcoming Events Grid -->
+        <div class="events-container-wrapper">
+            <div class="events-grid" id="events-container">
+                <!-- Dynamically populated via JS -->
+            </div>
         </div>
     </section>
 
@@ -1071,62 +2012,136 @@
                 <div class="tesseract-wrapper">
                     <div class="tesseract">
                         <div class="cube-outer">
-                            <div class="face front">Innovate</div>
-                            <div class="face back">Build</div>
-                            <div class="face right">Connect</div>
-                            <div class="face left">Grow</div>
-                            <div class="face top">Learn</div>
-                            <div class="face bottom">Lead</div>
+                            <div class="face front">INNOVATE</div>
+                            <div class="face back">MEWAR</div>
+                            <div class="face right">CONNECT</div>
+                            <div class="face left">BUILD</div>
+                            <div class="face top">LEARN</div>
+                            <div class="face bottom">LEAD</div>
                         </div>
                         <div class="cube-inner">
-                            <div class="face front"></div>
-                            <div class="face back"></div>
-                            <div class="face right"></div>
-                            <div class="face left"></div>
-                            <div class="face top"></div>
-                            <div class="face bottom"></div>
+                            <div class="face front">🪔</div>
+                            <div class="face back">🏰</div>
+                            <div class="face right">☁️</div>
+                            <div class="face left">✨</div>
+                            <div class="face top">🌟</div>
+                            <div class="face bottom">🌊</div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="about-content">
-                <h3>About Our Community</h3>
-                <p>GDG Cloud Udaipur is a vibrant ecosystem of developers, students, and tech enthusiasts. We are
-                    passionate about Google Cloud Platform, Open Source, and the future of technology.</p>
-                <p>Our mission is to foster an inclusive learning environment where everyone can share knowledge,
-                    collaborate on innovative projects, and accelerate their career growth.</p>
-                <a href="#" class="btn btn-secondary" style="margin-top: 20px;">Read More</a>
+                <div class="section-pill">🏛️ Our Legacy & Mission 🏛️</div>
+                <h3>Rooted in Mewar,<br><span>Building for the World</span></h3>
+                <p>
+                    GDG Cloud Udaipur is Rajasthan’s premier community of developers, cloud engineers, AI researchers, and students. Founded in the historic Venice of the East, we combine Rajasthan's timeless traditions of craftsmanship and honour with world-class engineering.
+                </p>
+                <p>
+                    From conducting deep-dive workshops on Google Cloud Platform, Vertex AI, and Kubernetes, to hosting the flagship Cloud Community Days and the Agentic Premier League, our mission is to build local talent into global technology leaders.
+                </p>
+
+                <div class="about-stats-mini">
+                    <div class="mini-stat">
+                        <div class="m-val">100%</div>
+                        <div class="m-lbl">Open & Free</div>
+                    </div>
+                    <div class="mini-stat">
+                        <div class="m-val">3,000+</div>
+                        <div class="m-lbl">Devs Impacted</div>
+                    </div>
+                    <div class="mini-stat">
+                        <div class="m-val">Lakecity</div>
+                        <div class="m-lbl">Headquarters</div>
+                    </div>
+                </div>
+
+                <a href="https://gdg.community.dev/gdg-cloud-udaipur/" target="_blank" rel="noopener" class="btn btn-gold">
+                    <span>Learn More on Community Dev</span>
+                    <span>→</span>
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Organizers Section -->
+    <section id="organizers">
+        <div class="section-header">
+            <div class="section-pill">👥 The Lakecity Council 👥</div>
+            <h2>Meet the <span>Organizers</span></h2>
+            <p>The dedicated individuals steering GDG Cloud Udaipur's vision and community programs.</p>
+            <div class="arch-divider">
+                <div class="line"></div>
+                <div class="symbol">👑</div>
+                <div class="line"></div>
+            </div>
+        </div>
+
+        <div class="organizers-container">
+            <div class="profile-card" data-tilt>
+                <div class="profile-content">
+                    <div class="profile-img-container">
+                        <img src="abhinav.jpeg" alt="Abhinav Jain" class="profile-img">
+                        <span class="profile-badge">Lead</span>
+                    </div>
+                    <h3 class="profile-name">Abhinav Jain</h3>
+                    <p class="profile-role">Lead Organizer · GDG Cloud Udaipur</p>
+                    <p class="profile-bio">
+                        Tech Innovator, AI Researcher and Community Leader with 5+ years in AI, Cloud Computing, and Developer Ecosystems. Championing Udaipur's technology transformation.
+                    </p>
+                    <div class="social-icons">
+                        <a href="https://www.linkedin.com/in/abhinav-jain-8b4bab62/" target="_blank" rel="noopener" class="social-btn" title="LinkedIn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                            </svg>
+                        </a>
+                        <a href="mailto:abhinav.jain1411@gmail.com" class="social-btn" title="Email">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Community WhatsApp Section -->
     <section id="contact" class="contact-section">
         <div class="contact-container">
             <div class="contact-info">
-                <h2>Stay Connected</h2>
-                <p>Join our official WhatsApp group to get instant updates, network with peers, and be part of the
-                    conversation.</p>
-                <a href="https://chat.whatsapp.com/EesExCP4NMD4CjvT7TlQ2x?s=cl&p=i&mlu=4" target="_blank" class="btn btn-primary">
-                    Join WhatsApp Group
-                </a>
+                <div class="section-pill">💬 Lakecity WhatsApp Community 💬</div>
+                <h2>Stay Connected with<br><span>Udaipur Builders</span></h2>
+                <p>
+                    Join our vibrant WhatsApp group to get instant alerts on upcoming lakeside meetups, hackathons, speaker opportunities, and peer discussions.
+                </p>
+                <div style="display:flex; gap:16px; flex-wrap:wrap;">
+                    <a href="https://chat.whatsapp.com/EesExCP4NMD4CjvT7TlQ2x?s=cl&p=i&mlu=4" target="_blank" rel="noopener" class="btn btn-gold">
+                        <span>Join Official WhatsApp</span>
+                        <span>📱</span>
+                    </a>
+                    <a href="https://www.linkedin.com/company/gdg-cloud-udaipur/" target="_blank" rel="noopener" class="btn btn-secondary">
+                        <span>Follow on LinkedIn</span>
+                    </a>
+                </div>
             </div>
+
+            <!-- 3D Smartphone Simulation -->
             <div class="phone-wrapper">
                 <div class="phone-3d">
                     <div class="screen">
                         <div class="chat-header">
-                            <div style="width:30px;height:30px;background:rgba(255,255,255,0.2);border-radius:50%;">
-                            </div>
+                            <div class="chat-avatar">🪔</div>
                             <div>
-                                <div style="font-weight:bold;font-size:0.9rem;">GDG Cloud Udaipur</div>
-                                <div style="font-size:0.7rem;opacity:0.8;">Tap to view info</div>
+                                <div style="font-weight:700; font-size:0.92rem;">GDG Cloud Udaipur</div>
+                                <div style="font-size:0.7rem; color:#8696A0;">Active Community · Udaipur, Raj</div>
                             </div>
                         </div>
                         <div class="chat-body" id="chat-body">
-                            <!-- Messages injected via JS -->
+                            <!-- Messages populated by JS -->
                         </div>
                         <div class="chat-footer">
-                            <input type="text" class="chat-input" placeholder="Type a message...">
+                            <input type="text" class="chat-input" placeholder="Type खम्मा घणी..." readonly>
                             <div class="send-btn-icon">➤</div>
                         </div>
                     </div>
@@ -1135,106 +2150,187 @@
         </div>
     </section>
 
+    <!-- Toast Notification Element -->
+    <div class="toast-msg" id="toastMsg"></div>
+
     <!-- Footer -->
     <footer>
+        <div class="footer-toran">
+            <span>⚜️</span>
+            <span>खम्मा घणी उदयपुर · पधारो म्हारे देस</span>
+            <span>⚜️</span>
+        </div>
+
+        <div class="footer-brand">
+            <h4>GDG Cloud Udaipur</h4>
+            <p>The Premier Lakecity Developer Community</p>
+        </div>
+
         <div class="footer-links">
-            <a href="#">Home</a>
-            <a href="#">Events</a>
-            <a href="#">Team</a>
-            <a href="#">Privacy</a>
+            <a href="#home">Home</a>
+            <a href="#spirit">Spirit of Mewar</a>
+            <a href="#events">Events</a>
+            <a href="#about">About</a>
+            <a href="#organizers">Team</a>
+            <a href="ccdudaipur2026/ccdudaipur/ccd.html">CCD Udaipur '26</a>
+            <a href="hack2026.html">Lakecity Hackathon</a>
+            <a href="apl.html">APL Hackathon</a>
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="terms-conditions.html">Terms & Conditions</a>
+            <a href="refund-policy.html">Refund Policy</a>
         </div>
-        <div class="social-icons" style="justify-content: center; margin-bottom: 20px;">
-            <a href="https://www.linkedin.com/company/gdg-cloud-udaipur/" target="_blank" class="social-btn"
-                title="LinkedIn">
+
+        <div class="social-icons" style="justify-content: center; margin-bottom: 25px;">
+            <a href="https://www.linkedin.com/company/gdg-cloud-udaipur/" target="_blank" rel="noopener" class="social-btn" title="LinkedIn">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                        d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                 </svg>
             </a>
-            <a href="https://chat.whatsapp.com/EesExCP4NMD4CjvT7TlQ2x?s=cl&p=i&mlu=4" target="_blank" class="social-btn"
-                title="WhatsApp">
+            <a href="https://chat.whatsapp.com/EesExCP4NMD4CjvT7TlQ2x?s=cl&p=i&mlu=4" target="_blank" rel="noopener" class="social-btn" title="WhatsApp">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                        d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
+                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
+                </svg>
+            </a>
+            <a href="https://gdg.community.dev/gdg-cloud-udaipur/" target="_blank" rel="noopener" class="social-btn" title="GDG Platform">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
                 </svg>
             </a>
         </div>
-        <p class="copyright">&copy; 2025 GDG Cloud Udaipur. All Rights Reserved.</p>
+
+        <p class="footer-disclaimer">
+            Disclaimer: GDG Cloud Udaipur is an independent community; activities and opinions expressed on this site should in no way be linked to Google, the corporation. To learn more about the official Google Developer Groups program, visit developers.google.com/community/gdg.
+        </p>
+
+        <p class="copyright">
+            &copy; 2026 GDG Cloud Udaipur. Handcrafted with Mewari Pride & Google Cloud Spirit in Udaipur, Rajasthan.
+        </p>
     </footer>
 
+    <!-- Load the City Palace Udaipur Scene Engine from CCD -->
+    <script src="scene.js"></script>
+
+    <!-- Interactive Scripts: Scene Controller, 3D Tilt, Events Filter & WhatsApp Engine -->
     <script>
-        // --- 1. Particle Background Animation ---
-        const canvas = document.getElementById('canvas-container');
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        /* ==========================================================================
+           1. INITIALIZE CITY PALACE SCENE (From CCD Website)
+           Includes: City Palace, Lake Palace, Jag Mandir, Sajjangarh, Karni Mata ropeway,
+           boats, kites, fireworks, and live starlight over Lake Pichola.
+           ========================================================================== */
+        const heroEl = document.getElementById("home");
+        const heroSceneContainer = document.getElementById("heroScene");
+        const heroScene = UdaipurScene.build(heroSceneContainer, { seed: 11, lotus: 0, lotusX: 1250 });
 
-        let particles = [];
-        const colors = ['#4285F4', '#EA4335', '#FBBC05', '#34A853'];
-
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 3;
-                this.speedX = Math.random() * 1 - 0.5;
-                this.speedY = Math.random() * 1 - 0.5;
-                this.color = colors[Math.floor(Math.random() * colors.length)];
-            }
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-                if (this.x > canvas.width) this.x = 0;
-                if (this.x < 0) this.x = canvas.width;
-                if (this.y > canvas.height) this.y = 0;
-                if (this.y < 0) this.y = canvas.height;
-            }
-            draw() {
-                ctx.fillStyle = this.color;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
+        // Calculate live IST hour in Udaipur
+        function getIstHour() {
+            const now = new Date();
+            const utc = now.getTime() + now.getTimezoneOffset() * 60000;
+            const ist = new Date(utc + 5.5 * 3600000);
+            return ist.getHours() + ist.getMinutes() / 60 + ist.getSeconds() / 3600;
         }
 
-        function initParticles() {
-            for (let i = 0; i < 100; i++) {
-                particles.push(new Particle());
-            }
-        }
+        // Set default scene lighting: 20 (8:00 PM - floodlit gold City Palace, glowing windows, fireworks, and Pichola diyas)
+        let activeHour = 20;
+        heroScene.setHour(activeHour);
 
-        function animateParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            for (let i = 0; i < particles.length; i++) {
-                particles[i].update();
-                particles[i].draw();
-                // Connect particles
-                for (let j = i; j < particles.length; j++) {
-                    const dx = particles[i].x - particles[j].x;
-                    const dy = particles[i].y - particles[j].y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
-                    if (distance < 100) {
-                        ctx.beginPath();
-                        ctx.strokeStyle = `rgba(255, 255, 255, ${0.1 - distance / 1000})`;
-                        ctx.lineWidth = 0.5;
-                        ctx.moveTo(particles[i].x, particles[i].y);
-                        ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.stroke();
-                    }
+        // Sky Mood Toolbar buttons
+        const skyButtons = document.querySelectorAll(".sky-btn");
+        let isLiveIst = false;
+
+        skyButtons.forEach(btn => {
+            btn.addEventListener("click", () => {
+                skyButtons.forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+
+                if (btn.id === "skyLiveBtn") {
+                    isLiveIst = true;
+                    const h = getIstHour();
+                    heroScene.setHour(h);
+                    showToast(`Udaipur Sky: Live IST (${Math.floor(h)}:${Math.floor((h % 1) * 60).toString().padStart(2, '0')})`);
+                } else {
+                    isLiveIst = false;
+                    const h = parseFloat(btn.dataset.hour);
+                    heroScene.setHour(h);
+                    const label = btn.innerText;
+                    showToast(`Udaipur Sky: ${label}`);
                 }
-            }
-            requestAnimationFrame(animateParticles);
-        }
-        initParticles();
-        animateParticles();
-
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+            });
         });
 
+        // Update live time if IST mode active
+        setInterval(() => {
+            if (isLiveIst) {
+                heroScene.setHour(getIstHour());
+            }
+        }, 30000);
 
-        // --- 2. 3D Tilt Effect for Cards ---
+        // Depth parallax on mouse move: Sajjangarh, City Palace & lake drift with cursor
+        let px = 0, py = 0, pending = false;
+        heroEl.addEventListener("pointermove", (e) => {
+            px = (e.clientX / window.innerWidth - 0.5) * -2;
+            py = (e.clientY / window.innerHeight - 0.5) * -2;
+            if (!pending) {
+                pending = true;
+                requestAnimationFrame(() => {
+                    pending = false;
+                    heroScene.parallax(px, py);
+                });
+            }
+        });
+        heroEl.addEventListener("pointerleave", () => heroScene.parallax(0, 0));
+
+        // Patang-baazi: Tap/click a flying kite to cut it loose!
+        heroSceneContainer.addEventListener("click", (e) => {
+            const k = e.target.closest(".kite");
+            if (!k || k.classList.contains("cut")) return;
+            k.style.setProperty("--kx", (Math.random() < 0.5 ? -1 : 1) * (160 + Math.random() * 200) + "px");
+            k.classList.add("cut");
+            showToast("वो काटा! 🪁 Kite cut loose over Udaipur!");
+            setTimeout(() => k.classList.remove("cut"), 9000);
+        });
+
+        // Toran: Festive bunting of Google-colour pennants and marigolds from CCD
+        function drawToran() {
+            const el = document.getElementById("toran");
+            if (!el) return;
+            const w = el.clientWidth || window.innerWidth;
+            const seg = 240;
+            const n = Math.ceil(w / 26);
+            const y = (x) => 6 + 14 * Math.sin((Math.PI * (x % seg)) / seg);
+            const cols = ["var(--g-blue)", "var(--g-green)", "var(--g-yellow)", "var(--g-red)"];
+            let d = "M0 6", items = "";
+            for (let x = 0; x <= w; x += 8) d += `L${x} ${y(x).toFixed(1)}`;
+            for (let i = 0; i < n; i++) {
+                const x = i * 26 + 13, top = y(x);
+                if (i % 5 === 4) {
+                    items += `<g class="marigold" style="animation-delay:${(-i * 0.3).toFixed(1)}s"><circle cx="${x}" cy="${top + 7}" r="5" fill="#f28c28"/><circle cx="${x}" cy="${top + 16}" r="4.5" fill="#f9ab00"/><circle cx="${x}" cy="${top + 24}" r="4" fill="#f28c28"/></g>`;
+                } else {
+                    items += `<path class="pennant" style="animation-delay:${(-i * 0.37).toFixed(1)}s" d="M${x - 9} ${top.toFixed(1)}L${x + 9} ${top.toFixed(1)}L${x} ${(top + 26).toFixed(1)}Z" fill="${cols[i % 4]}"/>`;
+                }
+            }
+            el.innerHTML = `<svg viewBox="0 0 ${w} 70" preserveAspectRatio="none"><path class="string" d="${d}"/>${items}</svg>`;
+        }
+        drawToran();
+        let toranResizeTimer;
+        window.addEventListener("resize", () => {
+            clearTimeout(toranResizeTimer);
+            toranResizeTimer = setTimeout(drawToran, 200);
+        });
+
+        // Toast notification helper
+        const toastEl = document.getElementById("toastMsg");
+        let toastTimeout;
+        function showToast(msg) {
+            toastEl.innerHTML = msg;
+            toastEl.classList.add("show");
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => toastEl.classList.remove("show"), 3200);
+        }
+
+
+        /* ==========================================================================
+           2. 3D CARD TILT EFFECT (Physics-based Parallax)
+           ========================================================================== */
         document.addEventListener('mousemove', (e) => {
             const cards = document.querySelectorAll('.card-3d, .profile-card');
             cards.forEach(card => {
@@ -1245,9 +2341,7 @@
                 if (x >= 0 && x <= rect.width && y >= 0 && y <= rect.height) {
                     const centerX = rect.width / 2;
                     const centerY = rect.height / 2;
-                    // Use less movement for upcoming events
-                    const isUpcoming = card.classList.contains('upcoming-card-3d');
-                    const maxTilt = isUpcoming ? 3 : 10; // Decreased tilt for upcoming
+                    const maxTilt = 8;
                     const rotateX = ((y - centerY) / centerY) * -maxTilt;
                     const rotateY = ((x - centerX) / centerX) * maxTilt;
 
@@ -1259,162 +2353,209 @@
         });
 
 
-        // --- 3. Populate Events ---
+        /* ==========================================================================
+           3. COMPLETE EVENTS DATA & DYNAMIC FILTER ENGINE
+           ========================================================================== */
         const eventsData = [
             {
                 title: "Build With AI - Hands-on",
                 date: "Apr 06, 2025",
-                desc: "Deep dive into GenAI with Google Cloud. Build real-world apps.",
-                img: "https://raw.githubusercontent.com/GDGCloudUdaipur/gdgcloududaipur.github.io/main/buildwithai.webp",
-                link: "https://gdg.community.dev/events/details/google-gdg-cloud-udaipur-presents-build-with-ai-udaipur-hands-on-edition/"
+                desc: "Deep dive into GenAI with Google Cloud. Build real-world apps with Vertex AI and Gemini APIs.",
+                img: "buildwithai.webp",
+                link: "https://gdg.community.dev/events/details/google-gdg-cloud-udaipur-presents-build-with-ai-udaipur-hands-on-edition/",
+                tag: "Hands-on Workshop"
             },
             {
-                title: "Build with AI: Chapter 2 Stock Markets and Financial Markets with Gemini — AI Power for Everyone",
+                title: "Build with AI: Chapter 2 Stock & Financial Markets with Gemini",
                 date: "May 11, 2025",
-                desc: "Build with AI: Chapter 2 dives deep into how Gemini AI is reshaping two critical areas: the world of stock and financial markets, and the future of no-code innovation.",
-                img: "https://raw.githubusercontent.com/GDGCloudUdaipur/gdgcloududaipur.github.io/main/buildwithai.webp",
-                link: "https://gdg.community.dev/events/details/google-gdg-cloud-udaipur-presents-build-with-ai-chapter-2-stock-markets-and-financial-markets-with-gemini-ai-power-for-everyone/"
+                desc: "Explore how Gemini AI is reshaping algorithmic trading, market intelligence, and no-code financial agents.",
+                img: "buildwithai.webp",
+                link: "https://gdg.community.dev/events/details/google-gdg-cloud-udaipur-presents-build-with-ai-chapter-2-stock-markets-and-financial-markets-with-gemini-ai-power-for-everyone/",
+                tag: "GenAI & Finance"
             },
             {
-                title: "AI for everyone - Udaipur Cloud Edition",
+                title: "AI for Everyone - Udaipur Cloud Edition",
                 date: "Dec 29, 2024",
-                desc: "AI for Everyone at Udaipur Cloud Edition, powered by Google, is a mixture of Tech talks and hands-on session designed to demystify AI and showcase its transformative potential using Google Cloud technologies. This session will introduce developers and tech enthusiasts to the powerful AI and machine learning tools available on Google Cloud, including Vertex AI, TensorFlow, and AutoML. ",
-                img: "https://raw.githubusercontent.com/GDGCloudUdaipur/gdgcloududaipur.github.io/main/aiforeveryone.png",
-                link: "https://gdg.community.dev/events/details/google-gdg-cloud-udaipur-presents-ai-for-everyone-udaipur-cloud-edition/"
+                desc: "Demystifying AI and showcasing transformative Google Cloud technologies including Vertex AI, TensorFlow, and AutoML.",
+                img: "aiforeveryone.png",
+                link: "https://gdg.community.dev/events/details/google-gdg-cloud-udaipur-presents-ai-for-everyone-udaipur-cloud-edition/",
+                tag: "Cloud Edition"
             },
             {
-                title: "Cloud Community Days",
+                title: "Cloud Community Days Udaipur 2025",
                 date: "Jun 29, 2025",
-                desc: "Udaipur, the flagship event by Google Developer Group Cloud Udaipur, where innovation meets inspiration. This full-day experience will bring together Googlers, Google Developer Experts (GDEs), startup leaders, and cloud professionals to explore the future of technology.",
-                img: "https://raw.githubusercontent.com/GDGCloudUdaipur/gdgcloududaipur.github.io/main/cloudcommunity.jpeg",
-                link: "https://gdg.community.dev/events/details/google-gdg-cloud-udaipur-presents-google-cloud-community-days-udaipur-2025/"
+                desc: "The flagship summit bringing together Googlers, Google Developer Experts, startup founders, and cloud architects in Udaipur.",
+                img: "cloudcommunity.jpeg",
+                link: "https://gdg.community.dev/events/details/google-gdg-cloud-udaipur-presents-google-cloud-community-days-udaipur-2025/",
+                tag: "Flagship Summit"
             },
             {
-                title: "AI for Everyone - Learn, Build, and Innovate with GDG Cloud Udaipur",
+                title: "AI for Everyone - Learn, Build, and Innovate",
                 date: "Nov 30, 2025",
-                desc: "Join us for an exciting offline workshop - 'AI for Everyone: Learn, Build, and Innovate with Google Cloud and Gemini'. In this engaging session, you will discover how to harness the power of AI using Google Cloud and the innovative Gemini platform. Our expert speakers will guide you through basic AI concepts, help you develop some practical skills and, and provide hands-on experience with Google Cloud tools.",
-                img: "https://raw.githubusercontent.com/GDGCloudUdaipur/gdgcloududaipur.github.io/main/aiforeveryone.png",
-                link: "https://gdg.community.dev/events/details/google-gdg-cloud-udaipur-presents-ai-for-everyone-learn-build-and-innovate-with-gdg-cloud-udaipur/"
+                desc: "Engaging offline workshop exploring Google Cloud AI and Gemini to develop hands-on skills with real-world developer tools.",
+                img: "aiforeveryone.png",
+                link: "https://gdg.community.dev/events/details/google-gdg-cloud-udaipur-presents-ai-for-everyone-learn-build-and-innovate-with-gdg-cloud-udaipur/",
+                tag: "Offline Workshop"
             },
             {
-                title: "Hackathon 2026 - Round 1",
+                title: "Google Lakecity Hackathon 2026 - Round 1",
                 date: "Jan 30, 2026",
-                desc: "Google Lakecity Hackathon 2026 invites you to design and build impactful tech solutions using Google AI, Gemini APIs, or Google Cloud. Participants may create any project within the following broad themes, using Google technologies in creative and innovative ways.",
-                img: "https://raw.githubusercontent.com/GDGCloudUdaipur/gdgcloududaipur.github.io/main/hackathon.jpg",
-                link: "hack2026.html"
+                desc: "Design and build impactful solutions using Google AI, Gemini APIs, and Cloud Run to address regional and global challenges.",
+                img: "hackathon.jpg",
+                link: "hack2026.html",
+                tag: "Lakecity Hackathon"
             },
             {
                 title: "Agentic Premier League: The Vibe Coding Hackathon!",
                 date: "May 24, 2026",
-                desc: "The real magic of the Indian Premier League meets innovation—watch live matches on a big screen, enjoy a curated dinner, and build powerful agentic solutions in just 3 hours. And the best part? Walk away with exciting smart gadgets as rewards, all in real time.",
-                img: "https://raw.githubusercontent.com/GDGCloudUdaipur/gdgcloududaipur.github.io/main/apl.png",
-                link: "apl.html"
+                desc: "IPL cricket energy meets agentic innovation. Watch live matches, code autonomous agents in 3 hours, and win smart gadgets.",
+                img: "apl.png",
+                link: "apl.html",
+                tag: "Vibe Coding Hackathon"
             },
             {
                 title: "Build with AI: ABC (Anybody Can Code)",
                 date: "Sept 6, 2026",
-                desc: "Join us for an engaging 'Build with AI: ABC (Anybody Can Code)' session on September 6, 2026, as we dive into the fascinating world of artificial intelligence. Experience the magic of AI and Google technologies through interactive hands-on activities and explore how AI can transform everyday tasks. Plus, get an exclusive sneak peek into what's in store for the upcoming Cloud Community Days. Don’t miss this opportunity to connect with like-minded enthusiasts and expand your horizons. Reserve your spot now and be part of the future!",
-                img: "https://raw.githubusercontent.com/GDGCloudUdaipur/gdgcloududaipur.github.io/main/abc.png",
-                link: "https://gdg.community.dev/events/details/google-gdg-cloud-udaipur-presents-build-with-ai-abc-anybody-can-code-udaipur-edition/"
+                desc: "Interactive session welcoming beginners into AI. Experience hands-on coding and get an exclusive preview of CCD Udaipur 2026.",
+                img: "abc.png",
+                link: "https://gdg.community.dev/events/details/google-gdg-cloud-udaipur-presents-build-with-ai-abc-anybody-can-code-udaipur-edition/",
+                tag: "Beginner Boot"
             },
             {
                 title: "Code for Communities 2.0 Kickoff",
                 date: "Sept 27, 2026",
-                desc: "Code for Communities 2.0, supported by GDG Cloud Udaipur, is a national hackathon for developers, AI enthusiasts, and innovators to tackle real-world challenges using AI. Collaborate on projects in governance, climate resilience, health, and agriculture. Engage with Google Cloud tools, receive mentorship, and create impactful solutions. Ideal for developers, students, and tech enthusiasts.",
-                img: "https://raw.githubusercontent.com/GDGCloudUdaipur/gdgcloududaipur.github.io/main/codeForCom.png",
-                link: "https://gdg.community.dev/events/details/google-gdg-cloud-udaipur-presents-code-for-communities-20-kickoff-ai-amp-innovation/"
+                desc: "National hackathon tackling governance, climate resilience, agriculture, and healthcare challenges using Google Cloud tools.",
+                img: "codeForCom.png",
+                link: "https://gdg.community.dev/events/details/google-gdg-cloud-udaipur-presents-code-for-communities-20-kickoff-ai-amp-innovation/",
+                tag: "National Hackathon"
             },
             {
-                title: "Google Cloud Community Days Udaipur 2026",
-                date: "Dec 06, 2026",
-                desc: "CCD Udaipur 2026 is HERE! ☁️ Join GDG Cloud Udaipur for our flagship event Cloud Community Days Udaipur 2026. We’re diving deep into GenAI, Agentic Workflows, and much more! Connect, vibe, and level up with the brightest devs and founders in the ecosystem. Let’s build the future together, the Udaipur way!",
-                img: "https://raw.githubusercontent.com/GDGCloudUdaipur/gdgcloududaipur.github.io/main/ccd2.png",
-                link: "ccdudaipur2026/ccdudaipur/ccd.html"
+                title: "Google Cloud Community Days (CCD) Udaipur 2026",
+                date: "Dec 20, 2026",
+                desc: "The premier Lakecity tech summit! Deep diving into GenAI, multi-agent workflows, and Google Cloud with top tech leaders.",
+                img: "ccd2.png",
+                link: "ccdudaipur2026/ccdudaipur/ccd.html",
+                tag: "Flagship Summit"
             }
         ];
 
         const eventsContainer = document.getElementById('events-container');
-        const pastEventsContainer = document.getElementById('past-events-container');
         const currentDate = new Date();
 
-        eventsData.forEach(ev => {
-            const eventDate = new Date(ev.date);
-            const isPast = eventDate < currentDate;
-            // Add a special class for upcoming event cards
-            const cardClass = isPast ? 'card-3d' : 'card-3d upcoming-card-3d';
-            const eventCard = `
-                <div class="${cardClass}">
-                    <div class="card-inner">
-                        <div class="card-image" style="background-image: url('${ev.img}')">
-                            <div class="card-date">${ev.date}</div>
-                        </div>
-                        <div class="card-content">
-                            <h3 class="card-title">${ev.title}</h3>
-                            <p class="card-desc">${ev.desc}</p>
-                            <a href="${ev.link}" class="card-link">${isPast ? 'View Details' : 'Register Now'} <span>→</span></a>
+        function renderEvents(filter = 'all') {
+            eventsContainer.innerHTML = '';
+            
+            eventsData.forEach(ev => {
+                const eventDate = new Date(ev.date);
+                const isPast = eventDate < currentDate;
+
+                if (filter === 'upcoming' && isPast) return;
+                if (filter === 'past' && !isPast) return;
+
+                const cardHTML = `
+                    <div class="card-3d">
+                        <div class="card-inner">
+                            <div class="card-image" style="background-image: url('${ev.img}')">
+                                <span class="card-tag">${ev.tag || (isPast ? 'Past Event' : 'Upcoming')}</span>
+                                <div class="card-date">${ev.date}</div>
+                            </div>
+                            <div class="card-content">
+                                <h3 class="card-title">${ev.title}</h3>
+                                <p class="card-desc">${ev.desc}</p>
+                                <div class="card-footer">
+                                    <span style="font-size:0.8rem; color:var(--text-muted);">Udaipur, Rajasthan</span>
+                                    <a href="${ev.link}" class="card-link" ${ev.link.startsWith('http') ? 'target="_blank" rel="noopener"' : ''}>
+                                        <span>${isPast ? 'View Highlights' : 'Register Now'}</span>
+                                        <span>→</span>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            `;
+                `;
+                eventsContainer.insertAdjacentHTML('beforeend', cardHTML);
+            });
+        }
 
-            if (isPast) {
-                pastEventsContainer.innerHTML += eventCard;
-            } else {
-                eventsContainer.innerHTML += eventCard;
-            }
+        renderEvents('all');
+
+        // Filter button clicks
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                renderEvents(btn.dataset.filter);
+            });
         });
 
 
-        // --- 4. Chat Animation ---
+        /* ==========================================================================
+           4. UDAIPUR WHATSAPP CHAT SIMULATION
+           ========================================================================== */
         const chatBody = document.getElementById('chat-body');
-        const messages = [
-            { text: "Hey! When is the next meetup?", type: "incoming", delay: 1000 },
-            { text: "It's on April 6th! We're covering Gemini AI.", type: "outgoing", delay: 2500 },
-            { text: "Awesome! Can I bring my laptop?", type: "incoming", delay: 4000 },
-            { text: "Yes, it's a hands-on session! 💻", type: "outgoing", delay: 5500 }
+        const udaipurMessages = [
+            { text: "खम्मा घणी Abhinav bhaiya! When is the next GDG meetup?", type: "incoming", delay: 1000 },
+            { text: "Padharo! Next offline workshop is on Gemini 2.0 & Cloud Run at Fateh Sagar! 🌊", type: "outgoing", delay: 2600 },
+            { text: "Awesome! Can beginners bring their laptops?", type: "incoming", delay: 4200 },
+            { text: "Hukum! Everyone is welcome to learn, build, and have chai with us 💻☕✨", type: "outgoing", delay: 5800 }
         ];
 
-        let msgIndex = 0;
-        function playChat() {
-            if (msgIndex < messages.length) {
-                const msg = messages[msgIndex];
+        let msgIdx = 0;
+        function playUdaipurChat() {
+            if (msgIdx < udaipurMessages.length) {
+                const item = udaipurMessages[msgIdx];
                 setTimeout(() => {
-                    const div = document.createElement('div');
-                    div.className = `msg ${msg.type}`;
-                    div.innerText = msg.text;
-                    chatBody.appendChild(div);
+                    const bubble = document.createElement('div');
+                    bubble.className = `msg ${item.type}`;
+                    bubble.innerText = item.text;
+                    chatBody.appendChild(bubble);
                     chatBody.scrollTop = chatBody.scrollHeight;
-                    msgIndex++;
-                    playChat();
-                }, msg.delay - (msgIndex > 0 ? messages[msgIndex - 1].delay : 0));
+                    msgIdx++;
+                    playUdaipurChat();
+                }, item.delay - (msgIdx > 0 ? udaipurMessages[msgIdx - 1].delay : 0));
             } else {
                 setTimeout(() => {
                     chatBody.innerHTML = '';
-                    msgIndex = 0;
-                    playChat();
-                }, 3000);
+                    msgIdx = 0;
+                    playUdaipurChat();
+                }, 4000);
             }
         }
 
-        // Start chat when in view
-        const observer = new IntersectionObserver((entries) => {
+        const contactObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    playChat();
-                    observer.unobserve(entry.target);
+                    playUdaipurChat();
+                    contactObserver.unobserve(entry.target);
                 }
             });
-        });
-        observer.observe(document.getElementById('contact'));
+        }, { threshold: 0.3 });
+        contactObserver.observe(document.getElementById('contact'));
 
-        // --- 5. Navbar Scroll Effect ---
+
+        /* ==========================================================================
+           5. NAVBAR SCROLL EFFECT & MOBILE MENU TOGGLE
+           ========================================================================== */
+        const nav = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
-            if (window.scrollY > 50) {
+            if (window.scrollY > 40) {
                 nav.classList.add('scrolled');
             } else {
                 nav.classList.remove('scrolled');
             }
+        });
+
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking any nav link
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
         });
 
     </script>
