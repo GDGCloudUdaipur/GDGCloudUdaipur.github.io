@@ -166,7 +166,7 @@
     }
 
     // details row
-    const id = "CCD-UDR-26-" + String(hash(name.toLowerCase()) % 10000).padStart(4, "0");
+    const id = (data.passId && data.passId.trim()) ? data.passId.trim() : ("CCD-UDR-26-" + String(hash(name.toLowerCase()) % 10000).padStart(4, "0"));
     const cells = [["DATE", data.date], ["GATE", "Tripolia"], ["SEAT", "Unclaimed"], ["PASS", id]];
     const top = 1150, cw = (W - 200) / 4;
     ctx.strokeStyle = "rgba(28,23,18,.25)"; ctx.lineWidth = 2;
@@ -174,7 +174,17 @@
     cells.forEach(([k, v], i) => {
       const cx = 100 + cw * i + cw / 2;
       ctx.font = `600 16px ${MONO}`; ctx.fillStyle = "#8a7a62"; ctx.fillText(k, cx, top);
-      ctx.font = `600 ${i === 3 ? 20 : 25}px ${i === 3 ? MONO : FONT}`; ctx.fillStyle = C.ink; ctx.fillText(v, cx, top + 36);
+      if (i === 3) {
+        let pSize = 20;
+        ctx.font = `600 ${pSize}px ${MONO}`;
+        while (ctx.measureText(v).width > cw - 8 && pSize > 11) {
+          pSize -= 1;
+          ctx.font = `600 ${pSize}px ${MONO}`;
+        }
+        ctx.fillStyle = C.ink; ctx.fillText(v, cx, top + 36);
+      } else {
+        ctx.font = `600 25px ${FONT}`; ctx.fillStyle = C.ink; ctx.fillText(v, cx, top + 36);
+      }
     });
 
     // footer brand

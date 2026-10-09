@@ -1,0 +1,698 @@
+<!doctype html>
+<html lang="en" data-theme="auto">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Make Your Royal Invitation · Shahi Pass | CCD Udaipur 2026</title>
+  <meta name="description" content="Generate and download your royal farman invitation for Google Cloud Community Days Udaipur 2026 by GDG Cloud Udaipur. A custom pass for the builder you are." />
+  <meta name="theme-color" content="#fbf7ef" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0d1226" media="(prefers-color-scheme: dark)" />
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="assets/img/icon-192.png" />
+  <link rel="manifest" href="manifest.webmanifest" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Make Your Royal Invitation · Shahi Pass | CCD Udaipur 2026" />
+  <meta property="og:description" content="A farman for the builder you are. Download your personalised royal invitation for Cloud Community Days Udaipur 2026." />
+  <meta property="og:image" content="assets/img/og-image.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300..800&family=Instrument+Serif:ital@0;1&family=Yatra+One&family=JetBrains+Mono:wght@400;600&display=swap" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/premium.css" />
+
+  <style>
+    .pass-page {
+      padding: calc(var(--nav-h) + 40px) 0 80px;
+    }
+    .pass-page-header {
+      text-align: center;
+      max-width: 780px;
+      margin: 0 auto 44px;
+    }
+    .pass-page-header h1 {
+      font-size: clamp(38px, 6vw, 68px);
+      margin: 14px 0 16px;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+    .pass-page-header h1 em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      color: var(--gold);
+    }
+    .pass-page-header .lead {
+      font-size: 19px;
+      color: var(--ink-2);
+      line-height: 1.55;
+    }
+    .pass-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 44px;
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+    .pass-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 48px;
+      align-items: center;
+    }
+    .pass-form {
+      display: grid;
+      gap: 20px;
+    }
+    .pass-form h2 {
+      font-size: clamp(28px, 3.2vw, 36px);
+      letter-spacing: -0.02em;
+    }
+    .pass-form label {
+      display: grid;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink-2);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .pass-form input, .pass-form select {
+      padding: 14px 18px;
+      border-radius: 14px;
+      border: 1.5px solid var(--line);
+      background: var(--paper-2);
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--ink);
+      font-family: var(--font);
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .pass-form input:focus, .pass-form select:focus {
+      outline: none;
+      border-color: var(--blue);
+      box-shadow: 0 0 0 4px color-mix(in srgb, var(--blue) 15%, transparent);
+    }
+    .persona-badge {
+      padding: 14px 18px;
+      border-radius: 14px;
+      background: var(--paper-2);
+      border: 1px solid var(--line);
+      display: grid;
+      gap: 4px;
+      transition: all .25s;
+    }
+    .persona-badge b {
+      color: var(--saffron);
+      font-size: 15px;
+      font-family: var(--font);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .persona-badge p {
+      font-size: 13.5px;
+      line-height: 1.45;
+      color: var(--ink-2);
+    }
+    .edition-selector {
+      display: grid;
+      gap: 8px;
+    }
+    .edition-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink-2);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .edition-radios {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .edition-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: 1.5px solid var(--line);
+      background: var(--paper-2);
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      user-select: none;
+      transition: all .2s;
+    }
+    .edition-pill input {
+      display: none;
+    }
+    .edition-pill.active {
+      border-color: var(--gold);
+      background: color-mix(in srgb, var(--gold) 18%, transparent);
+      color: var(--ink);
+      font-weight: 600;
+      box-shadow: 0 4px 12px color-mix(in srgb, var(--gold) 20%, transparent);
+    }
+    .pass-preview-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .pass-preview {
+      position: relative;
+      width: 100%;
+      max-width: 440px;
+    }
+    .pass-preview canvas {
+      width: 100%;
+      height: auto;
+      border-radius: 20px;
+      box-shadow: 0 32px 70px -20px rgba(45, 30, 10, .45);
+      transform: rotate(1.2deg);
+      transition: transform .5s cubic-bezier(.2, .8, .2, 1), box-shadow .5s;
+    }
+    .pass-preview canvas:hover {
+      transform: rotate(0) scale(1.02);
+      box-shadow: 0 40px 80px -20px rgba(45, 30, 10, .55);
+    }
+    .preview-hint {
+      margin-top: 18px;
+      font-size: 13.5px;
+      color: var(--muted);
+      text-align: center;
+    }
+    .sealed-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: color-mix(in srgb, var(--green) 15%, transparent);
+      border: 1px solid var(--green);
+      color: var(--ink);
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-family: var(--mono);
+      font-weight: 600;
+    }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 56px;
+    }
+    .feature-box {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 30px;
+      display: grid;
+      gap: 12px;
+      transition: transform .25s, box-shadow .25s;
+    }
+    .feature-box:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+    .feature-box .feat-icon {
+      font-size: 28px;
+      line-height: 1;
+    }
+    .feature-box h3 {
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    .feature-box p {
+      color: var(--ink-2);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+    .share-guide {
+      background: color-mix(in srgb, var(--blue) 8%, var(--card));
+      border: 1px solid color-mix(in srgb, var(--blue) 25%, transparent);
+      border-radius: 22px;
+      padding: 30px;
+      margin-top: 36px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .share-guide-text h4 {
+      font-size: 19px;
+      margin: 0 0 6px;
+      font-weight: 600;
+    }
+    .share-guide-text p {
+      font-size: 15px;
+      color: var(--ink-2);
+      margin: 0;
+    }
+    @media (max-width: 960px) {
+      .pass-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .pass-card {
+        padding: 28px 20px;
+      }
+      .feature-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Brand shapes, reused everywhere -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-spark" viewBox="-14 -14 28 28"><circle r="13" fill="var(--blue)"/><path d="M0-8C1 -2 2 -1 8 0C2 1 1 2 0 8C-1 2-2 1-8 0C-2-1-1-2 0-8Z" fill="#fff"/></symbol>
+    <symbol id="i-half" viewBox="-14 -14 28 28"><circle r="13" fill="var(--green)"/><path d="M-8 1A8 8 0 0 1 8 1Z" fill="#fff"/></symbol>
+    <symbol id="i-flower" viewBox="-14 -14 28 28"><g fill="var(--yellow)"><circle r="8"/><circle cx="0" cy="-8" r="5"/><circle cx="0" cy="8" r="5"/><circle cx="-8" cy="0" r="5"/><circle cx="8" cy="0" r="5"/><circle cx="5.7" cy="5.7" r="5"/><circle cx="-5.7" cy="5.7" r="5"/><circle cx="5.7" cy="-5.7" r="5"/><circle cx="-5.7" cy="-5.7" r="5"/></g><circle r="5.5" fill="#fff"/></symbol>
+    <symbol id="i-star" viewBox="-14 -14 28 28"><g stroke="var(--red)" stroke-width="4.2" stroke-linecap="butt"><path d="M0-13V13M-11.3-6.5L11.3 6.5M-11.3 6.5L11.3-6.5"/></g></symbol>
+    <symbol id="i-lotus" viewBox="-20 -24 40 32"><path d="M0 0C-6 -6 -6 -14 0 -20C6 -14 6 -6 0 0Z"/><path d="M0 0C-10 -2 -16 -8 -16 -14C-8 -12 -3 -7 0 0Z"/><path d="M0 0C10 -2 16 -8 16 -14C8 -12 3 -7 0 0Z"/><ellipse cx="0" cy="3" rx="18" ry="3.5"/></symbol>
+  </svg>
+
+  <!-- Navigation bar -->
+  <header class="nav scrolled" id="nav">
+    <a class="brand" href="ccd.html" aria-label="Cloud Community Days Udaipur 2026">
+      <span class="brand-shapes">
+        <svg><use href="#i-spark"/></svg>
+        <svg><use href="#i-half"/></svg>
+        <svg><use href="#i-flower"/></svg>
+        <svg><use href="#i-star"/></svg>
+      </span>
+      <span class="brand-text">CCD <b>Udaipur</b> '26</span>
+    </a>
+    <div class="nav-actions">
+      <button class="icon-btn" id="themeBtn" aria-label="Toggle day and night" title="Toggle theme">
+        <svg viewBox="0 0 24 24" class="sun-i"><circle cx="12" cy="12" r="5"/><path d="M12 1v2m0 18v2M4.2 4.2l1.4 1.4m12.8 12.8l1.4 1.4M1 12h2m18 0h2M4.2 19.8l1.4-1.4m12.8-12.8l1.4-1.4"/></svg>
+        <svg viewBox="0 0 24 24" class="moon-i"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <a class="btn btn-ghost btn-sm" href="ccd.html">← Back to CCD Udaipur</a>
+      <a class="btn btn-dark btn-sm" href="https://konfhub.com/google-cloud-community-days-udaipur-2026" target="_blank" rel="noopener">Get Tickets</a>
+    </div>
+  </header>
+
+  <!-- Main container -->
+  <main class="pass-page">
+    <div class="wrap">
+      <!-- Page Header -->
+      <div class="pass-page-header">
+        <span class="pill pill-plain">शाही परवाना · Royal Farman</span>
+        <h1>Make your royal invitation <em>for the lakecity.</em></h1>
+        <p class="lead">A farman for the builder you are. Craft your personalised Shahi Pass, download the high-resolution invitation, and share your builder persona with the community.</p>
+      </div>
+
+      <!-- Pass Card Container -->
+      <div class="pass-card">
+        <div class="pass-grid">
+          <!-- Form Column -->
+          <form class="pass-form" id="passForm" autocomplete="off">
+            <div>
+              <h2>Make your royal invitation</h2>
+              <p class="muted small" style="margin-top: 4px;">A farman for the builder you are. Download it, post it, bring the idea on the day.</p>
+            </div>
+
+            <label>
+              Your name
+              <input name="name" id="passName" maxlength="28" placeholder="Meera Rathore" required value="" />
+            </label>
+
+            <label>
+              What excites you most?
+              <select name="persona" id="passPersona">
+                <option value="ai" selected>AI agents & Gemini</option>
+                <option value="cloud">Cloud & infrastructure</option>
+                <option value="data">Data & analytics</option>
+                <option value="web">Web, mobile & design</option>
+                <option value="security">Security</option>
+                <option value="lead">Leading teams & products</option>
+              </select>
+            </label>
+
+            <!-- Live Persona Title preview -->
+            <div class="persona-badge" id="personaBadge">
+              <b id="personaTitle">✨ Weaver of Agents</b>
+              <p id="personaLine">You see the whole loom. Agents, tools and prompts, woven into something that works on its own.</p>
+            </div>
+
+            <label>
+              One thing you'd build
+              <input name="idea" id="passIdea" maxlength="80" placeholder="An agent that books the best sunset boat on Pichola" />
+            </label>
+
+            <label>
+              Pass ID
+              <span style="font-weight: 400; text-transform: none; font-size: 13px; color: var(--muted);">(Optional / Manual)</span>
+              <div style="display: flex; gap: 8px;">
+                <input name="passId" id="passIdInput" maxlength="24" placeholder="e.g. CCD-UDR-26-0042 (leave blank to auto-generate)" style="flex: 1;" />
+                <button type="button" class="btn btn-ghost btn-sm" id="btnGenPassId" title="Generate Random Pass ID" style="padding: 0 16px; font-size: 13px; white-space: nowrap;">🎲 Random</button>
+              </div>
+            </label>
+
+            <!-- Farman Edition Selector -->
+            <div class="edition-selector">
+              <span class="edition-label">Pass Edition</span>
+              <div class="edition-radios">
+                <label class="edition-pill active" id="pillClassic">
+                  <input type="radio" name="edition" value="classic" checked />
+                  📜 Royal Parchment
+                </label>
+                <label class="edition-pill" id="pillGold">
+                  <input type="radio" name="edition" value="gold" />
+                  ✨ 24K Shahi Gold
+                </label>
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="cta-row">
+              <button class="btn btn-dark" type="submit" id="btnSeal">Seal my pass</button>
+              <button class="btn btn-ghost" type="button" id="passDownload" disabled>Download PNG</button>
+              <button class="btn btn-ghost" type="button" id="passShare" disabled>Share</button>
+            </div>
+
+            <!-- Sealed Pass confirmation note -->
+            <div id="sealedContainer" hidden>
+              <span class="sealed-pill" id="sealedPill">👑 Pass Sealed: <strong id="sealedPassId">—</strong></span>
+            </div>
+          </form>
+
+          <!-- Canvas Preview Column -->
+          <div class="pass-preview-wrapper">
+            <div class="pass-preview">
+              <canvas id="passCanvas" width="1080" height="1350" aria-label="Your Shahi Pass preview"></canvas>
+            </div>
+            <p class="preview-hint">1080 × 1350 High-Resolution Farman · Authentic Mewari Rajput Arch & Pichola Skyline</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature Highlight Badges -->
+      <div class="feature-grid">
+        <div class="feature-box">
+          <span class="feat-icon">🏛️</span>
+          <h3>Mewari Rajput Arch</h3>
+          <p>Drawn with authentic 7-lobe cusped arches, the sunset ridge over Lake Pichola, lit windows of the City Palace, and Jag Mandir reflection.</p>
+        </div>
+        <div class="feature-box">
+          <span class="feat-icon">🖨️</span>
+          <h3>Crisp 1080×1350 Canvas</h3>
+          <p>Rendered at full 4:5 portrait resolution with authentic Devanagari calligraphy ("शाही परवाना") and Google Developer Group branding.</p>
+        </div>
+        <div class="feature-box">
+          <span class="feat-icon">🔥</span>
+          <h3>Red & Gold Wax Seal</h3>
+          <p>Stamped with your unique cryptographic farman pass number (`CCD-UDR-26-XXXX`) and an authentic royal imperial wax seal.</p>
+        </div>
+      </div>
+
+      <!-- Share Box -->
+      <div class="share-guide">
+        <div class="share-guide-text">
+          <h4>Share your farman with the community</h4>
+          <p>Download your PNG and post it on LinkedIn, Twitter/X, or Instagram with <strong>#CCDUdaipur</strong> to connect with speakers and fellow attendees.</p>
+        </div>
+        <a class="btn btn-dark btn-sm" href="https://konfhub.com/google-cloud-community-days-udaipur-2026" target="_blank" rel="noopener">Register on KonfHub →</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" style="margin-top: 60px; border-top: 1px solid var(--line); padding: 40px 0;">
+    <div class="wrap" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px;">
+      <a class="brand" href="ccd.html">
+        <span class="brand-shapes"><svg><use href="#i-spark"/></svg><svg><use href="#i-half"/></svg><svg><use href="#i-flower"/></svg><svg><use href="#i-star"/></svg></span>
+        <span class="brand-text">CCD <b>Udaipur</b> '26</span>
+      </a>
+      <div class="footer-links" style="display: flex; gap: 16px; flex-wrap: wrap;">
+        <a href="ccd.html">CCD Udaipur Home</a>
+        <a href="ccd.html#agenda">Agenda</a>
+        <a href="ccd.html#speakers">Speakers</a>
+        <a href="coc.html">Code of Conduct</a>
+        <a href="https://konfhub.com/google-cloud-community-days-udaipur-2026" target="_blank" rel="noopener">Tickets</a>
+      </div>
+      <div class="muted small">
+        Made with chai in <span lang="hi">उदयपुर</span> · <span class="mono">#CCDUdaipur</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast notification -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- Confetti canvas -->
+  <canvas class="confetti" id="confetti" aria-hidden="true"></canvas>
+
+  <!-- Core scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/pass.js"></script>
+  <script>
+    (function () {
+      "use strict";
+
+      const D = window.CCD;
+      const $ = (s, r = document) => r.querySelector(s);
+      const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+      const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      /* ---------- theme toggle ---------- */
+      const root = document.documentElement;
+      const mqDark = matchMedia("(prefers-color-scheme: dark)");
+      function applyTheme(t) {
+        root.dataset.theme = t;
+        const dark = t === "dark" || (t === "auto" && mqDark.matches);
+        document.body.dataset.dark = dark ? "1" : "0";
+      }
+      try {
+        const savedTheme = localStorage.getItem("ccdudr:theme") || "auto";
+        applyTheme(savedTheme);
+      } catch (e) {
+        applyTheme("auto");
+      }
+      mqDark.addEventListener?.("change", () => applyTheme(root.dataset.theme));
+      function toggleTheme() {
+        const next = document.body.dataset.dark === "1" ? "light" : "dark";
+        try { localStorage.setItem("ccdudr:theme", next); } catch (e) {}
+        applyTheme(next);
+      }
+      const themeBtn = $("#themeBtn");
+      if (themeBtn) themeBtn.onclick = toggleTheme;
+
+      /* ---------- toast ---------- */
+      let toastT;
+      function toast(html, ms = 3400) {
+        const t = $("#toast");
+        if (!t) return;
+        t.innerHTML = html;
+        t.classList.add("show");
+        clearTimeout(toastT);
+        toastT = setTimeout(() => t.classList.remove("show"), ms);
+      }
+
+      /* ---------- confetti ---------- */
+      function confetti() {
+        if (reduced) return;
+        const c = $("#confetti");
+        if (!c) return;
+        const ctx = c.getContext("2d");
+        c.width = innerWidth * devicePixelRatio;
+        c.height = innerHeight * devicePixelRatio;
+        ctx.scale(devicePixelRatio, devicePixelRatio);
+        const cols = ["#4285f4", "#34a853", "#f9ab00", "#ea4335", "#f28c28", "#c8962d"];
+        const ps = Array.from({ length: 150 }, () => ({
+          x: innerWidth / 2 + (Math.random() - 0.5) * 260,
+          y: innerHeight * 0.38,
+          vx: (Math.random() - 0.5) * 16,
+          vy: Math.random() * -14 - 4,
+          r: Math.random() * 6 + 4,
+          c: cols[(Math.random() * cols.length) | 0],
+          a: Math.random() * 6,
+          va: (Math.random() - 0.5) * 0.3,
+          petal: Math.random() < 0.35,
+        }));
+        let f = 0;
+        (function tick() {
+          ctx.clearRect(0, 0, innerWidth, innerHeight);
+          ps.forEach((p) => {
+            p.vy += 0.35;
+            p.vx *= 0.99;
+            p.x += p.vx;
+            p.y += p.vy;
+            p.a += p.va;
+            ctx.save();
+            ctx.translate(p.x, p.y);
+            ctx.rotate(p.a);
+            ctx.fillStyle = p.c;
+            if (p.petal) {
+              ctx.beginPath();
+              ctx.ellipse(0, 0, p.r * 1.5, p.r * 0.7, 0, 0, 7);
+              ctx.fill();
+            } else {
+              ctx.fillRect(-p.r / 2, -p.r / 2, p.r, p.r * 1.4);
+            }
+            ctx.restore();
+          });
+          if (++f < 130) requestAnimationFrame(tick);
+          else ctx.clearRect(0, 0, innerWidth, innerHeight);
+        })();
+      }
+
+      /* ---------- Shahi Pass Logic ---------- */
+      const passForm = $("#passForm");
+      const canvas = $("#passCanvas");
+      const passName = $("#passName");
+      const passPersona = $("#passPersona");
+      const passIdea = $("#passIdea");
+      const passIdInput = $("#passIdInput");
+      const btnGenPassId = $("#btnGenPassId");
+      const personaTitle = $("#personaTitle");
+      const personaLine = $("#personaLine");
+      const pillClassic = $("#pillClassic");
+      const pillGold = $("#pillGold");
+      const passDownload = $("#passDownload");
+      const passShare = $("#passShare");
+      const sealedContainer = $("#sealedContainer");
+      const sealedPassId = $("#sealedPassId");
+
+      let passId = "CCD-UDR-26-0001";
+      let isGoldEdition = false;
+
+      function updatePersonaBadge() {
+        const key = passPersona.value;
+        const p = D.personas[key] || D.personas.ai;
+        personaTitle.textContent = `✨ ${p.title}`;
+        personaLine.textContent = p.line;
+      }
+
+      function getPassData(final = false) {
+        const rawName = passName.value.trim();
+        const persona = passPersona.value;
+        const idea = passIdea.value.trim();
+        const customPassId = passIdInput ? passIdInput.value.trim() : "";
+        return {
+          name: rawName || (final ? "A Builder" : "Your Name"),
+          persona: persona,
+          idea: idea,
+          passId: customPassId,
+          date: "6 Dec",
+          gold: isGoldEdition,
+        };
+      }
+
+      let drawPending = false;
+      async function drawPass(final = false) {
+        if (drawPending) return;
+        drawPending = true;
+        try {
+          const d = getPassData(final);
+          passId = await window.ShahiPass.render(canvas, d);
+          if (final) {
+            sealedPassId.textContent = passId;
+            sealedContainer.hidden = false;
+          }
+        } finally {
+          drawPending = false;
+        }
+      }
+
+      // Persona change
+      passPersona.addEventListener("change", () => {
+        updatePersonaBadge();
+        drawPass(false);
+      });
+
+      // Edition selector pills
+      if (btnGenPassId) {
+        btnGenPassId.addEventListener("click", () => {
+          const randNum = Math.floor(1000 + Math.random() * 9000);
+          passIdInput.value = `CCD-UDR-26-${randNum}`;
+          drawPass(false);
+          toast(`🎲 Generated Pass ID: <b>${passIdInput.value}</b>`);
+        });
+      }
+
+      pillClassic.addEventListener("click", () => {
+        isGoldEdition = false;
+        pillClassic.classList.add("active");
+        pillGold.classList.remove("active");
+        pillClassic.querySelector("input").checked = true;
+        drawPass(false);
+      });
+
+      pillGold.addEventListener("click", () => {
+        isGoldEdition = true;
+        pillGold.classList.add("active");
+        pillClassic.classList.remove("active");
+        pillGold.querySelector("input").checked = true;
+        drawPass(false);
+      });
+
+      // Live typing update
+      passForm.addEventListener("input", (e) => {
+        if (e.target.name === "edition") return;
+        drawPass(false);
+      });
+
+      // Form submit: Seal pass
+      passForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        await drawPass(true);
+        passDownload.disabled = false;
+        passShare.disabled = false;
+        toast(`👑 Sealed. Your royal pass is <b>${passId}</b>`);
+        confetti();
+      });
+
+      // Download PNG
+      passDownload.addEventListener("click", () => {
+        const a = document.createElement("a");
+        a.href = canvas.toDataURL("image/png");
+        a.download = `shahi-pass-${passId}.png`;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        toast(`Downloading <b>shahi-pass-${passId}.png</b>`);
+      });
+
+      // Share button
+      passShare.addEventListener("click", async () => {
+        const regLink = D?.links?.register || "https://konfhub.com/google-cloud-community-days-udaipur-2026";
+        const text = `I'm going to Google Cloud Community Days Udaipur 2026! Here is my official Shahi Pass. Join 300+ builders at Lake Pichola: ${regLink} #CCDUdaipur`;
+        try {
+          const blob = await new Promise((r) => canvas.toBlob(r, "image/png"));
+          const file = new File([blob], `shahi-pass-${passId}.png`, { type: "image/png" });
+          if (navigator.canShare?.({ files: [file] })) {
+            await navigator.share({ files: [file], text, title: "My CCD Udaipur 2026 Shahi Pass" });
+            return;
+          }
+          if (navigator.share) {
+            await navigator.share({ text, url: location.href, title: "My CCD Udaipur 2026 Shahi Pass" });
+            return;
+          }
+        } catch (e) {
+          if (e.name === "AbortError") return;
+        }
+        if (navigator.clipboard?.writeText) {
+          await navigator.clipboard.writeText(text);
+        }
+        toast("Share message copied. Download the PNG and post with <b>#CCDUdaipur</b>");
+      });
+
+      // Initial font load and render
+      document.fonts.ready.then(() => {
+        updatePersonaBadge();
+        drawPass(false);
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -493,7 +493,7 @@
   let passId = null;
   const passData = () => {
     const f = new FormData(passForm);
-    return { name: f.get("name") || "", persona: f.get("persona"), idea: f.get("idea") || "", date: fmt(START, { day: "numeric", month: "short" }), gold: hunt.found.size >= D.lakes.length };
+    return { name: f.get("name") || "", persona: f.get("persona"), idea: f.get("idea") || "", passId: f.get("passId") || "", date: fmt(START, { day: "numeric", month: "short" }), gold: hunt.found.size >= D.lakes.length };
   };
   const drawPass = async (final) => {
     const d = passData();
