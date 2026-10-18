@@ -493,7 +493,7 @@
   let passId = null;
   const passData = () => {
     const f = new FormData(passForm);
-    return { name: f.get("name") || "", persona: f.get("persona"), idea: f.get("idea") || "", passId: f.get("passId") || "", date: fmt(START, { day: "numeric", month: "short" }), gold: hunt.found.size >= D.lakes.length };
+    return { name: f.get("name") || "", persona: f.get("persona"), idea: f.get("idea") || "", date: fmt(START, { day: "numeric", month: "short" }), gold: hunt.found.size >= D.lakes.length };
   };
   const drawPass = async (final) => {
     const d = passData();
@@ -616,10 +616,11 @@
   });
 
   /* ---------- venue ---------- */
+  // Google Maps looks the venue up by name, so the pin is always the real place
   const { lat, lng } = D.venue;
-  const dz = D.venue.confirmed ? 0.008 : 0.04;
-  $("#mapFrame").src = `https://www.openstreetmap.org/export/embed.html?bbox=${lng - dz * 1.4},${lat - dz},${lng + dz * 1.4},${lat + dz}&layer=mapnik${D.venue.confirmed ? `&marker=${lat},${lng}` : ""}`;
-  $("#directions").href = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(D.venue.confirmed ? `${D.venue.name}, ${D.venue.area}` : `${lat},${lng}`)}`;
+  const where = D.venue.mapQuery || (D.venue.confirmed ? `${D.venue.name}, ${D.venue.area}` : `${lat},${lng}`);
+  $("#mapFrame").src = `https://www.google.com/maps?q=${encodeURIComponent(where)}&z=14&output=embed`;
+  $("#directions").href = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(where)}`;
 
   /* ---------- partners & team ---------- */
   $("#sponsorLogos").innerHTML = D.sponsors.map((s) => `<a href="${esc(s.url)}" target="_blank" rel="noopener" title="${esc(s.name)} · ${esc(s.tier)}"><img src="${esc(s.logo)}" alt="${esc(s.name)}"></a>`).join("");
@@ -670,10 +671,11 @@
   const go = (id) => () => document.getElementById(id)?.scrollIntoView({ behavior: reduced ? "auto" : "smooth" });
   const commands = [
     ...[["top", "Home"], ["story", "A day in Udaipur"], ["glory", "The glory of Mewar: Pratap & Chetak"], ["mewar", "Where Mewar meets Google"], ["places", "Iconic Udaipur"], ["dive", "Beneath the lake"], ["journey", "The road to CCD"], ["formats", "Formats"], ["agenda", "Agenda"], ["speakers", "Speakers"],
-      ["play", "Play"], ["explore", "Explore Udaipur"], ["venue", "Venue & map"], ["partners", "Partners"], ["community", "Speak, volunteer, join"], ["faq", "FAQ"], ["register", "Register"]]
+      ["play", "Play"], ["explore", "Explore Udaipur"], ["thirdspace", "Tour the venue: The Third Space"], ["venue", "Venue & map"], ["partners", "Partners"], ["community", "Speak, volunteer, join"], ["faq", "FAQ"], ["register", "Register"]]
       .map(([id, label]) => ({ label, kind: "section", run: go(id) })),
     { label: "Buy tickets on KonfHub", kind: "action", run: () => open(D.links.tickets, "_blank", "noopener") },
     { label: "Open the GDG event page", kind: "action", run: () => open(D.links.event, "_blank", "noopener") },
+    { label: "Volunteer with us (interest form)", kind: "action", run: () => open(D.links.volunteer, "_blank", "noopener") },
     { label: "Add the event to my calendar", kind: "action", run: addEventIcs },
     { label: "Export my starred agenda", kind: "action", run: exportMine },
     { label: "Toggle day / night", kind: "action", run: toggleTheme },
