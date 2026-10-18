@@ -31,11 +31,11 @@ window.CCD = {
   },
 
   venue: {
-    name: "Venue reveal soon",
+    name: "Venue",
     area: "Udaipur, Rajasthan",
-    address: "Shortlist: a lakeside 5-star hotel or a builder-friendly community space in the city",
-    lat: 24.5764,
-    lng: 73.6813,
+    address: "The Third Space",
+    lat: 24.6127,
+    lng: 73.7058,
     confirmed: false,
   },
 
