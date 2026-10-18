@@ -399,7 +399,7 @@
     $("#agendaLede").textContent = "Star the sessions you want and they're saved on this device. Export your picks to your calendar in one tap. On the day, this page shows what's live right now.";
     renderAgenda();
   }
-  $("#tbaCal").onclick = () => { addEventIcs(); toast("Saved. <b>6 Dec 2026</b> is in your calendar file."); };
+  $("#tbaCal").onclick = () => { addEventIcs(); toast("Saved. <b>20 Dec 2026</b> is in your calendar file."); };
   $("#trackChips").innerHTML = Object.entries(D.tracks).filter(([k]) => k !== "all")
     .map(([, t]) => `<span class="chip" style="--c:${colorVar(t.color)}"><i></i>${esc(t.label)}</span>`).join("");
 
