@@ -345,3 +345,90 @@ body { background: transparent; }
 .chest-ticket .t1 { font-size: 12px; font-weight: 600; letter-spacing: .08em; }
 .chest-ticket .t2 { font-size: 7.5px; letter-spacing: .1em; fill: #7a5a2e; }
 .pill-live { text-decoration: none; }
+
+/* ---------- the venue tour: The Third Space ---------- */
+.venue { grid-template-columns: 1fr 1.2fr; align-items: center; }
+.tsx { position: relative; height: 460vh; background: #060a1a; color: #fff8ea; }
+.tsx-track { position: absolute; inset: 0; }
+.tsx-stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
+.tsx-ext, .tsx-int { position: absolute; inset: 0; will-change: transform, opacity; }
+.tsx-ext { transform-origin: 50% 82%; }
+.tsx-int { opacity: 0; background: #05060a; }
+.tsx-svg { width: 100%; height: 100%; display: block; }
+.tsx-flash { position: absolute; inset: 0; background: radial-gradient(circle at 50% 70%, #fff6dc, #ffd88a 45%, rgba(255, 200, 120, 0) 80%); opacity: 0; pointer-events: none; }
+.tsx-clock { position: absolute; right: max(4vw, 20px); top: calc(var(--nav-h) + 28px); display: inline-flex; align-items: center; gap: 10px; padding: 8px 14px; border-radius: 99px; background: rgba(10, 12, 28, .45); backdrop-filter: blur(8px); font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
+.tsx-clock i { width: 10px; height: 10px; border-radius: 50%; background: #ffd27a; box-shadow: 0 0 12px #ffd27a; }
+.tsx-card { position: absolute; left: max(5vw, 24px); bottom: max(8vh, 40px); width: min(470px, calc(100% - 48px)); padding: 26px 28px; border-radius: 24px;
+  background: rgba(12, 14, 30, .55); backdrop-filter: blur(16px) saturate(1.3); -webkit-backdrop-filter: blur(16px) saturate(1.3); border: 1px solid rgba(255, 230, 180, .22);
+  opacity: 0; transform: translateY(20px); transition: opacity .6s, transform .6s; pointer-events: none; }
+.tsx-card.in { opacity: 1; transform: none; pointer-events: auto; }
+.tsx-card .eyebrow { color: #ffd38a; margin-bottom: 10px; }
+.tsx-card .eyebrow [lang="hi"] { font-family: var(--deva); letter-spacing: 0; text-transform: none; }
+.tsx-card h2 { font-size: clamp(36px, 4.4vw, 60px); margin-bottom: 12px; }
+.tsx-card h2 em { font-family: var(--serif); font-style: italic; font-weight: 400; color: #ffd38a; }
+.tsx-card p { color: rgba(255, 248, 234, .86); }
+.tsx-facts { list-style: none; padding: 0; margin: 16px 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.tsx-facts li { padding: 5px 12px; border-radius: 99px; border: 1px solid rgba(255, 230, 180, .3); font-size: 13px; }
+.tsx-hint { display: block; margin-top: 16px; font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: #ffd38a; }
+.tsx-card .cta-row { margin-top: 18px; }
+
+/* outside */
+.tsx-svg .tsx-stars { fill: #fff; opacity: calc(var(--night) * .9); }
+.tsx-svg .tsx-sun { fill: #fff3c4; opacity: calc(1 - var(--night) * 1.6); }
+.tsx-svg .tsx-moon { fill: #f4efdf; opacity: calc(var(--night) * 1.4 - .4); }
+.tsx-svg .tsx-hills { fill: color-mix(in srgb, #a7b4c4 calc(100% - var(--night) * 100%), #10142a); }
+.tsx-svg .tsx-wall { fill: color-mix(in srgb, #4b525d calc(100% - var(--night) * 100%), #ffd98a); }
+.tsx-svg .tsx-conc { fill: color-mix(in srgb, #b9b6b0 calc(100% - var(--night) * 100%), #3a3f50); }
+.tsx-svg .tsx-sail { opacity: .92; }
+.tsx-svg .tsx-sailframe { fill: none; stroke: color-mix(in srgb, #f4f3ef calc(100% - var(--night) * 100%), #7a8094); stroke-width: 2.4; }
+.tsx-svg .tsx-frame { stroke: color-mix(in srgb, #ffffff calc(100% - var(--night) * 100%), #8a90a6); stroke-width: 2.4; }
+.tsx-svg .tsx-soffit { fill: color-mix(in srgb, #9b9893 calc(100% - var(--night) * 100%), #23283a); }
+.tsx-svg .tsx-shadows { fill: #1a1c22; opacity: calc(.35 - var(--night) * .35); }
+.tsx-svg .tsx-glowbox { opacity: var(--night); mix-blend-mode: screen; }
+.tsx-svg .tsx-leds { fill: none; stroke: #fffdf2; stroke-width: 3.4; stroke-linecap: round; opacity: var(--night); filter: drop-shadow(0 0 6px #fff3c0); }
+.tsx-svg .tsx-under { fill: color-mix(in srgb, #3a3c42 calc(100% - var(--night) * 100%), #2a2018); }
+.tsx-svg .tsx-lobby { opacity: calc(.15 + var(--night) * .85); }
+.tsx-svg .tsx-glass { fill: color-mix(in srgb, #6f8aa0 calc(100% - var(--night) * 100%), #ffe0a0); }
+.tsx-svg .tsx-banner text { font-family: var(--font); fill: #17171c; font-weight: 700; }
+.tsx-svg .tsx-banner .b1 { font-size: 22px; } .tsx-svg .tsx-banner .b2 { font-size: 11px; letter-spacing: .12em; } .tsx-svg .tsx-banner .b3 { font-size: 16px; } .tsx-svg .tsx-banner .b4 { font-size: 12px; font-weight: 500; }
+.tsx-svg .tsx-person { animation: bob 1.3s ease-in-out infinite alternate; }
+.tsx-svg .tsx-pole { fill: none; stroke: color-mix(in srgb, #8d8a84 calc(100% - var(--night) * 100%), #0c0e16); stroke-width: 9; stroke-linecap: square; }
+.tsx-svg .tsx-wires { fill: none; stroke: #1b1d24; stroke-width: 1.4; opacity: .7; }
+.tsx-svg .tsx-paving { fill: color-mix(in srgb, #c9c6bf calc(100% - var(--night) * 100%), #1d1f2a); }
+.tsx-svg .tsx-fencetop { fill: none; stroke: var(--corten); stroke-width: 6; }
+.tsx-svg .tsx-lawn { fill: color-mix(in srgb, #7c9a4a calc(100% - var(--night) * 100%), #0d140c); }
+.tsx-svg .tsx-cypress ellipse { fill: color-mix(in srgb, #4f8a34 calc(100% - var(--night) * 100%), #0a1008); }
+.tsx-svg .tsx-cypress ellipse:nth-child(2n) { fill: color-mix(in srgb, #6aa645 calc(100% - var(--night) * 100%), #0c140a); }
+.tsx-svg .tsx-palm .trunk { fill: none; stroke: color-mix(in srgb, #7a6448 calc(100% - var(--night) * 100%), #07080c); stroke-width: 16; stroke-linecap: round; }
+.tsx-svg .tsx-palm .fronds { fill: none; stroke: color-mix(in srgb, #4a7a34 calc(100% - var(--night) * 100%), #07080c); stroke-width: 7; stroke-linecap: round; transform-box: fill-box; transform-origin: 50% 100%; animation: cksway 3s ease-in-out infinite alternate; }
+
+/* inside */
+.tsx-svg .tsx-ceiling { opacity: var(--ceil, 0); }
+.tsx-svg .tsx-star { animation: twinkle 2.6s ease-in-out infinite alternate; }
+.tsx-svg .tsx-panel { fill: none; stroke: #1c2030; stroke-width: 22; }
+.tsx-svg .tsx-exit { fill: #e8453c; opacity: .9; }
+.tsx-svg .tsx-floorlight { fill: #d9dde6; opacity: calc(.15 + var(--ceil, 0) * .5); }
+.tsx-svg .tsx-spillglow { opacity: var(--show, 0); }
+.tsx-svg .tsx-show { opacity: var(--show, 0); }
+.tsx-svg .tsx-show text { font-family: var(--font); fill: #fff8ea; }
+.tsx-svg .tsx-show .sc1 { font-size: 30px; font-weight: 500; }
+.tsx-svg .tsx-show .sc2 { font-family: var(--serif); font-style: italic; font-size: 54px; fill: #ffd38a; }
+.tsx-svg .tsx-show .sc3 { font-family: var(--mono); font-size: 13px; letter-spacing: .14em; fill: #a9c4ff; }
+.tsx-svg .tsx-beam { opacity: calc(var(--beam, 0) * .55); }
+.tsx-svg .tsx-dusts { fill: #e6efff; opacity: var(--beam, 0); }
+.tsx-svg .tsx-dust { animation: dustfloat 6s ease-in-out infinite alternate; }
+@keyframes dustfloat { to { transform: translate(30px, -20px); opacity: .2; } }
+.tsx-svg .tsx-tier { fill: #15171f; }
+.tsx-svg .tsx-seat { fill: #2a3042; stroke: #12141c; stroke-width: 1.2; }
+.tsx-svg .tsx-arm { fill: #c7a24a; opacity: .7; }
+.tsx-svg .tsx-step { fill: #3d64ff; opacity: var(--steps, 0); filter: drop-shadow(0 0 6px #3d64ff); }
+.tsx-svg .tsx-bench { fill: #0c0d10; stroke: #2a2c33; stroke-width: 2; }
+.tsx-svg .tsx-block { fill: #c99a2e; }
+.tsx-svg .tsx-blocktop { fill: #f2c95a; }
+.tsx-svg .tsx-hole { fill: #3a2a10; }
+@media (max-width: 680px) {
+  .tsx { height: 400vh; }
+  .tsx-card { left: 16px; right: 16px; width: auto; bottom: 18px; padding: 18px 20px; }
+  .tsx-card p { font-size: 15px; }
+  .tsx-clock { top: calc(var(--nav-h) + 18px); }
+}

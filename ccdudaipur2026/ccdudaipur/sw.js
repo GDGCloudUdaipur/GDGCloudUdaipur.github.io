@@ -1,6 +1,6 @@
 /* Offline support: the agenda and your starred sessions work without signal at the venue. */
-const CACHE = "ccd-udaipur-v3";
-const CORE = ["./", "index.html", "coc.html", "404.html", "css/style.css", "css/premium.css", "js/data.js", "js/scene.js", "js/chetak.js", "js/mewar.js", "js/places.js", "js/pass.js", "js/main.js", "js/water.js", "js/fx.js", "js/bot.js",
+const CACHE = "ccd-udaipur-v6";
+const CORE = ["./", "index.html", "coc.html", "404.html", "css/style.css", "css/premium.css", "js/data.js", "js/scene.js", "js/chetak.js", "js/mewar.js", "js/places.js", "js/venue.js", "js/pass.js", "js/main.js", "js/water.js", "js/fx.js", "js/bot.js",
   "assets/icon.svg", "assets/img/icon-192.png", "assets/img/og-image.jpg", "manifest.webmanifest"];
 
 self.addEventListener("install", (e) => {

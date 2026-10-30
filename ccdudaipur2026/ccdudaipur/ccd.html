@@ -32,7 +32,7 @@
     "endDate": "2026-12-20T18:30:00+05:30",
     "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
     "eventStatus": "https://schema.org/EventScheduled",
-    "location": { "@type": "Place", "name": "Udaipur", "address": "Udaipur, Rajasthan, India" },
+    "location": { "@type": "Place", "name": "The Third Space", "address": "Shyam Nagar, Pulla Bhuwana, Udaipur, Rajasthan 313001, India" },
     "organizer": { "@type": "Organization", "name": "GDG Cloud Udaipur", "url": "https://gdg.community.dev/gdg-cloud-udaipur/" },
     "offers": { "@type": "Offer", "url": "https://konfhub.com/google-cloud-community-days-udaipur-2026", "availability": "https://schema.org/InStock" },
     "description": "One day of Gemini, AI agents and Google Cloud in the City of Lakes."
@@ -84,6 +84,7 @@
       <a href="#story">The day</a>
       <a href="#glory">Mewar</a>
       <a href="#places">Places</a>
+      <a href="#thirdspace">Venue</a>
       <a href="#agenda">Agenda</a>
       <a href="#speakers">Speakers</a>
       <a href="#faq">FAQ</a>
@@ -138,7 +139,7 @@
             </div>
             <div class="info">
               <span class="k">Venue</span>
-              <span class="v" data-bind="venueName">Venue reveal soon</span>
+              <span class="v" data-bind="venueName">The Third Space</span>
               <span class="sub" data-bind="venueArea">Udaipur, Rajasthan</span>
             </div>
             <div class="info">
@@ -429,9 +430,6 @@
                 </select>
               </label>
               <label>One thing you'd build <input name="idea" maxlength="80" placeholder="An agent that books the best sunset boat on Pichola" /></label>
-              <label>Pass ID <span class="muted" style="font-weight:400;text-transform:none;">(optional / manual)</span>
-                <input name="passId" maxlength="24" placeholder="e.g. CCD-UDR-26-0042 (leave blank to auto-generate)" />
-              </label>
               <div class="cta-row">
                 <button class="btn btn-dark" type="submit">Seal my pass</button>
                 <button class="btn btn-ghost" type="button" id="passDownload" disabled>Download PNG</button>
@@ -488,12 +486,42 @@
       </div>
     </section>
 
+    <!-- THE THIRD SPACE: a scroll-driven tour of the venue -->
+    <section class="tsx" id="thirdspace" aria-label="A tour of the venue, The Third Space, Udaipur">
+      <div class="tsx-track">
+        <div class="tsx-stage">
+          <div class="tsx-int" id="tsxInt"></div>
+          <div class="tsx-ext" id="tsxExt"></div>
+          <div class="tsx-flash" aria-hidden="true"></div>
+          <div class="tsx-clock" aria-hidden="true"><i></i><b>Afternoon</b></div>
+          <div class="tsx-card">
+            <span class="eyebrow">The venue · <span lang="hi">द थर्ड स्पेस</span></span>
+            <h2>The Third <em>Space.</em></h2>
+            <p>A marble lantern on the edge of Udaipur. Dharohar's centre for learning and culture wears a skin of hand-cut jaali that glows from inside after dark.</p>
+            <ul class="tsx-facts"><li>Theatre</li><li>Maker spaces</li><li>Library</li><li>Rooftop lookout</li></ul>
+            <span class="tsx-hint">Keep scrolling: the sun is going down</span>
+          </div>
+          <div class="tsx-card">
+            <span class="eyebrow">Step inside</span>
+            <h2>Through the <em>lantern.</em></h2>
+            <p>Under the pilotis, past the lit lobby and into the hall where CCD Udaipur opens.</p>
+          </div>
+          <div class="tsx-card">
+            <span class="eyebrow">The keynote hall</span>
+            <h2>Your seat is <em>waiting.</em></h2>
+            <p>Raked seats, star-lit ceiling, a big screen and lounge benches up front for the builders who like to sit close. Sunday 20 December 2026.</p>
+            <div class="cta-row"><a class="btn btn-light" data-link="tickets" target="_blank" rel="noopener">Get your ticket →</a><a class="btn btn-outline-light" href="#venue">Directions</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- VENUE -->
     <section class="section" id="venue">
       <div class="wrap venue">
         <div class="venue-copy reveal">
           <span class="eyebrow">Venue</span>
-          <h2 data-bind="venueName">Venue reveal soon</h2>
+          <h2 data-bind="venueName">The Third Space</h2>
           <p data-bind="venueAddress"></p>
           <dl class="facts">
             <div><dt>Date</dt><dd data-bind="dateLong">Sun, 20 Dec 2026</dd></div>
@@ -501,12 +529,12 @@
             <div><dt>Expected</dt><dd><span data-bind="expected">300+</span> builders</dd></div>
           </dl>
           <div class="cta-row">
-            <a class="btn btn-dark" id="directions" target="_blank" rel="noopener">Directions</a>
-            <a class="btn btn-ghost" data-link="register" href="#register" target="_blank" rel="noopener">Register</a>
+            <a class="btn btn-dark" id="directions" target="_blank" rel="noopener">Directions in Google Maps</a>
+            <a class="btn btn-ghost" data-link="tickets" href="#register" target="_blank" rel="noopener">Get tickets</a>
           </div>
         </div>
         <div class="map reveal">
-          <iframe id="mapFrame" title="Map of Udaipur" loading="lazy" referrerpolicy="no-referrer"></iframe>
+          <iframe id="mapFrame" title="Map: The Third Space, Udaipur" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
       </div>
     </section>
@@ -539,7 +567,7 @@
             <svg><use href="#i-half"/></svg>
             <h3>Volunteer</h3>
             <p>Help run the day, get the team tee and see how a 300-person event actually happens.</p>
-            <a class="link" data-link="volunteer" target="_blank" rel="noopener">Join the crew →</a>
+            <a class="link" data-link="volunteer" target="_blank" rel="noopener">Fill the volunteer interest form →</a>
           </div>
           <div class="c-card yellow reveal">
             <svg><use href="#i-flower"/></svg>
@@ -593,8 +621,9 @@
       <div class="footer-links">
         <a href="#agenda">Agenda</a><a href="#speakers">Speakers</a><a href="#play">Play</a><a href="#explore">Explore Udaipur</a>
         <a data-link="tickets" target="_blank" rel="noopener">Tickets on KonfHub</a><a data-link="event" target="_blank" rel="noopener">GDG event page</a>
+        <a data-link="volunteer" target="_blank" rel="noopener">Volunteer with us</a>
         <a href="#glory">The glory of Mewar</a><a href="#places">Iconic Udaipur</a>
-        <a href="coc.html">Code of conduct</a><a href="pass.html">Shahi Pass</a><a data-link="community" target="_blank" rel="noopener">GDG Cloud Udaipur</a>
+        <a href="coc.html">Code of conduct</a><a data-link="community" target="_blank" rel="noopener">GDG Cloud Udaipur</a>
       </div>
       <div class="hunt">
         <div class="hunt-row" id="huntRow"></div>
@@ -624,6 +653,7 @@
   <div class="mobile-menu" id="mobileMenu" hidden>
     <a href="#story">The day</a><a href="#glory">Mewar</a><a href="#places">Places</a><a href="#dive">Beneath the lake</a><a href="#journey">Journey</a><a href="#agenda">Agenda</a><a href="#speakers">Speakers</a><a href="#play">Play</a><a href="#explore">Udaipur</a><a href="#venue">Venue</a><a href="#partners">Partners</a><a href="#faq">FAQ</a>
     <button class="mm-theme" id="mmTheme">☾ Day / night</button>
+    <a data-link="volunteer" target="_blank" rel="noopener">Volunteer with us</a>
     <a class="btn btn-dark" data-link="tickets" target="_blank" rel="noopener">Get tickets</a>
   </div>
 
@@ -637,6 +667,7 @@
   <script src="js/chetak.js"></script>
   <script src="js/mewar.js"></script>
   <script src="js/places.js"></script>
+  <script src="js/venue.js"></script>
   <script src="js/pass.js"></script>
   <script src="js/main.js"></script>
   <script src="js/water.js"></script>
