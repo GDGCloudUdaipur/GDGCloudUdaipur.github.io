@@ -1,0 +1,804 @@
+/* ==========================================================================
+   Flight Ticket Pass & Tearable Swag Coupon Styles
+   For Google Cloud Community Days Udaipur 2026
+   ========================================================================== */
+
+/* ---------- Container & Layout ---------- */
+.ticket-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  margin: 0 auto;
+}
+
+.ticket-preview-box {
+  width: 100%;
+  max-width: 760px;
+  position: relative;
+  perspective: 1200px;
+  margin-bottom: 16px;
+}
+
+/* ---------- The Flight Ticket Card ---------- */
+.flight-ticket {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  min-height: 340px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  position: relative;
+  box-shadow: 0 16px 48px -12px rgba(28, 23, 18, 0.16), 0 2px 6px rgba(0, 0, 0, 0.04);
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s ease;
+  overflow: visible;
+  color: var(--ink);
+  font-family: var(--font);
+}
+
+:root[data-theme="dark"] .flight-ticket,
+body[data-dark="1"] .flight-ticket {
+  box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+.flight-ticket:hover {
+  transform: translateY(-4px) rotate(0.3deg);
+  box-shadow: 0 24px 60px -14px rgba(28, 23, 18, 0.22);
+}
+
+/* 24K Shahi Gold Edition */
+.flight-ticket.gold-edition {
+  background: linear-gradient(135deg, #fffcf5 0%, #fef5de 50%, #f8e5b6 100%);
+  border-color: color-mix(in srgb, var(--gold) 45%, transparent);
+}
+
+:root[data-theme="dark"] .flight-ticket.gold-edition,
+body[data-dark="1"] .flight-ticket.gold-edition {
+  background: linear-gradient(135deg, #1f190e 0%, #2c2211 50%, #1a140b 100%);
+  border-color: color-mix(in srgb, var(--gold) 60%, transparent);
+}
+
+/* Top Google 4-Color Airline Stripe */
+.ticket-top-ribbon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  border-radius: 22px 22px 0 0;
+  background: linear-gradient(
+    90deg,
+    var(--blue) 0% 25%,
+    var(--red) 25% 50%,
+    var(--yellow) 50% 75%,
+    var(--green) 75% 100%
+  );
+  z-index: 4;
+}
+
+/* ==========================================================================
+   LEFT SIDE: MAIN BOARDING PASS
+   ========================================================================== */
+.ticket-main {
+  flex: 1 1 66%;
+  padding: 24px 24px 20px 26px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+  position: relative;
+  min-width: 0;
+  z-index: 1;
+}
+
+/* Top Header in Left Side */
+.ticket-main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed var(--line);
+}
+
+.ticket-airline-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ticket-brand-icons {
+  display: flex;
+  gap: 3px;
+}
+
+.ticket-brand-icons svg {
+  width: 17px;
+  height: 17px;
+}
+
+.ticket-airline-text {
+  font-family: var(--font);
+  font-weight: 700;
+  font-size: 13.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.ticket-airline-text span {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: 0.12em;
+}
+
+.ticket-class-badge {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--blue) 12%, transparent);
+  color: var(--blue);
+  border: 1px solid color-mix(in srgb, var(--blue) 25%, transparent);
+  white-space: nowrap;
+}
+
+.flight-ticket.gold-edition .ticket-class-badge {
+  background: color-mix(in srgb, var(--gold) 15%, transparent);
+  color: var(--gold);
+  border-color: color-mix(in srgb, var(--gold) 35%, transparent);
+}
+
+/* Flight Route: Origin -> Destination */
+.ticket-route {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 12px;
+  padding: 4px 0 8px;
+}
+
+.route-city {
+  display: flex;
+  flex-direction: column;
+}
+
+.route-code {
+  font-family: var(--font);
+  font-weight: 800;
+  font-size: 26px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.route-name {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-top: 2px;
+}
+
+.route-mid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  position: relative;
+}
+
+.route-flight-num {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--saffron);
+  letter-spacing: 0.08em;
+}
+
+.route-plane-line {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 90px;
+  color: var(--muted);
+}
+
+.route-plane-line::before,
+.route-plane-line::after {
+  content: "";
+  flex: 1;
+  height: 1.5px;
+  border-top: 1.5px dashed var(--line);
+}
+
+.route-plane-icon {
+  font-size: 14px;
+  transform: rotate(45deg);
+  display: inline-block;
+  color: var(--blue);
+}
+
+/* Primary Details Grid (Name, Date, Venue) */
+.ticket-primary-info {
+  display: grid;
+  grid-template-columns: 1.2fr 0.9fr 1.1fr;
+  gap: 14px;
+  background: color-mix(in srgb, var(--paper-2) 65%, transparent);
+  padding: 12px 16px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+}
+
+.info-block {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.info-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin-bottom: 3px;
+}
+
+.info-value {
+  font-family: var(--font);
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.25;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.info-value.passenger-name-val {
+  font-size: 16px;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+.info-value.date-val {
+  color: var(--saffron);
+}
+
+.info-value.venue-val {
+  font-size: 13.5px;
+  font-weight: 600;
+  white-space: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+/* Secondary Row: Gate, Time, Seat, Persona */
+.ticket-secondary-info {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  padding: 0 4px;
+}
+
+.sub-info-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.sub-info-label {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin-bottom: 2px;
+}
+
+.sub-info-val {
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+/* Persona & Idea Highlight Bar */
+.ticket-persona-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: color-mix(in srgb, var(--gold) 10%, transparent);
+  border-left: 3px solid var(--gold);
+  padding: 8px 12px;
+  border-radius: 0 8px 8px 0;
+  font-size: 12.5px;
+}
+
+.ticket-persona-tag {
+  font-weight: 700;
+  color: var(--saffron);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+}
+
+.ticket-idea-text {
+  color: var(--ink-2);
+  font-style: italic;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 12px;
+}
+
+/* Left Side Footer Barcode */
+.ticket-main-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--line);
+}
+
+.ticket-barcode-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.barcode-svg {
+  height: 28px;
+  width: 170px;
+}
+
+.barcode-digits {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  color: var(--muted);
+}
+
+.ticket-conf-seal {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--green);
+}
+
+.conf-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--green) 25%, transparent);
+}
+
+/* ==========================================================================
+   CENTER: PERFORATION & NOTCHES (Tear Line)
+   ========================================================================== */
+.ticket-perforation-col {
+  width: 0;
+  flex: 0 0 0;
+  position: relative;
+  z-index: 5;
+}
+
+.ticket-perforation-line {
+  position: absolute;
+  top: 6px;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  border-left: 2px dashed color-mix(in srgb, var(--ink) 28%, transparent);
+}
+
+/* Notches: Circular cutouts matching card container background */
+.ticket-notch {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--card);
+  border: 1px solid var(--line);
+  z-index: 6;
+  pointer-events: none;
+}
+
+/* When placed in .pass-card, match .pass-card's background */
+.pass-card .ticket-notch {
+  background: var(--card);
+}
+
+.ticket-notch-top {
+  top: -14px;
+  left: -14px;
+  clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%);
+}
+
+.ticket-notch-bottom {
+  bottom: -14px;
+  left: -14px;
+  clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
+}
+
+.ticket-tear-guide {
+  position: absolute;
+  top: 50%;
+  left: -11px;
+  transform: translateY(-50%);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 3px 5px;
+  font-size: 10px;
+  color: var(--muted);
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ticket-tear-guide:hover {
+  background: var(--ink);
+  color: var(--paper);
+  transform: translateY(-50%) scale(1.15);
+}
+
+/* ==========================================================================
+   RIGHT SIDE: TEARABLE SWAG COUPON
+   ========================================================================== */
+.ticket-stub {
+  flex: 0 0 34%;
+  padding: 24px 22px 20px 24px;
+  background: color-mix(in srgb, var(--paper-2) 40%, var(--card));
+  border-radius: 0 22px 22px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+  position: relative;
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.45s ease, opacity 0.45s;
+  transform-origin: top left;
+  min-width: 0;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.flight-ticket.gold-edition .ticket-stub {
+  background: color-mix(in srgb, var(--gold) 10%, var(--card));
+}
+
+/* Hover state on stub shows tear readiness */
+.ticket-stub:hover:not(.is-torn) {
+  background: color-mix(in srgb, var(--yellow) 10%, var(--card));
+}
+
+/* Torn State (Physical detachment animation) */
+.ticket-stub.is-torn {
+  transform: translateX(18px) translateY(8px) rotate(2.8deg);
+  box-shadow: -10px 18px 36px -10px rgba(0, 0, 0, 0.35), 0 0 0 1px color-mix(in srgb, var(--red) 30%, transparent);
+  border-left: 2px dashed var(--red);
+  background: color-mix(in srgb, var(--red) 4%, var(--card));
+}
+
+/* Torn Stamp Badge */
+.torn-stamp {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-14deg);
+  border: 3px solid var(--red);
+  color: var(--red);
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-family: var(--mono);
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  background: color-mix(in srgb, var(--card) 90%, transparent);
+  box-shadow: 0 4px 14px rgba(234, 67, 53, 0.25);
+  z-index: 10;
+  white-space: nowrap;
+}
+
+.ticket-stub.is-torn .torn-stamp {
+  opacity: 1;
+  transform: translate(-50%, -50%) rotate(-14deg) scale(1.05);
+}
+
+/* Header in Stub */
+.stub-header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stub-pill-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.stub-coupon-pill {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: var(--saffron);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.stub-event-label {
+  font-family: var(--font);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.stub-title {
+  font-family: var(--font);
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+
+/* Swag Kit Claim Box */
+.stub-claim-box {
+  background: color-mix(in srgb, var(--card) 85%, transparent);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.claim-icon {
+  font-size: 24px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.claim-details {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.claim-badge-text {
+  font-family: var(--font);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.claim-sub-text {
+  font-family: var(--font);
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.25;
+}
+
+/* Stub Passenger & Pass ID info */
+.stub-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  padding: 2px 0;
+}
+
+.stub-info-cell {
+  display: flex;
+  flex-direction: column;
+}
+
+.stub-cell-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+}
+
+.stub-cell-val {
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.stub-cell-val.mono-id {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--blue);
+}
+
+/* Mini Barcode in Stub */
+.stub-barcode-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--line);
+}
+
+.stub-barcode-svg {
+  height: 24px;
+  width: 130px;
+}
+
+.stub-scan-hint {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+/* Interactive Tear Control Row */
+.ticket-controls-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  max-width: 760px;
+  margin-top: 14px;
+}
+
+.btn-tear {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 600;
+  background: color-mix(in srgb, var(--paper-2) 80%, var(--card));
+  color: var(--ink);
+  border: 1.5px dashed var(--line-strong);
+  padding: 8px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.btn-tear:hover {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+  transform: translateY(-1px);
+}
+
+.btn-tear.is-torn-btn {
+  background: color-mix(in srgb, var(--red) 12%, transparent);
+  color: var(--red);
+  border-color: var(--red);
+}
+
+.ticket-status-pill {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+}
+
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+@media (max-width: 820px) {
+  .ticket-preview-box {
+    max-width: 100%;
+  }
+
+  .flight-ticket {
+    flex-direction: column;
+    min-height: auto;
+  }
+
+  .ticket-main {
+    flex: 1 1 auto;
+    padding: 24px 20px 18px;
+  }
+
+  /* Switch perforation to horizontal */
+  .ticket-perforation-col {
+    width: 100%;
+    height: 0;
+  }
+
+  .ticket-perforation-line {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: auto;
+    width: 100%;
+    height: 0;
+    border-left: none;
+    border-top: 2px dashed color-mix(in srgb, var(--ink) 28%, transparent);
+  }
+
+  .ticket-notch-top {
+    top: -14px;
+    left: -14px;
+    clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);
+  }
+
+  .ticket-notch-bottom {
+    top: -14px;
+    left: auto;
+    right: -14px;
+    bottom: auto;
+    clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
+  }
+
+  .ticket-tear-guide {
+    left: 50%;
+    top: -11px;
+    transform: translateX(-50%);
+  }
+
+  .ticket-stub {
+    flex: 1 1 auto;
+    border-radius: 0 0 22px 22px;
+    padding: 20px;
+  }
+
+  .ticket-stub.is-torn {
+    transform: translateY(16px) rotate(1.2deg);
+  }
+
+  .ticket-primary-info {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .ticket-secondary-info {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

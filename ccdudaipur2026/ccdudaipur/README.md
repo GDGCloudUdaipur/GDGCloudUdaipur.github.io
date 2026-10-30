@@ -19,7 +19,7 @@ Almost everything lives in **`js/data.js`**:
 
 | What | Where in `data.js` |
 |---|---|
-| Date and time | `event.start`, `event.end` (Sunday 6 Dec 2026, 9:00 – 18:30 IST) |
+| Date and time | `event.start`, `event.end` (Sunday 20 Dec 2026, 9:00 – 18:30 IST) |
 | Register, CFP, volunteer and sponsor links | `links` |
 | Venue and map pin | `venue`. Set `confirmed: true` once it's final |
 | Agenda | `agenda`. While it is empty the page shows the sealed "agenda revealing soon" card; add sessions and the planner switches on |

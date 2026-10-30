@@ -399,7 +399,7 @@
     $("#agendaLede").textContent = "Star the sessions you want and they're saved on this device. Export your picks to your calendar in one tap. On the day, this page shows what's live right now.";
     renderAgenda();
   }
-  $("#tbaCal").onclick = () => { addEventIcs(); toast("Saved. <b>6 Dec 2026</b> is in your calendar file."); };
+  $("#tbaCal").onclick = () => { addEventIcs(); toast("Saved. <b>20 Dec 2026</b> is in your calendar file."); };
   $("#trackChips").innerHTML = Object.entries(D.tracks).filter(([k]) => k !== "all")
     .map(([, t]) => `<span class="chip" style="--c:${colorVar(t.color)}"><i></i>${esc(t.label)}</span>`).join("");
 
@@ -423,7 +423,7 @@
     const inner = s.name && s.photo ? `<img src="${esc(s.photo)}" alt="${esc(s.name)}" loading="lazy">` : `<span class="jk-q">?</span>`;
     return `<button class="jk reveal ${s.name ? "revealed" : ""}" data-speaker="${esc(s.id)}" style="--c:${colorVar(c)};transition-delay:${(i % 4) * 70}ms">
       <div class="jk-frame"><div class="jk-window">${inner}</div><span class="jk-seal"><svg><use href="#i-${shapeFor[c] || "star"}"/></svg></span></div>
-      <div class="jk-label">${s.name ? `<b>${esc(s.name)}</b><span>${esc([s.role, s.company].filter(Boolean).join(" · "))}</span>`
+      <div class="jk-label">${s.name ? `<b>${esc(s.name)}</b><span>${esc([s.role, s.company, s.location].filter(Boolean).join(" · "))}</span>`
         : `<b>Revealing soon</b><span>Speaker ${String(i + 1).padStart(2, "0")}</span>`}</div></button>`;
   }
   const speakerList = D.speakers.length ? D.speakers
@@ -441,7 +441,7 @@
     const c = colorVar(s.seal || "red");
     const body = s.name
       ? `${s.photo ? `<img class="photo" style="width:120px;height:120px;border-radius:50%;object-fit:cover" src="${esc(s.photo)}" alt="">` : ""}
-         <h3>${esc(s.name)}</h3><p class="muted">${esc([s.role, s.company].filter(Boolean).join(" · "))}</p><p style="margin-top:14px">${esc(s.bio || "")}</p>
+         <h3>${esc(s.name)}</h3><p class="muted">${esc([s.role, s.company, s.location].filter(Boolean).join(" · "))}</p><p style="margin-top:14px">${esc(s.bio || "")}</p>
          <p style="margin-top:14px">${Object.entries(s.links || {}).map(([k, v]) => `<a href="${esc(v)}" target="_blank" rel="noopener">${esc(k)}</a>`).join(" · ")}</p>`
       : `<div class="jk-seal" style="--c:${c};position:relative;left:auto;bottom:auto;transform:none;margin:0 auto;width:64px;height:64px"><svg style="width:32px;height:32px"><use href="#i-${shapeFor[s.seal] || "star"}"/></svg></div>
          <h3 style="text-align:center">Revealing soon</h3>
@@ -619,7 +619,7 @@
   const { lat, lng } = D.venue;
   const dz = D.venue.confirmed ? 0.008 : 0.04;
   $("#mapFrame").src = `https://www.openstreetmap.org/export/embed.html?bbox=${lng - dz * 1.4},${lat - dz},${lng + dz * 1.4},${lat + dz}&layer=mapnik${D.venue.confirmed ? `&marker=${lat},${lng}` : ""}`;
-  $("#directions").href = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(D.venue.confirmed ? `${D.venue.name}, ${D.venue.area}` : `${lat},${lng}`)}`;
+  $("#directions").href = `https://www.google.com/maps/dir/24.5399552,73.711616/Third+Space,+Shyam+Nagar,+Pulla+Bhuwana,+Arihant+Nagar,+Pahada,+Bhuwana,+Rajasthan+313001/@24.5770808,73.6886603,13z/data=!4m9!4m8!1m1!4e1!1m5!1m1!1s0x3967e52e86399e29:0x49c18b2e981e6cd3!2m2!1d73.7207545!2d24.6199734?entry=ttu&g_ep=EgoyMDI2MTAyOC4wIKXMDSoASAFQAw%3D%3D`;
 
   /* ---------- partners & team ---------- */
   $("#sponsorLogos").innerHTML = D.sponsors.map((s) => `<a href="${esc(s.url)}" target="_blank" rel="noopener" title="${esc(s.name)} · ${esc(s.tier)}"><img src="${esc(s.logo)}" alt="${esc(s.name)}"></a>`).join("");

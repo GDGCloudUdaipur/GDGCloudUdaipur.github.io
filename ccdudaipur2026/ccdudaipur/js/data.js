@@ -9,8 +9,8 @@ window.CCD = {
     short: "CCD Udaipur '26",
     tagline: "From attendees to builders.",
     // ISO start/end in IST. Keep the +05:30 offset.
-    start: "2026-12-06T09:00:00+05:30",
-    end: "2026-12-06T18:30:00+05:30",
+    start: "2026-12-20T09:00:00+05:30",
+    end: "2026-12-20T18:30:00+05:30",
     // While false, the date shows a small "tentative" tag everywhere.
     dateConfirmed: true,
     expected: "300+",
@@ -31,12 +31,12 @@ window.CCD = {
   },
 
   venue: {
-    name: "Venue reveal soon",
-    area: "Udaipur, Rajasthan",
-    address: "Shortlist: a lakeside 5-star hotel or a builder-friendly community space in the city",
-    lat: 24.5764,
-    lng: 73.6813,
-    confirmed: false,
+    name: "Third Space Udaipur",
+    area: "Shyam Nagar, Bhuwana, Udaipur",
+    address: "Third Space, Shyam Nagar, Pulla Bhuwana, Arihant Nagar, Pahada, Bhuwana, Rajasthan 313001",
+    lat: 24.6199734,
+    lng: 73.7207545,
+    confirmed: true,
   },
 
   stats: [
@@ -50,7 +50,7 @@ window.CCD = {
     { when: "6 Sep 2026", title: "Build with AI", place: "Kickoff", text: "Beginner-friendly Gemini and AI introductions that opened the season.", done: true, color: "blue" },
     { when: "Sep – Oct 2026", title: "Code for Communities 2.0", place: "Hackathon", text: "Teams solving real problems for local Udaipur businesses, with mentoring from the chapter.", done: true, color: "green" },
     { when: "Oct – Nov 2026", title: "Awareness workshops", place: "Colleges & cafés", text: "Small hands-on sessions across the city to warm up for the big day.", done: false, color: "yellow" },
-    { when: "6 Dec 2026", title: "Cloud Community Days", place: "The main event", text: "300+ developers learning, building and shipping together in the City of Lakes.", done: false, color: "red" },
+    { when: "20 Dec 2026", title: "Cloud Community Days", place: "The main event", text: "300+ developers learning, building and shipping together in the City of Lakes.", done: false, color: "red" },
   ],
 
   tracks: {
@@ -68,11 +68,14 @@ window.CCD = {
   //   title: "Opening keynote", desc: "…", level: "All", speaker: "sp1" },
   agenda: [],
 
-  // Speakers are revealed soon. While this list is empty, `speakerSlots`
-  // sealed jharokha windows show "Revealing soon". Example entry:
+  // Add a local image path to `photo` when speaker photos are ready.
   // { id: "sp1", name: "Ada Lovelace", role: "GDE, Cloud", company: "Analytical Engines",
   //   photo: "assets/img/speakers/ada.jpg", bio: "…", links: { linkedin: "https://…" }, seal: "blue" },
-  speakers: [],
+  speakers: [
+    { id: "sp1", name: "Austin Reich", role: "Data & AI Engineer", company: "Cloudwerx", location: "Australia", photo: "", seal: "blue",photo: "assets/img/austin.png"},
+    { id: "sp2", name: "Gaurav Kheterpal", role: "CEO & Chief Evangelist - Copado", company: "Vanshiv Technologies", photo: "", seal: "green",photo: "assets/img/gaurav.png"  },
+    { id: "sp3", name: "Keshan Sodimana", role: "ML Architect", company: "London Stock Exchange", location: "Sri Lanka", photo: "", seal: "yellow",photo: "assets/img/keshan.png"  },
+  ],
   speakerSlots: 8,
 
   // Where Mewar meets Google
@@ -192,7 +195,7 @@ window.CCD = {
     { at: 0.45, when: "18 June 1576", title: "Haldighati", text: "Maharana Pratap rides into the yellow pass on Chetak, the horse masked with an elephant's trunk so the war elephants would take him for one of their own." },
     { at: 0.56, when: "The leap", title: "Chetak's leap", text: "Wounded, Chetak carries Pratap out of the battle and, as the story goes, clears a stream no horse should have cleared." },
     { at: 0.8, when: "Haldighati", title: "Chetak Smarak", text: "A memorial stands near where Chetak fell. Mewar still tells the story of the horse that saved its king." },
-    { at: 0.93, when: "6 December 2026", title: "The builders of Mewar", text: "The same hills, a new kind of courage. Hundreds of builders gather in Udaipur to make something that lasts." },
+    { at: 0.93, when: "20 December 2026", title: "The builders of Mewar", text: "The same hills, a new kind of courage. Hundreds of builders gather in Udaipur to make something that lasts." },
   ],
 
   // Iconic places for the horizontal gallery. `scene` picks the drawing in js/places.js.
@@ -233,7 +236,7 @@ window.CCD = {
     speakers: ["Someone is behind every window. Revealing soon!"],
     play: ["Make a Shahi Pass. It looks great on LinkedIn."],
     explore: ["Try the dal baati churma. Trust me."],
-    venue: ["Venue reveal soon. Somewhere with a view, I hope."],
+    venue: ["See you at Third Space Udaipur!"],
     partners: ["Partner with us and I'll wave your flag."],
     faq: ["Ask away. I'm a very helpful bot."],
     register: ["Tickets are on KonfHub. Go go go!"],
